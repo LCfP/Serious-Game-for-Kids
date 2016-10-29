@@ -30,9 +30,9 @@ class Product
             throw new Error(
                 "Insufficient stock on " + this.name + "! Ordered: " + ord + ", available: " + this.quantity
             );
-        } else {
-            this.quantity = this.quantity - ord;
         }
+
+        this.quantity = this.quantity - ord;
     }
 
     /**
