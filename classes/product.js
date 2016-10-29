@@ -6,7 +6,7 @@ class Product
      * @param {string} name - The display name for this product.
      * @param {int} quantity - The amount of this product
      * @param {float} size - A unitless measure for the size of a product (qty = 1).
-     * @param {int=1} perishable - The number of days a perishable good remains fresh. 0 for infinite.
+     * @param {int=0} perishable - The number of days a perishable good remains fresh. 0 for infinite.
      */
     constructor(name, quantity, size, perishable = 0)
     {

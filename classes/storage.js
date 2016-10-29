@@ -34,7 +34,6 @@ class Storage
      * length of the items array.
      *
      * @returns {Number} - Currently used capacity
-     * @private
      */
     _usedCapacity()
     {

@@ -14,4 +14,10 @@ class Warehouse extends Storage
 
         super.addItem(container);
     }
+
+    toString()
+    {
+        return "I am a Warehouse; currently I have " + this._usedCapacity() + " Containers, out of a maximum of "
+            + this.capacity;
+    }
 }
