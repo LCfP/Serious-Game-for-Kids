@@ -1,42 +1,31 @@
-class Storage
+class Storage extends StorageCore
 {
     /**
-     * @constructor Represents a Storage.
+     * @param {Container} container - The container to be added.
+     * @throws Error when the extra Container would exceed Storage capacity!
      *
-     * @param {string} name - The display name for this Storage.
-     * @param {float} capacity - A unitless measure for the maximum capacity of this Storage.
+     * @override
      */
-    constructor(name, capacity)
+    addItem(container)
     {
-        this.name = String(name);
-        this.capacity = parseFloat(capacity);
-
-        this.items = [];
-    }
-
-    /**
-     * @param {*} item - Any item to be put in storage. Type checking is delegated to subclasses.
-     * @throws Error when capacity would be exceeded by adding this item to the Storage!
-     */
-    addItem(item)
-    {
-        var availableCapacity = this.capacity - this._usedCapacity();
-
-        if (!availableCapacity) {
-            throw new Error("There is no more capacity in this " + this.name);
+        if (!(container instanceof Container)) {
+            throw new TypeError("Expected a Container, but got a " + container.constructor.name);
         }
 
-        this.items.push(item);
+        super.addItem(container);
     }
 
     /**
-     * Computes a measure of the used capacity. Delegates to subclasses for specific implementations, default is the
-     * length of the items array.
-     *
-     * @returns {Number} - Currently used capacity
+     * @override
      */
     _usedCapacity()
     {
         return this.items.length;
+    }
+
+    toString()
+    {
+        return "I am a Storage; currently I have " + this._usedCapacity() + " Containers, out of a maximum of "
+            + this.capacity;
     }
 }

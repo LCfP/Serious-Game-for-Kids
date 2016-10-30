@@ -1,4 +1,4 @@
-class Container extends Storage
+class Container extends StorageCore
 {
     /**
      * @param {Product} product - The product to be added.
@@ -8,7 +8,7 @@ class Container extends Storage
      */
     addItem(product)
     {
-        if (!product instanceof Product) {
+        if (!(product instanceof Product)) {
             throw new TypeError("Expected a Product, but got a " + product.constructor.name);
         }
 
