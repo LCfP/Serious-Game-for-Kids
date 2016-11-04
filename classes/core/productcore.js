@@ -6,13 +6,15 @@ class ProductCore
      * @param {string} name - The display name for this product.
      * @param {int} quantity - The amount of this product
      * @param {float} size - A unitless measure for the size of a product (qty = 1).
-     * @param {int} perishable=0 - The number of days a perishable good remains fresh. 0 for infinite.
+     * @param {boolean} isPerishable=false - Is this good considered perishable?
+     * @param {int} perishable=0 - The number of days a perishable good remains fresh. In conjunction with isPerishable.
      */
-    constructor(name, quantity, size, perishable = 0)
+    constructor(name, quantity, size, isPerishable = false, perishable = 0)
     {
         this.name = String(name);
         this.quantity = parseInt(quantity);
         this.size = parseFloat(size);
+        this.isPerishable = Boolean(isPerishable);
         this.perishable = parseInt(perishable);
     }
 
