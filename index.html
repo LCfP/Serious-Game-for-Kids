@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Serious game for kids</title>
+    <script src="src/library/require.js"></script>
+    <script>
+        require.config({
+            baseUrl: "src",
+            paths: {
+                "classes": "classes",
+                "core": "classes/core",
+                "library": "library"
+            },
+            waitSeconds: 7
+        });
+        require(
+                [
+                    "library/vue",
+                    "core/productcore",
+                    "core/storagecore",
+                    "classes/container",
+                    "classes/product",
+                    "classes/storage"
+                ]
+        );
+    </script>
+</head>
+<body>
+    <h1>Serious game for kids</h1>
+    <aside>Inventory control game</aside>
+</body>
+</html>

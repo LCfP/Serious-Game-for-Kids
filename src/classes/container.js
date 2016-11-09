@@ -16,6 +16,21 @@ class Container extends StorageCore
     }
 
     /**
+     * Updates perishable products whenever the next day occurs.
+     */
+    updatePerishabeProducts()
+    {
+        this.items = this.items.filter(function (product) {
+            if (product.isPerishable) {
+                product.perishable = product.perishable - 1;
+            }
+
+            // true is kept, so if product is perishable and perishable == 0 we remove from the list.
+            return (!product.isPerishable && product.perishable);
+        })
+    }
+
+    /**
      * @override
      */
     _usedCapacity()

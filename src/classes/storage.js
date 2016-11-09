@@ -16,6 +16,16 @@ class Storage extends StorageCore
     }
 
     /**
+     * Updates perishable products whenever the next day occurs.
+     */
+    updatePerishabeProducts()
+    {
+        this.items.forEach(function (container) {
+            container.updatePerishabeProducts();
+        });
+    }
+
+    /**
      * @override
      */
     _usedCapacity()
