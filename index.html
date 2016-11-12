@@ -3,31 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Serious game for kids</title>
-    <script src="src/library/require.js"></script>
-    <script>
-        require.config({
-            baseUrl: "src",
-            paths: {
-                "classes": "classes",
-                "core": "classes/core",
-                "library": "library"
-            },
-            waitSeconds: 7
-        });
-        require(
-                [
-                    "library/vue",
-                    "core/productcore",
-                    "core/storagecore",
-                    "classes/container",
-                    "classes/product",
-                    "classes/storage"
-                ]
-        );
-    </script>
 </head>
 <body>
-    <h1>Serious game for kids</h1>
-    <aside>Inventory control game</aside>
+    <section id="top-bar"></section>
+    <section id="factory" class="col-lg-4"></section>
+    <section id="warehouse" class="col-lg-4"></section>
+    <section id="customers" class="col-lg-4"></section>
+
+    <footer>
+        <link rel="stylesheet" type="text/css" href="src/library/css/bootstrap.min.css">
+
+        <script src="src/library/js/jquery-3.1.1.min.js"></script>
+        <script src="src/library/js/bootstrap.min.js"></script>
+
+        <script src="src/models/core/productcore.js"></script>
+        <script src="src/models/core/storagecore.js"></script>
+        <script src="src/models/container.js"></script>
+        <script src="src/models/storage.js"></script>
+        <script src="src/models/product.js"></script>
+
+        <script src="src/controllers/core/controller.js"></script>
+        <script src="src/controllers/initgamecontroller.js"></script>
+
+        <script src="src/main.js"></script>
+    </footer>
 </body>
 </html>

@@ -17,6 +17,8 @@ class Container extends StorageCore
 
     /**
      * Updates perishable products whenever the next day occurs.
+     *
+     * @augments StorageCore.updatePerishabeProducts()
      */
     updatePerishabeProducts()
     {
