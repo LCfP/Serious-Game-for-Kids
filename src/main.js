@@ -10,3 +10,4 @@ $(document).ready(function ()
     var controller = new InitGameController();
     controller.view();
 });
+

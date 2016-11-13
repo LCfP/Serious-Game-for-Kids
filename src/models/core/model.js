@@ -10,15 +10,14 @@ class Model
         } else {
             this.model = {};
 
-            this.model.config = {
-                maxSimultaneousOrders: 2,
-                warehouseCapacity: 6,
-                containerCapacity: 250,
-                orderCapacity: 1000,
-                orderTransportDuration: 7,
+            // game configuration
+            this.model.config = this._config();
 
-                initWarehouseContainers: 4
-            };
+            // houses the available products for order
+            this.model.products = this._products();
+
+            // stores the current incoming orders from the factory, at most config.maxSimultaneousOrders
+            this.model.orders = {};
         }
     }
 
@@ -28,5 +27,49 @@ class Model
     toObject()
     {
         window.MODEL = this.model;
+    }
+
+    /**
+     * @private
+     */
+    _config()
+    {
+        return {
+            maxSimultaneousOrders: 2,
+            warehouseCapacity: 6,
+            containerCapacity: 250,
+            orderCapacity: 1000,
+            orderTransportDuration: 7,
+
+            warehouseContainers: 4,
+            money: 10000
+        };
+    }
+
+    /**
+     * @private
+     */
+    _products()
+    {
+        return [
+            {
+                name: "Banana",
+                unitPrice: 1.0,
+                isPerishable: true,
+                perishable: 15,
+            },
+            {
+                name: "Apple",
+                unitPrice: 1.0,
+                isPerishable: true,
+                perishable: 20
+            },
+            {
+                name: "T-shirt",
+                unitPrice: 5.0,
+                isPerishable: false,
+                perishable: 0
+            }
+        ];
     }
 }

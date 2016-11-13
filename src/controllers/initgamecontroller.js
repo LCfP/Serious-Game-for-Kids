@@ -9,6 +9,8 @@ class InitGameController extends Controller
     {
         this._warehouseHelper();
         this._containerHelper();
+
+        this._factoryHelper();
     }
 
     /**
@@ -46,6 +48,23 @@ class InitGameController extends Controller
                     $("#containers").append(template);
                 });
             }
-        )
+        );
+    }
+
+    /**
+     * Helper method to fill the warehouse view with containers.
+     *
+     * @private
+     */
+    _factoryHelper()
+    {
+        $.get(
+            "src/views/template/factory.html",
+            function (factoryView)
+            {
+                var template = Mustache.render(factoryView, MODEL.factory);
+                $("#factory").html(template);
+            }
+        );
     }
 }
