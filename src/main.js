@@ -1,10 +1,7 @@
 $(document).ready(function ()
 {
-    var model = new InitGameModel();
-    model.setupModel();
-
-    // turns this model into a global MODEL
-    model.toObject();
+    // creates the global MODEL object
+    new InitGameModel();
 
     // set-up game
     var controller = new InitGameController();

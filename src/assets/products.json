@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Banana",
+    "unitPrice": 1.0,
+    "isPerishable": true,
+    "perishable": 15
+  },
+  {
+    "name": "Apple",
+    "unitPrice": 1.0,
+    "isPerishable": true,
+    "perishable": 20
+  },
+  {
+    "name": "T-shirt",
+    "unitPrice": 5.0,
+    "isPerishable": false,
+    "perishable": 0
+  }
+]

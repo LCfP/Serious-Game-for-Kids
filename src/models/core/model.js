@@ -10,15 +10,39 @@ class Model
         } else {
             this.model = {};
 
-            // game configuration
-            this.model.config = this._config();
+            // async AJAX calls to get these JSON files
+            // order for $.when: data, textStatus, jqXHR
+            $.when(
+                this._configHelper(),
+                this._productsHelper()
+            ).done(
+                (config, products) => {
+                    // game configuration
+                    this.model.config = config[0];
 
-            // houses the available products for order
-            this.model.products = this._products();
+                    // product types
+                    this.model.products = products[0];
 
-            // stores the current incoming orders from the factory, at most config.maxSimultaneousOrders
+                    try {
+                        this.setupCallback();
+                    } catch (e) {
+                        // most likely due to an unimplemented callback.
+                    }
+                });
+
+            // stores the current incoming orders from the factory
             this.model.orders = {};
         }
+    }
+
+    /**
+     * Callback for the initial configuration set-up
+     *
+     * @abstract
+     */
+    setupCallback()
+    {
+        throw new Error("Not implemented by parent class");
     }
 
     /**
@@ -32,44 +56,22 @@ class Model
     /**
      * @private
      */
-    _config()
+    _configHelper()
     {
-        return {
-            maxSimultaneousOrders: 2,
-            warehouseCapacity: 6,
-            containerCapacity: 250,
-            orderCapacity: 1000,
-            orderTransportDuration: 7,
-
-            warehouseContainers: 4,
-            money: 10000
-        };
+        return $.ajax({
+            url: "src/assets/config.json",
+            dataType: "JSON"
+        });
     }
 
     /**
      * @private
      */
-    _products()
+    _productsHelper()
     {
-        return [
-            {
-                name: "Banana",
-                unitPrice: 1.0,
-                isPerishable: true,
-                perishable: 15,
-            },
-            {
-                name: "Apple",
-                unitPrice: 1.0,
-                isPerishable: true,
-                perishable: 20
-            },
-            {
-                name: "T-shirt",
-                unitPrice: 5.0,
-                isPerishable: false,
-                perishable: 0
-            }
-        ];
+        return $.ajax({
+            url: "src/assets/products.json",
+            dataType: "JSON"
+        });
     }
 }
