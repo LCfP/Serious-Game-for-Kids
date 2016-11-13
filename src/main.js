@@ -1,18 +1,12 @@
 $(document).ready(function ()
 {
-    // global, for easy access in controllers
-    MODEL = initGameModel();
+    var model = new InitGameModel();
+    model.setupModel();
+
+    // turns this model into a global MODEL
+    model.toObject();
 
     // set-up game
     var controller = new InitGameController();
     controller.view();
 });
-
-function initGameModel()
-{
-    var warehouse = new Storage("Warehouse", 6);
-
-    return {
-        warehouse: warehouse
-    }
-}

@@ -1,5 +1,8 @@
-class InitGameController extends Controller {
+class InitGameController extends Controller
+{
     /**
+     * Displays the initial game state
+     *
      * @override
      */
     view()
@@ -9,7 +12,7 @@ class InitGameController extends Controller {
     }
 
     /**
-     * Helper method to fill the warehouse with containers.
+     * Helper method to display the warehouse
      *
      * @private
      */
@@ -19,13 +22,14 @@ class InitGameController extends Controller {
             "src/views/template/warehouse.html",
             function (warehouseView)
             {
-                $("#warehouse").html(warehouseView);
+                var template = Mustache.render(warehouseView, MODEL.warehouse);
+                $("#warehouse").html(template);
             }
         );
     }
 
     /**
-     * Helper method to fill the warehouse with containers.
+     * Helper method to fill the warehouse view with containers.
      *
      * @private
      */
@@ -38,7 +42,8 @@ class InitGameController extends Controller {
                 var containers = MODEL.warehouse.items;
 
                 containers.forEach(function (container) {
-                    $("#containers").append(containerView);
+                    var template = Mustache.render(containerView, container);
+                    $("#containers").append(template);
                 });
             }
         )
