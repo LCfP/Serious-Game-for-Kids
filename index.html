@@ -7,6 +7,7 @@
 <body>
     <section id="top-bar" class="navbar navbar-default"></section>
     <div class="container-fluid">
+        <section id="notifications" class="pull-right" style="z-index:1000;"></section>
         <div class="row">
             <section id="factory" class="col-lg-4"></section>
             <section id="warehouse" class="col-lg-4"></section>
@@ -15,10 +16,12 @@
     </div>
     <footer>
         <link rel="stylesheet" type="text/css" href="src/library/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="src/library/css/toastr.min.css">
 
         <script src="src/library/js/jquery-3.1.1.min.js"></script>
         <script src="src/library/js/bootstrap.min.js"></script>
         <script src="src/library/js/mustache.min.js"></script>
+        <script src="src/library/js/toastr.min.js"></script>
 
         <script src="src/models/classes/core/productcore.js"></script>
         <script src="src/models/classes/core/storagecore.js"></script>
@@ -31,7 +34,8 @@
         <script src="src/models/initgamemodel.js"></script>
 
         <script src="src/controllers/core/controller.js"></script>
-        <script src="src/controllers/factoryordercontroller.js"></script>
+        <script src="src/controllers/warehousecontroller.js"></script>
+        <script src="src/controllers/factorycontroller.js"></script>
         <script src="src/controllers/initgamecontroller.js"></script>
 
         <script src="src/main.js"></script>

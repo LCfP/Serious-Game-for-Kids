@@ -5,14 +5,16 @@ class ProductCore
      *
      * @param {string} name - The display name for this product.
      * @param {int} quantity - The amount of this product
+     * @param {float} price - The unit price for this product
      * @param {float} size - A unitless measure for the size of a product (qty = 1).
      * @param {boolean} isPerishable=false - Is this good considered perishable?
      * @param {int} perishable=0 - The number of days a perishable good remains fresh. In conjunction with isPerishable.
      */
-    constructor(name, quantity, size, isPerishable = false, perishable = 0)
+    constructor(name, quantity, price, size, isPerishable = false, perishable = 0)
     {
         this.name = String(name);
         this.quantity = parseInt(quantity);
+        this.price = parseFloat(price);
         this.size = parseFloat(size);
         this.isPerishable = Boolean(isPerishable);
         this.perishable = parseInt(perishable);
@@ -43,5 +45,13 @@ class ProductCore
     shelfSize()
     {
         return this.size * this.quantity;
+    }
+
+    /**
+     * Calculates the purchase value/cost.
+     */
+    value()
+    {
+        return this.price * this.quantity;
     }
 }
