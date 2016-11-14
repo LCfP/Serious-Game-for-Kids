@@ -1,0 +1,32 @@
+<div id="progress-bar-orders">
+
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h4>{{ name }}</h4>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new-order-modal">
+            New order
+        </button>
+    </div>
+</div>
+<div id="new-order-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Place your order</h4>
+            </div>
+            <div class="modal-body">
+                <form name="newFactoryOrder">
+                    {{ #products }}
+                        <div class="form-group">
+                            <label for="{{ name }}">{{ name }}</label>
+                            <input type="number" class="form-control" id="{{ name }}" />
+                        </div>
+                    {{ /products }}
+                    <button type="submit" class="btn btn-primary">Place order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

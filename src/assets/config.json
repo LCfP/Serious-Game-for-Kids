@@ -1,0 +1,10 @@
+{
+  "maxSimultaneousOrders": 2,
+  "warehouseCapacity": 6,
+  "containerCapacity": 250,
+  "orderCapacity": 1000,
+  "orderTransportDuration": 7,
+
+  "warehouseContainers": 4,
+  "money": 10000
+}

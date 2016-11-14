@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{ name }}
+        <span class="pull-right">
+            Capacity used: {{ _usedCapacity }} / {{ capacity }}
+        </span>
+    </div>
+    <div class="panel-body">
+        {{ #items }}
+            Name:       {{ name }}
+            Quantity:   {{ quantity }}
+            {{ #isPerishable }}
+                Perishes: {{ perishable }}
+            {{ /isPerishable }}
+        {{ /items}}
+    </div>
+</div>

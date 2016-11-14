@@ -37,6 +37,16 @@ class StorageCore {
     }
 
     /**
+     * Updates perishable products whenever the next day occurs.
+     *
+     * @abstract
+     */
+    updatePerishabeProducts()
+    {
+        throw new Error("Needs to be implemented by subclasses!");
+    }
+
+    /**
      * Computes a measure of the used capacity. Delegates to subclasses for specific implementations.
      *
      * @abstract
