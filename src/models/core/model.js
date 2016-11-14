@@ -31,7 +31,7 @@ class Model
                 });
 
             // stores the current incoming orders from the factory
-            this.model.orders = {};
+            this.model.orders = [];
         }
     }
 

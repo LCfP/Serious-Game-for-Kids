@@ -17,11 +17,11 @@
                 <h4 class="modal-title">Place your order</h4>
             </div>
             <div class="modal-body">
-                <form name="newFactoryOrder">
+                <form name="newFactoryOrder" action="">
                     {{ #products }}
                         <div class="form-group">
                             <label for="{{ name }}">{{ name }}</label>
-                            <input type="number" class="form-control" id="{{ name }}" />
+                            <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" />
                         </div>
                     {{ /products }}
                     <button type="submit" class="btn btn-primary">Place order</button>
