@@ -20,9 +20,8 @@ class StorageCore {
     addItem(item)
     {
         var availableCapacity = this.capacity - this._usedCapacity();
-        var totalSize = item.quantity * item.size;
 
-        if (availableCapacity <= 0 || availableCapacity < totalSize) {
+        if (availableCapacity <= 0) {
             throw new Error("There is no more capacity in this " + this.name + "; cannot add " + item.name);
         }
 

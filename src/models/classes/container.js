@@ -12,6 +12,12 @@ class Container extends StorageCore
             throw new TypeError("Expected a Product, but got a " + product.constructor.name);
         }
 
+        var availableCapacity = this.capacity - this._usedCapacity();
+
+        if (availableCapacity < product.shelfSize()) {
+            throw new Error("There is no more capacity in this " + this.name + "; cannot add " + product.name);
+        }
+
         super.addItem(product);
     }
 
