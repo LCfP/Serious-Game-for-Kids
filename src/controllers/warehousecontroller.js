@@ -43,4 +43,15 @@ class WarehouseController extends Controller
             }
         );
     }
+
+    /**
+     * Helper method to refresh the warehouse and its containers.
+     *
+     * @private
+     */
+    _updateContainer()
+    {
+        $("#containers").empty();
+        this._containerHelper();
+    }
 }

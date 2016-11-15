@@ -13,6 +13,10 @@ class Container extends StorageCore
         }
 
         super.addItem(product);
+
+        // Refresh warehouse
+        var warehouseController = new WarehouseController();
+        warehouseController._updateContainer();
     }
 
     /**
