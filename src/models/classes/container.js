@@ -8,17 +8,17 @@ class Container extends StorageCore
      */
     addItem(product)
     {
+        var availableCapacity = this.capacity - this._usedCapacity();
+
         if (!(product instanceof Product)) {
             throw new TypeError("Expected a Product, but got a " + product.constructor.name);
         }
-
-        var availableCapacity = this.capacity - this._usedCapacity();
 
         if (availableCapacity < product.shelfSize()) {
             throw new Error("There is no more capacity in this " + this.name + "; cannot add " + product.name);
         }
 
-        super.addItem(product);
+        this.items.push(product);
     }
 
     /**

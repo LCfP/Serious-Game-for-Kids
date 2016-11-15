@@ -1,4 +1,4 @@
-<div id="progress-bar-orders">
+<div id="factory-orders">
 
 </div>
 <div class="panel panel-default">
@@ -17,11 +17,16 @@
                 <h4 class="modal-title">Place your order</h4>
             </div>
             <div class="modal-body">
+                <div class="alert alert-info">
+                    Your current order will cost you <strong id="factory-order-cost">0</strong>,
+                    and use <strong id="factory-order-capacity">0</strong> capacity!
+                </div>
                 <form name="newFactoryOrder" action="">
                     {{ #products }}
                         <div class="form-group">
                             <label for="{{ name }}">{{ name }}</label>
-                            <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" />
+                            <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" value="0" />
+                            <small>Unit price for this item is {{ price }}, and unit size is {{ size }}.</small>
                         </div>
                     {{ /products }}
                     <button type="submit" class="btn btn-primary">Place order</button>
