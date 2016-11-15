@@ -5,13 +5,45 @@
             Capacity used: {{ _usedCapacity }} / {{ capacity }}
         </span>
     </div>
-    <div class="panel-body">
-        {{ #items }}
-            Name:       {{ name }}
-            Quantity:   {{ quantity }}
-            {{ #isPerishable }}
-                Perishes: {{ perishable }}
-            {{ /isPerishable }}
-        {{ /items}}
-    </div>
+
+    {{ ^items }}
+        <div class="panel-body">
+            This container is empty.
+        </div>
+    {{ /items }}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Size</th>
+                <th>Perishes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ #items }}
+                <tr>
+                    <td>
+                        {{ name }}
+                    </td>
+                    <td>
+                        {{ quantity }}
+                    </td>
+                    <td>
+                        {{ size }}
+                    </td>
+                    <td>
+                        {{ #isPerishable }}
+                            {{ perishable }} days
+                        {{ /isPerishable }}
+                        {{ ^isPerishable }}
+                            -
+                        {{ /isPerishable }}
+                    </td>
+                </tr>
+            {{ /items }}
+        </tbody>
+    </table>
+
 </div>
