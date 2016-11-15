@@ -14,8 +14,8 @@ class FactoryController extends Controller
     {
         var products = this._makeOrder(formValues);
 
-        var orderSize = products.reduce((sum, prod) => prod.shelfSize(), 0);
-        var orderCost = products.reduce((sum, prod) => prod.value(), 0);
+        var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
 
         // must be room for another order, there should be space on the truck, and money to pay for the order
         var flag = orderSize <= MODEL.config.orderCapacity && orderCost <= MODEL.config.money
@@ -25,13 +25,13 @@ class FactoryController extends Controller
             MODEL.config.money = MODEL.config.money - orderCost;
 
             var order = {
-                products: this._makeOrder(formValues),
+                products: products,
                 time: MODEL.config.orderTransportDuration
             };
 
             MODEL.orders.push(order);
 
-            this._updateOrderProgressBar(order);
+            this._updateOrderView(order);
             toastr.success("Order has been placed!");
         } else {
             toastr.error("Order could not be placed!")
@@ -43,6 +43,7 @@ class FactoryController extends Controller
      */
     static registerEvent()
     {
+        // form submission, creates an order
         $("form[name=newFactoryOrder]").submit(
             function (e) {
                 e.preventDefault();
@@ -52,19 +53,30 @@ class FactoryController extends Controller
 
                 $('#new-order-modal').modal('toggle');
             }
-        )
+        );
+
+        // updates the information for the current order process
+        $("form[name=newFactoryOrder] :input").change(
+            function (e) {
+                var formValues = $("form[name=newFactoryOrder]").serializeArray();
+                var products = FactoryController._makeOrder(formValues);
+
+                $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.value(), 0));
+                $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
+            }
+        );
     }
 
     /**
      * @private
      */
-    _updateOrderProgressBar(order)
+    _updateOrderView(order)
     {
         $.get(
-            "src/views/template/progressbar.html",
+            "src/views/template/factoryorder.html",
             function (progressBarView) {
                 var template = Mustache.render(progressBarView, order);
-                $("#progress-bar-orders").append(template);
+                $("#factory-orders").append(template);
             }
         )
     }
@@ -96,7 +108,7 @@ class FactoryController extends Controller
      *
      * @private
      */
-    _makeOrder(order)
+    static _makeOrder(order)
     {
         return order.map(function (ordered) {
             if (!ordered.value) {
