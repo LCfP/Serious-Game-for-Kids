@@ -45,11 +45,11 @@ class WarehouseController extends Controller
     }
 
     /**
-     * Helper method to refresh the warehouse and its containers.
+     * Helper method to refresh the containers.
      *
      * @private
      */
-    _updateContainer()
+    _updateContainers()
     {
         $("#containers").empty();
         this._containerHelper();
