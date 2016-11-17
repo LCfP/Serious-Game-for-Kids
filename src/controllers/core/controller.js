@@ -11,9 +11,34 @@ class Controller
     /**
      * @abstract
      */
-    static registerEvent()
+    registerEvent()
     {
         throw new Error("Needs to be implemented by subclasses!");
+    }
+
+    /**
+     * @param {string} loc - The template location, relative to the base url.
+     * @param {string} anchor - The jQuery locator to attach the template to.
+     * @param {object} data - The data to populate the template.
+     * @param {boolean} append=false - Append (true) or replace (false) values in the anchor?
+     *
+     * @protected
+     */
+    _loadTemplate(loc, anchor, data, append = false)
+    {
+        return $.get(
+            loc,
+            function (view)
+            {
+                var template = Mustache.render(view, data);
+
+                if (append) {
+                    $(anchor).append(template);
+                } else {
+                    $(anchor).html(template);
+                }
+            }
+        );
     }
 
     /**

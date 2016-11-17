@@ -13,13 +13,10 @@ class WarehouseController extends Controller
      */
     _warehouseHelper()
     {
-        $.get(
+        this._loadTemplate(
             "src/views/template/warehouse.html",
-            function (warehouseView)
-            {
-                var template = Mustache.render(warehouseView, MODEL.warehouse);
-                $("#warehouse").html(template);
-            }
+            "#warehouse",
+            MODEL.warehouse
         );
     }
 

@@ -24,12 +24,11 @@ class InitGameController extends Controller
      */
     _setTopbar()
     {
-        $.get(
+        this._loadTemplate(
             "src/views/template/topbar.html",
-            function (topbarView) {
-                var template = Mustache.render(topbarView, MODEL.config);
-                $("#top-bar").append(template);
-            }
-        )
+            "#top-bar",
+            MODEL.config,
+            true
+        );
     }
 }
