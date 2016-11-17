@@ -3,12 +3,14 @@
         <label class="sr-only" for="language">Select language</label>
         <select class="form-control" id="language" name="language">
             {{ #languages }}
-                <option value="{{ iso }}">{{ name }}</option>
+                <option value="{{ iso }}" {{ #active }} selected {{ /active }}>
+                    {{ name }}
+                </option>
             {{ /languages}}
         </select>
     </div>
 </form>
 <span class="navbar-text">
-    <strong>Money</strong>
+    <strong>{{#l}}Money{{/l}}</strong>
     <span id="money">{{ money }}</span>
 </span>

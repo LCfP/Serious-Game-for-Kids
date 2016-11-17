@@ -83,6 +83,13 @@ class Model
         // only if we support this language ISO
         if (langIso != "en" && this.model.config.languages.map(lang => lang.iso).includes(langIso)) {
             this.model.config.language = langIso;
+            this.model.config.languages = this.model.config.languages.map(
+                (lang) => {
+                    lang.active = lang.iso == langIso;
+                    return lang;
+                }
+            );
+
             return $.getJSON("src/assets/language/" + langIso + ".json");
         } else {
             // default EN

@@ -42,7 +42,7 @@ class InitGameController extends Controller
                     Cookies.set("lang", lang, {expires: 7});
 
                     toastr.success(
-                        "Language has been updated! Make sure you refresh the page for changes to take effect."
+                        Controller.l("Language has been updated! Make sure you refresh the page for changes to take effect.")
                     );
                 }
             )
