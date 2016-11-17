@@ -9,19 +9,19 @@ class CustomerController extends Controller
     {
         var products = this.constructor._makeOrder();
 
-        var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
         var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
 
         var customer = {
             name: 'Henk', // Find way to generate names
-            products: products
+            products: products,
+            orderCost: orderCost
         };
 
         MODEL.customers.push(customer);
 
         this._updateOrderView(customer);
 
-        toastr.success("New customer is waiting!");
+        toastr.info("New customer is waiting!");
     }
 
     static registerEvent()
@@ -33,8 +33,8 @@ class CustomerController extends Controller
     {
         $.get(
             "src/views/template/customerorder.html",
-            function (progressBarView) {
-                var template = Mustache.render(progressBarView, customer);
+            function (customerOrdersView) {
+                var template = Mustache.render(customerOrdersView, customer);
                 $("#customer-orders").append(template);
             }
         );
