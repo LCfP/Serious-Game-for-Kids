@@ -23,10 +23,13 @@ class InitGameModel extends Model
     toObject()
     {
         super.toObject();
-        this._modelExists();
+        this._whenModelExists();
     }
 
-    _modelExists()
+    /**
+     * @private
+     */
+    _whenModelExists()
     {
         // set-up game; TODO should this be here?
         var controller = new InitGameController();

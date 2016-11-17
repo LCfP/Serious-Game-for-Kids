@@ -1,3 +1,13 @@
+<form class="navbar-form navbar-left" name="language">
+    <div class="form-group">
+        <label class="sr-only" for="language">Select language</label>
+        <select class="form-control" id="language" name="language">
+            {{ #languages }}
+                <option value="{{ iso }}">{{ name }}</option>
+            {{ /languages}}
+        </select>
+    </div>
+</form>
 <span class="navbar-text">
     <strong>Money</strong>
     <span id="money">{{ money }}</span>

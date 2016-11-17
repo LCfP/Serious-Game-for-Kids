@@ -51,16 +51,43 @@ class Model
             $.getJSON("src/assets/config.json"),
             $.getJSON("src/assets/products.json")
         ).done(
-            (config, products, lang) => {
+            (config, products) => {
                 this.model.config = config[0];
                 this.model.products = products[0];
 
-                try {
-                    this.setupCallback();
-                } catch (e) {
-                    // most likely due to an unimplemented callback.
-                }
+                $.when(this._getLang()).done(
+                    (lang) => {
+                        this.model.lang = lang;
+
+                        try {
+                            this.setupCallback();
+                        } catch (e) {
+                            // most likely due to an unimplemented callback.
+                        }
+                    }
+                );
+
             }
         );
+    }
+
+    /**
+     * Retrieves the language file from the cookie settings. If none found, defaults to "en".
+     *
+     * @private
+     */
+    _getLang()
+    {
+        var langIso = (Cookies.get("lang") || "").toLowerCase();
+
+        // only if we support this language ISO
+        if (langIso != "en" && this.model.config.languages.map(lang => lang.iso).includes(langIso)) {
+            this.model.config.language = langIso;
+            return $.getJSON("src/assets/language/" + langIso + ".json");
+        } else {
+            // default EN
+            this.model.config.language = "en";
+            return {};
+        }
     }
 }
