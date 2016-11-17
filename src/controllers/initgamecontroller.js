@@ -12,5 +12,8 @@ class InitGameController extends Controller
 
         var factoryController = new FactoryController();
         factoryController.view();
+
+        var customerController = new CustomerController();
+        customerController.view();
     }
 }

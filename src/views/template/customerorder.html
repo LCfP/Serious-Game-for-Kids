@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        {{ name }}
+    </div>
+
+    <div class="panel-body">
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {{ #products }}
+                <tr>
+                    <td>
+                        {{ name }}
+                    </td>
+                    <td>
+                        {{ quantity }}
+                    </td>
+                </tr>
+                {{ /products }}
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="panel-footer">
+        Earn €26.49
+    </div>
+
+</div>

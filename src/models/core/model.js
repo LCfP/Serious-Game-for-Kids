@@ -32,6 +32,9 @@ class Model
 
             // stores the current incoming orders from the factory
             this.model.orders = [];
+
+            // stores waiting customers
+            this.model.customers = [];
         }
     }
 
