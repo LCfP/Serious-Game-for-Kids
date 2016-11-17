@@ -18,7 +18,7 @@
             <tbody>
                 {{ ^items }}
                 <tr>
-                    <td colspan="4">
+                    <td colspan="4" class="text-center">
                         This container is empty.
                     </td>
                 </tr>
@@ -36,10 +36,10 @@
                     </td>
                     <td>
                         {{ #isPerishable }}
-                        {{ perishable }} days
+                            {{ perishable }} days
                         {{ /isPerishable }}
                         {{ ^isPerishable }}
-                        -
+                            -
                         {{ /isPerishable }}
                     </td>
                 </tr>

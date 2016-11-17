@@ -1,10 +1,11 @@
 $(document).ready(function ()
 {
-    // creates the global MODEL object
-    new InitGameModel();
-
-    // set-up game
-    var controller = new InitGameController();
-    controller.view();
+    initGame();
 });
 
+function initGame()
+{
+    // creates the global MODEL object, and when done sets-up the game
+    // in initial state
+    new InitGameModel();
+}

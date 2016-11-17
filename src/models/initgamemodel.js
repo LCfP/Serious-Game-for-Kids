@@ -16,4 +16,20 @@ class InitGameModel extends Model
 
         this.toObject();
     }
+
+    /**
+     * @override
+     */
+    toObject()
+    {
+        super.toObject();
+        this._modelExists();
+    }
+
+    _modelExists()
+    {
+        // set-up game; TODO should this be here?
+        var controller = new InitGameController();
+        controller.view();
+    }
 }
