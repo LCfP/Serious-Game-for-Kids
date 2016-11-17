@@ -10,31 +10,13 @@ class Model
         } else {
             this.model = {};
 
-            // async AJAX calls to get these JSON files
-            // order for $.when: data, textStatus, jqXHR
-            $.when(
-                this._configHelper(),
-                this._productsHelper()
-            ).done(
-                (config, products) => {
-                    // game configuration
-                    this.model.config = config[0];
-
-                    // product types
-                    this.model.products = products[0];
-
-                    try {
-                        this.setupCallback();
-                    } catch (e) {
-                        // most likely due to an unimplemented callback.
-                    }
-                });
-
-            // stores the current incoming orders from the factory
+            // factory orders
             this.model.orders = [];
 
-            // stores waiting customers
+            // current customers
             this.model.customers = [];
+
+            this._load();
         }
     }
 
@@ -57,24 +39,62 @@ class Model
     }
 
     /**
+     * Loads the model from the server-side files.
+     *
      * @private
      */
-    _configHelper()
+    _load()
     {
-        return $.ajax({
-            url: "src/assets/config.json",
-            dataType: "JSON"
-        });
+        // async AJAX calls to get these JSON files
+        // order for $.when: data, textStatus, jqXHR
+        $.when(
+            $.getJSON("src/assets/config.json"),
+            $.getJSON("src/assets/products.json")
+        ).done(
+            (config, products) => {
+                this.model.config = config[0];
+                this.model.products = products[0];
+
+                $.when(this._getLang()).done(
+                    (lang) => {
+                        this.model.lang = lang;
+
+                        try {
+                            this.setupCallback();
+                        } catch (e) {
+                            // most likely due to an unimplemented callback.
+                        }
+                    }
+                );
+
+            }
+        );
     }
 
     /**
+     * Retrieves the language file from the cookie settings. If none found, defaults to "en".
+     *
      * @private
      */
-    _productsHelper()
+    _getLang()
     {
-        return $.ajax({
-            url: "src/assets/products.json",
-            dataType: "JSON"
-        });
+        var langIso = (Cookies.get("lang") || "").toLowerCase();
+
+        // only if we support this language ISO
+        if (langIso != "en" && this.model.config.languages.map(lang => lang.iso).includes(langIso)) {
+            this.model.config.language = langIso;
+            this.model.config.languages = this.model.config.languages.map(
+                (lang) => {
+                    lang.active = lang.iso == langIso;
+                    return lang;
+                }
+            );
+
+            return $.getJSON("src/assets/language/" + langIso + ".json");
+        } else {
+            // default EN
+            this.model.config.language = "en";
+            return {};
+        }
     }
 }

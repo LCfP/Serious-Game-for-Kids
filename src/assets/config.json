@@ -1,4 +1,14 @@
 {
+  "languages": [
+    {
+      "name": "English",
+      "iso": "en"
+    },
+    {
+      "name": "Nederlands",
+      "iso": "nl"
+    }
+  ],
   "maxSimultaneousOrders": 2,
   "warehouseCapacity": 6,
   "containerCapacity": 250,
