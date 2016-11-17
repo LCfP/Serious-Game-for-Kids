@@ -12,20 +12,19 @@ class CustomerController extends OrderController
 
     generateOrder()
     {
-        var products = super._makeOrder(
-            MODEL.products.map(
-                prod => {
-                    return {
-                        name: prod.name,
-                        value: super.randomDemandGenerator()
-                    }
+        var protoOrder = MODEL.products.map(
+            prod => {
+                return {
+                    name: prod.name,
+                    value: super.randomDemandGenerator()
                 }
-            ).filter((prod) => prod.value)
+            }
         );
 
+        var products = super._makeOrder(protoOrder);
         var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
         var customer = {
-            name: 'Henk', // TODO find way to generate names
+            name: 'Henk', // TODO randomly generate names
             products: products,
             orderCost: orderCost
         };

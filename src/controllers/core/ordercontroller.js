@@ -3,7 +3,7 @@ class OrderController extends Controller
     /**
      * Turns the values from the form into a proper Array of ordered products
      *
-     * @param {Array} order - Array of values from the newFactoryOrder form
+     * @param {Array} order - Array of {name, value} objects
      * @returns {Array} products - Array of ordered products
      */
     static _makeOrder(order)
