@@ -10,31 +10,13 @@ class Model
         } else {
             this.model = {};
 
-            // async AJAX calls to get these JSON files
-            // order for $.when: data, textStatus, jqXHR
-            $.when(
-                this._configHelper(),
-                this._productsHelper()
-            ).done(
-                (config, products) => {
-                    // game configuration
-                    this.model.config = config[0];
-
-                    // product types
-                    this.model.products = products[0];
-
-                    try {
-                        this.setupCallback();
-                    } catch (e) {
-                        // most likely due to an unimplemented callback.
-                    }
-                });
-
-            // stores the current incoming orders from the factory
+            // factory orders
             this.model.orders = [];
 
-            // stores waiting customers
+            // current customers
             this.model.customers = [];
+
+            this._load();
         }
     }
 
@@ -57,24 +39,28 @@ class Model
     }
 
     /**
+     * Loads the model from the server-side files.
+     *
      * @private
      */
-    _configHelper()
+    _load()
     {
-        return $.ajax({
-            url: "src/assets/config.json",
-            dataType: "JSON"
-        });
-    }
+        // async AJAX calls to get these JSON files
+        // order for $.when: data, textStatus, jqXHR
+        $.when(
+            $.getJSON("src/assets/config.json"),
+            $.getJSON("src/assets/products.json")
+        ).done(
+            (config, products, lang) => {
+                this.model.config = config[0];
+                this.model.products = products[0];
 
-    /**
-     * @private
-     */
-    _productsHelper()
-    {
-        return $.ajax({
-            url: "src/assets/products.json",
-            dataType: "JSON"
-        });
+                try {
+                    this.setupCallback();
+                } catch (e) {
+                    // most likely due to an unimplemented callback.
+                }
+            }
+        );
     }
 }
