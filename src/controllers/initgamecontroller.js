@@ -15,5 +15,21 @@ class InitGameController extends Controller
 
         var customerController = new CustomerController();
         customerController.view();
+
+        this._setTopbar();
+    }
+
+    /**
+     * @private
+     */
+    _setTopbar()
+    {
+        $.get(
+            "src/views/template/topbar.html",
+            function (topbarView) {
+                var template = Mustache.render(topbarView, MODEL.config);
+                $("#top-bar").append(template);
+            }
+        )
     }
 }
