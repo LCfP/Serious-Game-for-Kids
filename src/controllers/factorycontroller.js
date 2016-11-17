@@ -1,8 +1,14 @@
-class FactoryController extends Controller
+class FactoryController extends OrderController
 {
     view()
     {
-        this._factoryHelper();
+        this._loadTemplate(
+            "src/views/template/factory.html",
+            "#factory",
+            MODEL.factory
+        );
+
+        FactoryController.registerEvent();
     }
 
     /**
@@ -12,7 +18,7 @@ class FactoryController extends Controller
      */
     factoryOrder(formValues)
     {
-        var products = this._makeOrder(formValues);
+        var products = OrderController._makeOrder(formValues);
 
         var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
         var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
@@ -59,7 +65,7 @@ class FactoryController extends Controller
         $("form[name=newFactoryOrder] :input").change(
             function (e) {
                 var formValues = $("form[name=newFactoryOrder]").serializeArray();
-                var products = FactoryController._makeOrder(formValues);
+                var products = OrderController._makeOrder(formValues);
 
                 $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.value(), 0));
                 $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
@@ -72,59 +78,11 @@ class FactoryController extends Controller
      */
     _updateOrderView(order)
     {
-        $.get(
+        this._loadTemplate(
             "src/views/template/factoryorder.html",
-            function (progressBarView) {
-                var template = Mustache.render(progressBarView, order);
-                $("#factory-orders").append(template);
-            }
-        )
-    }
-
-    /**
-     * Helper method to fill the warehouse view with containers.
-     *
-     * @private
-     */
-    _factoryHelper()
-    {
-        $.get(
-            "src/views/template/factory.html",
-            function (factoryView)
-            {
-                var template = Mustache.render(factoryView, MODEL.factory);
-                $("#factory").html(template);
-
-                FactoryController.registerEvent();
-            }
+            "#factory-orders",
+            order,
+            true
         );
-    }
-
-    /**
-     * Turns the values from the form into a proper Array of ordered products
-     *
-     * @param {Array} order - Array of values from the newFactoryOrder form
-     * @returns {Array} products - Array of ordered products
-     *
-     * @private
-     */
-    static _makeOrder(order)
-    {
-        return order.map(function (ordered) {
-            if (!ordered.value) {
-                return false
-            }
-
-            var protoProduct = MODEL.products.filter((prod) => prod.name == ordered.name).shift();
-
-            return new Product(
-                ordered.name,
-                ordered.value,
-                protoProduct.price,
-                protoProduct.size,
-                protoProduct.isPerishable,
-                protoProduct.perishable
-            );
-        }).filter(Boolean); // see http://stackoverflow.com/a/34481744/4316405
     }
 }

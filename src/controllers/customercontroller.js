@@ -1,70 +1,51 @@
-class CustomerController extends Controller
+class CustomerController extends OrderController
 {
     view()
     {
-        this._customerHelper();
+        this._loadTemplate(
+            "src/views/template/customer.html",
+            "#customers",
+            // TODO: there must be something more to display here, perhaps also make a customer class?
+            null
+        );
     }
 
     generateOrder()
     {
-        var products = this.constructor._makeOrder();
+        var products = super._makeOrder(
+            MODEL.products.map(
+                prod => {
+                    return {
+                        name: prod.name,
+                        value: super.randomDemandGenerator()
+                    }
+                }
+            ).filter((prod) => prod.value)
+        );
 
         var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
-
         var customer = {
-            name: 'Henk', // Find way to generate names
+            name: 'Henk', // TODO find way to generate names
             products: products,
             orderCost: orderCost
         };
 
         MODEL.customers.push(customer);
-
         this._updateOrderView(customer);
 
         toastr.info("New customer is waiting!");
     }
 
-    static registerEvent()
-    {
-        //
-    }
-
+    /**
+     * @private
+     */
     _updateOrderView(customer)
     {
-        $.get(
+        this._loadTemplate(
             "src/views/template/customerorder.html",
-            function (customerOrdersView) {
-                var template = Mustache.render(customerOrdersView, customer);
-                $("#customer-orders").append(template);
-            }
+            "#customer-orders",
+            customer,
+            true
         );
-    }
-
-    _customerHelper()
-    {
-        $.get(
-            "src/views/template/customer.html",
-            function (customerView)
-            {
-                var template = Mustache.render(customerView, null);
-                $("#customers").html(template);
-            }
-        );
-    }
-
-    static _makeOrder()
-    {
-        return MODEL.products.map(function (product) {
-
-            return new Product(
-                product.name,
-                Math.floor(Math.random() * 6),
-                product.price,
-                product.size,
-                product.isPerishable,
-                product.perishable
-            );
-
-        });
     }
 }
