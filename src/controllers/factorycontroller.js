@@ -6,9 +6,7 @@ class FactoryController extends OrderController
             "src/views/template/factory.html",
             "#factory",
             MODEL.factory
-        );
-
-        FactoryController.registerEvent();
+        ).done(() =>  this.registerEvent());
     }
 
     /**
@@ -47,7 +45,7 @@ class FactoryController extends OrderController
     /**
      * @augments Controller.registerEvent
      */
-    static registerEvent()
+    registerEvent()
     {
         // form submission, creates an order
         $("form[name=newFactoryOrder]").submit(

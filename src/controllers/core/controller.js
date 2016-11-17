@@ -10,9 +10,8 @@ class Controller
 
     /**
      * @abstract
-     * @static
      */
-    static registerEvent()
+    registerEvent()
     {
         throw new Error("Needs to be implemented by subclasses!");
     }
@@ -27,7 +26,7 @@ class Controller
      */
     _loadTemplate(loc, anchor, data, append = false)
     {
-        $.get(
+        return $.get(
             loc,
             function (view)
             {

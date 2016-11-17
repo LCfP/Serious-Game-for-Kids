@@ -21,7 +21,7 @@ class CustomerController extends OrderController
             }
         );
 
-        var products = super._makeOrder(protoOrder);
+        var products = OrderController._makeOrder(protoOrder);
         var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
         var customer = {
             name: 'Henk', // TODO randomly generate names
