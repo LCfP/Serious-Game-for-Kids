@@ -27,16 +27,14 @@ class WarehouseController extends Controller
      */
     _containerHelper()
     {
-        $.get(
-            "src/views/template/container.html",
-            function (containerView)
-            {
-                var containers = MODEL.warehouse.items;
-
-                containers.forEach(function (container) {
-                    var template = Mustache.render(containerView, container);
-                    $("#containers").append(template);
-                });
+        MODEL.warehouse.items.forEach(
+            (container) => {
+                super._loadTemplate(
+                    "src/views/template/container.html",
+                    "#containers",
+                    container,
+                    true
+                );
             }
         );
     }
