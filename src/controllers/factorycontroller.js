@@ -22,7 +22,7 @@ class FactoryController extends Controller
             && MODEL.orders.length < MODEL.config.maxSimultaneousOrders;
 
         if (flag) {
-            MODEL.config.money = MODEL.config.money - orderCost;
+            this._updateMoney(-orderCost);
 
             var order = {
                 products: products,
