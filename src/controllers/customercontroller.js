@@ -5,7 +5,6 @@ class CustomerController extends OrderController
         this._loadTemplate(
             "src/views/template/customer.html",
             "#customers",
-            // TODO: there must be something more to display here, perhaps also make a customer class?
             null
         );
     }
@@ -22,12 +21,7 @@ class CustomerController extends OrderController
         );
 
         var products = OrderController._makeOrder(protoOrder);
-        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
-        var customer = {
-            name: 'Henk', // TODO randomly generate names
-            products: products,
-            orderCost: orderCost
-        };
+        var customer = new Customer(products);
 
         MODEL.customers.push(customer);
         this._updateOrderView(customer);
