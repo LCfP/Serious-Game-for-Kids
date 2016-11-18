@@ -4,34 +4,19 @@
         {{#l}}{{ name }}{{/l}}
     </div>
     <div class="panel-body">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new-order-modal">
-            {{#l}}New order{{/l}}
-        </button>
-    </div>
-</div>
-<div id="new-order-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Place your order</h4>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-info">
-                    Your current order will cost you <strong id="factory-order-cost">0</strong>,
-                    and use <strong id="factory-order-capacity">0</strong> capacity!
-                </div>
-                <form name="newFactoryOrder" action="">
-                    {{ #products }}
-                        <div class="form-group">
-                            <label for="{{ name }}">{{ name }}</label>
-                            <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" value="0" />
-                            <small>Unit price for this item is {{ price }}, and unit size is {{ size }}.</small>
-                        </div>
-                    {{ /products }}
-                    <button type="submit" class="btn btn-primary">Place order</button>
-                </form>
-            </div>
+        <div class="alert alert-info">
+            {{#l}}Your current order will cost you{{/l}} <strong id="factory-order-cost">0</strong>,
+            {{#l}}and use{{/l}} <strong id="factory-order-capacity">0</strong> {{#l}}capacity{{/l}}!
         </div>
+        <form name="newFactoryOrder" action="">
+            {{ #products }}
+                <div class="form-group">
+                    <label for="{{ name }}">{{#l}}{{ name }}{{/l}}</label>
+                    <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" value="0" />
+                    <small>{{#l}}Unit price for this item is{{/l}} {{ price }}, {{#l}}and unit size is{{/l}} {{ size }}.</small>
+                </div>
+            {{ /products }}
+            <button type="submit" class="btn btn-success pull-right">{{#l}}Place order{{/l}}</button>
+        </form>
     </div>
 </div>

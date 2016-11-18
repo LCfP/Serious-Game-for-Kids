@@ -18,14 +18,7 @@ class FactoryController extends OrderController
     {
         var products = OrderController._makeOrder(formValues);
 
-        var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
-        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
-
-        // must be room for another order, there should be space on the truck, and money to pay for the order
-        var flag = orderSize <= MODEL.config.orderCapacity && orderCost <= MODEL.config.money
-            && MODEL.orders.length < MODEL.config.maxSimultaneousOrders;
-
-        if (flag) {
+        if (this.validateOrder(products)) {
             this._updateMoney(-orderCost);
 
             var order = {
@@ -36,9 +29,8 @@ class FactoryController extends OrderController
             MODEL.orders.push(order);
 
             this._updateOrderView(order);
+
             toastr.success("Order has been placed!");
-        } else {
-            toastr.error("Order could not be placed!")
         }
     }
 
@@ -54,8 +46,6 @@ class FactoryController extends OrderController
 
                 var controller = new FactoryController();
                 controller.factoryOrder($(this).serializeArray());
-
-                $('#new-order-modal').modal('toggle');
             }
         );
 
@@ -69,6 +59,31 @@ class FactoryController extends OrderController
                 $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
             }
         );
+    }
+
+    validateOrder(products)
+    {
+        if (!products.length) {
+            toastr.warning(Controller.l("An order cannot be empty."));
+        }
+
+        if (MODEL.orders.length == MODEL.config.maxSimultaneousOrders) {
+            toastr.error(Controller.l("There is no room for another order at this time!"));
+        }
+
+        var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
+
+        if (orderSize > MODEL.config.orderCapacity) {
+            toastr.error(Controller.l("There is insufficient space on the truck!"));
+        }
+
+        if (orderCost > MODEL.config.money) {
+            toastr.error(Controller.l("You cannot afford this!"));
+        }
+
+        return products.length && orderSize <= MODEL.config.orderCapacity
+            && orderCost <= MODEL.config.money && MODEL.orders.length < MODEL.config.maxSimultaneousOrders;
     }
 
     /**

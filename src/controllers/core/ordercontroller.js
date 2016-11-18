@@ -9,7 +9,9 @@ class OrderController extends Controller
     static _makeOrder(order)
     {
         return order.map(function (ordered) {
-            if (!ordered.value) {
+            var value = parseInt(ordered.value);
+
+            if (!value) {
                 return false
             }
 
@@ -17,7 +19,7 @@ class OrderController extends Controller
 
             return new Product(
                 ordered.name,
-                ordered.value,
+                value,
                 protoProduct.price,
                 protoProduct.size,
                 protoProduct.isPerishable,
@@ -33,5 +35,13 @@ class OrderController extends Controller
     randomDemandGenerator()
     {
         return Math.floor(Math.random() * 6);
+    }
+
+    /**
+     * @abstract
+     */
+    validateOrder(products)
+    {
+        throw new Error("Should be implemented by subclasses!")
     }
 }
