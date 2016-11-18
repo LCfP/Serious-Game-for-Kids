@@ -8,7 +8,7 @@ class Order
     constructor(products)
     {
         this.products = products;
-        // this.orderCost = this.orderCost();
+        this.orderCost = this.orderCost();
     }
 
     /**
