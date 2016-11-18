@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{ #products }}
+                {{ #order.products }}
                 <tr>
                     <td>
                         {{ name }}
@@ -20,11 +20,11 @@
                         {{ quantity }}
                     </td>
                 </tr>
-                {{ /products }}
+                {{ /order.products }}
             </tbody>
         </table>
     </div>
     <div class="panel-footer">
-        Earn {{ orderCost }}
+        Earn {{ order.orderCost }}
     </div>
 </div>
