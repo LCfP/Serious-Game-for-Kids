@@ -2,31 +2,31 @@
     <div class="panel-heading">
         {{#l}}{{ name }}{{/l}}
         <span class="pull-right">
-            Capacity used: {{ _usedCapacity }} / {{ capacity }}
+            {{#l}}Capacity used{{/l}}: {{ _usedCapacity }} / {{ capacity }}
         </span>
     </div>
     <div class="panel-body">
         <table class="table">
             <thead>
             <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Size</th>
-                <th>Perishes</th>
+                <th>{{#l}}Product{{/l}}</th>
+                <th>{{#l}}Quantity{{/l}}</th>
+                <th>{{#l}}Size{{/l}}</th>
+                <th>{{#l}}Perishes{{/l}}</th>
             </tr>
             </thead>
             <tbody>
                 {{ ^items }}
                 <tr>
                     <td colspan="4" class="text-center">
-                        This container is empty.
+                        {{#l}}This container is empty{{/l}}.
                     </td>
                 </tr>
                 {{ /items }}
                 {{ #items }}
                 <tr>
                     <td>
-                        {{ name }}
+                        {{#l}}{{ name }}{{/l}}
                     </td>
                     <td>
                         {{ quantity }}
@@ -36,7 +36,7 @@
                     </td>
                     <td>
                         {{ #isPerishable }}
-                            {{ perishable }} days
+                            {{ perishable }} {{#l}}days{{/l}}.
                         {{ /isPerishable }}
                         {{ ^isPerishable }}
                             -

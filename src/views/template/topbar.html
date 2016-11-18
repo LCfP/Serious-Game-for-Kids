@@ -1,6 +1,6 @@
 <form class="navbar-form navbar-left" name="language">
     <div class="form-group">
-        <label class="sr-only" for="language">Select language</label>
+        <label class="sr-only" for="language">{{#l}}Select language{{/l}}</label>
         <select class="form-control" id="language" name="language">
             {{ #languages }}
                 <option value="{{ iso }}" {{ #active }} selected {{ /active }}>
