@@ -8,8 +8,7 @@
     constructor(products)
     {
         this.name = this.generateName();
-        this.products = products;
-        this.orderCost = this.orderCost();
+        this.order = new Order(products);
     }
 
      /**
@@ -21,15 +20,5 @@
     generateName()
     {
         return String('Henk');
-    }
-
-     /**
-      * Calculates order cost
-      *
-      * @returns {Number}
-      */
-    orderCost()
-    {
-        return parseFloat(this.products.reduce((sum, prod) => sum + prod.value(), 0));
     }
  }

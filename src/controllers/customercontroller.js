@@ -5,6 +5,7 @@ class CustomerController extends OrderController
         this._loadTemplate(
             "src/views/template/customer.html",
             "#customers",
+            // TODO: there must be something more to display here, perhaps also make a customer class?
             null
         );
     }
