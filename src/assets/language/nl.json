@@ -29,5 +29,7 @@
   "An order cannot be empty.": "Een bestelling mag niet leeg zijn.",
   "There is no room for another order at this time!": "Er is op dit moment geen plek voor een nieuwe bestelling",
   "There is insufficient space on the truck!": "Er is niet genoeg ruimte in de vrachtwagen!",
-  "You cannot afford this!": "Je kunt dit niet betalen!"
+  "You cannot afford this!": "Je kunt dit niet betalen!",
+
+  "Earn": "Verdien"
 }
