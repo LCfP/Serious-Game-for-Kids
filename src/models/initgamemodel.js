@@ -10,7 +10,7 @@ class InitGameModel extends Model
 
         for (var i = 0; i < this.model.config.warehouseContainers; i++) {
             this.model.warehouse.addItem(
-                new Container("Shelf", this.model.config.containerCapacity)
+                new Container("Rack", this.model.config.containerCapacity)
             );
         }
 
@@ -23,10 +23,13 @@ class InitGameModel extends Model
     toObject()
     {
         super.toObject();
-        this._modelExists();
+        this._whenModelExists();
     }
 
-    _modelExists()
+    /**
+     * @private
+     */
+    _whenModelExists()
     {
         // set-up game; TODO should this be here?
         var controller = new InitGameController();

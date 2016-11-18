@@ -1,9 +1,11 @@
 <div id="factory-orders"></div>
 <div class="panel panel-default">
+    <div class="panel-heading">
+        {{#l}}{{ name }}{{/l}}
+    </div>
     <div class="panel-body">
-        <h4>{{ name }}</h4>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new-order-modal">
-            New order
+            {{#l}}New order{{/l}}
         </button>
     </div>
 </div>
