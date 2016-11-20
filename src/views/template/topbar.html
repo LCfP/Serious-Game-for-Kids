@@ -1,16 +1,26 @@
-<form class="navbar-form navbar-left" name="language">
-    <div class="form-group">
-        <label class="sr-only" for="language">{{#l}}Select language{{/l}}</label>
-        <select class="form-control" id="language" name="language">
-            {{ #languages }}
+<div>
+    <form class="navbar-form navbar-left" name="language">
+        <div class="form-group">
+            <label class="sr-only" for="language">{{#l}}Select language{{/l}}</label>
+            <select class="form-control" id="language" name="language">
+                {{ #languages }}
                 <option value="{{ iso }}" {{ #active }} selected {{ /active }}>
                     {{ name }}
                 </option>
-            {{ /languages}}
-        </select>
-    </div>
-</form>
-<span class="navbar-text">
-    <strong>{{#l}}Money{{/l}}</strong>
-    <span id="money">{{ money }}</span>
-</span>
+                {{ /languages}}
+            </select>
+        </div>
+    </form>
+    <span class="navbar-text">
+        <strong>{{#l}}Money{{/l}}</strong>
+        <span id="money">{{ money }}</span>
+    </span>
+</div>
+<div class="pull-right">
+    <span class="navbar-text">
+        {{#l}}Day{{/l}}
+        <strong class="timer-days">0</strong>,
+        {{#l}}hour{{/l}}
+        <strong class="timer-hours">0</strong>
+    </span>
+</div>

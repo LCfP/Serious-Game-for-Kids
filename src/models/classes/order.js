@@ -8,6 +8,7 @@ class Order
     constructor(products)
     {
         this.products = products;
+        // TODO solve this without creating a variable?
         this.orderCost = this.orderCost();
     }
 
