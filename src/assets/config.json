@@ -1,4 +1,6 @@
 {
+  "hour": 4,
+
   "languages": [
     {
       "name": "English",
@@ -9,6 +11,7 @@
       "iso": "nl"
     }
   ],
+
   "maxSimultaneousOrders": 2,
   "warehouseCapacity": 6,
   "containerCapacity": 250,
