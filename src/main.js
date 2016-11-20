@@ -1,18 +1,11 @@
 $(document).ready(function ()
 {
-    // creates the global MODEL object
-    new InitGameModel();
+    initGame();
 });
 
-/**
- * Callback invoked when MODEL is loaded
- */
 function initGame()
 {
-    var initGame = new InitGameController();
-    initGame.view();
-
-    // TODO wait for views to be loaded.
-    var sim = new SimulationController();
-    sim.run();
+    // creates the global MODEL object, and when done sets-up the game
+    // in initial state
+    new InitGameModel();
 }

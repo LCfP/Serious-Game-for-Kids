@@ -15,8 +15,24 @@ class InitGameModel extends Model
         }
 
         this.toObject();
+    }
 
-        // callback for when the MODEL exists in the window
-        initGame();
+    /**
+     * @override
+     */
+    toObject()
+    {
+        super.toObject();
+        this._whenModelExists();
+    }
+
+    /**
+     * @private
+     */
+    _whenModelExists()
+    {
+        // set-up game; TODO should this be here?
+        var controller = new InitGameController();
+        controller.view();
     }
 }
