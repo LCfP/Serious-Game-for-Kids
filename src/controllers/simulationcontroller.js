@@ -16,6 +16,26 @@ class SimulationController extends Controller
     }
 
     /**
+     * @augments Controller.registerEvent
+     */
+    registerEvent()
+    {
+        $(".timer").click(function () {
+            $(".timer").each((i, elem) => $(elem).removeClass("active"));
+            var elem = $(this).children(":first");
+
+            if (MODEL.config.isPaused && elem.hasClass("glyphicon-play")) {
+                var sim = new SimulationController();
+                sim.run();
+            } else if (!MODEL.config.isPaused && elem.hasClass("glyphicon-pause")) {
+                MODEL.config.isPaused = true;
+            }
+
+            $(this).addClass("active");
+        });
+    }
+
+    /**
      * @private
      */
     _run()
@@ -27,7 +47,6 @@ class SimulationController extends Controller
         MODEL.config.hours++;
 
         this._runHour();
-
         if (MODEL.config.hours % 24 == 0) {
             this._runDay();
         }
@@ -58,6 +77,8 @@ class SimulationController extends Controller
      */
     _setup()
     {
+        this.registerEvent();
+
         if (!MODEL.config.hasOwnProperty("hours")) {
             MODEL.config.hours = 0;
         }
