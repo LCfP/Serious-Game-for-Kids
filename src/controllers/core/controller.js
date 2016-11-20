@@ -41,8 +41,11 @@ class Controller
      */
     _loadTemplate(loc, anchor, data, append = false)
     {
-       data.l = function() {
-            return function(text, render) {
+        // translation function
+        data.l = function ()
+        {
+            return function (text, render)
+            {
                 return Controller.l(render(text));
             }
         };

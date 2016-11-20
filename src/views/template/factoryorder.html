@@ -1,20 +1,20 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        A new order, still <span class="days-countdown factory-order">{{ time }}</span> days out!
+        {{#l}}A new order, still{{/l}} <span class="days-countdown factory-order">{{ time }}</span> {{#l}}days out{{/l}}!
     </div>
     <div class="panel-body">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
+                    <th>{{#l}}Product{{/l}}</th>
+                    <th>{{#l}}Quantity{{/l}}</th>
                 </tr>
             </thead>
             <tbody>
             {{ #products }}
             <tr>
                 <td>
-                    {{ name }}
+                    {{#l}}{{ name }}{{/l}}
                 </td>
                 <td>
                     {{ quantity }}
