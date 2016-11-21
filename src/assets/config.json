@@ -1,5 +1,6 @@
 {
-  "hour": 4,
+  "hour": 2,
+  "isPaused": true,
 
   "languages": [
     {

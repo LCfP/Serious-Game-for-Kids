@@ -11,8 +11,4 @@ function initGame()
 {
     var initGame = new InitGameController();
     initGame.view();
-
-    // TODO wait for views to be loaded. [ Critical ]
-    var sim = new SimulationController();
-    sim.run();
 }

@@ -20,15 +20,16 @@ class SimulationController extends Controller
      */
     registerEvent()
     {
-        $(".timer").click(function () {
+        $(".timer").off().click(function () {
             $(".timer").each((i, elem) => $(elem).removeClass("active"));
-            var elem = $(this).children(":first");
 
-            if (MODEL.config.isPaused && elem.hasClass("glyphicon-play")) {
-                var sim = new SimulationController();
+            var elem = $(this).children(":first");
+            var sim = new SimulationController();
+
+            MODEL.config.isPaused = true;
+
+            if (elem.hasClass("glyphicon-play")) {
                 sim.run();
-            } else if (!MODEL.config.isPaused && elem.hasClass("glyphicon-pause")) {
-                MODEL.config.isPaused = true;
             }
 
             $(this).addClass("active");
@@ -40,8 +41,10 @@ class SimulationController extends Controller
      */
     _run()
     {
+        console.log(this.running);
+
         if (MODEL.config.isPaused) {
-            clearTimeout(this.running);
+            clearInterval(this.running);
         }
 
         MODEL.config.hours++;

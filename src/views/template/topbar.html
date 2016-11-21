@@ -1,10 +1,10 @@
 <div>
     <div class="navbar-text">
         <div class="btn-group">
-            <button type="button" class="timer btn btn-default btn-xs">
+            <button type="button" class="timer btn btn-default btn-xs active">
                 <span class="glyphicon glyphicon-pause"></span>
             </button>
-            <button type="button" class="timer btn btn-default btn-xs active">
+            <button type="button" class="timer btn btn-default btn-xs">
                 <span class="glyphicon glyphicon-play"></span>
             </button>
         </div>
@@ -17,6 +17,10 @@
     </div>
 </div>
 <div class="col-lg-offset-8">
+    <div class="navbar-text">
+        <strong>{{#l}}Satisfaction{{/l}}</strong>
+        <span id="demand-satisfaction">{{ satisfaction }}</span>
+    </div>
     <div class="navbar-text">
         <strong>{{#l}}Money{{/l}}</strong>
         <span id="money">{{ money }}</span>
