@@ -17,7 +17,7 @@ class Model
             this.model.customers = [];
 
             // events happened in the past
-            this.model.history= [];
+            this.model.history = [];
 
             this._load();
         }

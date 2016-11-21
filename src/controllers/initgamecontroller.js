@@ -16,6 +16,9 @@ class InitGameController extends Controller
         var customerController = new CustomerController();
         customerController.view();
 
+        var historyController = new HistoryController();
+        historyController.view();
+
         this._setTopbar();
     }
 
