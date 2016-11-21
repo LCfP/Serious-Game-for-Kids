@@ -20,7 +20,7 @@ class SimulationController extends Controller
      */
     registerEvent()
     {
-        $(".timer").off().click(function () {
+        $(".timer").click(function () {
             $(".timer").each((i, elem) => $(elem).removeClass("active"));
 
             var elem = $(this).children(":first");
@@ -41,8 +41,6 @@ class SimulationController extends Controller
      */
     _run()
     {
-        console.log(this.running);
-
         if (MODEL.config.isPaused) {
             clearInterval(this.running);
         }
@@ -80,8 +78,6 @@ class SimulationController extends Controller
      */
     _setup()
     {
-        this.registerEvent();
-
         if (!MODEL.config.hasOwnProperty("hours")) {
             MODEL.config.hours = 0;
         }
