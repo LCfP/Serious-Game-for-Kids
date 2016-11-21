@@ -17,6 +17,7 @@ class FactoryController extends OrderController
     factoryOrder(formValues)
     {
         var products = OrderController._makeOrder(formValues);
+        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
 
         if (this.validateOrder(products)) {
             this._updateMoney(-orderCost);
@@ -27,10 +28,9 @@ class FactoryController extends OrderController
             };
 
             MODEL.orders.push(order);
-
             this._updateOrderView(order);
 
-            toastr.success("Order has been placed!");
+            toastr.success(Controller.l("Order has been placed!"));
         }
     }
 
