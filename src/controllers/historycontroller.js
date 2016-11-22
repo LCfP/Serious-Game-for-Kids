@@ -13,34 +13,26 @@ class HistoryController extends Controller
     {
         if (entry instanceof Customer)
         {
-            this.addCustomer(entry);
+            this._loadTemplate(
+                "src/views/template/history/customer.html",
+                "#history-events",
+                entry,
+                false,
+                true
+            );
         }
 
         if (entry instanceof Container)
         {
-            this.addContainer(entry);
+            this._loadTemplate(
+                "src/views/template/history/container.html",
+                "#history-events",
+                entry,
+                false,
+                true
+            );
         }
 
         MODEL.history.push(entry);
-    }
-
-    addCustomer(customer)
-    {
-        this._loadTemplate(
-            "src/views/template/history/customer.html",
-            "#history-events",
-            customer,
-            true
-        );
-    }
-
-    addContainer(container)
-    {
-        this._loadTemplate(
-            "src/views/template/history/container.html",
-            "#history-events",
-            container,
-            true
-        );
     }
 }

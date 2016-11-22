@@ -3,7 +3,7 @@
         <div class="panel-heading">{{ name }}</div>
         <ul class="list-group">
             {{ #order.products }}
-                <li class="list-group-item">{{ name }} (x{{ quantity }})</li>
+                <li class="list-group-item">{{#l}}{{ name }}{{/l}} (x{{ quantity }})</li>
             {{ /order.products }}
         </ul>
         <div class="panel-footer">
