@@ -2,28 +2,11 @@
     <div class="panel-heading">
         {{#l}}{{ name }}{{/l}}
     </div>
-    <div class="panel-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>{{#l}}Product{{/}}</th>
-                    <th>{{#l}}Quantity{{/l}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{ #order.products }}
-                <tr>
-                    <td>
-                        {{#l}}{{ name }}{{/l}}
-                    </td>
-                    <td>
-                        {{ quantity }}
-                    </td>
-                </tr>
-                {{ /order.products }}
-            </tbody>
-        </table>
-    </div>
+    <ul class="list-group">
+        {{ #order.products }}
+            <li class="list-group-item">{{#l}}{{ name }}{{/l}} <span class="badge">{{ quantity }}</span></li>
+        {{ /order.products }}
+    </ul>
     <div class="panel-footer">
         {{#l}}Earn{{/l}} {{ order.orderCost }}
     </div>
