@@ -7,6 +7,7 @@ class InitGameController extends Controller
      */
     view()
     {
+        // TODO loop over these controllers
         var warehouseController = new WarehouseController();
         warehouseController.view();
 
@@ -15,6 +16,9 @@ class InitGameController extends Controller
 
         var customerController = new CustomerController();
         customerController.view();
+
+        var historyController = new HistoryController();
+        historyController.view();
 
         this._setTopbar().done(
             () => {
