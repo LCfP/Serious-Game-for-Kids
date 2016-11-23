@@ -11,27 +11,23 @@ class HistoryController extends Controller
 
     log(entry)
     {
-        if (entry instanceof Customer)
-        {
-            this._loadTemplate(
-                "src/views/template/history/customer.html",
-                "#history-events",
-                entry,
-                false,
-                true
-            );
+        var location = "";
+
+        if (entry instanceof Customer) {
+            location = "customer";
+        } else if (entry instanceof Container) {
+            location = "container";
+        } else {
+            return;
         }
 
-        if (entry instanceof Container)
-        {
-            this._loadTemplate(
-                "src/views/template/history/container.html",
-                "#history-events",
-                entry,
-                false,
-                true
-            );
-        }
+        this._loadTemplate(
+            "src/views/template/history/" + location + ".html",
+            "#history-events",
+            entry,
+            false,
+            true
+        );
 
         MODEL.history.push(entry);
     }
