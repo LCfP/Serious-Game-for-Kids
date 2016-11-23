@@ -16,6 +16,9 @@ class Model
             // current customers
             this.model.customers = [];
 
+            // events happened in the past
+            this.model.history = [];
+
             this._load();
         }
     }

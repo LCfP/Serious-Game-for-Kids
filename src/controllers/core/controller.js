@@ -39,7 +39,7 @@ class Controller
      *
      * @protected
      */
-    _loadTemplate(loc, anchor, data, append = false)
+    _loadTemplate(loc, anchor, data, append = false, prepend = false)
     {
         // translation function
         data.l = function ()
@@ -59,6 +59,8 @@ class Controller
 
                 if (append) {
                     $(anchor).append(template);
+                } else if (prepend) {
+                    $(anchor).prepend(template);
                 } else {
                     $(anchor).html(template);
                 }
