@@ -7,6 +7,7 @@ class InitGameController extends Controller
      */
     view()
     {
+        // TODO loop over these controllers
         var warehouseController = new WarehouseController();
         warehouseController.view();
 
@@ -19,7 +20,14 @@ class InitGameController extends Controller
         var historyController = new HistoryController();
         historyController.view();
 
-        this._setTopbar();
+        this._setTopbar().done(
+            () => {
+                this.registerEvent();
+
+                var sim = new SimulationController();
+                sim.registerEvent();
+            }
+        );
     }
 
     /**
@@ -27,12 +35,12 @@ class InitGameController extends Controller
      */
     _setTopbar()
     {
-        this._loadTemplate(
+        return this._loadTemplate(
             "src/views/template/topbar.html",
             "#top-bar",
             MODEL.config,
             true
-        ).done(() => this.registerEvent());
+        );
     }
 
     registerEvent()

@@ -18,6 +18,7 @@
   "days": "dagen",
 
   "Place order": "Plaats bestelling",
+  "Order has been placed!": "Bestelling is geplaatst!",
   "Banana": "Banaan",
   "Apple": "Appel",
   "T-shirt": "T-shirt",
@@ -35,5 +36,9 @@
 
   "History": "Geschiedenis",
   "New rack of size": "Nieuw rek van",
-  "added": "units toegevoegd"
+  "added": "units toegevoegd",
+
+  "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
+  "Day": "Dag",
+  "hour": "uur"
 }
