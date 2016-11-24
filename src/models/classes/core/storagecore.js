@@ -19,7 +19,7 @@ class StorageCore {
      */
     addItem(item)
     {
-        var availableCapacity = this.capacity - this._usedCapacity();
+        var availableCapacity = this.capacity - this.usedCapacity();
 
         if (availableCapacity <= 0) {
             throw new Error("There is no more capacity in this " + this.name + "; cannot add " + item.name);
@@ -41,7 +41,7 @@ class StorageCore {
      *
      * @abstract
      */
-    updatePerishabeProducts()
+    updatePerishableProducts()
     {
         throw new Error("Needs to be implemented by subclasses!");
     }
@@ -51,7 +51,7 @@ class StorageCore {
      *
      * @abstract
      */
-    _usedCapacity()
+    usedCapacity()
     {
         throw new Error("Needs to be implemented by subclasses!");
     }

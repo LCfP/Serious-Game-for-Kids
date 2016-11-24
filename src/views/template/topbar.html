@@ -1,16 +1,42 @@
-<form class="navbar-form navbar-left" name="language">
-    <div class="form-group">
-        <label class="sr-only" for="language">{{#l}}Select language{{/l}}</label>
-        <select class="form-control" id="language" name="language">
-            {{ #languages }}
+<div>
+    <div class="navbar-text">
+        <div class="btn-group">
+            <button type="button" class="timer btn btn-default btn-xs active">
+                <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            <button type="button" class="timer btn btn-default btn-xs">
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+        </div>
+        <span>
+            {{#l}}Day{{/l}}
+            <strong class="timer-days">0</strong>,
+            {{#l}}hour{{/l}}
+            <strong class="timer-hours">0</strong>
+        </span>
+    </div>
+</div>
+<div class="col-lg-offset-8">
+    <div class="navbar-text">
+        <strong>{{#l}}Satisfaction{{/l}}</strong>
+        <span id="demand-satisfaction">{{ satisfaction }}</span>%
+    </div>
+    <div class="navbar-text">
+        <strong>{{#l}}Money{{/l}}</strong>
+        <span id="money">{{ money }}</span>
+    </div>
+</div>
+<div class="pull-right">
+    <form class="navbar-form navbar-left" name="language">
+        <div class="form-group">
+            <label class="sr-only" for="language">{{#l}}Select language{{/l}}</label>
+            <select class="form-control" id="language" name="language">
+                {{ #languages }}
                 <option value="{{ iso }}" {{ #active }} selected {{ /active }}>
                     {{ name }}
                 </option>
-            {{ /languages}}
-        </select>
-    </div>
-</form>
-<span class="navbar-text">
-    <strong>{{#l}}Money{{/l}}</strong>
-    <span id="money">{{ money }}</span>
-</span>
+                {{ /languages}}
+            </select>
+        </div>
+    </form>
+</div>

@@ -1,6 +1,12 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         {{#l}}{{ name }}{{/l}}
+        <span class="pull-right">
+            {{#l}}Capacity used{{/l}}:
+            <strong id="warehouse-used-capacity">{{ usedContainerCapacity }}</strong>
+            /
+            <span id="warehouse-max-capacity">{{ maxContainerCapacity }}</span>
+        </span>
     </div>
     <div class="panel-body" id="containers"></div>
 </div>

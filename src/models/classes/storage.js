@@ -18,26 +18,36 @@ class Storage extends StorageCore
     /**
      * Updates perishable products whenever the next day occurs.
      *
-     * @augments StorageCore.updatePerishabeProducts()
+     * @augments StorageCore.updatePerishableProducts()
      */
-    updatePerishabeProducts()
+    updatePerishableProducts()
     {
         this.items.forEach(function (container) {
-            container.updatePerishabeProducts();
+            container.updatePerishableProducts();
         });
     }
 
     /**
      * @override
      */
-    _usedCapacity()
+    usedCapacity()
     {
         return this.items.length;
     }
 
+    usedContainerCapacity()
+    {
+        return this.items.reduce((sum, container) => sum + container.usedCapacity(), 0);
+    }
+
+    maxContainerCapacity()
+    {
+        return this.items.reduce((sum, container) => sum + container.capacity, 0);
+    }
+
     toString()
     {
-        return "I am a Storage; currently I have " + this._usedCapacity() + " Containers, out of a maximum of "
+        return "I am a Storage; currently I have " + this.usedCapacity() + " Containers, out of a maximum of "
             + this.capacity;
     }
 }
