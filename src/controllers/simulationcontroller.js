@@ -68,7 +68,15 @@ class SimulationController extends Controller
      */
     _runDay()
     {
-        // TODO
+        let warehouseController = new WarehouseController();
+
+        warehouseController.updatePerishableProducts();
+        FactoryController.updateOrderDaily();
+
+        // TODO render in place, not jumping around
+        // TODO render view when new view is present, not delete and build
+        warehouseController.updateContainerView();
+        warehouseController.updateCapacityView();
 
         $(".timer-days").html(MODEL.config.hours / 24);
     }

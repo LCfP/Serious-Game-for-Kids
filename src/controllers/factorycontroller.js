@@ -10,31 +10,6 @@ class FactoryController extends OrderController
     }
 
     /**
-     * Handles ordering a set of products from the factory
-     *
-     * @param {Array} formValues - The ordered products, as an array of {name, quantity} objects.
-     */
-    factoryOrder(formValues)
-    {
-        var products = OrderController._makeOrder(formValues);
-        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
-
-        if (this.validateOrder(products)) {
-            this._updateMoney(-orderCost);
-
-            var order = {
-                products: products,
-                time: MODEL.config.orderTransportDuration
-            };
-
-            MODEL.orders.push(order);
-            this._updateOrderView(order);
-
-            toastr.success(Controller.l("Order has been placed!"));
-        }
-    }
-
-    /**
      * @augments Controller.registerEvent
      */
     registerEvent()
@@ -61,6 +36,33 @@ class FactoryController extends OrderController
         );
     }
 
+    /**
+     * Handles ordering a set of products from the factory
+     *
+     * @param {Array} formValues - The ordered products, as an array of {name, quantity} objects.
+     */
+    factoryOrder(formValues)
+    {
+        var products = OrderController._makeOrder(formValues);
+        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
+
+        if (this.validateOrder(products)) {
+            this._updateMoney(-orderCost);
+
+            var order = {
+                products: products,
+                // TODO time should be based on hour of purchase, + 7 days
+                time: MODEL.config.orderTransportDuration,
+                id: MODEL.orders.length
+            };
+
+            MODEL.orders.push(order);
+            this._updateOrderView(order);
+
+            toastr.success(Controller.l("Order has been placed!"));
+        }
+    }
+
     validateOrder(products)
     {
         if (!products.length) {
@@ -82,8 +84,49 @@ class FactoryController extends OrderController
             toastr.error(Controller.l("You cannot afford this!"));
         }
 
+        // TODO check warehouse capacity
+
         return products.length && orderSize <= MODEL.config.orderCapacity
             && orderCost <= MODEL.config.money && MODEL.orders.length < MODEL.config.maxSimultaneousOrders;
+    }
+
+    /**
+     * Updates order counter, at every daily interval. When 0, adds to Warehouse.
+     */
+    static updateOrderDaily()
+    {
+        var $handle = $(".days-countdown.factory-order");
+
+        if ($handle) {
+            $handle.each(
+                function (i, elem) {
+                    var time = $(this).html() - 1;
+
+                    if (!time) {
+                        var id = $($(this).siblings(".factory-order.order-id")[0]).html();
+
+                        var order = MODEL.orders.filter(
+                            function (order) {
+                                return order.id == id;
+                            }
+                        )[0];
+
+                        var warehouseController = new WarehouseController();
+                        warehouseController.addOrder(order.products);
+
+                        $(this).parents(".panel.panel-default").remove();
+                    } else {
+                        $(this).html(time);
+                    }
+
+                    MODEL.orders = MODEL.orders.filter(
+                        function (order) {
+                            return order.time - 1;
+                        }
+                    )
+                }
+            );
+        }
     }
 
     /**

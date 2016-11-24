@@ -8,11 +8,7 @@ class Container extends StorageCore
      */
     addItem(product)
     {
-        var availableCapacity = this.capacity - this._usedCapacity();
-
-        if (!(product instanceof Product)) {
-            throw new TypeError("Expected a Product, but got a " + product.constructor.name);
-        }
+        var availableCapacity = this.capacity - this.usedCapacity();
 
         if (availableCapacity < product.shelfSize()) {
             throw new Error("There is no more capacity in this " + this.name + "; cannot add " + product.name);
@@ -24,31 +20,36 @@ class Container extends StorageCore
     /**
      * Updates perishable products whenever the next day occurs.
      *
-     * @augments StorageCore.updatePerishabeProducts()
+     * @augments StorageCore.updatePerishableProducts()
      */
-    updatePerishabeProducts()
+    updatePerishableProducts()
     {
-        this.items = this.items.filter(function (product) {
-            if (product.isPerishable) {
-                product.perishable = product.perishable - 1;
-            }
+        this.items = this.items.filter(
+            function (product) {
+                if (typeof product == "undefined") {
+                    return false;
+                }
 
-            // true is kept, so if product is perishable and perishable == 0 we remove from the list.
-            return (!product.isPerishable && product.perishable);
-        })
+                product.perishable = product.perishable - 1;
+
+                // empty container does not have defined products. Else: product needs to be perishable,
+                // and needs to have perished.
+                return !(product.isPerishable && product.perishable <= 0)
+            }
+        );
     }
 
     /**
      * @override
      */
-    _usedCapacity()
+    usedCapacity()
     {
         return this.items.reduce((sum, prod) => sum + prod.shelfSize(), 0);
     }
 
     toString()
     {
-        return "I am a Container, specifically a " + this.name + "; Currently I have used " + this._usedCapacity()
+        return "I am a Container, specifically a " + this.name + "; Currently I have used " + this.usedCapacity()
             + " out of a total capacity of " + this.capacity + ", and I have " + this.items.length
             + " Products in storage.";
     }

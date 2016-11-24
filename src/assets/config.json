@@ -1,5 +1,5 @@
 {
-  "hour": 2,
+  "hour": 8,
   "isPaused": true,
 
   "languages": [
@@ -17,8 +17,9 @@
   "warehouseCapacity": 6,
   "containerCapacity": 250,
   "orderCapacity": 1000,
-  "orderTransportDuration": 7,
+  "orderTransportDuration": 2,
 
   "warehouseContainers": 4,
-  "money": 10000
+  "money": 10000,
+  "satisfaction": 100
 }
