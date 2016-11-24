@@ -7,18 +7,16 @@ class InitGameController extends Controller
      */
     view()
     {
-        // TODO loop over these controllers
-        var warehouseController = new WarehouseController();
-        warehouseController.view();
-
-        var factoryController = new FactoryController();
-        factoryController.view();
-
-        var customerController = new CustomerController();
-        customerController.view();
-
-        var historyController = new HistoryController();
-        historyController.view();
+        [
+            new WarehouseController(),
+            new FactoryController(),
+            new CustomerController(),
+            new HistoryController()
+        ].forEach(
+            function (controller) {
+                controller.view();
+            }
+        );
 
         this._setTopbar().done(
             () => {
@@ -38,7 +36,7 @@ class InitGameController extends Controller
         return this._loadTemplate(
             "src/views/template/topbar.html",
             "#top-bar",
-            MODEL.config,
+            GAME.model.config,
             true
         );
     }

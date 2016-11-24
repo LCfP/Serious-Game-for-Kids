@@ -7,11 +7,9 @@ class SimulationController extends Controller
     {
         this._setup();
 
-        // TODO dynamic time steps, taking execution time into account,
-        // see http://stackoverflow.com/q/1280263/4316405
         this.running = setInterval(
             $.proxy(this._run, this),
-            1000 / MODEL.config.hour
+            1000 / GAME.model.config.hour
         );
     }
 
@@ -26,7 +24,7 @@ class SimulationController extends Controller
             var elem = $(this).children(":first");
             var sim = new SimulationController();
 
-            MODEL.config.isPaused = true;
+            GAME.model.config.isPaused = true;
 
             if (elem.hasClass("glyphicon-play")) {
                 sim.run();
@@ -41,14 +39,14 @@ class SimulationController extends Controller
      */
     _run()
     {
-        if (MODEL.config.isPaused) {
+        if (GAME.model.config.isPaused) {
             clearInterval(this.running);
         }
 
-        MODEL.config.hours++;
+        GAME.model.config.hours++;
 
         this._runHour();
-        if (MODEL.config.hours % 24 == 0) {
+        if (GAME.model.config.hours % 24 == 0) {
             this._runDay();
         }
     }
@@ -60,7 +58,7 @@ class SimulationController extends Controller
     {
         // TODO
 
-        $(".timer-hours").html(MODEL.config.hours % 24);
+        $(".timer-hours").html(GAME.model.config.hours % 24);
     }
 
     /**
@@ -73,12 +71,10 @@ class SimulationController extends Controller
         warehouseController.updatePerishableProducts();
         FactoryController.updateOrderDaily();
 
-        // TODO render in place, not jumping around
-        // TODO render view when new view is present, not delete and build
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 
-        $(".timer-days").html(MODEL.config.hours / 24);
+        $(".timer-days").html(GAME.model.config.hours / 24);
     }
 
     /**
@@ -86,10 +82,10 @@ class SimulationController extends Controller
      */
     _setup()
     {
-        if (!MODEL.config.hasOwnProperty("hours")) {
-            MODEL.config.hours = 0;
+        if (!GAME.model.config.hasOwnProperty("hours")) {
+            GAME.model.config.hours = 0;
         }
 
-        MODEL.config.isPaused = false;
+        GAME.model.config.isPaused = false;
     }
 }

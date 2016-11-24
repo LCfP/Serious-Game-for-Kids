@@ -34,11 +34,11 @@ class Model
     }
 
     /**
-     * Turns this Model into the new global MODEL.
+     * Turns this Model into the global GAME.model
      */
     toObject()
     {
-        window.MODEL = this.model;
+        GAME.model = this.model;
     }
 
     /**

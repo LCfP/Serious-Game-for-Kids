@@ -5,7 +5,7 @@ class FactoryController extends OrderController
         this._loadTemplate(
             "src/views/template/factory.html",
             "#factory",
-            MODEL.factory
+            GAME.model.factory
         ).done(() =>  this.registerEvent());
     }
 
@@ -52,11 +52,11 @@ class FactoryController extends OrderController
             var order = {
                 products: products,
                 // TODO time should be based on hour of purchase, + 7 days
-                time: MODEL.config.orderTransportDuration,
-                id: MODEL.orders.length
+                time: GAME.model.config.orderTransportDuration,
+                id: GAME.model.orders.length
             };
 
-            MODEL.orders.push(order);
+            GAME.model.orders.push(order);
             this._updateOrderView(order);
 
             toastr.success(Controller.l("Order has been placed!"));
@@ -69,25 +69,25 @@ class FactoryController extends OrderController
             toastr.warning(Controller.l("An order cannot be empty."));
         }
 
-        if (MODEL.orders.length == MODEL.config.maxSimultaneousOrders) {
+        if (GAME.model.orders.length == GAME.model.config.maxSimultaneousOrders) {
             toastr.error(Controller.l("There is no room for another order at this time!"));
         }
 
         var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
         var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
 
-        if (orderSize > MODEL.config.orderCapacity) {
+        if (orderSize > GAME.model.config.orderCapacity) {
             toastr.error(Controller.l("There is insufficient space on the truck!"));
         }
 
-        if (orderCost > MODEL.config.money) {
+        if (orderCost > GAME.model.config.money) {
             toastr.error(Controller.l("You cannot afford this!"));
         }
 
         // TODO check warehouse capacity
 
-        return products.length && orderSize <= MODEL.config.orderCapacity
-            && orderCost <= MODEL.config.money && MODEL.orders.length < MODEL.config.maxSimultaneousOrders;
+        return products.length && orderSize <= GAME.model.config.orderCapacity
+            && orderCost <= GAME.model.config.money && GAME.model.orders.length < GAME.model.config.maxSimultaneousOrders;
     }
 
     /**
@@ -105,7 +105,7 @@ class FactoryController extends OrderController
                     if (!time) {
                         var id = $($(this).siblings(".factory-order.order-id")[0]).html();
 
-                        var order = MODEL.orders.filter(
+                        var order = GAME.model.orders.filter(
                             function (order) {
                                 return order.id == id;
                             }
@@ -118,12 +118,14 @@ class FactoryController extends OrderController
                     } else {
                         $(this).html(time);
                     }
+                }
+            );
 
-                    MODEL.orders = MODEL.orders.filter(
-                        function (order) {
-                            return order.time - 1;
-                        }
-                    )
+            GAME.model.orders = GAME.model.orders.filter(
+                function (order) {
+                    order.time = order.time - 1;
+
+                    return order.time;
                 }
             );
         }

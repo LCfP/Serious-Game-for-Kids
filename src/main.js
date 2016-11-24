@@ -1,5 +1,10 @@
 $(document).ready(function ()
 {
+    window.GAME = {
+        model: {},
+        view: {}
+    };
+
     // creates the global MODEL object
     new InitGameModel();
 });

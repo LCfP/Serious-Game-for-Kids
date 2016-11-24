@@ -11,7 +11,7 @@ class WarehouseController extends Controller
      */
     updatePerishableProducts()
     {
-        MODEL.warehouse.updatePerishableProducts();
+        GAME.model.warehouse.updatePerishableProducts();
     }
 
     /**
@@ -23,14 +23,14 @@ class WarehouseController extends Controller
     {
         let capacity = products.reduce((sum, prod) => sum + prod.shelfSize());
 
-        if (capacity <= MODEL.warehouse.usedContainerCapacity()) {
+        if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
             toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
             // TODO try to fit what fits? - context
         } else {
             products.forEach(
                 function (product) {
-                    for (let i in MODEL.warehouse.items) {
-                        let container = MODEL.warehouse.items[i];
+                    for (let i in GAME.model.warehouse.items) {
+                        let container = GAME.model.warehouse.items[i];
                         let availableCapacity = container.capacity - container.usedCapacity();
 
                         if (availableCapacity >= product.shelfSize()) {
@@ -69,7 +69,7 @@ class WarehouseController extends Controller
 
     updateCapacityView()
     {
-        $("#warehouse-used-capacity").html(MODEL.warehouse.usedContainerCapacity());
+        $("#warehouse-used-capacity").html(GAME.model.warehouse.usedContainerCapacity());
     }
 
     /**
@@ -82,7 +82,7 @@ class WarehouseController extends Controller
         this._loadTemplate(
             "src/views/template/warehouse.html",
             "#warehouse",
-            MODEL.warehouse
+            GAME.model.warehouse
         );
     }
 
@@ -93,7 +93,7 @@ class WarehouseController extends Controller
      */
     _containerHelper()
     {
-        MODEL.warehouse.items.forEach(
+        GAME.model.warehouse.items.forEach(
             (container) => {
                 super._loadTemplate(
                     "src/views/template/container.html",
