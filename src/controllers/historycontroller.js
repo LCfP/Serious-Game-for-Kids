@@ -29,6 +29,6 @@ class HistoryController extends Controller
             true
         );
 
-        MODEL.history.push(entry);
+        GAME.model.history.push(entry);
     }
 }

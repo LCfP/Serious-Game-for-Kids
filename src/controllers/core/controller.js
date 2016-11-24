@@ -17,29 +17,63 @@ class Controller
     }
 
     /**
-     * Translates text into the required language, as per MODEL.config.language.
+     * Translates text into the required language, as per GAME.model.config.language.
      *
      * @param {string} text - The string to be translated.
      * @returns {string} translation - The translated string.
      */
     static l(text)
     {
-        if (MODEL.config.language == "en") {
+        if (GAME.model.config.language == "en") {
             return text;
         }
 
-        return MODEL.lang[text] || text;
+        return GAME.model.lang[text] || text;
     }
 
     /**
+     * NOTE: if append and prepend both false, defaults to replace.
+     *
      * @param {string} loc - The template location, relative to the base url.
      * @param {string} anchor - The jQuery locator to attach the template to.
      * @param {object} data - The data to populate the template.
-     * @param {boolean} append=false - Append (true) or replace (false) values in the anchor?
+     * @param {boolean} append=false - Append (true) values in the anchor?
+     * @param {boolean} prepend=false - Prepend (true) values in the anchor?
      *
      * @protected
      */
     _loadTemplate(loc, anchor, data, append = false, prepend = false)
+    {
+        var [data, callback] = this._prepData(anchor, data, append, prepend);
+
+        if (GAME.view.hasOwnProperty(loc)) {
+            callback(GAME.view[loc]);
+
+            // mimic the $.get object. Specifically the 'done' function is used to bind events.
+            return {
+                done: function(callback) {
+                    return callback();
+                }
+            };
+        } else {
+            return $.get(
+                loc,
+                function (view) {
+                    if (!GAME.view.hasOwnProperty(loc)) {
+                        GAME.view[loc] = view;
+                    }
+
+                    callback(view);
+                }
+
+            );
+        }
+    }
+
+    /**
+     *
+     */
+    _prepData(anchor, data, append, prepend)
     {
         // translation function
         data.l = function ()
@@ -50,28 +84,25 @@ class Controller
             }
         };
 
-        // TODO perhaps memoize these views?
-        return $.get(
-            loc,
-            function (view)
-            {
-                var template = Mustache.render(view, data);
+        var callback = function (view)
+        {
+            var template = Mustache.render(view, data);
 
-                if (append) {
-                    $(anchor).append(template);
-                } else if (prepend) {
-                    $(anchor).prepend(template);
-                } else {
-                    $(anchor).html(template);
-                }
+            if (append) {
+                $(anchor).append(template);
+            } else if (prepend) {
+                $(anchor).prepend(template);
+            } else {
+                $(anchor).html(template);
             }
-        );
-    }
+        };
 
+        return [data, callback];
+    }
     /**
      * Updates the current amount of money.
      *
-     * NOTE: Amount is added to MODEL.config.money, so input negative to subtract!
+     * NOTE: Amount is added to GAME.model.config.money, so input negative to subtract!
      *
      * @param {float} amount - the amount to be added to the current amount of money
      *
@@ -79,8 +110,8 @@ class Controller
      */
     _updateMoney(amount)
     {
-        MODEL.config.money = MODEL.config.money + parseFloat(amount);
+        GAME.model.config.money = GAME.model.config.money + parseFloat(amount);
 
-        $("#money").html(MODEL.config.money);
+        $("#money").html(GAME.model.config.money);
     }
 }

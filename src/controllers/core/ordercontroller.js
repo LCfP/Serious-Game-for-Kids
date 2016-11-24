@@ -15,7 +15,7 @@ class OrderController extends Controller
                 return false
             }
 
-            var protoProduct = MODEL.products.filter((prod) => prod.name == ordered.name).shift();
+            var protoProduct = GAME.model.products.filter((prod) => prod.name == ordered.name).shift();
 
             return new Product(
                 ordered.name,

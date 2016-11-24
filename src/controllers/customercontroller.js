@@ -11,7 +11,7 @@ class CustomerController extends OrderController
 
     generateOrder()
     {
-        var protoOrder = MODEL.products.map(
+        var protoOrder = GAME.model.products.map(
             prod => {
                 return {
                     name: prod.name,
@@ -23,7 +23,7 @@ class CustomerController extends OrderController
         var products = OrderController._makeOrder(protoOrder);
         var customer = new Customer(products);
 
-        MODEL.customers.push(customer);
+        GAME.model.customers.push(customer);
         this._updateOrderView(customer);
 
         toastr.info("New customer is waiting!");
