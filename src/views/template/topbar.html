@@ -1,6 +1,9 @@
+<div class="navbar-text" id="menu-toggle">
+    <span class="glyphicon glyphicon-menu-hamburger"></span>
+</div>
 <div>
     <div class="navbar-text">
-        <div class="btn-group">
+        <div class="navbar-btn-group btn-group">
             <button type="button" class="timer btn btn-default btn-xs active">
                 <span class="glyphicon glyphicon-pause"></span>
             </button>
@@ -25,18 +28,4 @@
         <strong>{{#l}}Money{{/l}}</strong>
         <span id="money">{{ money }}</span>
     </div>
-</div>
-<div class="pull-right">
-    <form class="navbar-form navbar-left" name="language">
-        <div class="form-group">
-            <label class="sr-only" for="language">{{#l}}Select language{{/l}}</label>
-            <select class="form-control" id="language" name="language">
-                {{ #languages }}
-                <option value="{{ iso }}" {{ #active }} selected {{ /active }}>
-                    {{ name }}
-                </option>
-                {{ /languages}}
-            </select>
-        </div>
-    </form>
 </div>
