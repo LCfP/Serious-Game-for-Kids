@@ -18,13 +18,28 @@ class InitGameController extends Controller
             }
         );
 
-        this._setTopbar().done(
+        $.when(
+            this._setTopbar(),
+            this._loadMenu()
+        ).done(
             () => {
                 this.registerEvent();
 
                 var sim = new SimulationController();
                 sim.registerEvent();
             }
+        );
+    }
+
+    /**
+     * @private
+     */
+    _loadMenu()
+    {
+        return this._loadTemplate(
+            "src/views/template/menu.html",
+            "#overlay-menu",
+            GAME.model.config
         );
     }
 
@@ -43,6 +58,23 @@ class InitGameController extends Controller
 
     registerEvent()
     {
+        // toggles open/close menu
+        $("#menu-toggle").click(function (e) {
+            e.stopPropagation();
+
+            $("#overlay-menu").width(250);
+            $(".wrapper").css({marginLeft: 250, opacity: .3});
+        });
+
+        $(".wrapper").click(function () {
+            let elem = $("#overlay-menu");
+
+            if (elem.width()) {
+                elem.width(0);
+                $(this).css({marginLeft: 0, opacity: 1.});
+            }
+        });
+
         // listens for changes in the language setting.
         $("#language").change(function () {
             $("#language option:selected").each(
@@ -58,3 +90,5 @@ class InitGameController extends Controller
         })
     }
 }
+
+

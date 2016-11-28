@@ -1,0 +1,25 @@
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    border-right: 1px solid #ccc;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+html, body, .wrapper {
+    height: 100%;
+}
+
+.wrapper {
+    opacity: .3;
+    transition: margin-left .5s;
+    margin-left: 250px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}

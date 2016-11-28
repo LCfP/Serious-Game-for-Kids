@@ -5,18 +5,21 @@
     <title>Serious game for kids</title>
 </head>
 <body>
-    <section id="top-bar" class="navbar navbar-light bg-faded" style="border-bottom: 1px solid #ccc;"></section>
-    <div class="container-fluid">
-        <div class="row">
-            <section id="factory" class="col-lg-4 col-sm-6"></section>
-            <section id="warehouse" class="col-lg-4 col-sm-6"></section>
-            <section id="customers" class="col-lg-4 col-sm-6"></section>
-            <section id="history" class="col-lg-4 col-sm-6"></section>
+    <div class="wrapper">
+        <section id="top-bar" class="navbar navbar-light bg-faded" style="border-bottom: 1px solid #ccc;"></section>
+        <div class="container-fluid">
+            <div class="row">
+                <section id="factory" class="col-lg-4 col-sm-6"></section>
+                <section id="warehouse" class="col-lg-4 col-sm-6"></section>
+                <section id="customers" class="col-lg-4 col-sm-6"></section>
+                <section id="history" class="col-lg-4 col-sm-6"></section>
+            </div>
         </div>
     </div>
     <footer>
         <link rel="stylesheet" type="text/css" href="src/library/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="src/library/css/toastr.min.css">
+        <link rel="stylesheet" type="text/css" href="src/views/css/overlay.css">
 
         <script src="src/library/js/jquery-3.1.1.min.js"></script>
         <script src="src/library/js/js.cookie.min.js"></script>
@@ -48,5 +51,7 @@
 
         <script src="src/main.js"></script>
     </footer>
+
+    <section id="overlay-menu" class="sidenav"></section>
 </body>
 </html>
