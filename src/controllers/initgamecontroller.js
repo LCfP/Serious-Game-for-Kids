@@ -63,15 +63,15 @@ class InitGameController extends Controller
             e.stopPropagation();
 
             $("#overlay-menu").width(250);
-            $("#wrapper").css({marginLeft: 250});
+            $(".wrapper").css({marginLeft: 250, opacity: .3});
         });
 
-        $("#wrapper").click(function () {
+        $(".wrapper").click(function () {
             let elem = $("#overlay-menu");
 
             if (elem.width()) {
                 elem.width(0);
-                $(this).css({marginLeft: 0});
+                $(this).css({marginLeft: 0, opacity: 1.});
             }
         });
 
