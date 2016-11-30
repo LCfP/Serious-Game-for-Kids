@@ -1,13 +1,24 @@
-.sidenav {
+.sidebar {
     height: 100%;
-    width: 250px;
     position: fixed;
     z-index: 999;
     top: 0;
-    left: 0;
-    border-right: 1px solid #ccc;
     overflow-x: hidden;
     transition: 0.5s;
+
+    /* initial state */
+    width: 250px;
+}
+
+.sidebar-left {
+    left: 0;
+    border-right: 1px solid #ccc;
+}
+
+.sidebar-right {
+    right: 0;
+    border-left: 1px solid #ccc;
+    width: 0;
 }
 
 html, body, .wrapper {
@@ -15,11 +26,13 @@ html, body, .wrapper {
 }
 
 .wrapper {
+    transition: margin .5s;
+
+    /* initial state */
     opacity: .3;
-    transition: margin-left .5s;
     margin-left: 250px;
 }
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
+    .sidebar {padding-top: 15px;}
 }
