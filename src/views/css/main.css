@@ -1,3 +1,25 @@
+/*
+    General
+ */
+html, body, .wrapper {
+    height: 100%;
+}
+
+body {
+    padding-top: 70px;
+}
+
+.wrapper {
+    transition: margin .5s;
+
+    /* initial state */
+    opacity: .3;
+    margin-left: 250px;
+}
+
+/*
+    Sidebar
+ */
 .sidebar {
     height: 100%;
     position: fixed;
@@ -19,17 +41,14 @@
 .sidebar-right {
     right: 0;
     border-left: 1px solid #ccc;
+
+    /* initial state */
     width: 0;
 }
 
-html, body, .wrapper {
-    height: 100%;
-}
-
-.wrapper {
-    transition: margin .5s;
-
-    /* initial state */
-    opacity: .3;
-    margin-left: 250px;
+/*
+    Top bar
+ */
+#top-bar ul li {
+    cursor: pointer;
 }
