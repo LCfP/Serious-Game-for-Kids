@@ -1,11 +1,6 @@
-class Order
+class OrderCore
 {
-    /**
-     * Represents an order (only for customer for now)
-     *
-     * @param products
-     */
-    constructor(products, time = null, id = null)
+    constructor(products, time, id)
     {
         this.products = products;
         // TODO solve this without creating a variable?

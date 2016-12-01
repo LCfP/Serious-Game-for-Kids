@@ -44,7 +44,7 @@ class FactoryController extends OrderController
     factoryOrder(formValues)
     {
         var products = OrderController._makeOrder(formValues);
-        var order = new Order(products, GAME.model.config.orderTransportDuration, GAME.model.orders.length);
+        var order = new FactoryOrder(products);
 
         if (this.validateOrder(order)) {
             this._updateMoney(-order.orderCost);
