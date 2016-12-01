@@ -19,8 +19,10 @@ class WarehouseController extends Controller
      *
      * @param {Array} products - The list of Products
      */
-    addOrder(products)
+    addOrder(order)
     {
+        var products = order.products;
+
         let capacity = products.reduce((sum, prod) => sum + prod.shelfSize());
 
         if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
@@ -54,6 +56,9 @@ class WarehouseController extends Controller
                     }
                 }
             );
+
+            var history = new HistoryController();
+            history.log(order);
         }
 
     }

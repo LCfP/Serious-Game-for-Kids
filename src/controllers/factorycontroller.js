@@ -44,17 +44,10 @@ class FactoryController extends OrderController
     factoryOrder(formValues)
     {
         var products = OrderController._makeOrder(formValues);
-        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
+        var order = new Order(products, GAME.model.config.orderTransportDuration, GAME.model.orders.length);
 
-        if (this.validateOrder(products)) {
-            this._updateMoney(-orderCost);
-
-            var order = {
-                products: products,
-                // TODO time should be based on hour of purchase, + 7 days
-                time: GAME.model.config.orderTransportDuration,
-                id: GAME.model.orders.length
-            };
+        if (this.validateOrder(order)) {
+            this._updateMoney(-order.orderCost);
 
             GAME.model.orders.push(order);
             this._updateOrderView(order);
@@ -63,8 +56,10 @@ class FactoryController extends OrderController
         }
     }
 
-    validateOrder(products)
+    validateOrder(order)
     {
+        var products = order.products;
+
         if (!products.length) {
             toastr.warning(Controller.l("An order cannot be empty."));
         }
@@ -112,7 +107,7 @@ class FactoryController extends OrderController
                         )[0];
 
                         var warehouseController = new WarehouseController();
-                        warehouseController.addOrder(order.products);
+                        warehouseController.addOrder(order);
 
                         $(this).parents(".panel.panel-default").remove();
                     } else {

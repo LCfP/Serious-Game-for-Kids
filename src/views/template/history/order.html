@@ -1,0 +1,15 @@
+<li class="list-group-item list-group-item-success">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Order has arrived
+        </div>
+        <ul class="list-group">
+            {{ #products }}
+                <li class="list-group-item">{{#l}}{{ name }}{{/l}} <span class="badge">{{ quantity }}</span></li>
+            {{ /products }}
+        </ul>
+        <div class="panel-footer">
+            {{ orderCost }}
+        </div>
+    </div>
+</li>

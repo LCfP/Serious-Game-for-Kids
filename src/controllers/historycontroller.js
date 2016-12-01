@@ -17,6 +17,8 @@ class HistoryController extends Controller
             location = "customer";
         } else if (entry instanceof Container) {
             location = "container";
+        } else if (entry instanceof Order) {
+            location = "order";
         } else {
             return;
         }

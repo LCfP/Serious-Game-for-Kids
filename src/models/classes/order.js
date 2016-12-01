@@ -5,11 +5,13 @@ class Order
      *
      * @param products
      */
-    constructor(products)
+    constructor(products, time = null, id = null)
     {
         this.products = products;
         // TODO solve this without creating a variable?
         this.orderCost = this.orderCost();
+        this.time = time;
+        this.id = id;
     }
 
     /**
