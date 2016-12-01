@@ -11,7 +11,6 @@ class InitGameController extends Controller
             new WarehouseController(),
             new FactoryController(),
             new CustomerController(),
-            // new HistoryController()
         ].forEach(
             function (controller) {
                 controller.view();

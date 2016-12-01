@@ -1,14 +1,5 @@
 class HistoryController extends Controller
 {
-    view()
-    {
-        this._loadTemplate(
-            "src/views/template/history.html",
-            "#history",
-            {}
-        );
-    }
-
     log(entry)
     {
         var location = "";
