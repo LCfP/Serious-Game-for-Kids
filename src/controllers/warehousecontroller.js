@@ -58,7 +58,7 @@ class WarehouseController extends Controller
             );
 
             var historyController = new HistoryController();
-            history.log(order);
+            historyController.log(order);
         }
 
     }
