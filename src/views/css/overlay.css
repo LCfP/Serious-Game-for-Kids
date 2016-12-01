@@ -33,7 +33,3 @@ html, body, .wrapper {
     opacity: .3;
     margin-left: 250px;
 }
-
-@media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-}
