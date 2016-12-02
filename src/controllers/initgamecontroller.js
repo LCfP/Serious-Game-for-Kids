@@ -11,7 +11,6 @@ class InitGameController extends Controller
             new WarehouseController(),
             new FactoryController(),
             new CustomerController(),
-            new HistoryController()
         ].forEach(
             function (controller) {
                 controller.view();
@@ -20,7 +19,8 @@ class InitGameController extends Controller
 
         $.when(
             this._setTopbar(),
-            this._loadMenu()
+            this._loadSidebarLeft(),
+            this._loadSidebarRight()
         ).done(
             () => {
                 this.registerEvent();
@@ -34,11 +34,23 @@ class InitGameController extends Controller
     /**
      * @private
      */
-    _loadMenu()
+    _loadSidebarLeft()
     {
         return this._loadTemplate(
-            "src/views/template/menu.html",
-            "#overlay-menu",
+            "src/views/template/sidebar-left.html",
+            "#sidebar-left",
+            GAME.model.config
+        );
+    }
+
+    /**
+     * @private
+     */
+    _loadSidebarRight()
+    {
+        return this._loadTemplate(
+            "src/views/template/sidebar-right.html",
+            "#sidebar-right",
             GAME.model.config
         );
     }
@@ -59,20 +71,26 @@ class InitGameController extends Controller
     registerEvent()
     {
         // toggles open/close menu
-        $("#menu-toggle").click(function (e) {
+        $("#sidebar-left-toggle").click(function (e) {
             e.stopPropagation();
 
-            $("#overlay-menu").width(250);
+            $("#sidebar-left").width(250);
             $(".wrapper").css({marginLeft: 250, opacity: .3});
         });
 
-        $(".wrapper").click(function () {
-            let elem = $("#overlay-menu");
+        // find way to merge these two events
+        $("#sidebar-right-toggle").click(function (e) {
+            e.stopPropagation();
 
-            if (elem.width()) {
-                elem.width(0);
-                $(this).css({marginLeft: 0, opacity: 1.});
-            }
+            $("#sidebar-right").width(250);
+            $(".wrapper").css({marginRight: 250, opacity: .3});
+        });
+
+        $(".wrapper").click(function () {
+            let elem = $(".sidebar");
+
+            elem.width(0);
+            $(this).css({marginLeft: 0, marginRight: 0, opacity: 1});
         });
 
         // listens for changes in the language setting.

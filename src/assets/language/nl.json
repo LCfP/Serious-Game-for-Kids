@@ -7,6 +7,7 @@
   "Customers": "Klanten",
 
   "Money": "Geld",
+  "Price": "Bedrag",
   "Select language": "Selecteer een taal",
 
   "Capacity used": "Gebruikte capaciteit",
@@ -37,6 +38,7 @@
   "History": "Geschiedenis",
   "New rack of size": "Nieuw rek van",
   "added": "units toegevoegd",
+  "Order has arrived": "Bestelling is aangekomen",
 
   "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
   "Day": "Dag",

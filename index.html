@@ -5,9 +5,9 @@
     <title>Serious game for kids</title>
 </head>
 <body>
-    <div class="wrapper">
-        <section id="top-bar" class="navbar navbar-light bg-faded" style="border-bottom: 1px solid #ccc;"></section>
-        <div class="container-fluid">
+    <nav id="top-bar" class="navbar navbar-default navbar-fixed-top"></nav>
+    <div class="container-fluid">
+        <div class="wrapper">
             <div class="row">
                 <section id="factory" class="col-lg-4 col-sm-6"></section>
                 <section id="warehouse" class="col-lg-4 col-sm-6"></section>
@@ -19,7 +19,7 @@
     <footer>
         <link rel="stylesheet" type="text/css" href="src/library/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="src/library/css/toastr.min.css">
-        <link rel="stylesheet" type="text/css" href="src/views/css/overlay.css">
+        <link rel="stylesheet" type="text/css" href="src/views/css/main.css">
 
         <script src="src/library/js/jquery-3.1.1.min.js"></script>
         <script src="src/library/js/js.cookie.min.js"></script>
@@ -29,11 +29,13 @@
 
         <script src="src/models/classes/core/productcore.js"></script>
         <script src="src/models/classes/core/storagecore.js"></script>
+        <script src="src/models/classes/core/ordercore.js"></script>
         <script src="src/models/classes/container.js"></script>
         <script src="src/models/classes/storage.js"></script>
         <script src="src/models/classes/factory.js"></script>
         <script src="src/models/classes/product.js"></script>
-        <script src="src/models/classes/order.js"></script>
+        <script src="src/models/classes/customerorder.js"></script>
+        <script src="src/models/classes/factoryorder.js"></script>
         <script src="src/models/classes/customer.js"></script>
 
         <script src="src/models/core/model.js"></script>
@@ -52,6 +54,7 @@
         <script src="src/main.js"></script>
     </footer>
 
-    <section id="overlay-menu" class="sidenav"></section>
+    <section id="sidebar-left" class="sidebar sidebar-left"></section>
+    <section id="sidebar-right" class="sidebar sidebar-right"></section>
 </body>
 </html>

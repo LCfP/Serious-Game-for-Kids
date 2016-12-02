@@ -8,7 +8,7 @@
     constructor(products)
     {
         this.name = this.generateName();
-        this.order = new Order(products);
+        this.order = new CustomerOrder(products);
     }
 
      /**

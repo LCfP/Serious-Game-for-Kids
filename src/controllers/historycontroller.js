@@ -1,14 +1,5 @@
 class HistoryController extends Controller
 {
-    view()
-    {
-        this._loadTemplate(
-            "src/views/template/history.html",
-            "#history",
-            {}
-        );
-    }
-
     log(entry)
     {
         var location = "";
@@ -17,6 +8,8 @@ class HistoryController extends Controller
             location = "customer";
         } else if (entry instanceof Container) {
             location = "container";
+        } else if (entry instanceof FactoryOrder) {
+            location = "factoryorder";
         } else {
             return;
         }
