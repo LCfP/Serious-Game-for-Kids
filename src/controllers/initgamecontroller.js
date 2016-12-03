@@ -70,27 +70,27 @@ class InitGameController extends Controller
 
     registerEvent()
     {
-        // toggles open/close menu
+        let sidebar_handler = function (e, anchor, css) {
+            e.stopPropagation();
+
+            $(anchor).width(250);
+            $(".wrapper").css(css);
+        };
+
+        // left menu opening
         $("#sidebar-left-toggle").click(function (e) {
-            e.stopPropagation();
-
-            $("#sidebar-left").width(250);
-            $(".wrapper").css({marginLeft: 250, opacity: .3});
+            sidebar_handler(e, "#sidebar-left", {marginLeft: 250, opacity: .3});
         });
 
-        // find way to merge these two events
+        // right menu (history) opening
         $("#sidebar-right-toggle").click(function (e) {
-            e.stopPropagation();
-
-            $("#sidebar-right").width(250);
-            $(".wrapper").css({marginRight: 250, opacity: .3});
+            sidebar_handler(e, "#sidebar-right", {marginRight: 250, opacity: .3});
         });
 
+        // closing menu / history
         $(".wrapper").click(function () {
-            let elem = $(".sidebar");
-
-            elem.width(0);
-            $(this).css({marginLeft: 0, marginRight: 0, opacity: 1});
+            $(".sidebar").width(0);
+            $(this).css({margin: 0, opacity: 1});
         });
 
         // listens for changes in the language setting.
