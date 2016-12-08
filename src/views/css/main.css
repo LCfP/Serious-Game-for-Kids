@@ -10,11 +10,8 @@ body {
 }
 
 .wrapper {
-    transition: margin .5s;
-
     /* initial state */
     opacity: .3;
-    margin-left: 250px;
 }
 
 /*
@@ -28,6 +25,7 @@ body {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    background: white;
 
     /* initial state */
     width: 250px;
@@ -61,11 +59,18 @@ body {
 }
 
 .container-progress-bar {
-    margin-bottom: 10px;
-    border-radius: 0;
+    margin-bottom: 0;
 }
 
 .product-store {
-    padding: 2px;
-    min-height: 240px;
+    padding: 5px;
+    min-height: 250px;
+}
+
+/*
+    Progress bar styling
+*/
+.progress {
+    border-radius: 0;
+    height: 5px;
 }

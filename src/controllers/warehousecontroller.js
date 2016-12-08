@@ -46,7 +46,14 @@ class WarehouseController extends Controller
 
     updateCapacityView()
     {
+        // text heading
         $("#warehouse-used-capacity").html(GAME.model.warehouse.usedContainerCapacity());
+
+        // progress bar
+        $("#warehouse-progress-bar")
+            .css({width: GAME.model.warehouse.usedContainerCapacity(true) + "%"})
+            .attr("aria-valuenow", GAME.model.warehouse.usedContainerCapacity(true));
+
     }
 
     /**
@@ -65,7 +72,7 @@ class WarehouseController extends Controller
 
                 let partialProduct = new Product(
                     product.name,
-                    product.values
+                    $.extend({}, product.values)
                 );
 
                 partialProduct.values.quantity = addedQuantity;

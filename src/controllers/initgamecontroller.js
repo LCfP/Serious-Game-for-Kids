@@ -75,7 +75,7 @@ class InitGameController extends Controller
             e.stopPropagation();
 
             $("#sidebar-left").width(250);
-            $(".wrapper").css({marginLeft: 250, opacity: .3});
+            $(".wrapper").css({opacity: .3});
         });
 
         // find way to merge these two events
@@ -83,14 +83,14 @@ class InitGameController extends Controller
             e.stopPropagation();
 
             $("#sidebar-right").width(250);
-            $(".wrapper").css({marginRight: 250, opacity: .3});
+            $(".wrapper").css({opacity: .3});
         });
 
         $(".wrapper").click(function () {
             let elem = $(".sidebar");
 
             elem.width(0);
-            $(this).css({marginLeft: 0, marginRight: 0, opacity: 1});
+            $(this).css({opacity: 1});
         });
 
         // listens for changes in the language setting.

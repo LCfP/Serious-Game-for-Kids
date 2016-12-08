@@ -2,13 +2,9 @@
     <div class="panel panel-default">
         <div class="panel-body container-view">
             <div class="container-progress-bar progress">
-                <div class="progress-bar progress-bar-striped" role="progressbar"
+                <div class="progress-bar progress-bar-success" role="progressbar"
                      aria-valuenow="{{ percentage }}" aria-valuemin="0"
                      aria-valuemax="100" style="width:{{percentage}}%">
-                    <span>
-                        <span class="sr-only">{{#l}}Capacity used{{/l}}:</span>
-                        <strong>{{ usedCapacity }}</strong> / {{ capacity }}
-                    </span>
                 </div>
             </div>
             <div class="product-store">
