@@ -30,7 +30,8 @@ class WarehouseController extends Controller
             // add products to the containers.
             order.products.forEach((product) => this._processProduct(product));
 
-            var historyController = new HistoryController();
+            // TODO make this work with the reference objects above (pass by reference bug on objects)
+            let historyController = new HistoryController();
             historyController.log(order);
         }
     }
@@ -53,7 +54,6 @@ class WarehouseController extends Controller
         $("#warehouse-progress-bar")
             .css({width: GAME.model.warehouse.usedContainerCapacity(true) + "%"})
             .attr("aria-valuenow", GAME.model.warehouse.usedContainerCapacity(true));
-
     }
 
     /**
@@ -70,11 +70,7 @@ class WarehouseController extends Controller
                 let maxProducts = parseInt(availableCapacity / product.values.size);
                 let addedQuantity = Math.min(product.values.quantity, maxProducts);
 
-                let partialProduct = new Product(
-                    product.name,
-                    $.extend({}, product.values)
-                );
-
+                let partialProduct = new Product(product.name, $.extend({}, product.values));
                 partialProduct.values.quantity = addedQuantity;
                 container.addItem(partialProduct);
 

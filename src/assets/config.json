@@ -19,7 +19,7 @@
   "warehouseCapacity": 6,
   "containerCapacity": 250,
   "orderCapacity": 1000,
-  "orderTransportDuration": 2,
+  "orderTransportDurationDays": 2,
 
   "warehouseContainers": 3,
   "money": 10000,

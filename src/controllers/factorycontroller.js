@@ -94,41 +94,30 @@ class FactoryController extends OrderController
     /**
      * Updates order counter, at every daily interval. When 0, adds to Warehouse.
      */
-    static updateOrderDaily()
+    static updateOrder()
     {
-        var $handle = $(".days-countdown.factory-order");
+        var $handle = $(".factory-order");
 
-        // no orders
         if (!$handle) {
             return;
         }
 
-        $handle.each(function () {
-            var time = $(this).html() - 1;
+        $handle.each(function (elem) {
+            let order = GAME.model.orders[elem];
+            order.time = order.time - 1;
 
-            if (time) {
-                // set new time and done; this order is still underway.
-                $(this).html(time);
-                return;
+            if (order.time) {
+                let percentage = 100 * (1 - (order.time / order.initDuration));
+                $(this).find('.order-progress-bar').css({width: percentage + "%"}).attr("aria-valuenow", percentage);
+            } else {
+                let warehouseController = new WarehouseController();
+                warehouseController.addOrderToWarehouse(order);
+
+                $(this).remove();
             }
-
-            var id = $($(this).siblings(".factory-order.order-id")[0]).html();
-            var order = GAME.model.orders.filter((order) => order.id == id)[0];
-
-            var warehouseController = new WarehouseController();
-            warehouseController.addOrderToWarehouse(order);
-
-            $(this).parents(".panel.panel-default").remove();
         });
 
-        GAME.model.orders = GAME.model.orders.filter(
-            function (order)
-            {
-                // TODO this looks clunky
-                order.time = order.time - 1;
-                return order.time;
-            }
-        );
+        GAME.model.orders = GAME.model.orders.filter((order) => order.time);
     }
 
     /**
