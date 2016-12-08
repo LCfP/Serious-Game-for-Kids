@@ -79,7 +79,13 @@ class FactoryController extends OrderController
             toastr.error(Controller.l("You cannot afford this!"));
         }
 
+        if (products.some((elem) => elem.quantity < 0)) {
+            toastr.error(Controller.l("You cannot order a negative amount!"));
+            return false;
+        }
+
         // TODO check warehouse capacity
+        // TODO in need of refactoring
 
         return products.length && orderSize <= GAME.model.config.orderCapacity
             && orderCost <= GAME.model.config.money && GAME.model.orders.length < GAME.model.config.maxSimultaneousOrders;
