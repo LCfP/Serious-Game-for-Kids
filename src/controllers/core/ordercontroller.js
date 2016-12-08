@@ -17,10 +17,7 @@ class OrderController extends Controller
 
             var protoProduct = GAME.model.products.filter((prod) => prod.name == ordered.name).shift();
 
-            var product = new Product(
-                ordered.name,
-                protoProduct.values
-            );
+            var product = new Product(ordered.name, $.extend({}, protoProduct.values));
             product.values.quantity = value;
 
             return product;
