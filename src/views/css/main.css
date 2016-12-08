@@ -52,3 +52,20 @@ body {
 #top-bar ul li {
     cursor: pointer;
 }
+
+/*
+    Container styling
+*/
+.container-view {
+    padding: 0;
+}
+
+.container-progress-bar {
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.product-store {
+    padding: 2px;
+    min-height: 240px;
+}

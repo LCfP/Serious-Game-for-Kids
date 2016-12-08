@@ -30,11 +30,11 @@ class Container extends StorageCore
                     return false;
                 }
 
-                product.perishable = product.perishable - 1;
+                product.values.perishable = product.values.perishable - 1;
 
                 // empty container does not have defined products. Else: product needs to be perishable,
                 // and needs to have perished.
-                return !(product.isPerishable && product.perishable <= 0)
+                return !(product.values.isPerishable && product.values.perishable <= 0)
             }
         );
     }
@@ -42,9 +42,15 @@ class Container extends StorageCore
     /**
      * @override
      */
-    usedCapacity()
+    usedCapacity(percentage = false)
     {
-        return this.items.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        let usedCap = this.items.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+
+        if (percentage) {
+            usedCap = 100 * (usedCap / this.capacity);
+        }
+
+        return usedCap;
     }
 
     toString()

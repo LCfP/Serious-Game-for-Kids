@@ -13,13 +13,15 @@
     }
   ],
 
+  "iconPerAmountProductSize": 10,
+
   "maxSimultaneousOrders": 2,
   "warehouseCapacity": 6,
   "containerCapacity": 250,
   "orderCapacity": 1000,
   "orderTransportDuration": 2,
 
-  "warehouseContainers": 4,
+  "warehouseContainers": 3,
   "money": 10000,
   "satisfaction": 100
 }

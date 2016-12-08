@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <label for="{{ name }}">{{#l}}{{ name }}{{/l}}</label>
                     <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" value="0" />
-                    <small>{{#l}}Unit price for this item is{{/l}} {{ price }}, {{#l}}and unit size is{{/l}} {{ size }}.</small>
+                    <small>{{#l}}Unit price for this item is{{/l}} {{ values.price }}, {{#l}}and unit size is{{/l}} {{ values.size }}.</small>
                 </div>
             {{ /products }}
             <button type="submit" class="btn btn-success pull-right">{{#l}}Place order{{/l}}</button>

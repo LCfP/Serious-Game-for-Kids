@@ -17,50 +17,22 @@ class WarehouseController extends Controller
     /**
      * Adds the contents of an order to the Warehouse.
      *
-     * @param {Array} products - The list of Products
+     * @param {OrderCore} order - The Order object.
      */
-    addOrder(order)
+    addOrderToWarehouse(order)
     {
-        var products = order.products;
-
-        let capacity = products.reduce((sum, prod) => sum + prod.shelfSize());
+        let capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
 
         if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
             toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
             // TODO try to fit what fits? - context
         } else {
-            products.forEach(
-                function (product) {
-                    for (let i in GAME.model.warehouse.items) {
-                        let container = GAME.model.warehouse.items[i];
-                        let availableCapacity = container.capacity - container.usedCapacity();
-
-                        if (availableCapacity >= product.shelfSize()) {
-                            container.addItem(product);
-                            break;
-                        } else if (availableCapacity >= product.size) {
-                            let maxProducts = parseInt(availableCapacity / product.size);
-                            let partialProduct = new Product(
-                                product.name,
-                                Math.min(product.quantity, maxProducts),
-                                product.price,
-                                product.size,
-                                product.isPerishable,
-                                product.perishable
-                            );
-
-                            container.addItem(partialProduct);
-
-                            product.quantity = product.quantity - partialProduct.quantity;
-                        }
-                    }
-                }
-            );
+            // add products to the containers.
+            order.products.forEach((product) => this._processProduct(product));
 
             var historyController = new HistoryController();
             historyController.log(order);
         }
-
     }
 
     /**
@@ -75,6 +47,38 @@ class WarehouseController extends Controller
     updateCapacityView()
     {
         $("#warehouse-used-capacity").html(GAME.model.warehouse.usedContainerCapacity());
+    }
+
+    /**
+     * @private
+     */
+    _processProduct(product)
+    {
+        for (let i = 0; i < GAME.model.warehouse.items.length; i++) {
+            let container = GAME.model.warehouse.items[i];
+            let availableCapacity = container.capacity - container.usedCapacity();
+
+            // can fit at least one product!
+            if (availableCapacity >= product.values.size) {
+                let maxProducts = parseInt(availableCapacity / product.values.size);
+                let addedQuantity = Math.min(product.values.quantity, maxProducts);
+
+                let partialProduct = new Product(
+                    product.name,
+                    product.values
+                );
+
+                partialProduct.values.quantity = addedQuantity;
+                container.addItem(partialProduct);
+
+                product.values.quantity = product.values.quantity - addedQuantity;
+            }
+
+            // this product has been stored by now.
+            if (!product.values.quantity) {
+                break;
+            }
+        }
     }
 
     /**
@@ -100,6 +104,25 @@ class WarehouseController extends Controller
     {
         GAME.model.warehouse.items.forEach(
             (container) => {
+                // groups items by size, so each items can be represented
+                // as an icon (per `iconPerAmountProductSize` size).
+                container.itemsBySize = function () {
+                    return container.items.map(function (item) {
+                        let amountIcons = Math.floor(item.shelfSize() / GAME.model.config.iconPerAmountProductSize);
+
+                        // display at least one icon per product per container.
+                        return new Array(Math.max(amountIcons, 1)).fill({
+                            "name" : item.name,
+                            "img": item.values.icon
+                        });
+                    }).reduce(function(array, other){
+                        return array.concat(other);
+                    }, []);
+                };
+
+                // for the progress bar
+                container.percentage = container.usedCapacity(true);
+
                 super._loadTemplate(
                     "src/views/template/container.html",
                     "#containers",

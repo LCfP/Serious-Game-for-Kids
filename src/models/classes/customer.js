@@ -17,8 +17,8 @@
       *
       * @returns {string}
       */
-    generateName()
-    {
-        return String('Henk');
-    }
+     generateName()
+     {
+         return String('Henk');
+     }
  }

@@ -4,39 +4,12 @@ class ProductCore
      * @constructor Represents a product.
      *
      * @param {string} name - The display name for this product.
-     * @param {int} quantity - The amount of this product
-     * @param {float} price - The unit price for this product
-     * @param {float} size - A unitless measure for the size of a product (qty = 1).
-     * @param {boolean} isPerishable=false - Is this good considered perishable?
-     * @param {int} perishable=0 - The number of days a perishable good remains fresh. In conjunction with isPerishable.
+     * @param {object} values - The values, as an object. These are the same as those in `products.json`, excluding `name`.
      */
-    constructor(name, quantity, price, size, isPerishable = false, perishable = 0)
+    constructor(name, values)
     {
         this.name = String(name);
-        this.quantity = parseInt(quantity);
-        this.price = parseFloat(price);
-        this.size = parseFloat(size);
-        this.isPerishable = Boolean(isPerishable);
-        this.perishable = parseInt(perishable);
-    }
-
-    /**
-     * Used to decrease the quantity on this product.
-     *
-     * @param {int} ordered - The amount ordered, to be deducted from this Product quantity.
-     * @throws Error when insufficient stock (ordered > quantity available).
-     */
-    decreaseQuantity(ordered)
-    {
-        var ord = parseInt(ordered);
-
-        if (ord > this.quantity) {
-            throw new Error(
-                "Insufficient stock on " + this.name + "! Ordered: " + ord + ", available: " + this.quantity
-            );
-        }
-
-        this.quantity = this.quantity - ord;
+        this.values = values;
     }
 
     /**
@@ -44,14 +17,14 @@ class ProductCore
      */
     shelfSize()
     {
-        return this.size * this.quantity;
+        return this.values.size * this.values.quantity;
     }
 
     /**
      * Calculates the purchase value/cost.
      */
-    value()
+    stockValue()
     {
-        return this.price * this.quantity;
+        return parseFloat(this.values.price * this.values.quantity);
     }
 }
