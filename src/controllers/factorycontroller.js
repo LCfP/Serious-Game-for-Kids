@@ -23,6 +23,7 @@ class FactoryController extends OrderController
                 if (controller.factoryOrder($(this).serializeArray())) {
                     // after succesful order, reset form to default state.
                     $(this).trigger("reset");
+                    $("form[name=newFactoryOrder] :input").trigger("change");
                 }
             }
         );
