@@ -6,7 +6,10 @@ class FactoryController extends OrderController
             "src/views/template/factory.html",
             "#factory",
             GAME.model.factory
-        ).done(() =>  this.registerEvent());
+        ).done(() =>  {
+            this._createRangeSliders();
+            this.registerEvent();
+        });
     }
 
     /**
@@ -96,7 +99,7 @@ class FactoryController extends OrderController
      */
     static updateOrder()
     {
-        var $handle = $(".factory-order");
+        let $handle = $(".factory-order");
 
         if (!$handle) {
             return;
@@ -118,6 +121,16 @@ class FactoryController extends OrderController
         });
 
         GAME.model.orders = GAME.model.orders.filter((order) => order.time);
+    }
+
+    /**
+     * Creates the factory order form sliders.
+     *
+     * @private
+     */
+    _createRangeSliders()
+    {
+
     }
 
     /**

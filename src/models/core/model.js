@@ -54,6 +54,9 @@ class Model
                 this.model.config = config[0];
                 this.model.products = products[0];
 
+                // toastr settings, from the config
+                toastr.options = this.model.config.toastr;
+
                 $.when(this._getLang()).done(
                     (lang) => {
                         this.model.lang = lang;
