@@ -94,6 +94,24 @@ img:hover {
     min-height: 250px;
 }
 
+.image {
+    position: relative;
+}
+
+.quantity-overlay {
+    position: absolute;
+    left: 25px;
+    top: 10px;
+
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    padding: 2px 0;
+
+    background: #f5f5f5;
+    opacity: .7;
+}
+
 /*
     Progress bar styling
 */

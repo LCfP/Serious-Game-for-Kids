@@ -9,9 +9,12 @@
             </div>
             <div class="product-store padding-5">
                 {{ #itemsBySize }}
-                    <img src="src/assets/img/{{ img }}"
-                         alt="{{#l}}{{ name }}{{/l}}"
-                         title="{{#l}}{{ name }}{{/l}}">
+                    <span class="image">
+                        <img src="src/assets/img/{{ img }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
+                        <span class="quantity-overlay text-center">
+                            <strong>{{ quantity }}</strong>
+                        </span>
+                    </span>
                 {{ /itemsBySize }}
                 {{ ^itemsBySize }}
                     <div class="text-center">

@@ -108,21 +108,8 @@ class WarehouseController extends Controller
     {
         GAME.model.warehouse.items.forEach(
             (container) => {
-                // groups items by size, so each items can be represented
-                // as an icon (per `iconPerAmountProductSize` size).
-                container.itemsBySize = function () {
-                    return container.items.map(function (item) {
-                        let amountIcons = Math.floor(item.shelfSize() / GAME.model.config.iconPerAmountProductSize);
-
-                        // display at least one icon per product per container.
-                        return new Array(Math.max(amountIcons, 1)).fill({
-                            "name" : item.name,
-                            "img": item.values.icon
-                        });
-                    }).reduce(function(array, other){
-                        return array.concat(other);
-                    }, []);
-                };
+                // group by size, for the image icons
+                container.itemsBySize = this._containerDivideProductsBySize(container);
 
                 // for the progress bar
                 container.percentage = container.usedCapacity(true);
@@ -135,5 +122,39 @@ class WarehouseController extends Controller
                 );
             }
         );
+    }
+
+    /**
+     * Divides the container products into image blocks, so each items can be represented
+     * as an icon (per `iconPerAmountProductSize` size).
+     *
+     * @private
+     */
+    _containerDivideProductsBySize(container)
+    {
+        return container.items.map(function (item) {
+            let amountIcons = Math.floor(item.shelfSize() / GAME.model.config.iconPerAmountProductSize);
+            let remainder = item.shelfSize() % GAME.model.config.iconPerAmountProductSize;
+
+            // list of [iconAmount, iconAmount, iconAmount, ..., remainder]
+            let groupingAmount = new Array(amountIcons).fill(GAME.model.config.iconPerAmountProductSize);
+
+            // This item's `shelfSize` may not be a multiple of `iconPerAmountProductSize`
+            if (remainder) {
+                groupingAmount.push(remainder);
+            }
+
+            // map into object and return
+            return groupingAmount.map(function (size) {
+                return {
+                    "name" : item.name,
+                    "img": item.values.icon,
+                    // this grouping's size, divided by unit product size = quantity
+                    "quantity": Math.floor(size / item.values.size)
+                }
+            });
+        }).reduce(function(array, other){
+            return array.concat(other);
+        }, []);
     }
 }
