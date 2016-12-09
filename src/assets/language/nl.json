@@ -43,6 +43,7 @@
   "Order has arrived": "Bestelling is aangekomen",
 
   "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
+  "Order has been processed and added to the warehouse!": "De bestelling is verwerkt en in het magazijn geplaatst!",
   "Day": "Dag",
   "hour": "uur"
 }

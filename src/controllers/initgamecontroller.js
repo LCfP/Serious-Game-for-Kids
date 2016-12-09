@@ -25,7 +25,7 @@ class InitGameController extends Controller
             () => {
                 this.registerEvent();
 
-                var sim = new SimulationController();
+                let sim = new SimulationController();
                 sim.registerEvent();
             }
         );
@@ -97,7 +97,7 @@ class InitGameController extends Controller
         $("#language").change(function () {
             $("#language option:selected").each(
                 () => {
-                    var lang = $(this).val();
+                    let lang = $(this).val();
                     Cookies.set("lang", lang, {expires: 7});
 
                     toastr.success(
@@ -108,5 +108,3 @@ class InitGameController extends Controller
         })
     }
 }
-
-

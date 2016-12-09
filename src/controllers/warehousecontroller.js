@@ -29,6 +29,7 @@ class WarehouseController extends Controller
         } else {
             // add products to the containers.
             order.products.forEach((product) => this._processProduct(product));
+            toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
 
             // TODO make this work with the reference objects above (pass by reference bug on objects)
             let historyController = new HistoryController();
