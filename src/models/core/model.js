@@ -5,22 +5,18 @@ class Model
 {
     constructor()
     {
-        if (typeof MODEL !== 'undefined' && MODEL in window) {
-            this.model = MODEL;
-        } else {
-            this.model = {};
+        this.model = {};
 
-            // factory orders
-            this.model.orders = [];
+        // factory orders
+        this.model.orders = [];
 
-            // current customers
-            this.model.customers = [];
+        // current customers
+        this.model.customers = [];
 
-            // events happened in the past
-            this.model.history = [];
+        // events happened in the past
+        this.model.history = [];
 
-            this._load();
-        }
+        this._load();
     }
 
     /**
@@ -57,6 +53,9 @@ class Model
             (config, products) => {
                 this.model.config = config[0];
                 this.model.products = products[0];
+
+                // toastr settings, from the config
+                toastr.options = this.model.config.toastr;
 
                 $.when(this._getLang()).done(
                     (lang) => {

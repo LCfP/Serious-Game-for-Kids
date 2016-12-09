@@ -6,7 +6,7 @@ class FactoryController extends OrderController
             "src/views/template/factory.html",
             "#factory",
             GAME.model.factory
-        ).done(() =>  this.registerEvent());
+        ).done(() => this.registerEvent());
     }
 
     /**
@@ -19,18 +19,22 @@ class FactoryController extends OrderController
             function (e) {
                 e.preventDefault();
 
-                var controller = new FactoryController();
-                controller.factoryOrder($(this).serializeArray());
+                let controller = new FactoryController();
+                if (controller.factoryOrder($(this).serializeArray())) {
+                    // after succesful order, reset form to default state.
+                    $(this).trigger("reset");
+                    $("form[name=newFactoryOrder] :input").trigger("change");
+                }
             }
         );
 
         // updates the information for the current order process
         $("form[name=newFactoryOrder] :input").change(
             function (e) {
-                var formValues = $("form[name=newFactoryOrder]").serializeArray();
-                var products = OrderController._makeOrder(formValues);
+                let formValues = $("form[name=newFactoryOrder]").serializeArray();
+                let products = OrderController._makeOrder(formValues);
 
-                $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.value(), 0));
+                $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.stockValue(), 0));
                 $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
             }
         );
@@ -47,89 +51,86 @@ class FactoryController extends OrderController
         var order = new FactoryOrder(products);
 
         if (this.validateOrder(order)) {
-            this._updateMoney(-order.orderCost);
+            this._updateMoney(-order.orderCost());
 
             GAME.model.orders.push(order);
             this._updateOrderView(order);
 
             toastr.success(Controller.l("Order has been placed!"));
+
+            return true;
         }
+
+        return false;
     }
 
     validateOrder(order)
     {
         var products = order.products;
+        var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        var orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0);
 
         if (!products.length) {
             toastr.warning(Controller.l("An order cannot be empty."));
+            return false;
         }
 
         if (GAME.model.orders.length == GAME.model.config.maxSimultaneousOrders) {
             toastr.error(Controller.l("There is no room for another order at this time!"));
+            return false;
         }
-
-        var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
-        var orderCost = products.reduce((sum, prod) => sum + prod.value(), 0);
 
         if (orderSize > GAME.model.config.orderCapacity) {
             toastr.error(Controller.l("There is insufficient space on the truck!"));
+            return false;
         }
 
         if (orderCost > GAME.model.config.money) {
             toastr.error(Controller.l("You cannot afford this!"));
+            return false;
         }
 
-        if (products.some((elem) => elem.quantity < 0)) {
+        if (products.some((product) => product.values.quantity < 0)) {
             toastr.error(Controller.l("You cannot order a negative amount!"));
             return false;
         }
 
         // TODO check warehouse capacity
-        // TODO in need of refactoring
-
-        return products.length && orderSize <= GAME.model.config.orderCapacity
-            && orderCost <= GAME.model.config.money && GAME.model.orders.length < GAME.model.config.maxSimultaneousOrders;
+        return true;
     }
 
     /**
      * Updates order counter, at every daily interval. When 0, adds to Warehouse.
      */
-    static updateOrderDaily()
+    static updateOrder()
     {
-        var $handle = $(".days-countdown.factory-order");
+        let $handle = $(".factory-order");
 
-        if ($handle) {
-            $handle.each(
-                function (i, elem) {
-                    var time = $(this).html() - 1;
-
-                    if (!time) {
-                        var id = $($(this).siblings(".factory-order.order-id")[0]).html();
-
-                        var order = GAME.model.orders.filter(
-                            function (order) {
-                                return order.id == id;
-                            }
-                        )[0];
-
-                        var warehouseController = new WarehouseController();
-                        warehouseController.addOrder(order);
-
-                        $(this).parents(".panel.panel-default").remove();
-                    } else {
-                        $(this).html(time);
-                    }
-                }
-            );
-
-            GAME.model.orders = GAME.model.orders.filter(
-                function (order) {
-                    order.time = order.time - 1;
-
-                    return order.time;
-                }
-            );
+        if (!$handle) {
+            return;
         }
+
+        $handle.each(function (elem) {
+            let order = GAME.model.orders[elem];
+            order.time = order.time - 1;
+
+            if (order.time) {
+                let percentage = 100 * (1 - (order.time / order.initDuration));
+                $(this).find('.order-progress-bar').css({width: percentage + "%"}).attr("aria-valuenow", percentage);
+            } else {
+                let warehouseController = new WarehouseController();
+
+                // process order..
+                warehouseController.addOrderToWarehouse(order);
+
+                // ..and update views
+                warehouseController.updateContainerView();
+                warehouseController.updateCapacityView();
+                $(this).remove();
+            }
+        });
+
+        GAME.model.orders = GAME.model.orders.filter((order) => order.time);
     }
 
     /**

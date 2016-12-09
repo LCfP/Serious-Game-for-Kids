@@ -1,50 +1,25 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        {{#l}}{{ name }}{{/l}}
-        <span class="pull-right">
-            {{#l}}Capacity used{{/l}}: <strong>{{ usedCapacity }}</strong> / {{ capacity }}
-        </span>
+<section class="col-lg-4 col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-body container-view">
+            <div class="margin-bottom-0 progress no-border-radius">
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     aria-valuenow="{{ percentage }}" aria-valuemin="0"
+                     aria-valuemax="100" style="width:{{percentage}}%">
+                </div>
+            </div>
+            <div class="product-store padding-5">
+                {{ #itemsBySize }}
+                    <img src="src/assets/img/{{ img }}"
+                         alt="{{#l}}{{ name }}{{/l}}"
+                         title="{{#l}}{{ name }}{{/l}}">
+                {{ /itemsBySize }}
+                {{ ^itemsBySize }}
+                    <div class="text-center">
+                        {{#l}}This container is empty{{/l}}
+                    </div>
+                {{ /itemsBySize }}
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>{{#l}}Product{{/l}}</th>
-                <th>{{#l}}Quantity{{/l}}</th>
-                <th>{{#l}}Size{{/l}}</th>
-                <th>{{#l}}Perishes{{/l}}</th>
-            </tr>
-            </thead>
-            <tbody>
-                {{ ^items }}
-                <tr>
-                    <td colspan="4" class="text-center">
-                        {{#l}}This container is empty{{/l}}.
-                    </td>
-                </tr>
-                {{ /items }}
-                {{ #items }}
-                <tr>
-                    <td>
-                        {{#l}}{{ name }}{{/l}}
-                    </td>
-                    <td>
-                        {{ quantity }}
-                    </td>
-                    <td>
-                        {{ size }}
-                    </td>
-                    <td>
-                        {{ #isPerishable }}
-                            {{ perishable }} {{#l}}days{{/l}}.
-                        {{ /isPerishable }}
-                        {{ ^isPerishable }}
-                            -
-                        {{ /isPerishable }}
-                    </td>
-                </tr>
-                {{ /items }}
-            </tbody>
-        </table>
-    </div>
-</div>
+</section>
+

@@ -56,7 +56,7 @@ class SimulationController extends Controller
      */
     _runHour()
     {
-        // TODO
+        FactoryController.updateOrder();
 
         $(".timer-hours").html(GAME.model.config.hours % 24);
     }
@@ -69,8 +69,6 @@ class SimulationController extends Controller
         let warehouseController = new WarehouseController();
 
         warehouseController.updatePerishableProducts();
-        FactoryController.updateOrderDaily();
-
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 

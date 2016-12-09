@@ -35,9 +35,15 @@ class Storage extends StorageCore
         return this.items.length;
     }
 
-    usedContainerCapacity()
+    usedContainerCapacity(percentage = false)
     {
-        return this.items.reduce((sum, container) => sum + container.usedCapacity(), 0);
+        let usedCap = this.items.reduce((sum, container) => sum + container.usedCapacity(), 0);
+
+        if (percentage) {
+            usedCap = 100 * (usedCap / this.maxContainerCapacity());
+        }
+
+        return usedCap;
     }
 
     maxContainerCapacity()

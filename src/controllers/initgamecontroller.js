@@ -25,7 +25,7 @@ class InitGameController extends Controller
             () => {
                 this.registerEvent();
 
-                var sim = new SimulationController();
+                let sim = new SimulationController();
                 sim.registerEvent();
             }
         );
@@ -79,25 +79,25 @@ class InitGameController extends Controller
 
         // left menu opening
         $("#sidebar-left-toggle").click(function (e) {
-            sidebar_handler(e, "#sidebar-left", {marginLeft: 250, opacity: .3});
+            sidebar_handler(e, "#sidebar-left", {opacity: .3});
         });
 
         // right menu (history) opening
         $("#sidebar-right-toggle").click(function (e) {
-            sidebar_handler(e, "#sidebar-right", {marginRight: 250, opacity: .3});
+            sidebar_handler(e, "#sidebar-right", {opacity: .3});
         });
 
         // closing menu / history
         $(".wrapper").click(function () {
             $(".sidebar").width(0);
-            $(this).css({margin: 0, opacity: 1});
+            $(this).css({opacity: 1});
         });
 
         // listens for changes in the language setting.
         $("#language").change(function () {
             $("#language option:selected").each(
                 () => {
-                    var lang = $(this).val();
+                    let lang = $(this).val();
                     Cookies.set("lang", lang, {expires: 7});
 
                     toastr.success(
@@ -108,5 +108,3 @@ class InitGameController extends Controller
         })
     }
 }
-
-
