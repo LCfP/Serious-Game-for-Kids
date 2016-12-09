@@ -10,11 +10,40 @@ body {
 }
 
 .wrapper {
-    transition: margin .5s;
-
     /* initial state */
     opacity: .3;
-    margin-left: 250px;
+}
+
+img {
+    transition: all 0.3s ease-out;
+}
+
+img:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0;
+}
+
+.margin-right-10 {
+    margin-right: 10px;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.padding-5 {
+    padding: 5px;
+}
+
+.no-border-radius {
+    border-radius: 0;
+}
+
+.panel-default .panel-heading {
+    background: #f8f8f8;
 }
 
 /*
@@ -28,6 +57,7 @@ body {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    background: white;
 
     /* initial state */
     width: 250px;
@@ -51,4 +81,55 @@ body {
  */
 #top-bar ul li {
     cursor: pointer;
+}
+
+/*
+    Container styling
+*/
+.container-view {
+    padding: 0;
+}
+
+.product-store {
+    min-height: 250px;
+}
+
+/*
+    Progress bar styling
+*/
+.progress {
+    height: 5px;
+}
+
+.container-view .progress {
+    border-radius: 4px 4px 0 0;
+}
+
+.factory-order .progress {
+    border-radius: 0 4px 0 0;
+}
+
+/*
+    Factory and factory orders
+*/
+.factory,
+.factory-order {
+    border-radius: 0 4px 4px 0;
+}
+
+.factory {
+
+}
+
+.factory-order {
+    margin-bottom: 5px;
+    transition: all 0.3s ease-out;
+}
+
+.factory-order:hover {
+    margin-right: 15px;
+}
+
+.factory-order:last-of-type {
+    margin-bottom: 15px;
 }

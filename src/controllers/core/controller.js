@@ -111,7 +111,6 @@ class Controller
     _updateMoney(amount)
     {
         GAME.model.config.money = GAME.model.config.money + parseFloat(amount);
-
         $("#money").html(GAME.model.config.money);
     }
 }

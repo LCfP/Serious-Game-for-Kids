@@ -5,7 +5,9 @@
         </div>
         <ul class="list-group">
             {{ #products }}
-                <li class="list-group-item">{{#l}}{{ name }}{{/l}} <span class="badge">{{ quantity }}</span></li>
+                <li class="list-group-item">
+                    {{#l}}{{ name }}{{/l}} <span class="badge">{{ values.quantity }}</span>
+                </li>
             {{ /products }}
         </ul>
         <div class="panel-footer">

@@ -1,23 +1,32 @@
 [
   {
     "name": "Banana",
-    "price": 1.0,
-    "size": 1.0,
-    "isPerishable": true,
-    "perishable": 15
+    "values": {
+      "icon": "products/banana.png",
+      "price": 1.0,
+      "size": 1.0,
+      "isPerishable": true,
+      "perishable": 15
+    }
   },
   {
     "name": "Apple",
-    "price": 1.0,
-    "size": 1.0,
-    "isPerishable": true,
-    "perishable": 20
+    "values": {
+      "icon": "products/apple.png",
+      "price": 1.0,
+      "size": 1.0,
+      "isPerishable": true,
+      "perishable": 20
+    }
   },
   {
-    "name": "T-shirt",
-    "price": 5.0,
-    "size": 3.0,
-    "isPerishable": false,
-    "perishable": 0
+    "name": "Shoes",
+    "values": {
+      "icon": "products/shoes.png",
+      "price": 60.0,
+      "size": 5.0,
+      "isPerishable": false,
+      "perishable": 0
+    }
   }
 ]

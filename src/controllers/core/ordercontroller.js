@@ -12,21 +12,16 @@ class OrderController extends Controller
             var value = parseInt(ordered.value);
 
             if (!value) {
-                return false
+                return false;
             }
 
             var protoProduct = GAME.model.products.filter((prod) => prod.name == ordered.name).shift();
 
-            return new Product(
-                ordered.name,
-                value,
-                protoProduct.price,
-                protoProduct.size,
-                protoProduct.isPerishable,
-                protoProduct.perishable
-            );
-            // see http://stackoverflow.com/a/34481744/4316405
-        }).filter(Boolean);
+            var product = new Product(ordered.name, $.extend({}, protoProduct.values));
+            product.values.quantity = value;
+
+            return product;
+        }).filter(Boolean); // see http://stackoverflow.com/a/34481744/4316405
     }
 
     /**

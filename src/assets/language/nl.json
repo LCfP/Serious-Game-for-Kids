@@ -18,11 +18,13 @@
   "This container is empty": "Deze container is leeg",
   "days": "dagen",
 
-  "Place order": "Plaats bestelling",
-  "Order has been placed!": "Bestelling is geplaatst!",
   "Banana": "Banaan",
   "Apple": "Appel",
   "T-shirt": "T-shirt",
+  "Shoes": "Schoenen",
+
+  "Place order": "Plaats bestelling",
+  "Order has been placed!": "Bestelling is geplaatst!",
   "Unit price for this item is": "De prijs voor dit artikel is",
   "and unit size is": "en de grootte is",
   "Your current order will cost you": "Deze bestelling kost",
@@ -41,6 +43,7 @@
   "Order has arrived": "Bestelling is aangekomen",
 
   "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
+  "Order has been processed and added to the warehouse!": "De bestelling is verwerkt en in het magazijn geplaatst!",
   "Day": "Dag",
   "hour": "uur"
 }

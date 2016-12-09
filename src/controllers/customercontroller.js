@@ -26,7 +26,7 @@ class CustomerController extends OrderController
         GAME.model.customers.push(customer);
         this._updateOrderView(customer);
 
-        toastr.info("New customer is waiting!");
+        toastr.info(Controller.l("New customer is waiting!"));
     }
 
     /**
