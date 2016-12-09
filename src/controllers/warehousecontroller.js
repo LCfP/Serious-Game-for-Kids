@@ -93,7 +93,7 @@ class WarehouseController extends Controller
     _warehouseHelper()
     {
         this._loadTemplate(
-            "src/views/template/warehouse.html",
+            "src/views/template/warehouse/warehouse.html",
             "#warehouse",
             GAME.model.warehouse
         );
@@ -128,7 +128,7 @@ class WarehouseController extends Controller
                 container.percentage = container.usedCapacity(true);
 
                 super._loadTemplate(
-                    "src/views/template/container.html",
+                    "src/views/template/container/container.html",
                     "#containers",
                     container,
                     true
