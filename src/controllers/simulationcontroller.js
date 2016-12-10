@@ -56,6 +56,9 @@ class SimulationController extends Controller
      */
     _runHour()
     {
+        let customerController = new CustomerController();
+
+        customerController.generateOrder();
         FactoryController.updateOrder();
 
         $(".timer-hours").html(GAME.model.config.hours % 24);

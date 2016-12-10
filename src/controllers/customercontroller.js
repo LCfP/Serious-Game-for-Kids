@@ -11,11 +11,18 @@ class CustomerController extends OrderController
 
     generateOrder()
     {
+        if (super.normalDistribution() < 1.725) {
+            return;
+        }
+
         var protoOrder = GAME.model.products.map(
             prod => {
                 return {
                     name: prod.name,
-                    value: super.randomDemandGenerator()
+                    value: super.randomDemandGenerator(
+                        prod.probability.mean,
+                        prod.probability.variance
+                    )
                 }
             }
         );

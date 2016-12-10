@@ -7,6 +7,10 @@
       "size": 1.0,
       "isPerishable": true,
       "perishable": 15
+    },
+    "probability": {
+      "mean": 30,
+      "variance": 10
     }
   },
   {
@@ -17,6 +21,10 @@
       "size": 1.0,
       "isPerishable": true,
       "perishable": 20
+    },
+    "probability": {
+      "mean": 10,
+      "variance": 10
     }
   },
   {
@@ -27,6 +35,10 @@
       "size": 5.0,
       "isPerishable": false,
       "perishable": 0
+    },
+    "probability": {
+      "mean": 2,
+      "variance": 20
     }
   }
 ]
