@@ -167,6 +167,8 @@ class WarehouseController extends Controller
     _percentageColorIndication(percentage)
     {
         let indicators = ["red", "yellow", "green"]; // these are css colours, not just 'names'
-        return indicators[Math.min(Math.floor(percentage * (indicators.length / 100)), 2)];
+        let n = indicators.length;
+
+        return indicators[Math.min(Math.floor(percentage * (n / 100)), n - 1)];
     }
 }
