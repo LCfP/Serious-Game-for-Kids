@@ -14,10 +14,14 @@ class CustomerController extends OrderController
         $(document).on('click', '.customer-complete', function(e) {
             e.preventDefault();
 
-            var id = e.target.parentNode.parentNode.id.split('-')[1];
+            var id = $(this).closest("div[data-customer]").data('customer');
+
+            var customer = GAME.model.customers.filter(function (customer) {
+                return customer.id == id;
+            })[0];
 
             let customerController = new CustomerController();
-            customerController.completeOrder(id);
+            customerController.completeOrder(customer);
         });
     }
 
@@ -32,8 +36,8 @@ class CustomerController extends OrderController
                 return {
                     name: prod.name,
                     value: super.randomDemandGenerator(
-                        prod.probability.mean,
-                        prod.probability.variance
+                        prod.demand.mean,
+                        prod.demand.variance
                     )
                 }
             }
@@ -42,18 +46,16 @@ class CustomerController extends OrderController
         var products = OrderController._makeOrder(protoOrder);
         var customer = new Customer(products);
 
-        customer.id = GAME.model.customers.push(customer) - 1;
+        customer.id = GAME.model.customers.length;
+        GAME.model.customers.push(customer);
+
         this._updateOrderView(customer);
 
         toastr.info(Controller.l("New customer is waiting!"));
     }
 
-    completeOrder(id)
+    completeOrder(customer)
     {
-        var customer = $.grep(GAME.model.customers, function (customer) {
-            return customer.id == id;
-        })[0];
-
         var warehousecontroller = new WarehouseController();
 
         customer.order.products.forEach(function (product) {
@@ -64,7 +66,7 @@ class CustomerController extends OrderController
 
         // TODO add to history
         GAME.model.customers = GAME.model.customers.filter(function (e) {
-            return e.id != id;
+            return e.id != customer.id;
         });
 
         this._reloadCustomerView();

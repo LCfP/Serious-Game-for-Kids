@@ -8,7 +8,7 @@
       "isPerishable": true,
       "perishable": 15
     },
-    "probability": {
+    "demand": {
       "mean": 30,
       "variance": 10
     }
@@ -22,7 +22,7 @@
       "isPerishable": true,
       "perishable": 20
     },
-    "probability": {
+    "demand": {
       "mean": 10,
       "variance": 10
     }
@@ -36,7 +36,7 @@
       "isPerishable": false,
       "perishable": 0
     },
-    "probability": {
+    "demand": {
       "mean": 2,
       "variance": 20
     }
