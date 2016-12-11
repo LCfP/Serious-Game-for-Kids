@@ -11,6 +11,7 @@ class CustomerController extends OrderController
 
     registerEvent()
     {
+        // TODO make the click event so it does not need to be attached to the document
         $(document).on('click', '.customer-complete', function(e) {
             e.preventDefault();
 
