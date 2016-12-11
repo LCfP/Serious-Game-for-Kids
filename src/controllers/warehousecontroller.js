@@ -147,14 +147,26 @@ class WarehouseController extends Controller
             // map into object and return
             return groupingAmount.map(function (size) {
                 return {
-                    "name" : item.name,
-                    "img": item.values.icon,
+                    "product" : item,
+                    "color" : this._percentageColorIndication(item.values.percentage || 100),
                     // this grouping's size, divided by unit product size = quantity
                     "quantity": Math.floor(size / item.values.size)
                 }
-            });
-        }).reduce(function(array, other){
+            }, this);
+        }, this).reduce(function(array, other){
             return array.concat(other);
         }, []);
+    }
+
+    /**
+     * Maps the product perishability (as a percentage of initial) to a color code.
+     * TODO: think about how these ranges should be, and proper colours (css).
+     *
+     * @private
+     */
+    _percentageColorIndication(percentage)
+    {
+        let indicators = ["red", "yellow", "green"]; // these are css colours, not just 'names'
+        return indicators[Math.min(Math.floor(percentage * (indicators.length / 100)), 2)];
     }
 }

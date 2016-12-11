@@ -10,8 +10,11 @@
             <div class="product-store padding-5">
                 {{ #itemsBySize }}
                     <span class="image">
-                        <img src="src/assets/img/{{ img }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
-                        <span class="quantity-overlay text-center">
+                        <img src="src/assets/img/{{ product.values.icon }}" alt="{{#l}}{{ product.name }}{{/l}}" title="{{#l}}{{ product.name }}{{/l}}">
+                        {{ #product.values.isPerishable }}
+                            <span class="overlay perishable-overlay" style="background:{{ color }};"></span>
+                        {{ /product.values.isPerishable }}
+                        <span class="overlay quantity-overlay text-center">
                             <strong>{{ quantity }}</strong>
                         </span>
                     </span>
