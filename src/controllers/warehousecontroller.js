@@ -39,19 +39,22 @@ class WarehouseController extends Controller
 
     removeProduct(product, customer)
     {
-        GAME.model.warehouse.items.forEach(function (container) {
+        GAME.model.warehouse.items.every(function (container) {
+
+            var done = false;
+
             container.items = container.items.filter(function (item) {
 
-                if (item.name === product.name) {
+                if (item.name == product.name) {
 
                     // order product can be fulfilled immediately
                     if (item.values.quantity >= product.values.quantity) {
                         item.values.quantity -= product.values.quantity;
-                        product.values.quantity = 0;
-                    }
 
-                    // only a part of the amount wanted can be fulfilled
-                    if (product.values.quantity > 0) {
+                        let controller = new Controller();
+                        controller._updateMoney(product.stockValue());
+
+                        done = true;
 
                     }
 
@@ -60,6 +63,9 @@ class WarehouseController extends Controller
                 return item.values.quantity > 0;
 
             });
+
+            return !done;
+
         });
     }
 
