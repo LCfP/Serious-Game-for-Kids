@@ -56,10 +56,9 @@ class SimulationController extends Controller
      */
     _runHour()
     {
-        let customerController = new CustomerController();
-
         // About 1 per day;
         if (OrderController.normalDistribution() > 1.725) {
+            let customerController = new CustomerController();
             customerController.generateOrder();
         }
 
