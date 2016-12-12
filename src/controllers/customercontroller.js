@@ -19,7 +19,12 @@ class CustomerController extends OrderController
             var customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
 
             let customerController = new CustomerController();
-            customerController.completeOrder(customer);
+
+            if (!this._validateOrder(customer.order)) {
+                customerController.completeOrder(customer);
+            } else {
+                toastr.warning(Controller.l("You don't have all the products to complete this order."))
+            }
         });
     }
 
@@ -50,10 +55,6 @@ class CustomerController extends OrderController
 
     completeOrder(customer)
     {
-        if (!this._validateOrder(customer.order)) {
-            return;
-        }
-
         this._updateMoney(customer.order.orderCost());
 
         let warehouseController = new WarehouseController();
