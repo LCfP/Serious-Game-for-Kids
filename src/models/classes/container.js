@@ -30,7 +30,12 @@ class Container extends StorageCore
                     return false;
                 }
 
+                let initPerishable = GAME.model.products
+                    .filter((prod) => prod.name == product.name)
+                    .shift().values.perishable - 1;
+
                 product.values.perishable = product.values.perishable - 1;
+                product.values.percentage = 100 * product.values.perishable / initPerishable;
 
                 // empty container does not have defined products. Else: product needs to be perishable,
                 // and needs to have perished.
