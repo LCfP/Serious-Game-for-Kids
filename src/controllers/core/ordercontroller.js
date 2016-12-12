@@ -30,7 +30,7 @@ class OrderController extends Controller
     randomDemandGenerator(mean, variance)
     {
         // TODO edit variance and mean
-        return Math.max(this.normalDistribution(mean, variance), 0);
+        return Math.max(OrderController.normalDistribution(mean, variance), 0);
     }
 
     /**
@@ -40,7 +40,7 @@ class OrderController extends Controller
      * @param variance
      * @returns {number}
      */
-    normalDistribution(mean = 0, variance = 1)
+    static normalDistribution(mean = 0, variance = 1)
     {
         var u = 1 - Math.random();
         var v = 1 - Math.random();

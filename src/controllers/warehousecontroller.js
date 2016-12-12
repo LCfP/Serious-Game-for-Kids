@@ -19,54 +19,23 @@ class WarehouseController extends Controller
      *
      * @param {OrderCore} order - The Order object.
      */
-    addOrderToWarehouse(order)
+    orderUpdateWarehouse(order)
     {
-        let capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
+        let cases = {
+            "FactoryOrder": this._processFactoryOrder,
+            "CustomerOrder": this._processCustomerOrder
+        };
 
-        if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
-            toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
-            // TODO try to fit what fits? - context
-        } else {
-            // add products to the containers.
-            order.products.forEach((product) => this._processProduct(product));
-            toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
+        if (cases.hasOwnProperty(order.constructor.name)) {
+            let func = $.proxy(cases[order.constructor.name], this);
+            let result = func(order);
 
-            // TODO make this work with the reference objects above (pass by reference bug on objects)
-            let historyController = new HistoryController();
-            historyController.log(order);
+            if (result) {
+                // TODO make this work with the reference objects above (pass by reference bug on objects)
+                let historyController = new HistoryController();
+                historyController.log(order);
+            }
         }
-    }
-
-    removeProduct(product, customer)
-    {
-        GAME.model.warehouse.items.every(function (container) {
-
-            var done = false;
-
-            container.items = container.items.filter(function (item) {
-
-                if (item.name == product.name) {
-
-                    // order product can be fulfilled immediately
-                    if (item.values.quantity >= product.values.quantity) {
-                        item.values.quantity -= product.values.quantity;
-
-                        let controller = new Controller();
-                        controller._updateMoney(product.stockValue());
-
-                        done = true;
-
-                    }
-
-                }
-
-                return item.values.quantity > 0;
-
-            });
-
-            return !done;
-
-        });
     }
 
     /**
@@ -87,6 +56,48 @@ class WarehouseController extends Controller
         $("#warehouse-progress-bar")
             .css({width: GAME.model.warehouse.usedContainerCapacity(true) + "%"})
             .attr("aria-valuenow", GAME.model.warehouse.usedContainerCapacity(true));
+    }
+
+    /**
+     * @private
+     */
+    _processFactoryOrder(order)
+    {
+        let capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
+
+        if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
+            toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
+            // TODO try to fit what fits? - context
+        } else {
+            // add products to the containers.
+            order.products.forEach((product) => this._processProduct(product));
+            toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
+
+            return true;
+        }
+    }
+
+    /**
+     * @private
+     */
+    _processCustomerOrder(order)
+    {
+        // TODO ugly :(
+        order.products.forEach(function (product) {
+            GAME.model.warehouse.items.map(function (container) {
+                return container.items.filter(function (item) {
+                    if (product.name != item.name) {
+                        return item;
+                    }
+
+                    let removedQuantity = Math.min(product.values.quantity, item.values.quantity);
+                    product.values.quantity -= removedQuantity;
+                    item.values.quantity -= removedQuantity;
+
+                    return item.values.quantity;
+                });
+            });
+        });
     }
 
     /**

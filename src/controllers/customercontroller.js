@@ -16,10 +16,7 @@ class CustomerController extends OrderController
             e.preventDefault();
 
             var id = $(this).closest("div[data-customer]").data('customer');
-
-            var customer = GAME.model.customers.filter(function (customer) {
-                return customer.id == id;
-            })[0];
+            var customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
 
             let customerController = new CustomerController();
             customerController.completeOrder(customer);
@@ -28,10 +25,6 @@ class CustomerController extends OrderController
 
     generateOrder()
     {
-        if (super.normalDistribution() < 1.725) {
-            return;
-        }
-
         var protoOrder = GAME.model.products.map(
             prod => {
                 return {
@@ -57,22 +50,35 @@ class CustomerController extends OrderController
 
     completeOrder(customer)
     {
-        var warehousecontroller = new WarehouseController();
+        if (!this._validateOrder(customer.order)) {
+            return;
+        }
 
-        customer.order.products.forEach(function (product) {
-            warehousecontroller.removeProduct(product, customer);
-        });
+        this._updateMoney(customer.order.orderCost());
 
-        warehousecontroller.updateContainerView();
+        let warehouseController = new WarehouseController();
 
-        // TODO add to history
-        GAME.model.customers = GAME.model.customers.filter(function (e) {
-            return e.id != customer.id;
-        });
+        warehouseController.orderUpdateWarehouse(customer.order);
+        warehouseController.updateContainerView();
+
+        GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
 
         this._reloadCustomerView();
+    }
 
-        return;
+    _validateOrder(order)
+    {
+        let callback = (sum, elem) => sum + elem;
+
+        return order.products.every(function (product) {
+            let quantity = GAME.model.warehouse.items.map(function (container) {
+                return container.items.map(function (item) {
+                    return product.name == item.name ? item.values.quantity : 0;
+                }).reduce(callback, 0);
+            }).reduce(callback, 0);
+
+            return quantity >= product.values.quantity;
+        });
     }
 
     _reloadCustomerView()

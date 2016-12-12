@@ -58,7 +58,11 @@ class SimulationController extends Controller
     {
         let customerController = new CustomerController();
 
-        customerController.generateOrder();
+        // About 1 per day;
+        if (OrderController.normalDistribution() > 1.725) {
+            customerController.generateOrder();
+        }
+
         FactoryController.updateOrder();
 
         $(".timer-hours").html(GAME.model.config.hours % 24);
