@@ -3,7 +3,7 @@ class FactoryController extends OrderController
     view()
     {
         this._loadTemplate(
-            "src/views/template/factory.html",
+            "src/views/template/factory/factory.html",
             "#factory",
             GAME.model.factory
         ).done(() => this.registerEvent());
@@ -139,7 +139,7 @@ class FactoryController extends OrderController
     _updateOrderView(order)
     {
         this._loadTemplate(
-            "src/views/template/factoryorder.html",
+            "src/views/template/factory/factoryorder.html",
             "#factory-orders",
             order,
             true

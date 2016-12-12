@@ -76,6 +76,7 @@ class SimulationController extends Controller
         let warehouseController = new WarehouseController();
 
         warehouseController.updatePerishableProducts();
+
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 

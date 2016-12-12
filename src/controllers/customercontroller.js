@@ -3,7 +3,7 @@ class CustomerController extends OrderController
     view()
     {
         this._loadTemplate(
-            "src/views/template/customer.html",
+            "src/views/template/customer/customer.html",
             "#customers",
             {}
         ).done(() => this.registerEvent());
@@ -96,7 +96,7 @@ class CustomerController extends OrderController
     _updateOrderView(customer)
     {
         this._loadTemplate(
-            "src/views/template/customerorder.html",
+            "src/views/template/customer/customerorder.html",
             "#customer-orders",
             customer,
             true

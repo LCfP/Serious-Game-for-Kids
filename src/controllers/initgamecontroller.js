@@ -37,7 +37,7 @@ class InitGameController extends Controller
     _loadSidebarLeft()
     {
         return this._loadTemplate(
-            "src/views/template/sidebar-left.html",
+            "src/views/template/sidebar/sidebar-left.html",
             "#sidebar-left",
             GAME.model.config
         );
@@ -49,7 +49,7 @@ class InitGameController extends Controller
     _loadSidebarRight()
     {
         return this._loadTemplate(
-            "src/views/template/sidebar-right.html",
+            "src/views/template/sidebar/sidebar-right.html",
             "#sidebar-right",
             GAME.model.config
         );

@@ -14,14 +14,6 @@ body {
     opacity: .3;
 }
 
-img {
-    transition: all 0.3s ease-out;
-}
-
-img:hover {
-    transform: scale(1.2, 1.2);
-}
-
 .margin-bottom-0 {
     margin-bottom: 0;
 }
@@ -39,7 +31,7 @@ img:hover {
 }
 
 .no-border-radius {
-    border-radius: 0;
+    border-radius: 0 !important;
 }
 
 .panel-default .panel-heading {
@@ -94,6 +86,44 @@ img:hover {
     min-height: 250px;
 }
 
+.image {
+    transition: all 0.3s ease-out;
+
+    position: relative;
+    display: inline-block;
+}
+
+.image:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.overlay {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.quantity-overlay {
+    left: 24px;
+    top: 24px;
+
+    width: 24px;
+    height: 24px;
+    padding: 2px 0;
+
+    background: #f5f5f5;
+    opacity: .7;
+}
+
+.perishable-overlay {
+    left: 2px;
+    top: 2px;
+
+    height: 46px;
+    width: 46px;
+
+    opacity: .15;
+}
+
 /*
     Progress bar styling
 */
@@ -115,10 +145,6 @@ img:hover {
 .factory,
 .factory-order {
     border-radius: 0 4px 4px 0;
-}
-
-.factory {
-
 }
 
 .factory-order {

@@ -136,7 +136,7 @@ class WarehouseController extends Controller
     _warehouseHelper()
     {
         this._loadTemplate(
-            "src/views/template/warehouse.html",
+            "src/views/template/warehouse/warehouse.html",
             "#warehouse",
             GAME.model.warehouse
         );
@@ -151,32 +151,67 @@ class WarehouseController extends Controller
     {
         GAME.model.warehouse.items.forEach(
             (container) => {
-                // groups items by size, so each items can be represented
-                // as an icon (per `iconPerAmountProductSize` size).
-                container.itemsBySize = function () {
-                    return container.items.map(function (item) {
-                        let amountIcons = Math.floor(item.shelfSize() / GAME.model.config.iconPerAmountProductSize);
-
-                        // display at least one icon per product per container.
-                        return new Array(Math.max(amountIcons, 1)).fill({
-                            "name" : item.name,
-                            "img": item.values.icon
-                        });
-                    }).reduce(function(array, other){
-                        return array.concat(other);
-                    }, []);
-                };
+                // group by size, for the image icons
+                container.itemsBySize = this._containerDivideProductsBySize(container);
 
                 // for the progress bar
                 container.percentage = container.usedCapacity(true);
 
                 super._loadTemplate(
-                    "src/views/template/container.html",
+                    "src/views/template/container/container.html",
                     "#containers",
                     container,
                     true
                 );
             }
         );
+    }
+
+    /**
+     * Divides the container products into image blocks, so each items can be represented
+     * as an icon (per `iconPerAmountProductSize` size).
+     *
+     * @private
+     */
+    _containerDivideProductsBySize(container)
+    {
+        return container.items.map(function (item) {
+            let amountIcons = Math.floor(item.shelfSize() / GAME.model.config.iconPerAmountProductSize);
+            let remainder = item.shelfSize() % GAME.model.config.iconPerAmountProductSize;
+
+            // list of [iconAmount, iconAmount, iconAmount, ..., remainder]
+            let groupingAmount = new Array(amountIcons).fill(GAME.model.config.iconPerAmountProductSize);
+
+            // This item's `shelfSize` may not be a multiple of `iconPerAmountProductSize`
+            if (remainder) {
+                groupingAmount.push(remainder);
+            }
+
+            // map into object and return
+            return groupingAmount.map(function (size) {
+                return {
+                    "product" : item,
+                    "color" : this._percentageColorIndication(item.values.percentage || 100),
+                    // this grouping's size, divided by unit product size = quantity
+                    "quantity": Math.floor(size / item.values.size)
+                }
+            }, this);
+        }, this).reduce(function(array, other){
+            return array.concat(other);
+        }, []);
+    }
+
+    /**
+     * Maps the product perishability (as a percentage of initial) to a color code.
+     * TODO: think about how these ranges should be, and proper colours (css).
+     *
+     * @private
+     */
+    _percentageColorIndication(percentage)
+    {
+        let indicators = ["red", "yellow", "green"]; // these are css colours, not just 'names'
+        let n = indicators.length;
+
+        return indicators[Math.min(Math.floor(percentage * (n / 100)), n - 1)];
     }
 }
