@@ -6,22 +6,19 @@ class CustomerController extends OrderController
             "src/views/template/customer/customer.html",
             "#customers",
             {}
-        ).done(() => this.registerEvent());
+        );
     }
 
-    registerEvent()
+    registerEvent(id)
     {
         // TODO make the click event so it does not need to be attached to the document
-        $(document).on('click', '.customer-complete', function(e) {
-            e.preventDefault();
-
-            var id = $(this).closest("div[data-customer]").data('customer');
-            var customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
-
+        $("button[data-customer="+ id +"]").click(function (e) {
+            let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
             let customerController = new CustomerController();
 
-            if (!this._validateOrder(customer.order)) {
+            if (customerController._validateOrder(customer.order)) {
                 customerController.completeOrder(customer);
+                $(this).off(e);
             } else {
                 toastr.warning(Controller.l("You don't have all the products to complete this order."))
             }
@@ -61,12 +58,19 @@ class CustomerController extends OrderController
 
         warehouseController.orderUpdateWarehouse(customer.order);
         warehouseController.updateContainerView();
+        warehouseController.updateCapacityView();
 
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
 
         this._reloadCustomerView();
     }
 
+    /**
+     * Validates order if quantity in warehouse for every product is
+     * larger than in order.
+     *
+     * @private
+     */
     _validateOrder(order)
     {
         let callback = (sum, elem) => sum + elem;
@@ -101,6 +105,6 @@ class CustomerController extends OrderController
             "#customer-orders",
             customer,
             true
-        );
+        ).done(() => this.registerEvent(customer.id));
     }
 }
