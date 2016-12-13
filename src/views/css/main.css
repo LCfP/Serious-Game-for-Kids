@@ -146,16 +146,3 @@ body {
 .factory-order {
     border-radius: 0 4px 4px 0;
 }
-
-.factory-order {
-    margin-bottom: 5px;
-    transition: all 0.3s ease-out;
-}
-
-.factory-order:hover {
-    margin-right: 15px;
-}
-
-.factory-order:last-of-type {
-    margin-bottom: 15px;
-}
