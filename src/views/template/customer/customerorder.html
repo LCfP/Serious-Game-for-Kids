@@ -16,6 +16,6 @@
         {{ /order.products }}
     </div>
     <div class="panel-footer">
-        {{#l}}Earn{{/l}} {{ order.orderCost }}
+        {{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}
     </div>
 </div>
