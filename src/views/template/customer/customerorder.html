@@ -2,15 +2,20 @@
     <div class="panel-heading">
         {{#l}}{{ name }}{{/l}}
         <button class="customer-complete btn btn-default btn-xs pull-right" data-customer="{{ id }}">
-            Collect money
+            {{#l}}Serve customer{{/l}}
         </button>
     </div>
-    <ul class="list-group">
+    <div class="panel-body">
         {{ #order.products }}
-            <li class="list-group-item">{{#l}}{{ name }}{{/l}} <span class="badge">{{ values.quantity }}</span></li>
+            <span class="image">
+                <img src="src/assets/img/{{ values.icon }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
+                <span class="overlay quantity-overlay text-center">
+                    <strong>{{ values.quantity }}</strong>
+                </span>
+            </span>
         {{ /order.products }}
-    </ul>
+    </div>
     <div class="panel-footer">
-        {{#l}}Earn{{/l}} {{ order.orderCost() }}
+        {{#l}}Earn{{/l}} {{ order.orderCost }}
     </div>
 </div>
