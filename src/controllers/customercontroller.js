@@ -90,7 +90,8 @@ class CustomerController extends OrderController
     {
         $("#customer-orders").empty();
 
-        GAME.model.customers.forEach((customer) => {
+        GAME.model.customers.forEach((customer, index) => {
+            customer.id = index;
             this._updateOrderView(customer);
         });
     }
