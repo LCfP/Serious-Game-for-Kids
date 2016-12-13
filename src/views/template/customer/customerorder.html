@@ -1,9 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         {{#l}}{{ name }}{{/l}}
-        <button class="customer-complete btn btn-default btn-xs pull-right" data-customer="{{ id }}">
-            {{#l}}Serve customer{{/l}}
-        </button>
+        <span class="label label-warning pull-right">{{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}</span>
     </div>
     <div class="panel-body">
         {{ #order.products }}
@@ -16,6 +14,12 @@
         {{ /order.products }}
     </div>
     <div class="panel-footer">
-        {{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}
+        <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" data-customer="{{ id }}">
+                    <span class="text-success">{{#l}}Serve customer{{/l}}</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
