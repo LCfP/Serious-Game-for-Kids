@@ -31,7 +31,7 @@
   "and use": "en gebruikt",
   "capacity": "capaciteit",
   "An order cannot be empty.": "Een bestelling mag niet leeg zijn.",
-  "There is no room for another order at this time!": "Er is op dit moment geen plek voor een nieuwe bestelling",
+  "There is no room for another order at this time!": "Er is op dit moment geen plek voor een nieuwe bestelling!",
   "There is insufficient space on the truck!": "Er is niet genoeg ruimte in de vrachtwagen!",
   "You cannot afford this!": "Je kunt dit niet betalen!",
 
@@ -45,5 +45,7 @@
   "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
   "Order has been processed and added to the warehouse!": "De bestelling is verwerkt en in het magazijn geplaatst!",
   "Day": "Dag",
-  "hour": "uur"
+  "hour": "uur",
+
+  "You don't have all the products to complete this order.": "Je hebt niet alle producten om deze bestelling te leveren."
 }

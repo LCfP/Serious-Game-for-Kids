@@ -121,7 +121,7 @@ class FactoryController extends OrderController
                 let warehouseController = new WarehouseController();
 
                 // process order..
-                warehouseController.addOrderToWarehouse(order);
+                warehouseController.orderUpdateWarehouse(order);
 
                 // ..and update views
                 warehouseController.updateContainerView();

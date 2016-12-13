@@ -1,6 +1,9 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         {{#l}}{{ name }}{{/l}}
+        <button class="customer-complete btn btn-default btn-xs pull-right" data-customer="{{ id }}">
+            Collect money
+        </button>
     </div>
     <ul class="list-group">
         {{ #order.products }}
