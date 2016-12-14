@@ -16,6 +16,12 @@
                  id="warehouse-progress-bar">
             </div>
         </div>
-        <div class="panel-body" id="containers"></div>
+        <div class="panel-body" id="containers">
+            {{ ^items }}
+                <div class="text-center">
+                    {{#l}}There are no racks yet in this warehouse!{{/l}}
+                </div>
+            {{ /items }}
+        </div>
     </div>
 </div>

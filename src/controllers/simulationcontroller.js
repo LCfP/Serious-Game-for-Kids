@@ -56,8 +56,10 @@ class SimulationController extends Controller
      */
     _runHour()
     {
-        // About 1 per day: ~1.72, 2 per day: ~1.38. TODO think about this
-        if (OrderController.normalDistribution() > 1.72) {
+        // TODO every day, and every once in a while (structural and variable?). We need to think about this.
+        // Random component - About 1 per day = ~1.72, 2 per day = ~1.38.
+        if (OrderController.normalDistribution() > 1.72
+            || GAME.model.config.hours % 24 == 8) {
             let customerController = new CustomerController();
             customerController.generateOrder();
         }
@@ -75,7 +77,6 @@ class SimulationController extends Controller
         let warehouseController = new WarehouseController();
 
         warehouseController.updatePerishableProducts();
-
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 

@@ -51,5 +51,8 @@
   "You don't have all the products to complete this order.": "Je hebt niet alle producten om deze bestelling te leveren.",
   "You got a penalty for sending the customer away.": "Je hebt een boete gekregen, omdat je een klant wegstuurde.",
   "Serve customer": "Bedien klant",
-  "Send away": "Stuur weg"
+  "Send away": "Stuur weg",
+
+  "There are no racks yet in this warehouse!": "Er zijn nog geen rekken in dit magazijn!",
+  "There are no customers yet!": "Er zijn nog geen klanten!"
 }
