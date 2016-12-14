@@ -14,12 +14,14 @@ class OrderCore
     }
 
     /**
-     * Calculates order cost
+     * Calculates order cost.
+     * @see ProductCore.stockValue
      *
+     * @param {bool} sales=false - Purchase or sales price.
      * @returns {float}
      */
-    orderCost()
+    orderCost(sales = false)
     {
-        return this.products.reduce((sum, prod) => sum + prod.stockValue(), 0);
+        return this.products.reduce((sum, prod) => sum + prod.stockValue(sales), 0);
     }
 }

@@ -1,23 +1,20 @@
-<!--TODO quantity in overlay on product image -->
-<div class="panel panel-default factory-order" id="{{ id }}">
+<div class="panel panel-default factory-order" data-factory="{{ id }}">
     <div class="margin-bottom-0 progress no-border-radius">
         <div class="progress-bar progress-bar-success order-progress-bar" role="progressbar"
              aria-valuenow="0" aria-valuemin="0"
              aria-valuemax="100" style="width:0">
         </div>
     </div>
-    <div class="panel-body padding-5">
-        <span class="padding-5 margin-right-10">
-            <strong>#{{ id }}</strong>
-        </span>
+    <div class="panel-heading">
+        {{#l}}Order{{/l}} #{{ id }}
+    </div>
+    <div class="panel-body">
         {{ #products }}
-            <span class="margin-right-10">
-                <span class="align-middle">
-                    <img src="src/assets/img/{{ values.icon }}"
-                         alt="{{#l}}{{ name }}{{/l}}"
-                         title="{{#l}}{{ name }}{{/l}}">
+            <span class="image">
+                <img src="src/assets/img/{{ values.icon }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
+                <span class="overlay quantity-overlay text-center">
+                    <strong>{{ values.quantity }}</strong>
                 </span>
-                <strong>{{ values.quantity }}</strong>
             </span>
         {{ /products }}
     </div>

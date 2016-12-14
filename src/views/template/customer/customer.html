@@ -1,7 +1,13 @@
-<!--TODO place css in the stylesheet-->
-<div class="panel panel-default" style="max-height: calc(100vh - 100px); overflow-y: scroll;">
+<div class="panel panel-default">
     <div class="panel-heading">
         {{#l}}Customers{{/l}}
     </div>
-    <div id="customer-orders" class="panel-body"></div>
+    <div class="panel-body make-scrollable">
+        {{ ^customers }}
+            <div class="text-center no-customers">
+                {{#l}}There are no customers yet!{{/l}}
+            </div>
+        {{ /customers }}
+        <div id="customer-orders"></div>
+    </div>
 </div>

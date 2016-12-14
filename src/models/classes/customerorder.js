@@ -4,4 +4,9 @@ class CustomerOrder extends OrderCore
     {
         super(products, 0);
     }
+
+    orderCost()
+    {
+        return super.orderCost(true);
+    }
 }
