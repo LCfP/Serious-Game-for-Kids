@@ -1,13 +1,30 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         {{#l}}{{ name }}{{/l}}
+        <span class="label label-warning pull-right">{{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}</span>
     </div>
-    <ul class="list-group">
+    <div class="panel-body">
         {{ #order.products }}
-            <li class="list-group-item">{{#l}}{{ name }}{{/l}} <span class="badge">{{ values.quantity }}</span></li>
+            <span class="image">
+                <img src="src/assets/img/{{ values.icon }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
+                <span class="overlay quantity-overlay text-center">
+                    <strong>{{ values.quantity }}</strong>
+                </span>
+            </span>
         {{ /order.products }}
-    </ul>
+    </div>
     <div class="panel-footer">
-        {{#l}}Earn{{/l}} {{ order.orderCost() }}
+        <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <button type="button" class="customer-send-away btn btn-default" data-customer="{{ id }}">
+                    <span class="text-danger">{{#l}}Send away{{/l}}</span>
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="customer-serve btn btn-default" data-customer="{{ id }}">
+                    <span class="text-success">{{#l}}Serve customer{{/l}}</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
