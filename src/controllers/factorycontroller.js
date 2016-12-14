@@ -51,9 +51,9 @@ class FactoryController extends OrderController
         var order = new FactoryOrder(products);
 
         if (this.validateOrder(order)) {
-            this._updateMoney(-order.orderCost());
-
             GAME.model.orders.push(order);
+
+            this._updateMoney(-order.orderCost());
             this._updateOrderView(order);
 
             toastr.success(Controller.l("Order has been placed!"));
@@ -96,6 +96,7 @@ class FactoryController extends OrderController
         }
 
         // TODO check warehouse capacity
+
         return true;
     }
 
@@ -110,8 +111,8 @@ class FactoryController extends OrderController
             return;
         }
 
-        $handle.each(function (elem) {
-            let order = GAME.model.orders[elem];
+        $handle.each(function () {
+            let order = GAME.model.orders.filter((order) => order.id == parseInt($(this).data('factory'))).shift();
             order.time = order.time - 1;
 
             if (order.time) {
