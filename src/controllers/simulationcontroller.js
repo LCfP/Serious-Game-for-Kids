@@ -56,8 +56,8 @@ class SimulationController extends Controller
      */
     _runHour()
     {
-        // About 1 per day;
-        if (OrderController.normalDistribution() > 1.725) {
+        // About 1 per day: ~1.72, 2 per day: ~1.38. TODO think about this
+        if (OrderController.normalDistribution() > 1.72) {
             let customerController = new CustomerController();
             customerController.generateOrder();
         }

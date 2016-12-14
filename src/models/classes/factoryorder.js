@@ -4,6 +4,6 @@ class FactoryOrder extends OrderCore
     {
         super(products, 24 * GAME.model.config.orderTransportDurationDays);
 
-        this.id = Math.max(GAME.model.orders.map(order => order.id + 1));
+        this.id = Math.max(...GAME.model.orders.map(order => order.id + 1), 0);
     }
 }

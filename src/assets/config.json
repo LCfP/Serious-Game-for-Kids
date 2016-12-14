@@ -21,7 +21,7 @@
   "orderCapacity": 1000,
   "orderTransportDurationDays": 2,
 
-  "warehouseContainers": 4,
+  "warehouseContainers": 3,
   "money": 10000,
   "satisfaction": 100,
 
@@ -33,7 +33,7 @@
     "newestOnTop": true,
     "progressBar": true,
     "positionClass": "toast-top-right",
-    "preventDuplicates": false,
+    "preventDuplicates": true,
     "onclick": null,
     "showDuration": "200",
     "hideDuration": "1000",

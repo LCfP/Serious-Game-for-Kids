@@ -54,7 +54,7 @@ class CustomerController extends OrderController
         var products = OrderController._makeOrder(protoOrder);
         var customer = new Customer(products);
 
-        customer.id = GAME.model.customers.length;
+        customer.id = Math.max(...GAME.model.customers.map(customer => customer.id + 1), 0);
         GAME.model.customers.push(customer);
 
         this._updateOrderView(customer);
@@ -116,11 +116,9 @@ class CustomerController extends OrderController
     _updateCustomerView()
     {
         $("#customer-orders").empty();
-
-        GAME.model.customers.forEach((customer, index) => {
-            customer.id = index;
+        GAME.model.customers.forEach(function (customer) {
             this._updateOrderView(customer);
-        });
+        }, this);
     }
 
     /**
