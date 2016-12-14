@@ -11,8 +11,7 @@ class CustomerController extends OrderController
 
     registerEvent(id)
     {
-        // TODO make the click event so it does not need to be attached to the document
-        $("button[data-customer="+ id +"]").click(function (e) {
+        $("button[data-customer="+ id +"].customer-serve").click(function (e) {
             let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
             let customerController = new CustomerController();
 
@@ -22,6 +21,13 @@ class CustomerController extends OrderController
             } else {
                 toastr.warning(Controller.l("You don't have all the products to complete this order."))
             }
+        })
+
+        $("button[data-customer="+ id +"].customer-send-away").click(function (e) {
+            let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
+            let customerController = new CustomerController();
+
+            customerController.sendAway(customer);
         });
     }
 
@@ -63,6 +69,21 @@ class CustomerController extends OrderController
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
 
         this._reloadCustomerView();
+    }
+
+    /**
+     * Removes customer from the customer array.
+     * @param customer
+     */
+    sendAway(customer)
+    {
+        // TODO Log event in history
+
+        GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
+        this._reloadCustomerView();
+
+        this._updateMoney(-GAME.model.config.penaltySendingCustomerAway);
+        toastr.warning(Controller.l("You got a penalty for sending the customer away."));
     }
 
     /**
