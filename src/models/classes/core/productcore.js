@@ -22,9 +22,13 @@ class ProductCore
 
     /**
      * Calculates the purchase value/cost.
+     *
+     * @param {bool} sales=false - Purchase or sales price (factory vs. customer price).
      */
-    stockValue()
+    stockValue(sales = false)
     {
-        return parseFloat(this.values.price * this.values.quantity);
+        let price = sales ? this.values.salesPrice : this.values.price;
+
+        return parseFloat(price * this.values.quantity);
     }
 }

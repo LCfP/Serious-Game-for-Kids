@@ -5,35 +5,42 @@ class CustomerController extends OrderController
         this._loadTemplate(
             "src/views/template/customer/customer.html",
             "#customers",
-            {}
+            GAME.model.customers
         );
     }
 
     registerEvent(id)
     {
-        $("button[data-customer="+ id +"].customer-serve").click(function (e) {
+        let closure = function (func) {
             let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
             let customerController = new CustomerController();
 
-            if (customerController._validateOrder(customer.order)) {
-                customerController.completeOrder(customer);
-                $(this).off(e);
-            } else {
-                toastr.warning(Controller.l("You don't have all the products to complete this order."))
-            }
-        })
+            func(customer, customerController);
+            customerController._updateCustomerView();
+        };
+
+        $("button[data-customer="+ id +"].customer-serve").click(function (e) {
+            closure(function (customer, controller) {
+                if (controller.validateOrder(customer.order)) {
+                    controller.completeOrder(customer);
+
+                    $(this).off(e);
+                } else {
+                    toastr.warning(Controller.l("You don't have all the products to complete this order."))
+                }
+            });
+        });
 
         $("button[data-customer="+ id +"].customer-send-away").click(function (e) {
-            let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
-            let customerController = new CustomerController();
-
-            customerController.sendAway(customer);
+            closure(function (customer, controller) {
+                controller.sendAway(customer);
+            });
         });
     }
 
     generateOrder()
     {
-        var protoOrder = GAME.model.products.map(
+        let protoOrder = GAME.model.products.map(
             prod => {
                 return {
                     name: prod.name,
@@ -45,10 +52,9 @@ class CustomerController extends OrderController
             }
         );
 
-        var products = OrderController._makeOrder(protoOrder);
-        var customer = new Customer(products);
+        let products = OrderController._makeOrder(protoOrder);
+        let customer = new Customer(products);
 
-        customer.id = GAME.model.customers.length;
         GAME.model.customers.push(customer);
 
         this._updateOrderView(customer);
@@ -67,8 +73,6 @@ class CustomerController extends OrderController
         warehouseController.updateCapacityView();
 
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
-
-        this._reloadCustomerView();
     }
 
     /**
@@ -78,9 +82,7 @@ class CustomerController extends OrderController
     sendAway(customer)
     {
         // TODO Log event in history
-
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
-        this._reloadCustomerView();
 
         if (GAME.model.config.penaltySendingCustomerAway) {
             this._updateMoney(-GAME.model.config.penaltySendingCustomerAway);
@@ -91,10 +93,8 @@ class CustomerController extends OrderController
     /**
      * Validates order if quantity in warehouse for every product is
      * larger than in order.
-     *
-     * @private
      */
-    _validateOrder(order)
+    validateOrder(order)
     {
         let callback = (sum, elem) => sum + elem;
 
@@ -109,14 +109,16 @@ class CustomerController extends OrderController
         });
     }
 
-    _reloadCustomerView()
+    /**
+     * @private
+     */
+    _updateCustomerView()
     {
         $("#customer-orders").empty();
 
-        GAME.model.customers.forEach((customer, index) => {
-            customer.id = index;
+        GAME.model.customers.forEach(function (customer) {
             this._updateOrderView(customer);
-        });
+        }, this);
     }
 
     /**
@@ -124,6 +126,10 @@ class CustomerController extends OrderController
      */
     _updateOrderView(customer)
     {
+        if (GAME.model.customers.length) {
+            $(".no-customers").remove();
+        }
+
         this._loadTemplate(
             "src/views/template/customer/customerorder.html",
             "#customer-orders",

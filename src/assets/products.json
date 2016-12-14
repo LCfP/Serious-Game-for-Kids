@@ -4,12 +4,13 @@
     "values": {
       "icon": "products/banana.png",
       "price": 1.0,
+      "salesPrice": 1.5,
       "size": 1.0,
       "isPerishable": true,
       "perishable": 15
     },
     "demand": {
-      "mean": 30,
+      "mean": 25,
       "variance": 10
     }
   },
@@ -18,27 +19,29 @@
     "values": {
       "icon": "products/apple.png",
       "price": 1.0,
+      "salesPrice": 1.5,
       "size": 1.0,
       "isPerishable": true,
       "perishable": 20
     },
     "demand": {
-      "mean": 10,
-      "variance": 10
+      "mean": 20,
+      "variance": 15
     }
   },
   {
     "name": "Shoes",
     "values": {
       "icon": "products/shoes.png",
-      "price": 60.0,
+      "price": 30.0,
+      "salesPrice": 60.0,
       "size": 5.0,
       "isPerishable": false,
       "perishable": 0
     },
     "demand": {
       "mean": 2,
-      "variance": 20
+      "variance": 10
     }
   }
 ]
