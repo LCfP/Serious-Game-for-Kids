@@ -5,6 +5,7 @@
   "New order": "Nieuwe bestelling",
   "Language has been updated! Make sure you refresh the page for changes to take effect.": "De taal is bijgewerkt! Ververs te pagina om de verandering door te voeren.",
   "Customers": "Klanten",
+  "Order": "Bestelling",
 
   "Money": "Geld",
   "Price": "Bedrag",
@@ -47,5 +48,8 @@
   "Day": "Dag",
   "hour": "uur",
 
-  "You don't have all the products to complete this order.": "Je hebt niet alle producten om deze bestelling te leveren."
+  "You don't have all the products to complete this order.": "Je hebt niet alle producten om deze bestelling te leveren.",
+  "You got a penalty for sending the customer away.": "Je hebt een boete gekregen, omdat je een klant wegstuurde.",
+  "Serve customer": "Bedien klant",
+  "Send away": "Stuur weg"
 }
