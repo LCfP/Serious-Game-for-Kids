@@ -64,13 +64,13 @@ class CustomerController extends OrderController
 
     completeOrder(customer)
     {
+        this._updateMoney(customer.order.orderCost());
+
         let warehouseController = new WarehouseController();
 
         warehouseController.orderUpdateWarehouse(customer.order);
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
-
-        this._updateMoney(customer.order.orderCost());
 
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
     }
@@ -115,6 +115,7 @@ class CustomerController extends OrderController
     _updateCustomerView()
     {
         $("#customer-orders").empty();
+
         GAME.model.customers.forEach(function (customer) {
             this._updateOrderView(customer);
         }, this);
@@ -125,6 +126,10 @@ class CustomerController extends OrderController
      */
     _updateOrderView(customer)
     {
+        if (GAME.model.customers.length) {
+            $(".no-customers").remove();
+        }
+
         this._loadTemplate(
             "src/views/template/customer/customerorder.html",
             "#customer-orders",

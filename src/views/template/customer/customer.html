@@ -2,11 +2,12 @@
     <div class="panel-heading">
         {{#l}}Customers{{/l}}
     </div>
-    <div id="customer-orders" class="panel-body make-scrollable">
+    <div class="panel-body make-scrollable">
         {{ ^customers }}
-            <div class="text-center">
+            <div class="text-center no-customers">
                 {{#l}}There are no customers yet!{{/l}}
             </div>
         {{ /customers }}
+        <div id="customer-orders"></div>
     </div>
 </div>
