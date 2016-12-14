@@ -25,7 +25,7 @@
   "money": 10000,
   "satisfaction": 100,
 
-  "penaltySendingCustomerAway": 150,
+  "penaltySendingCustomerAway": 0,
 
   "toastr": {
     "closeButton": false,

@@ -82,8 +82,10 @@ class CustomerController extends OrderController
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
         this._reloadCustomerView();
 
-        this._updateMoney(-GAME.model.config.penaltySendingCustomerAway);
-        toastr.warning(Controller.l("You got a penalty for sending the customer away."));
+        if (GAME.model.config.penaltySendingCustomerAway) {
+            this._updateMoney(-GAME.model.config.penaltySendingCustomerAway);
+            toastr.warning(Controller.l("You got a penalty for sending the customer away."));
+        }
     }
 
     /**
