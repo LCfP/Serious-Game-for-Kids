@@ -6,7 +6,11 @@ class FactoryController extends OrderController
             "src/views/template/factory/factory.html",
             "#factory",
             GAME.model.factory
-        ).done(() => this.registerEvent());
+        ).done(() => {
+            this.registerEvent();
+
+            $("#order-transport-cost").html(GAME.model.config.orderTransportCost);
+        });
     }
 
     /**
@@ -53,7 +57,7 @@ class FactoryController extends OrderController
         if (this.validateOrder(order)) {
             GAME.model.orders.push(order);
 
-            this._updateMoney(-order.orderCost());
+            this._updateMoney(-order.orderCost() - GAME.model.config.orderTransportCost);
             this._updateOrderView(order);
 
             toastr.success(Controller.l("Order has been placed!"));
@@ -68,7 +72,8 @@ class FactoryController extends OrderController
     {
         var products = order.products;
         var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
-        var orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0);
+        var orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0)
+            + GAME.model.config.orderTransportCost;
 
         if (!products.length) {
             toastr.warning(Controller.l("An order cannot be empty."));
@@ -112,7 +117,7 @@ class FactoryController extends OrderController
         }
 
         $handle.each(function () {
-            let order = GAME.model.orders.filter((order) => order.id == parseInt($(this).data('factory'))).shift();
+            let order = GAME.model.orders.filter((order) => order.id === parseInt($(this).data('factory'))).shift();
             order.time = order.time - 1;
 
             if (order.time) {
