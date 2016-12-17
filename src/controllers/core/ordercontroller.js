@@ -9,15 +9,15 @@ class OrderController extends Controller
     static _makeOrder(order)
     {
         return order.map(function (ordered) {
-            var value = parseInt(ordered.value);
+            let value = Math.floor(ordered.value);
 
             if (!value) {
                 return false;
             }
 
-            var protoProduct = GAME.model.products.filter((prod) => prod.name == ordered.name).shift();
+            let protoProduct = GAME.model.products.filter((prod) => prod.name == ordered.name).shift();
+            let product = new Product(ordered.name, $.extend({}, protoProduct.values));
 
-            var product = new Product(ordered.name, $.extend({}, protoProduct.values));
             product.values.quantity = value;
 
             return product;
@@ -29,7 +29,6 @@ class OrderController extends Controller
      */
     randomDemandGenerator(mean, variance)
     {
-        // TODO edit variance and mean
         return Math.max(OrderController.normalDistribution(mean, variance), 0);
     }
 
@@ -45,7 +44,7 @@ class OrderController extends Controller
         var u = 1 - Math.random();
         var v = 1 - Math.random();
 
-        let stdNormal =  Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+        let stdNormal =  Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 
         return stdNormal * variance + mean;
     }

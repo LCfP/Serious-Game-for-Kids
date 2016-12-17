@@ -53,13 +53,14 @@ class CustomerController extends OrderController
         );
 
         let products = OrderController._makeOrder(protoOrder);
-        let customer = new Customer(products);
 
-        GAME.model.customers.push(customer);
+        if (products.length) {
+            let customer = new Customer(products);
+            GAME.model.customers.push(customer);
 
-        this._updateOrderView(customer);
-
-        toastr.info(Controller.l("New customer is waiting!"));
+            this._updateOrderView(customer);
+            toastr.info(Controller.l("New customer is waiting!"));
+        }
     }
 
     completeOrder(customer)
