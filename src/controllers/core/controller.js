@@ -71,7 +71,7 @@ class Controller
     }
 
     /**
-     *
+     * @private
      */
     _prepData(anchor, data, append, prepend)
     {
