@@ -37,8 +37,7 @@
       "salesPrice": 60.0,
       "size": 5.0,
       "isPerishable": false,
-      "perishable": 0,
-      "holdingCost": 0.25
+      "perishable": 0
     },
     "demand": {
       "mean": 2,
