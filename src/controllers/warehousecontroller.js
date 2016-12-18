@@ -15,6 +15,20 @@ class WarehouseController extends Controller
     }
 
     /**
+     * Updates holding cost, every time it is invoked. See the config for the current parameter values,
+     * used in formula: quantity * product size * holdingCostPerSize.
+     */
+    updateHoldingCost()
+    {
+        let cost = GAME.model.products.reduce(function (sum, product) {
+            let quantity = GAME.model.warehouse.getItemQuantity(product);
+            return sum + quantity * product.values.size * GAME.model.config.holdingCostPerSize;
+        }, 0);
+
+        this._updateMoney(-cost);
+    }
+
+    /**
      * Adds the contents of an order to the Warehouse.
      *
      * @param {OrderCore} order - The Order object.

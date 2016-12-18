@@ -100,9 +100,8 @@ class Controller
         return [data, callback];
     }
     /**
-     * Updates the current amount of money.
-     *
-     * NOTE: Amount is added to GAME.model.config.money, so input negative to subtract!
+     * Updates the current amount of money. Note that amount is added to GAME.model.config.money,
+     * so input negative amount to subtract!
      *
      * @param {float} amount - the amount to be added to the current amount of money
      *
@@ -111,6 +110,6 @@ class Controller
     _updateMoney(amount)
     {
         GAME.model.config.money = GAME.model.config.money + parseFloat(amount);
-        $("#money").html(GAME.model.config.money);
+        $("#money").html(GAME.model.config.money.toFixed(2));
     }
 }

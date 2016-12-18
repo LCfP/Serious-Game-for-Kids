@@ -16,18 +16,18 @@ class Storage extends StorageCore
     }
 
     /**
-     * For a given product name, computes the total quantity currently in the warehouse.
+     * For a given product, computes the total quantity currently in the warehouse.
      *
-     * @param name - Product name
+     * @param {Product} product - The product
      * @returns {Number}
      */
-    getItemQuantity(name)
+    getItemQuantity(product)
     {
         let sum = (sum, elem) => sum + elem;
 
         return this.items.map(function (container) {
             return container.items.map(function (item) {
-                return name == item.name ? item.values.quantity : 0;
+                return product.name == item.name ? item.values.quantity : 0;
             }).reduce(sum, 0);
         }).reduce(sum, 0);
     }
