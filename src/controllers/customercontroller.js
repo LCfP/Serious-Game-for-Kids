@@ -97,15 +97,8 @@ class CustomerController extends OrderController
      */
     validateOrder(order)
     {
-        let callback = (sum, elem) => sum + elem;
-
         return order.products.every(function (product) {
-            let quantity = GAME.model.warehouse.items.map(function (container) {
-                return container.items.map(function (item) {
-                    return product.name == item.name ? item.values.quantity : 0;
-                }).reduce(callback, 0);
-            }).reduce(callback, 0);
-
+            let quantity = GAME.model.warehouse.getItemQuantity(product.name);
             return quantity >= product.values.quantity;
         });
     }
