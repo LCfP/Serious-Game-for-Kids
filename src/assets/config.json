@@ -22,6 +22,8 @@
   "orderTransportDurationDays": 2,
   "orderTransportCost": 50,
 
+  "holdingCostPerSize": 0.05,
+
   "warehouseContainers": 3,
   "money": 10000,
   "satisfaction": 100,

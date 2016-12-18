@@ -70,21 +70,21 @@ class InitGameController extends Controller
 
     registerEvent()
     {
-        let sidebar_handler = function (e, anchor, css) {
+        let sidebar_handler = function (e, anchor, width=250, css={opacity: .3}) {
             e.stopPropagation();
 
-            $(anchor).width(250);
+            $(anchor).width(width);
             $(".wrapper").css(css);
         };
 
         // left menu opening
         $("#sidebar-left-toggle").click(function (e) {
-            sidebar_handler(e, "#sidebar-left", {opacity: .3});
+            sidebar_handler(e, "#sidebar-left");
         });
 
         // right menu (history) opening
         $("#sidebar-right-toggle").click(function (e) {
-            sidebar_handler(e, "#sidebar-right", {opacity: .3});
+            sidebar_handler(e, "#sidebar-right", 450);
         });
 
         // closing menu / history

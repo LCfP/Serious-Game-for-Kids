@@ -98,7 +98,7 @@ class CustomerController extends OrderController
     validateOrder(order)
     {
         return order.products.every(function (product) {
-            let quantity = GAME.model.warehouse.getItemQuantity(product.name);
+            let quantity = GAME.model.warehouse.getItemQuantity(product);
             return quantity >= product.values.quantity;
         });
     }
