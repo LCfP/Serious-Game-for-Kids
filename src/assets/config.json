@@ -22,6 +22,11 @@
   "orderTransportDurationDays": 2,
   "orderTransportCost": 50,
 
+  "increaseTruckSizeQuantity": 500,
+  "decreaseTruckSizeQuantity": 500,
+  "decreaseTruckSizeCost": 500,
+  "increaseTruckSizeCost": 500,
+
   "holdingCostPerSize": 0.05,
 
   "warehouseContainers": 3,

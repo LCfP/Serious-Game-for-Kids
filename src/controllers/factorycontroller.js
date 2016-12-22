@@ -68,6 +68,18 @@ class FactoryController extends OrderController
         return false;
     }
 
+    increaseTruckSize(order)
+    {
+        GAME.model.config.orderCapacity+=GAME.model.config.increaseTruckSizeQuantity;
+        this._updateMoney(- GAME.model.config.increaseTruckSizeCost);
+    }
+
+    decreaseTruckSize(order)
+    {
+        GAME.model.config.orderCapacity-=GAME.model.config.decreaseTruckSizeQuantity;
+        this._updateMoney(- GAME.model.config.decreaseTruckSizeCost);
+    }
+
     validateOrder(order)
     {
         var products = order.products;
