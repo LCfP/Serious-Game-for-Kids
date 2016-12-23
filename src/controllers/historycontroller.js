@@ -2,26 +2,14 @@ class HistoryController extends Controller
 {
     log(entry)
     {
-        var location = "";
-
-        if (entry instanceof Customer) {
-            location = "customer";
-        } else if (entry instanceof Container) {
-            location = "container";
-        } else if (entry instanceof FactoryOrder) {
-            location = "factoryorder";
-        } else {
-            return;
-        }
+        GAME.model.history.push(entry);
 
         this._loadTemplate(
-            "src/views/template/history/" + location + ".html",
+            "src/views/template/history/" + entry.constructor.name + ".html",
             "#history-events",
             entry,
             false,
             true
         );
-
-        GAME.model.history.push(entry);
     }
 }

@@ -42,12 +42,7 @@ class WarehouseController extends Controller
 
         if (cases.hasOwnProperty(order.constructor.name)) {
             let func = $.proxy(cases[order.constructor.name], this);
-
-            if (func(order)) {
-                // TODO make this work with the reference objects above (pass by reference bug on objects)
-                let historyController = new HistoryController();
-                historyController.log(order);
-            }
+            return func(order);
         }
     }
 
