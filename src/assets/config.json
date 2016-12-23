@@ -22,6 +22,7 @@
   "orderTransportDurationDays": 2,
   "orderTransportCost": 50,
 
+  "addContainerCost": 1500,
   "holdingCostPerSize": 0.05,
 
   "warehouseContainers": 3,
