@@ -5,6 +5,9 @@ class CustomerOrder extends OrderCore
         super(products, 0);
     }
 
+    /**
+     * @override
+     */
     orderCost()
     {
         return super.orderCost(true);

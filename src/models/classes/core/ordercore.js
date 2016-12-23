@@ -2,8 +2,8 @@ class OrderCore
 {
     /**
      *
-     * @param products - List of products in this Order
-     * @param time - Duration for Order to arrive
+     * @param {Product[]} products - List of products in this Order
+     * @param {int} time - Duration for Order to arrive
      */
     constructor(products, time)
     {
@@ -17,11 +17,15 @@ class OrderCore
      * Calculates order cost.
      * @see ProductCore.stockValue
      *
-     * @param {bool} sales=false - Purchase or sales price.
+     * @param {boolean} sales=false - Purchase or sales price.
      * @returns {float}
      */
     orderCost(sales = false)
     {
+        if (!this.products) {
+            return 0;
+        }
+
         return this.products.reduce((sum, prod) => sum + prod.stockValue(sales), 0);
     }
 }
