@@ -73,7 +73,6 @@ class CustomerController extends OrderController
 
         if (warehouseController.orderUpdateWarehouse(customer.order)) {
             let histController = new HistoryController();
-            console.log(customer.order);
             histController.log(customer);
         }
 
