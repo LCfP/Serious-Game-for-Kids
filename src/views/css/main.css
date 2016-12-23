@@ -129,6 +129,16 @@ body {
     opacity: .15;
 }
 
+.middle {
+    position: absolute;
+
+    width: 50%;
+    height: 50%;
+
+    left: 25%;
+    top: 25%;
+}
+
 /*
     Progress bar styling
 */
