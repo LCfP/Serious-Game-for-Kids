@@ -1,17 +1,20 @@
 <li class="list-group-item">
-    <div class="panel panel-default">
+    <div class="panel panel-success margin-bottom-0">
         <div class="panel-heading">
             {{#l}}{{ name }}{{/l}}
+            <span class="pull-right badge">
+                {{ order.orderCost }}
+            </span>
         </div>
-        <ul class="list-group">
+        <div class="panel-body">
             {{ #order.products }}
-                <li class="list-group-item">
-                    {{#l}}{{ name }}{{/l}} <span class="badge">{{ values.quantity }}</span>
-                </li>
+                <span class="image">
+                    <img src="src/assets/img/{{ values.icon }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
+                    <span class="overlay quantity-overlay text-center">
+                        <strong>{{ values.quantity }}</strong>
+                    </span>
+                </span>
             {{ /order.products }}
-        </ul>
-        <div class="panel-footer">
-            {{ order.orderCost }}
         </div>
     </div>
 </li>
