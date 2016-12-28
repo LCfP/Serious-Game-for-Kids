@@ -35,16 +35,16 @@ class OrderController extends Controller
     /**
      * http://stackoverflow.com/a/36481059
      *
-     * @param mean
-     * @param variance
+     * @param {number} mean=0
+     * @param {number} variance=1
      * @returns {number}
      */
     static normalDistribution(mean = 0, variance = 1)
     {
-        var u = 1 - Math.random();
-        var v = 1 - Math.random();
+        const u = 1 - Math.random();
+        const v = 1 - Math.random();
 
-        let stdNormal =  Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        const stdNormal =  Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 
         return stdNormal * variance + mean;
     }
@@ -55,5 +55,11 @@ class OrderController extends Controller
     validateOrder(products)
     {
         throw new Error("Should be implemented by subclasses!")
+    }
+
+    completeOrder(item)
+    {
+        let histController = new HistoryController();
+        histController.log(item);
     }
 }

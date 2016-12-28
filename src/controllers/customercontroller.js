@@ -65,6 +65,9 @@ class CustomerController extends OrderController
         }
     }
 
+    /**
+     * @augments OrderController.completeOrder
+     */
     completeOrder(customer)
     {
         this._updateMoney(customer.order.orderCost());
@@ -72,8 +75,7 @@ class CustomerController extends OrderController
         let warehouseController = new WarehouseController();
 
         if (warehouseController.orderUpdateWarehouse(customer.order)) {
-            let histController = new HistoryController();
-            histController.log(customer);
+            super.completeOrder(customer);
         }
 
         warehouseController.updateContainerView();
