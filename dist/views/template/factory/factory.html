@@ -1,0 +1,36 @@
+<div class="panel panel-default factory">
+    <div class="panel-heading">
+        {{#l}}Factory{{/l}}
+    </div>
+    <div class="alert alert-info no-border-radius margin-bottom-0">
+        {{#l}}Your current order will cost you{{/l}} <strong id="factory-order-cost">0</strong>,
+        {{#l}}and use{{/l}} <strong id="factory-order-capacity">0</strong> {{#l}}capacity{{/l}}!
+        {{#l}}Furthermore, a shipping charge of{{/l}} <strong id="order-transport-cost"></strong>
+        {{#l}}is always incurred, regardless of order size.{{/l}}
+    </div>
+    <div class="panel-body">
+        <form name="newFactoryOrder" action="">
+            {{ #products }}
+                <div class="padding-5">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" style="padding: 8px 16px;">
+                            <img src="src/assets/img/{{ values.icon }}"
+                                 alt="{{#l}}{{ name }}{{/l}}"
+                                 title="{{#l}}{{ name }}{{/l}}"
+                                 height="28"
+                            />
+                            <label class="sr-only" for="{{ name }}">{{#l}}{{ name }}{{/l}}</label>
+                        </span>
+                        <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" value="0"/>
+                    </div>
+                    <div class="text-center">
+                        <small>{{#l}}Unit price for this item is{{/l}} {{ values.price }}, {{#l}}and unit size is{{/l}} {{values.size }}.</small>
+                    </div>
+                </div>
+            {{ /products }}
+            <button type="submit" class="btn btn-success pull-right margin-top-10">
+                {{#l}}Place order{{/l}}
+            </button>
+        </form>
+    </div>
+</div>
