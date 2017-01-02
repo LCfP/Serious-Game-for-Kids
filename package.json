@@ -1,0 +1,11 @@
+{
+  "name": "serious-game-for-kids",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "babel src -d dist --copy-files"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-env": "^1.1.4"
+  }
+}

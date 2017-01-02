@@ -1,0 +1,48 @@
+<div class="container-fluid">
+
+    <ul class="nav navbar-nav">
+        <li id="sidebar-left-toggle">
+            <a>
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                Menu
+            </a>
+        </li>
+    </ul>
+
+    <div class="btn-group navbar-left">
+        <button type="button" class="timer btn btn-default navbar-btn active">
+            <span class="glyphicon glyphicon-pause"></span>
+        </button>
+        <button type="button" class="timer btn btn-default navbar-btn">
+            <span class="glyphicon glyphicon-play"></span>
+        </button>
+    </div>
+
+    <p class="navbar-text">
+        {{#l}}Day{{/l}}
+        <strong class="timer-days">0</strong>,
+        {{#l}}hour{{/l}}
+        <strong class="timer-hours">0</strong>
+    </p>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li id="sidebar-right-toggle">
+            <a>
+                <span class="glyphicon glyphicon-time"></span>
+                History
+            </a>
+        </li>
+    </ul>
+
+    <div class="nav navbar-nav navbar-right">
+        <p class="navbar-text">
+            <strong>{{#l}}Satisfaction{{/l}}</strong>
+            <span id="satisfaction">{{ satisfaction }}</span>%
+        </p>
+        <p class="navbar-text">
+            <strong>{{#l}}Money{{/l}}</strong>
+            <span id="money">{{ money }}</span>
+        </p>
+    </div>
+
+</div>

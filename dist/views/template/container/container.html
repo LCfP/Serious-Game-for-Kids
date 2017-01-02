@@ -1,0 +1,31 @@
+<section class="col-lg-4 col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-body container-view">
+            <div class="margin-bottom-0 progress">
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     aria-valuenow="{{ percentage }}" aria-valuemin="0"
+                     aria-valuemax="100" style="width:{{percentage}}%">
+                </div>
+            </div>
+            <div class="product-store padding-5">
+                {{ #itemsBySize }}
+                    <span class="image">
+                        <img src="src/assets/img/{{ product.values.icon }}" alt="{{#l}}{{ product.name }}{{/l}}" title="{{#l}}{{ product.name }}{{/l}}">
+                        {{ #product.values.isPerishable }}
+                            <span class="overlay perishable-overlay" style="background:{{ color }};"></span>
+                        {{ /product.values.isPerishable }}
+                        <span class="overlay quantity-overlay text-center">
+                            <strong>{{ quantity }}</strong>
+                        </span>
+                    </span>
+                {{ /itemsBySize }}
+                {{ ^itemsBySize }}
+                    <div class="text-center">
+                        {{#l}}This container is empty{{/l}}
+                    </div>
+                {{ /itemsBySize }}
+            </div>
+        </div>
+    </div>
+</section>
+

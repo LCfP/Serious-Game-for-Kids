@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{#l}}{{ name }}{{/l}}
+        <span class="label label-warning pull-right">{{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}</span>
+    </div>
+    <div class="panel-body">
+        {{ #order.products }}
+            <span class="image">
+                <img src="src/assets/img/{{ values.icon }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
+                <span class="overlay quantity-overlay text-center">
+                    <strong>{{ values.quantity }}</strong>
+                </span>
+            </span>
+        {{ /order.products }}
+    </div>
+    <div class="panel-footer">
+        <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <button type="button" class="customer-send-away btn btn-default" data-customer="{{ id }}">
+                    <span class="text-danger">{{#l}}Send away{{/l}}</span>
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="customer-serve btn btn-default" data-customer="{{ id }}">
+                    <span class="text-success">{{#l}}Serve customer{{/l}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
