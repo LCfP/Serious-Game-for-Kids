@@ -137,11 +137,12 @@ class FactoryController extends OrderController
      */
     completeOrder(order)
     {
-        let warehouseController = new WarehouseController();
+        const warehouseController = new WarehouseController();
+        const orderCopy = new FactoryOrder(OrderController._copyOrder(order));
 
         // process order..
         if (warehouseController.orderUpdateWarehouse(order)) {
-            super.completeOrder(order);
+            super.completeOrder(orderCopy);
         }
 
         // ..and update views

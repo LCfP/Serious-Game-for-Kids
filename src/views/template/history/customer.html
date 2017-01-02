@@ -3,7 +3,9 @@
         <div class="panel-heading">
             {{#l}}{{ name }}{{/l}}
             <span class="pull-right badge">
-                {{ order.orderCost }}
+                {{ #order }}
+                    {{ orderCost }}
+                {{ /order }}
             </span>
         </div>
         <div class="panel-body">
