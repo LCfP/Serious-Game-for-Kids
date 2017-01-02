@@ -65,15 +65,18 @@ class CustomerController extends OrderController
         }
     }
 
+    /**
+     * @augments OrderController.completeOrder
+     */
     completeOrder(customer)
     {
         this._updateMoney(customer.order.orderCost());
 
-        let warehouseController = new WarehouseController();
+        const warehouseController = new WarehouseController();
+        const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
-        if (warehouseController.orderUpdateWarehouse(customer.order)) {
-            let histController = new HistoryController();
-            histController.log(customer);
+        if (warehouseController.orderUpdateWarehouse(orderCopy)) {
+            super.completeOrder(customer);
         }
 
         warehouseController.updateContainerView();
