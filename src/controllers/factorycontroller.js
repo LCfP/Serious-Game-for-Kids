@@ -6,7 +6,11 @@ class FactoryController extends OrderController
             "src/views/template/factory/factory.html",
             "#factory",
             GAME.model.factory
-        ).done(() => this.registerEvent());
+        ).done(() => {
+            this.registerEvent();
+
+            $("#order-transport-cost").html(GAME.model.config.orderTransportCost);
+        });
     }
 
     /**
@@ -47,13 +51,13 @@ class FactoryController extends OrderController
      */
     factoryOrder(formValues)
     {
-        var products = OrderController._makeOrder(formValues);
-        var order = new FactoryOrder(products);
+        let products = OrderController._makeOrder(formValues);
+        let order = new FactoryOrder(products);
 
         if (this.validateOrder(order)) {
             GAME.model.orders.push(order);
 
-            this._updateMoney(-order.orderCost());
+            this._updateMoney(-order.orderCost() - GAME.model.config.orderTransportCost);
             this._updateOrderView(order);
 
             toastr.success(Controller.l("Order has been placed!"));
@@ -66,9 +70,10 @@ class FactoryController extends OrderController
 
     validateOrder(order)
     {
-        var products = order.products;
-        var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
-        var orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0);
+        let products = order.products;
+        let orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        let orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0)
+            + GAME.model.config.orderTransportCost;
 
         if (!products.length) {
             toastr.warning(Controller.l("An order cannot be empty."));
@@ -112,26 +117,37 @@ class FactoryController extends OrderController
         }
 
         $handle.each(function () {
-            let order = GAME.model.orders.filter((order) => order.id == parseInt($(this).data('factory'))).shift();
+            let order = GAME.model.orders.filter((order) => order.id === parseInt($(this).data('factory'))).shift();
             order.time = order.time - 1;
 
             if (order.time) {
                 let percentage = 100 * (1 - (order.time / order.initDuration));
                 $(this).find('.order-progress-bar').css({width: percentage + "%"}).attr("aria-valuenow", percentage);
             } else {
-                let warehouseController = new WarehouseController();
-
-                // process order..
-                warehouseController.orderUpdateWarehouse(order);
-
-                // ..and update views
-                warehouseController.updateContainerView();
-                warehouseController.updateCapacityView();
+                (new FactoryController()).completeOrder(order);
                 $(this).remove();
             }
         });
 
         GAME.model.orders = GAME.model.orders.filter((order) => order.time);
+    }
+
+    /**
+     * @augments OrderController.completeOrder
+     */
+    completeOrder(order)
+    {
+        const warehouseController = new WarehouseController();
+        const orderCopy = new FactoryOrder(OrderController._copyOrder(order));
+
+        // process order..
+        if (warehouseController.orderUpdateWarehouse(order)) {
+            super.completeOrder(orderCopy);
+        }
+
+        // ..and update views
+        warehouseController.updateContainerView();
+        warehouseController.updateCapacityView();
     }
 
     /**

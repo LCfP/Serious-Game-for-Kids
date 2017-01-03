@@ -23,18 +23,20 @@ class CustomerController extends OrderController
             closure(function (customer, controller) {
                 if (controller.validateOrder(customer.order)) {
                     controller.completeOrder(customer);
-
-                    $(this).off(e);
                 } else {
                     toastr.warning(Controller.l("You don't have all the products to complete this order."))
                 }
             });
+
+            $(this).off(e);
         });
 
         $("button[data-customer="+ id +"].customer-send-away").click(function (e) {
             closure(function (customer, controller) {
                 controller.sendAway(customer);
             });
+
+            $(this).off(e);
         });
     }
 
@@ -53,22 +55,30 @@ class CustomerController extends OrderController
         );
 
         let products = OrderController._makeOrder(protoOrder);
-        let customer = new Customer(products);
 
-        GAME.model.customers.push(customer);
+        if (products.length) {
+            let customer = new Customer(products);
+            GAME.model.customers.push(customer);
 
-        this._updateOrderView(customer);
-
-        toastr.info(Controller.l("New customer is waiting!"));
+            this._updateOrderView(customer);
+            toastr.info(Controller.l("New customer is waiting!"));
+        }
     }
 
+    /**
+     * @augments OrderController.completeOrder
+     */
     completeOrder(customer)
     {
         this._updateMoney(customer.order.orderCost());
 
-        let warehouseController = new WarehouseController();
+        const warehouseController = new WarehouseController();
+        const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
-        warehouseController.orderUpdateWarehouse(customer.order);
+        if (warehouseController.orderUpdateWarehouse(orderCopy)) {
+            super.completeOrder(customer);
+        }
+
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 
@@ -96,15 +106,8 @@ class CustomerController extends OrderController
      */
     validateOrder(order)
     {
-        let callback = (sum, elem) => sum + elem;
-
         return order.products.every(function (product) {
-            let quantity = GAME.model.warehouse.items.map(function (container) {
-                return container.items.map(function (item) {
-                    return product.name == item.name ? item.values.quantity : 0;
-                }).reduce(callback, 0);
-            }).reduce(callback, 0);
-
+            let quantity = GAME.model.warehouse.getItemQuantity(product);
             return quantity >= product.values.quantity;
         });
     }

@@ -15,6 +15,20 @@ class WarehouseController extends Controller
     }
 
     /**
+     * Updates holding cost, every time it is invoked. See the config for the current parameter values,
+     * used in formula: quantity * product size * holdingCostPerSize.
+     */
+    updateHoldingCost()
+    {
+        let cost = GAME.model.products.reduce(function (sum, product) {
+            let quantity = GAME.model.warehouse.getItemQuantity(product);
+            return sum + quantity * product.values.size * GAME.model.config.holdingCostPerSize;
+        }, 0);
+
+        this._updateMoney(-cost);
+    }
+
+    /**
      * Adds the contents of an order to the Warehouse.
      *
      * @param {OrderCore} order - The Order object.
@@ -28,12 +42,7 @@ class WarehouseController extends Controller
 
         if (cases.hasOwnProperty(order.constructor.name)) {
             let func = $.proxy(cases[order.constructor.name], this);
-
-            if (func(order)) {
-                // TODO make this work with the reference objects above (pass by reference bug on objects)
-                let historyController = new HistoryController();
-                historyController.log(order);
-            }
+            return func(order);
         }
     }
 
@@ -50,6 +59,7 @@ class WarehouseController extends Controller
     {
         // text heading
         $("#warehouse-used-capacity").html(GAME.model.warehouse.usedContainerCapacity());
+        $("#warehouse-max-capacity").html(GAME.model.warehouse.maxContainerCapacity());
 
         // progress bar
         $("#warehouse-progress-bar")
@@ -166,6 +176,47 @@ class WarehouseController extends Controller
                 );
             }
         );
+
+        if (GAME.model.warehouse.items.length < GAME.model.config.warehouseCapacity) {
+            this._renderPurchaseContainer();
+        }
+    }
+
+    /**
+     * Helper method for rendering another not-yet-purchased container. Allows for increasing the size of the
+     * warehouse.
+     *
+     * @private
+     */
+    _renderPurchaseContainer()
+    {
+        let event = () => {
+            $("#purchase-container").click(() => {
+                if (GAME.model.config.money > GAME.model.config.addContainerCost) {
+                    GAME.model.warehouse.addItem(
+                        new Container(
+                            "Rack",
+                            GAME.model.config.containerCapacity
+                        )
+                    );
+
+                    this._updateMoney(-GAME.model.config.addContainerCost);
+                    this.updateContainerView();
+                    this.updateCapacityView();
+
+                    toastr.success(Controller.l("Purchased an additional container!"));
+                } else {
+                    toastr.warning(Controller.l("You cannot afford this!"));
+                }
+            });
+        };
+
+        this._loadTemplate(
+            "src/views/template/container/purchasecontainer.html",
+            "#containers",
+            GAME.model.config,
+            true
+        ).done(event);
     }
 
     /**

@@ -23,7 +23,7 @@ class ProductCore
     /**
      * Calculates the purchase value/cost.
      *
-     * @param {bool} sales=false - Purchase or sales price (factory vs. customer price).
+     * @param {boolean} sales=false - Purchase or sales price (factory vs. customer price).
      */
     stockValue(sales = false)
     {

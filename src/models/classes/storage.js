@@ -16,6 +16,23 @@ class Storage extends StorageCore
     }
 
     /**
+     * For a given product, computes the total quantity currently in the warehouse.
+     *
+     * @param {Product} product - The product
+     * @returns {Number}
+     */
+    getItemQuantity(product)
+    {
+        let sum = (sum, elem) => sum + elem;
+
+        return this.items.map(function (container) {
+            return container.items.map(function (item) {
+                return product.name == item.name ? item.values.quantity : 0;
+            }).reduce(sum, 0);
+        }).reduce(sum, 0);
+    }
+
+    /**
      * Updates perishable products whenever the next day occurs.
      *
      * @augments StorageCore.updatePerishableProducts()
