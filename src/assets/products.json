@@ -3,6 +3,7 @@
     "name": "Banana",
     "values": {
       "icon": "products/banana.png",
+      "type": "food",
       "price": 1.0,
       "salesPrice": 1.95,
       "size": 1.0,
@@ -18,6 +19,7 @@
     "name": "Apple",
     "values": {
       "icon": "products/apple.png",
+      "type": "food",
       "price": 1.0,
       "salesPrice": 1.95,
       "size": 1.0,
@@ -33,6 +35,7 @@
     "name": "Shoes",
     "values": {
       "icon": "products/shoes.png",
+      "type": "clothing",
       "price": 35.0,
       "salesPrice": 59.95,
       "size": 5.0,
@@ -43,8 +46,5 @@
       "mean": 2,
       "variance": 10
     }
-  },
-  {
-
   }
 ]

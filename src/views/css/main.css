@@ -161,3 +161,7 @@ body {
 .factory-order {
     border-radius: 0 4px 4px 0;
 }
+
+.tab-content {
+    margin-top: 10px;
+}
