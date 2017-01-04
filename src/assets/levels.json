@@ -1,19 +1,13 @@
 [
   {
-    "id": 1,
-    "current": true,
     "type": "money",
     "goal": 10100
   },
   {
-    "id": 2,
-    "current": false,
     "type": "satisfaction",
-    "goal": 83
+    "goal": 101
   },
   {
-    "id": 3,
-    "current": false,
     "type": "days",
     "goal": 14
   }
