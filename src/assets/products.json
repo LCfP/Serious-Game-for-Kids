@@ -12,7 +12,10 @@
     },
     "demand": {
       "mean": 25,
-      "variance": 10
+      "variance": 10,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -28,7 +31,10 @@
     },
     "demand": {
       "mean": 20,
-      "variance": 15
+      "variance": 15,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -44,7 +50,10 @@
     },
     "demand": {
       "mean": 15,
-      "variance": 7
+      "variance": 7,
+      "seasonality": {
+        "hasSeasonality": true
+      }
     }
   },
   {
@@ -60,7 +69,10 @@
     },
     "demand": {
       "mean": 35,
-      "variance": 25
+      "variance": 25,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -76,7 +88,10 @@
     },
     "demand": {
       "mean": 2,
-      "variance": 4
+      "variance": 4,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -92,7 +107,10 @@
     },
     "demand": {
       "mean": 2,
-      "variance": 4
+      "variance": 4,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -108,7 +126,10 @@
     },
     "demand": {
       "mean": 5,
-      "variance": 5
+      "variance": 5,
+      "seasonality": {
+        "hasSeasonality": true
+      }
     }
   }
 ]

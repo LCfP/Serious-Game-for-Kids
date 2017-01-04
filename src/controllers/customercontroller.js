@@ -42,25 +42,22 @@ class CustomerController extends OrderController
 
     generateOrder()
     {
-        let protoOrder = GAME.model.products.map(
+        const demandGenerator = new DemandController();
+        const protoOrder = GAME.model.products.map(
             prod => {
                 return {
                     name: prod.name,
-                    value: super.randomDemandGenerator(
-                        prod.demand.mean,
-                        prod.demand.variance
-                    )
+                    value: demandGenerator.randomDemandGenerator(prod.demand)
                 }
             }
         );
 
-        let products = OrderController._makeOrder(protoOrder);
+        if (protoOrder.some(prod => prod.value > 0)) {
+            const customer = new Customer(OrderController._makeOrder(protoOrder));
 
-        if (products.length) {
-            let customer = new Customer(products);
             GAME.model.customers.push(customer);
-
             this._updateOrderView(customer);
+
             toastr.info(Controller.l("New customer is waiting!"));
         }
     }
