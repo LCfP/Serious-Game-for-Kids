@@ -28,6 +28,7 @@ class LevelController extends Controller
         });
 
         GAME.model.config.currentLevel++;
+        $('#level').html(GAME.model.config.currentLevel);
 
         // might want to reset the game
     }
