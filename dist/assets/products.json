@@ -12,7 +12,10 @@
     },
     "demand": {
       "mean": 25,
-      "variance": 10
+      "variance": 10,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -28,7 +31,10 @@
     },
     "demand": {
       "mean": 20,
-      "variance": 15
+      "variance": 15,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -44,7 +50,12 @@
     },
     "demand": {
       "mean": 15,
-      "variance": 7
+      "variance": 7,
+      "seasonality": {
+        "hasSeasonality": true,
+        "isWinterProduct": true,
+        "amplitude": 5
+      }
     }
   },
   {
@@ -60,7 +71,31 @@
     },
     "demand": {
       "mean": 35,
-      "variance": 25
+      "variance": 25,
+      "seasonality": {
+        "hasSeasonality": false
+      }
+    }
+  },
+  {
+    "name": "Ice cream",
+    "values": {
+      "icon": "products/ice-cream.png",
+      "type": "food",
+      "price": 0.65,
+      "salesPrice": 1.45,
+      "size": 1.0,
+      "isPerishable": true,
+      "perishable": 7
+    },
+    "demand": {
+      "mean": 25,
+      "variance": 15,
+      "seasonality": {
+        "hasSeasonality": true,
+        "isWinterProduct": false,
+        "amplitude": 30
+      }
     }
   },
   {
@@ -76,7 +111,29 @@
     },
     "demand": {
       "mean": 2,
-      "variance": 4
+      "variance": 4,
+      "seasonality": {
+        "hasSeasonality": false
+      }
+    }
+  },
+  {
+    "name": "Socks",
+    "values": {
+      "icon": "products/sock.png",
+      "type": "clothing",
+      "price": 4.95,
+      "salesPrice": 7.95,
+      "size": 1.0,
+      "isPerishable": false,
+      "perishable": 0
+    },
+    "demand": {
+      "mean": 4,
+      "variance": 8,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -92,7 +149,10 @@
     },
     "demand": {
       "mean": 2,
-      "variance": 4
+      "variance": 4,
+      "seasonality": {
+        "hasSeasonality": false
+      }
     }
   },
   {
@@ -108,7 +168,12 @@
     },
     "demand": {
       "mean": 5,
-      "variance": 5
+      "variance": 5,
+      "seasonality": {
+        "hasSeasonality": true,
+        "isWinterProduct": false,
+        "amplitude": 2.0
+      }
     }
   }
 ]
