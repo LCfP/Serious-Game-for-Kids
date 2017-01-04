@@ -10,7 +10,7 @@ class DemandController extends Controller
 
     doCustomerOrderGeneration()
     {
-        // TODO every day, and every once in a while (structural and variable?). We need to think about this.
+        // TODO every day, and every once in a while (structural and variable?).
         // Random component - About 1 per day = ~1.72, 2 per day = ~1.38.
         if (this._normalDistribution() > 1.72 || GAME.model.config.hours % 24 == 8) {
             const customerController = new CustomerController();
@@ -19,6 +19,8 @@ class DemandController extends Controller
     }
     /**
      * Returns a measure of demand for each product
+     *
+     * @param {Object} demand - The demand property on a Product
      */
     randomDemandGenerator(demand)
     {
@@ -33,7 +35,7 @@ class DemandController extends Controller
     /**
      * Computes a seasonal modifier for specific demand.
      *
-     * @param {Object} seasonality
+     * @param {Object} seasonality - The demand.seasonality property on a Product
      * @private
      */
     _seasonalComponent(seasonality)

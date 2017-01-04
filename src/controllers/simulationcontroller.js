@@ -21,8 +21,8 @@ class SimulationController extends Controller
         $(".timer").click(function () {
             $(".timer").each((i, elem) => $(elem).removeClass("active"));
 
-            var elem = $(this).children(":first");
-            var sim = new SimulationController();
+            const elem = $(this).children(":first");
+            const sim = new SimulationController();
 
             GAME.model.config.isPaused = true;
 
@@ -46,6 +46,7 @@ class SimulationController extends Controller
         GAME.model.config.hours++;
 
         this._runHour();
+
         if (GAME.model.config.hours % 24 == 0) {
             this._runDay();
         }
@@ -69,13 +70,23 @@ class SimulationController extends Controller
      */
     _runDay()
     {
-        let warehouseController = new WarehouseController();
+        const days = Math.floor(GAME.model.config.hours / 24);
+        const quarterYear = Math.floor(GAME.model.config.yearDays / 4);
+
+        const warehouseController = new WarehouseController();
 
         warehouseController.updateHoldingCost();
         warehouseController.updatePerishableProducts();
 
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
+
+        if (days % quarterYear == 0) {
+            GAME.model.config.seasonCount++;
+            GAME.model.config.season = GAME.model.config.seasons[GAME.model.config.seasonCount % 3];
+
+            $(".season").html(Controller.l(GAME.model.config.season));
+        }
 
         $(".timer-days").html(GAME.model.config.hours / 24);
     }

@@ -1,5 +1,5 @@
 {
-  "hour": 8,
+  "hour": 4,
   "isPaused": true,
 
   "languages": [
@@ -11,6 +11,16 @@
       "name": "Nederlands",
       "iso": "nl"
     }
+  ],
+
+  "season": "Summer",
+  "seasonCount": 0,
+  "yearDays": 364,
+  "seasons": [
+    "Summer",
+    "Autumn",
+    "Winter",
+    "Spring"
   ],
 
   "iconPerAmountProductSize": 10,
@@ -28,8 +38,6 @@
   "warehouseContainers": 3,
   "money": 10000,
   "satisfaction": 100,
-
-  "yearDays": 365,
 
   "penaltySendingCustomerAway": 0,
 
