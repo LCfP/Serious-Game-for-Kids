@@ -1,0 +1,60 @@
+{
+  "Factory": "Fabriek",
+  "Warehouse": "Magazijn",
+  "Rack": "Rek",
+  "New order": "Nieuwe bestelling",
+  "Language has been updated! Make sure you refresh the page for changes to take effect.": "De taal is bijgewerkt! Ververs te pagina om de verandering door te voeren.",
+  "Customers": "Klanten",
+  "Order": "Bestelling",
+
+  "Money": "Geld",
+  "Price": "Bedrag",
+  "Select language": "Selecteer een taal",
+
+  "Capacity used": "Gebruikte capaciteit",
+  "Product": "Product",
+  "Quantity": "Hoeveelheid",
+  "Size": "Grootte",
+  "Perishes": "Houdbaar",
+  "This container is empty": "Deze container is leeg",
+  "days": "dagen",
+
+  "Banana": "Banaan",
+  "Apple": "Appel",
+  "T-shirt": "T-shirt",
+  "Shoes": "Schoenen",
+
+  "Place order": "Plaats bestelling",
+  "Order has been placed!": "Bestelling is geplaatst!",
+  "Unit price for this item is": "De prijs voor dit artikel is",
+  "and unit size is": "en de grootte is",
+  "Your current order will cost you": "Deze bestelling kost",
+  "and use": "en gebruikt",
+  "capacity": "capaciteit",
+  "Furthermore, a shipping charge of": "De verzendkosten zijn",
+  "is always incurred, regardless of order size.": "ongeacht de grootte van de bestelling.",
+  "An order cannot be empty.": "Een bestelling mag niet leeg zijn.",
+  "There is no room for another order at this time!": "Er is op dit moment geen plek voor een nieuwe bestelling!",
+  "There is insufficient space on the truck!": "Er is niet genoeg ruimte in de vrachtwagen!",
+  "You cannot afford this!": "Je kunt dit niet betalen!",
+
+  "Earn": "Verdien",
+
+  "History": "Geschiedenis",
+  "New rack of size": "Nieuw rek van",
+  "added": "units toegevoegd",
+  "Order has arrived": "Bestelling is aangekomen",
+
+  "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
+  "Order has been processed and added to the warehouse!": "De bestelling is verwerkt en in het magazijn geplaatst!",
+  "Day": "Dag",
+  "hour": "uur",
+
+  "You don't have all the products to complete this order.": "Je hebt niet alle producten om deze bestelling te leveren.",
+  "You got a penalty for sending the customer away.": "Je hebt een boete gekregen, omdat je een klant wegstuurde.",
+  "Serve customer": "Bedien klant",
+  "Send away": "Stuur weg",
+
+  "There are no racks yet in this warehouse!": "Er zijn nog geen rekken in dit magazijn!",
+  "There are no customers yet!": "Er zijn nog geen klanten!"
+}

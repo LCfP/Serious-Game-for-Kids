@@ -51,8 +51,8 @@ class FactoryController extends OrderController
      */
     factoryOrder(formValues)
     {
-        var products = OrderController._makeOrder(formValues);
-        var order = new FactoryOrder(products);
+        let products = OrderController._makeOrder(formValues);
+        let order = new FactoryOrder(products);
 
         if (this.validateOrder(order)) {
             GAME.model.orders.push(order);
@@ -70,9 +70,9 @@ class FactoryController extends OrderController
 
     validateOrder(order)
     {
-        var products = order.products;
-        var orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
-        var orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0)
+        let products = order.products;
+        let orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        let orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0)
             + GAME.model.config.orderTransportCost;
 
         if (!products.length) {
@@ -124,19 +124,30 @@ class FactoryController extends OrderController
                 let percentage = 100 * (1 - (order.time / order.initDuration));
                 $(this).find('.order-progress-bar').css({width: percentage + "%"}).attr("aria-valuenow", percentage);
             } else {
-                let warehouseController = new WarehouseController();
-
-                // process order..
-                warehouseController.orderUpdateWarehouse(order);
-
-                // ..and update views
-                warehouseController.updateContainerView();
-                warehouseController.updateCapacityView();
+                (new FactoryController()).completeOrder(order);
                 $(this).remove();
             }
         });
 
         GAME.model.orders = GAME.model.orders.filter((order) => order.time);
+    }
+
+    /**
+     * @augments OrderController.completeOrder
+     */
+    completeOrder(order)
+    {
+        const warehouseController = new WarehouseController();
+        const orderCopy = new FactoryOrder(OrderController._copyOrder(order));
+
+        // process order..
+        if (warehouseController.orderUpdateWarehouse(order)) {
+            super.completeOrder(orderCopy);
+        }
+
+        // ..and update views
+        warehouseController.updateContainerView();
+        warehouseController.updateCapacityView();
     }
 
     /**

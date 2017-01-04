@@ -1,0 +1,23 @@
+<section class="col-lg-4 col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-body container-view">
+            <div class="margin-bottom-0 progress">
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     aria-valuenow="{{ percentage }}" aria-valuemin="0"
+                     aria-valuemax="100" style="width:{{percentage}}%">
+                </div>
+            </div>
+             <div class="product-store padding-5">
+                <div class="middle text-center">
+                    <div>
+                        <small>{{#l}}Purchase a new container for{{/l}} {{ addContainerCost }}!</small>
+                    </div>
+                    <button id="purchase-container" class="btn btn-success btn-md">
+                        {{#l}}Purchase{{/l}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

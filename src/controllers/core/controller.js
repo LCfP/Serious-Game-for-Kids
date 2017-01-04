@@ -87,6 +87,7 @@ class Controller
         var callback = function (view)
         {
             var template = Mustache.render(view, data);
+            Mustache.parse(template);
 
             if (append) {
                 $(anchor).append(template);
@@ -99,6 +100,7 @@ class Controller
 
         return [data, callback];
     }
+
     /**
      * Updates the current amount of money. Note that amount is added to GAME.model.config.money,
      * so input negative amount to subtract!

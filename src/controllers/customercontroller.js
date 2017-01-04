@@ -23,18 +23,20 @@ class CustomerController extends OrderController
             closure(function (customer, controller) {
                 if (controller.validateOrder(customer.order)) {
                     controller.completeOrder(customer);
-
-                    $(this).off(e);
                 } else {
                     toastr.warning(Controller.l("You don't have all the products to complete this order."))
                 }
             });
+
+            $(this).off(e);
         });
 
         $("button[data-customer="+ id +"].customer-send-away").click(function (e) {
             closure(function (customer, controller) {
                 controller.sendAway(customer);
             });
+
+            $(this).off(e);
         });
     }
 
@@ -63,13 +65,20 @@ class CustomerController extends OrderController
         }
     }
 
+    /**
+     * @augments OrderController.completeOrder
+     */
     completeOrder(customer)
     {
         this._updateMoney(customer.order.orderCost());
 
-        let warehouseController = new WarehouseController();
+        const warehouseController = new WarehouseController();
+        const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
-        warehouseController.orderUpdateWarehouse(customer.order);
+        if (warehouseController.orderUpdateWarehouse(orderCopy)) {
+            super.completeOrder(customer);
+        }
+
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 
