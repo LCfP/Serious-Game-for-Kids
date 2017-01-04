@@ -58,9 +58,11 @@ class SimulationController extends Controller
     _runHour()
     {
         const demandGenerator = new DemandController();
+        const levelController = new LevelController();
 
         demandGenerator.doCustomerOrderGeneration();
         FactoryController.updateOrder();
+        levelController.checkGoalReached();
 
         $(".timer-hours").html(GAME.model.config.hours % 24);
     }
