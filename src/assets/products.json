@@ -4,11 +4,11 @@
     "values": {
       "icon": "products/banana.png",
       "type": "food",
-      "price": 1.0,
-      "salesPrice": 1.95,
+      "price": 0.35,
+      "salesPrice": 0.75,
       "size": 1.0,
       "isPerishable": true,
-      "perishable": 15
+      "perishable": 14
     },
     "demand": {
       "mean": 25,
@@ -20,15 +20,47 @@
     "values": {
       "icon": "products/apple.png",
       "type": "food",
-      "price": 1.0,
-      "salesPrice": 1.95,
+      "price": 0.45,
+      "salesPrice": 0.95,
       "size": 1.0,
       "isPerishable": true,
-      "perishable": 20
+      "perishable": 21
     },
     "demand": {
       "mean": 20,
       "variance": 15
+    }
+  },
+  {
+    "name": "Carrot",
+    "values": {
+      "icon": "products/carrot.png",
+      "type": "food",
+      "price": 0.95,
+      "salesPrice": 1.95,
+      "size": 1.0,
+      "isPerishable": true,
+      "perishable": 21
+    },
+    "demand": {
+      "mean": 15,
+      "variance": 7
+    }
+  },
+  {
+    "name": "Bread",
+    "values": {
+      "icon": "products/bread.png",
+      "type": "food",
+      "price": 1.15,
+      "salesPrice": 2.15,
+      "size": 1.0,
+      "isPerishable": true,
+      "perishable": 7
+    },
+    "demand": {
+      "mean": 35,
+      "variance": 25
     }
   },
   {
@@ -44,7 +76,39 @@
     },
     "demand": {
       "mean": 2,
-      "variance": 10
+      "variance": 4
+    }
+  },
+  {
+    "name": "Short",
+    "values": {
+      "icon": "products/short.png",
+      "type": "clothing",
+      "price": 25.0,
+      "salesPrice": 49.95,
+      "size": 2.5,
+      "isPerishable": false,
+      "perishable": 0
+    },
+    "demand": {
+      "mean": 2,
+      "variance": 4
+    }
+  },
+  {
+    "name": "Cap",
+    "values": {
+      "icon": "products/cap.png",
+      "type": "clothing",
+      "price": 8.95,
+      "salesPrice": 19.95,
+      "size": 2.0,
+      "isPerishable": false,
+      "perishable": 0
+    },
+    "demand": {
+      "mean": 5,
+      "variance": 5
     }
   }
 ]
