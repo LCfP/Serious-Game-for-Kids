@@ -29,24 +29,6 @@ class WarehouseController extends Controller
     }
 
     /**
-     * Adds the contents of an order to the Warehouse.
-     *
-     * @param {OrderCore} order - The Order object.
-     */
-    orderUpdateWarehouse(order)
-    {
-        const type = order.constructor.name;
-        const cases = {
-            "FactoryOrder": this._processFactoryOrder.bind(this),
-            "CustomerOrder": this._processCustomerOrder.bind(this)
-        };
-
-        if (cases.hasOwnProperty(type)) {
-            return cases[type](order);
-        }
-    }
-
-    /**
      * Helper method to refresh the containers.
      */
     updateContainerView()
@@ -67,50 +49,49 @@ class WarehouseController extends Controller
             .attr("aria-valuenow", GAME.model.warehouse.usedContainerCapacity(true));
     }
 
-    /**
-     * @private
-     */
-    _processFactoryOrder(order)
+    processFactoryOrder(order)
     {
-        let capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
+        const capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
 
         if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
             toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
             // TODO try to fit what fits? - context
         } else {
             // add products to the containers.
-            order.products.forEach(function (product) {
-                while (product.values.quantity) {
-                    GAME.model.warehouse.items.forEach(
-                        container => product.values.quantity = container.addItem(product)
-                    );
-                }
-            });
-
-            toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
-
-            if (order.products.every(product => product.values.quantity === 0)) {
-                toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
-                return true;
-            }
+            return this._processOrder(order, "Order has been processed and added to the warehouse!");
         }
+    }
+
+    processCustomerOrder(order)
+    {
+        return this._processOrder(order, "Order has been processed and shipped to the customer!");
     }
 
     /**
      * @private
      */
-    _processCustomerOrder(order)
+    _processOrder(order, successMsg)
     {
         order.products.forEach(function (product) {
             while (product.values.quantity) {
-                GAME.model.warehouse.items.forEach(
-                    container => product.values.quantity = container.removeItem(product)
+                // see http://stackoverflow.com/a/2641374/4316405
+                GAME.model.warehouse.items.every(
+                    container => {
+                        const cases = {
+                            "FactoryOrder": container.addItem.bind(container),
+                            "CustomerOrder": container.removeItem.bind(container)
+                        };
+
+                        product.values.quantity = cases[order.constructor.name](product);
+
+                        return product.values.quantity;
+                    }
                 );
             }
         });
 
         if (order.products.every(product => product.values.quantity === 0)) {
-            toastr.info(Controller.l("Order has been processed and shipped to the customer!"));
+            toastr.info(Controller.l(successMsg));
             return true;
         }
     }

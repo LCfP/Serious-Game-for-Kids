@@ -142,7 +142,7 @@ class FactoryController extends OrderController
         const orderCopy = new FactoryOrder(OrderController._copyOrder(order));
 
         // process order..
-        if (warehouseController.orderUpdateWarehouse(order)) {
+        if (warehouseController.processFactoryOrder(order)) {
             super.completeOrder(orderCopy);
         }
 

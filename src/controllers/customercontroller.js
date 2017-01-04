@@ -72,7 +72,7 @@ class CustomerController extends OrderController
         const warehouseController = new WarehouseController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
-        if (warehouseController.orderUpdateWarehouse(orderCopy)) {
+        if (warehouseController.processCustomerOrder(orderCopy)) {
             super.completeOrder(customer);
         }
 
