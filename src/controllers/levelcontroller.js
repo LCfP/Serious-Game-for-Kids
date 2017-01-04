@@ -15,13 +15,21 @@ class LevelController extends Controller
         if (completed) {
             this.completeLevel(currentLevel);
         }
-
-        console.log(completed);
     }
 
     completeLevel(level)
     {
-        //
+        swal({
+            title: "Completed!",
+            text: "You completed level " + level.id + "!",
+            type: "success",
+            timer: 4000,
+            showConfirmButton: false
+        });
+
+        GAME.model.config.currentLevel++;
+
+        // might want to reset the game
     }
 
     checkGoalMoney(level)
