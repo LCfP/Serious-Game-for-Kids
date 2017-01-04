@@ -18,7 +18,7 @@ class OrderCore
      * @see ProductCore.stockValue
      *
      * @param {boolean} sales=false - Purchase or sales price.
-     * @returns {float}
+     * @returns {number}
      */
     orderCost(sales = false)
     {
@@ -26,6 +26,6 @@ class OrderCore
             return 0;
         }
 
-        return this.products.reduce((sum, prod) => sum + prod.stockValue(sales), 0);
+        return this.products.reduce((sum, prod) => sum + prod.stockValue(sales), 0).toFixed(2);
     }
 }

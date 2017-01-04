@@ -1,31 +1,6 @@
 class OrderController extends Controller
 {
     /**
-     * Returns a measure of demand for each product
-     */
-    randomDemandGenerator(mean, variance)
-    {
-        return Math.max(OrderController.normalDistribution(mean, variance), 0);
-    }
-
-    /**
-     * http://stackoverflow.com/a/36481059
-     *
-     * @param {number} mean=0
-     * @param {number} variance=1
-     * @returns {number}
-     */
-    static normalDistribution(mean = 0, variance = 1)
-    {
-        const u = 1 - Math.random();
-        const v = 1 - Math.random();
-
-        const stdNormal =  Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-
-        return stdNormal * variance + mean;
-    }
-
-    /**
      * @abstract
      */
     validateOrder(products)
