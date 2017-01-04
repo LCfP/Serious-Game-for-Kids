@@ -21,8 +21,11 @@
 
   "Banana": "Banaan",
   "Apple": "Appel",
-  "T-shirt": "T-shirt",
+  "Carrot": "Wortel",
+  "Bread": "Brood",
   "Shoes": "Schoenen",
+  "Short": "Korte broek",
+  "Cap": "Pet",
 
   "Place order": "Plaats bestelling",
   "Order has been placed!": "Bestelling is geplaatst!",
@@ -47,6 +50,8 @@
 
   "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
   "Order has been processed and added to the warehouse!": "De bestelling is verwerkt en in het magazijn geplaatst!",
+  "Order has been processed and shipped to the customer!": "De bestelling is verwerkt en aan de klant geleverd!",
+
   "Day": "Dag",
   "hour": "uur",
 

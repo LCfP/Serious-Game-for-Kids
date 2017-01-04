@@ -89,7 +89,10 @@ class WarehouseController extends Controller
 
             toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
 
-            return order.products.every(product => product.values.quantity === 0);
+            if (order.products.every(product => product.values.quantity === 0)) {
+                toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
+                return true;
+            }
         }
     }
 
@@ -106,7 +109,10 @@ class WarehouseController extends Controller
             }
         });
 
-        return order.products.every(product => product.values.quantity === 0);
+        if (order.products.every(product => product.values.quantity === 0)) {
+            toastr.info(Controller.l("Order has been processed and shipped to the customer!"));
+            return true;
+        }
     }
 
     /**
