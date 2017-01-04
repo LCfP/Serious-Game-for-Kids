@@ -45,9 +45,9 @@ class DemandController extends Controller
         }
 
         const days = Math.floor(this.hours / 24);
-        const bestSeason = seasonality.isWinterProduct ? 0 : this.yearDays / 2;
+        const bestSeason = seasonality.isWinterProduct ? Math.PI : 0;
 
-        return seasonality.amplitude * Math.cos(2 * Math.PI * (days - bestSeason) / this.yearDays);
+        return seasonality.amplitude * Math.cos(2 * Math.PI * (days / this.yearDays) - bestSeason);
     }
 
     /**
