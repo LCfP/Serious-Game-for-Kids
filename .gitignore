@@ -47,5 +47,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Node files
+# Node files and misc. unsorted images
 /node_modules
+/unsorted

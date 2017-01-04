@@ -1,5 +1,7 @@
 {
-  "presets": ["env"],
+  "presets": ["env", "babili"],
+
+  "comments": false,
   "ignore": [
     "library"
   ]

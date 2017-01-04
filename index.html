@@ -2,33 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
     <title>Serious game for kids</title>
+
+    <link rel="stylesheet" type="text/css" href="src/library/css/minified.css">
+    <link rel="stylesheet" type="text/css" href="src/views/css/main.css">
 </head>
 <body>
     <nav id="top-bar" class="navbar navbar-default navbar-fixed-top"></nav>
     <div class="container-fluid wrapper">
         <div class="row">
-            <section class="col-lg-3 col-sm-6" style="padding-left:0;">
+            <section class="col-lg-3 col-md-3" style="padding-left:0;">
                 <div id="factory-orders"></div>
                 <section id="factory"></section>
             </section>
-            <section id="warehouse" class="col-lg-6 col-sm-6"></section>
-            <section id="customers" class="col-lg-3 col-sm-6" style="padding-right:0;"></section>
+            <section id="warehouse" class="col-lg-6 col-md-7"></section>
+            <section id="customers" class="col-lg-3 col-md-2" style="padding-right:0;"></section>
         </div>
     </div>
     <footer>
-        <link rel="stylesheet" type="text/css" href="src/library/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="src/library/css/toastr.min.css">
-        <link rel="stylesheet" type="text/css" href="src/library/css/sweetalert.min.css">
-        <link rel="stylesheet" type="text/css" href="src/views/css/main.css">
-
-        <!-- TODO push this into an AMD ready / requireJS format -->
-        <script src="src/library/js/jquery-3.1.1.min.js"></script>
-        <script src="src/library/js/js.cookie.min.js"></script>
-        <script src="src/library/js/bootstrap.min.js"></script>
-        <script src="src/library/js/mustache.min.js"></script>
-        <script src="src/library/js/toastr.min.js"></script>
-        <script src="src/library/js/sweetalert.min.js"></script>
+        <script src="src/library/js/minified.js"></script>
 
         <script src="src/models/classes/core/productcore.js"></script>
         <script src="src/models/classes/core/storagecore.js"></script>
@@ -48,6 +42,7 @@
         <script src="src/controllers/core/ordercontroller.js"></script>
 
         <script src="src/controllers/levelcontroller.js"></script>
+        <script src="src/controllers/demandcontroller.js"></script>
         <script src="src/controllers/historycontroller.js"></script>
         <script src="src/controllers/warehousecontroller.js"></script>
         <script src="src/controllers/factorycontroller.js"></script>
