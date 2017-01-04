@@ -1,5 +1,5 @@
 {
-  "hour": 4,
+  "hour": 8,
   "isPaused": true,
 
   "languages": [
@@ -28,6 +28,8 @@
   "warehouseContainers": 3,
   "money": 10000,
   "satisfaction": 100,
+
+  "yearDays": 365,
 
   "penaltySendingCustomerAway": 0,
 

@@ -52,7 +52,9 @@
       "mean": 15,
       "variance": 7,
       "seasonality": {
-        "hasSeasonality": true
+        "hasSeasonality": true,
+        "isWinterProduct": true,
+        "amplitude": 5
       }
     }
   },
@@ -128,7 +130,9 @@
       "mean": 5,
       "variance": 5,
       "seasonality": {
-        "hasSeasonality": true
+        "hasSeasonality": true,
+        "isWinterProduct": false,
+        "amplitude": 2.0
       }
     }
   }

@@ -1,5 +1,13 @@
 class DemandController extends Controller
 {
+    constructor()
+    {
+        super();
+
+        this.yearDays = GAME.model.config.yearDays;
+        this.hours = GAME.model.config.hours;
+    }
+
     doCustomerOrderGeneration()
     {
         // TODO every day, and every once in a while (structural and variable?). We need to think about this.
@@ -23,7 +31,7 @@ class DemandController extends Controller
     }
 
     /**
-     * Computes a seasonal modifier for specific demand. This is a multiplier to the product demand mean.
+     * Computes a seasonal modifier for specific demand.
      *
      * @param {Object} seasonality
      * @private
@@ -31,11 +39,13 @@ class DemandController extends Controller
     _seasonalComponent(seasonality)
     {
         if (!seasonality.hasSeasonality) {
-            return 1;
+            return 0;
         }
 
-        // TODO
-        return 1;
+        const days = Math.floor(this.hours / 24);
+        const bestSeason = seasonality.isWinterProduct ? 0 : this.yearDays / 2;
+
+        return seasonality.amplitude * Math.cos(2 * Math.PI * (days - bestSeason) / this.yearDays);
     }
 
     /**
