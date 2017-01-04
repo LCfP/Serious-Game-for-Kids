@@ -64,5 +64,11 @@
   "Send away": "Stuur weg",
 
   "There are no racks yet in this warehouse!": "Er zijn nog geen rekken in dit magazijn!",
-  "There are no customers yet!": "Er zijn nog geen klanten!"
+  "There are no customers yet!": "Er zijn nog geen klanten!",
+
+  "It is now": "Het is nu",
+  "Winter": "Winter",
+  "Summer": "Zomer",
+  "Spring": "Lente",
+  "Autumn": "Herfst"
 }

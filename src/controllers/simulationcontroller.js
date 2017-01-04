@@ -86,6 +86,7 @@ class SimulationController extends Controller
             GAME.model.config.season = GAME.model.config.seasons[GAME.model.config.seasonCount % 3];
 
             $(".season").html(Controller.l(GAME.model.config.season));
+            toastr.success(Controller.l("It is now") + " " + Controller.l(GAME.model.config.season).toLowerCase());
         }
 
         $(".timer-days").html(GAME.model.config.hours / 24);
@@ -98,6 +99,10 @@ class SimulationController extends Controller
     {
         if (!GAME.model.config.hasOwnProperty("hours")) {
             GAME.model.config.hours = 0;
+        }
+
+        if (!GAME.model.config.hasOwnProperty("seasonCount")) {
+            GAME.model.config.seasonCount = 0;
         }
 
         GAME.model.config.isPaused = false;
