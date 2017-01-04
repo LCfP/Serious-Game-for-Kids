@@ -35,14 +35,14 @@ class WarehouseController extends Controller
      */
     orderUpdateWarehouse(order)
     {
-        let cases = {
-            "FactoryOrder": this._processFactoryOrder,
-            "CustomerOrder": this._processCustomerOrder
+        const type = order.constructor.name;
+        const cases = {
+            "FactoryOrder": this._processFactoryOrder.bind(this),
+            "CustomerOrder": this._processCustomerOrder.bind(this)
         };
 
-        if (cases.hasOwnProperty(order.constructor.name)) {
-            let func = $.proxy(cases[order.constructor.name], this);
-            return func(order);
+        if (cases.hasOwnProperty(type)) {
+            return cases[type](order);
         }
     }
 
@@ -79,10 +79,17 @@ class WarehouseController extends Controller
             // TODO try to fit what fits? - context
         } else {
             // add products to the containers.
-            order.products.forEach((product) => this._processProduct(product));
+            order.products.forEach(function (product) {
+                while (product.values.quantity) {
+                    GAME.model.warehouse.items.forEach(
+                        container => product.values.quantity = container.addItem(product)
+                    );
+                }
+            });
+
             toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
 
-            return true;
+            return order.products.every(product => product.values.quantity === 0);
         }
     }
 
@@ -91,52 +98,15 @@ class WarehouseController extends Controller
      */
     _processCustomerOrder(order)
     {
-        // TODO ugly :(
         order.products.forEach(function (product) {
-            GAME.model.warehouse.items.map(function (container) {
-                return container.items.filter(function (item) {
-                    if (product.name != item.name) {
-                        return item;
-                    }
-
-                    let removedQuantity = Math.min(product.values.quantity, item.values.quantity);
-                    product.values.quantity -= removedQuantity;
-                    item.values.quantity -= removedQuantity;
-
-                    return item.values.quantity;
-                });
-            });
+            while (product.values.quantity) {
+                GAME.model.warehouse.items.forEach(
+                    container => product.values.quantity = container.removeItem(product)
+                );
+            }
         });
 
-        return true;
-    }
-
-    /**
-     * @private
-     */
-    _processProduct(product)
-    {
-        for (let i = 0; i < GAME.model.warehouse.items.length; i++) {
-            let container = GAME.model.warehouse.items[i];
-            let availableCapacity = container.capacity - container.usedCapacity();
-
-            // can fit at least one product!
-            if (availableCapacity >= product.values.size) {
-                let maxProducts = parseInt(availableCapacity / product.values.size);
-                let addedQuantity = Math.min(product.values.quantity, maxProducts);
-
-                let partialProduct = new Product(product.name, $.extend({}, product.values));
-                partialProduct.values.quantity = addedQuantity;
-                container.addItem(partialProduct);
-
-                product.values.quantity = product.values.quantity - addedQuantity;
-            }
-
-            // this product has been stored by now.
-            if (!product.values.quantity) {
-                break;
-            }
-        }
+        return order.products.every(product => product.values.quantity === 0);
     }
 
     /**
