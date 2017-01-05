@@ -2,9 +2,9 @@ class LevelController extends Controller
 {
     checkGoalReached()
     {
-        let currentLevelId = GAME.model.config.currentLevel;
+        let currentLevelId = GAME.model.config.level;
         let currentLevel = GAME.model.levels[currentLevelId];
-        var completed = false;
+        let completed = false;
 
         if (currentLevel.type == 'money') {
             completed = this.checkGoalMoney(currentLevel);
@@ -27,8 +27,8 @@ class LevelController extends Controller
             showConfirmButton: false
         });
 
-        GAME.model.config.currentLevel++;
-        $('#level').html(GAME.model.config.currentLevel);
+        GAME.model.config.level++;
+        $('#level').html(GAME.model.config.level);
 
         // might want to reset the game
     }
