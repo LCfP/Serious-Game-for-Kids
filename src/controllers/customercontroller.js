@@ -11,14 +11,6 @@ class CustomerController extends OrderController
 
     registerEvent(id)
     {
-        let closure = function (func) {
-            let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
-            let customerController = new CustomerController();
-
-            func(customer, customerController);
-            customerController._updateCustomerView();
-        };
-
         $("button[data-customer="+ id +"].customer-serve").click(function (e) {
             closure(function (customer, controller) {
                 if (controller.validateOrder(customer.order)) {
@@ -38,6 +30,14 @@ class CustomerController extends OrderController
 
             $(this).off(e);
         });
+
+        const closure = function (fn) {
+            let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
+            let customerController = new CustomerController();
+
+            fn(customer, customerController);
+            customerController._updateCustomerView();
+        };
     }
 
     generateOrder()
@@ -64,6 +64,8 @@ class CustomerController extends OrderController
 
     /**
      * @augments OrderController.completeOrder
+     *
+     * @param {Customer} customer
      */
     completeOrder(customer)
     {
@@ -84,7 +86,8 @@ class CustomerController extends OrderController
 
     /**
      * Removes customer from the customer array.
-     * @param customer
+     *
+     * @param {Customer} customer
      */
     sendAway(customer)
     {
@@ -100,6 +103,8 @@ class CustomerController extends OrderController
     /**
      * Validates order if quantity in warehouse for every product is
      * larger than in order.
+     *
+     * @return {boolean}
      */
     validateOrder(order)
     {

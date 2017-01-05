@@ -205,8 +205,8 @@ class WarehouseController extends Controller
                     "quantity": Math.floor(size / item.values.size)
                 }
             }, this);
-        }, this).reduce(function(array, other){
-            return array.concat(other);
+        }, this).reduce(function(self, other){
+            return self.concat(other);
         }, []);
     }
 

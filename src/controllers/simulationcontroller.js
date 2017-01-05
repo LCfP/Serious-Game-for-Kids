@@ -18,8 +18,10 @@ class SimulationController extends Controller
      */
     registerEvent()
     {
-        $(".timer").click(function () {
-            $(".timer").each((i, elem) => $(elem).removeClass("active"));
+        const $handle = $(".timer");
+
+        $handle.click(function () {
+            $handle.each((i, elem) => $(elem).removeClass("active"));
 
             const elem = $(this).children(":first");
             const sim = new SimulationController();

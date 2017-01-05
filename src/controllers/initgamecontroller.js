@@ -25,7 +25,7 @@ class InitGameController extends Controller
             () => {
                 this.registerEvent();
 
-                let sim = new SimulationController();
+                const sim = new SimulationController();
                 sim.registerEvent();
             }
         );
@@ -70,13 +70,6 @@ class InitGameController extends Controller
 
     registerEvent()
     {
-        let sidebar_handler = function (e, anchor, width=250, css={opacity: .3}) {
-            e.stopPropagation();
-
-            $(anchor).width(width);
-            $(".wrapper").css(css);
-        };
-
         // left menu opening
         $("#sidebar-left-toggle").click(function (e) {
             sidebar_handler(e, "#sidebar-left");
@@ -105,6 +98,13 @@ class InitGameController extends Controller
                     );
                 }
             )
-        })
+        });
+
+        const sidebar_handler = function (e, anchor, width=250, css={opacity: .3}) {
+            e.stopPropagation();
+
+            $(anchor).width(width);
+            $(".wrapper").css(css);
+        };
     }
 }
