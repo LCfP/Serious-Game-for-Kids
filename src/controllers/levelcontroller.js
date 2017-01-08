@@ -29,8 +29,6 @@ class LevelController extends Controller
 
         GAME.model.config.level++;
         $('#level').html(GAME.model.config.level);
-
-        // might want to reset the game
     }
 
     checkGoalMoney(level)
@@ -40,7 +38,6 @@ class LevelController extends Controller
 
     checkGoalSatisfaction(level)
     {
-        // will always return true, since satisfaction is not yet implemented
         return GAME.model.config.satisfaction >= level.goal;
     }
 }
