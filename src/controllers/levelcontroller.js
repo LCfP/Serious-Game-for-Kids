@@ -19,11 +19,13 @@ class LevelController extends Controller
 
     completeLevel(level)
     {
+        let nextLevel = GAME.model.levels[GAME.model.config.level + 1];
+
         swal({
-            title: "Completed!",
-            text: "You completed level " + level.id + "!",
+            title: "Level " + GAME.model.config.level + " " + Controller.l("completed"),
+            text: Controller.l("Next: Reach") + " " + Controller.l(nextLevel.type) + " " + Controller.l("with value") + " " + nextLevel.goal + ".",
             type: "success",
-            timer: 4000,
+            timer: 5000,
             showConfirmButton: false
         });
 
