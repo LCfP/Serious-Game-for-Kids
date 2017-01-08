@@ -6,6 +6,7 @@ class LevelController extends Controller
         let currentLevel = GAME.model.levels[currentLevelId];
         let completed = false;
 
+        // TODO Make this prettier, gets bloated when adding more types of levels
         if (currentLevel.type == 'money') {
             completed = this.checkGoalMoney(currentLevel);
         } else if (currentLevel.type == 'satisfaction') {
