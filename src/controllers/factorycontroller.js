@@ -33,7 +33,7 @@ class FactoryController extends OrderController
         );
 
         //form submission, adds an extra truck
-        $ ("form[name=frequencyTrucks]").submit(
+        $ ("buy-truck").click(
             function (e) {
                 e.preventDefault();
 
@@ -55,6 +55,7 @@ class FactoryController extends OrderController
                 $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
             }
         );
+
     }
 
     /**
@@ -121,14 +122,14 @@ class FactoryController extends OrderController
     extraTruck (formValues)
     {
         if (this.validateTruck(truck)) {
-            this._updateMoney(-GAME.model.config.costExtraTruck);
-            this._updateMaxSimultaneousOrders(GAME.model.config.maxSimultaneousOrders +1);
+            GAME.model.config.money - GAME.model.config.costExtraTruck);
+            GAME.model.config.maxSimultaneousOrders +1;
         }
     }
 
     validateTruck(truck)
     {
-        if(truckCost>GAME.model.config.money) {
+        if(costExtraTruck > GAME.model.config.money) {
             toastr.error(Controller.l("You cannot afford an extra truck!"));
             return false;
         }
