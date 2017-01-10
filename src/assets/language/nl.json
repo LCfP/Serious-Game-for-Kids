@@ -8,6 +8,7 @@
   "Order": "Bestelling",
 
   "Money": "Geld",
+  "money": "geld",
   "Price": "Bedrag",
   "Select language": "Selecteer een taal",
 
@@ -64,5 +65,11 @@
   "Send away": "Stuur weg",
 
   "There are no racks yet in this warehouse!": "Er zijn nog geen rekken in dit magazijn!",
-  "There are no customers yet!": "Er zijn nog geen klanten!"
+  "There are no customers yet!": "Er zijn nog geen klanten!",
+
+  "completed": "voltooid",
+  "Next: Reach": "Volgende: Bereik",
+  "with value": "met waarde",
+
+  "satisfaction": "tevredenheid"
 }

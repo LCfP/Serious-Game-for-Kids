@@ -41,6 +41,8 @@
 
   "penaltySendingCustomerAway": 0,
 
+  "level": 0,
+
   "toastr": {
     "closeButton": false,
     "debug": false,
