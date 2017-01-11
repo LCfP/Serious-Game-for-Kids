@@ -7,11 +7,6 @@ class HelpController extends Controller
 
     startFactoryTour()
     {
-        var options = {
-            // showSteps: true,
-            delay: -1,
-        };
-
         var trip = new Trip([
             {
                 sel: $('.factory'),
@@ -39,7 +34,9 @@ class HelpController extends Controller
                 expose: true,
                 position: 'e',
             }
-        ], options);
+        ], {
+            delay: -1,
+        });
 
         trip.start();
 
@@ -60,25 +57,35 @@ class HelpController extends Controller
 
     startNavbarTour()
     {
-        var options = {
-            // showSteps: true,
-            delay: -1,
-        };
-
         var trip = new Trip([
             {
                 sel: $("#sidebar-left-toggle"),
-                content: "This is the menu. You can change settings there.",
+                content: "This button opens the menu. You can change settings there.",
                 position: "e",
-                showNavigation: true,
             },
             {
                 sel: $(".timer").parent(),
                 content: "With these buttons you can start and stop the simulation of the game.",
                 position: "e",
-                showNavigation: true,
             },
-        ], options);
+            {
+                sel: $("#sidebar-right-toggle"),
+                content: "With this button you open the sidebar which gives you an overview of everything that happened in the past.",
+                position: "w",
+            },
+            {
+                sel: $(".help-menu"),
+                content: "Don't know how some part of <br> the game works? Click this <br> button to get more info.",
+                position: "s"
+            },
+            {
+                sel: $(".statuses"),
+                content: "These represent your current status in the game.",
+                position: "s"
+            }
+        ], {
+            delay: 4000,
+        });
 
         trip.start();
     }
