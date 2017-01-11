@@ -155,6 +155,27 @@ class HelpController extends Controller
 
     startCustomersTour()
     {
-        //
+        var trip = new Trip([
+            {
+                sel: $('#customers .panel'),
+                content: "This list displays the customers you can serve.",
+                expose: true,
+                position: "w",
+            },
+            {
+                sel: $("#customer-orders").children().first(),
+                content: "This is a single customer. You can send <br> him away if you don't want to serve him. Or click serve customer <br>to give the customer the products he wants. Of course <br> you need to have them in stock.",
+                expose: true,
+                position: "w",
+            }
+        ], {
+            delay: 6000,
+        });
+
+        if (GAME.model.customers.length) {
+            trip.start();
+        } else {
+            toastr.warning("There has to be at least one customer. Start the game by pressing the 'play' button. Customers will the pop up automatically.", "", {timeOut: 7000});
+        }
     }
 }
