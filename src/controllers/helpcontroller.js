@@ -12,30 +12,31 @@ class HelpController extends Controller
                 sel: $('.factory'),
                 content: 'This is the factory, the place where all of your products are made.',
                 expose: true,
-                position: 'e',
+                position: "e",
                 delay: 3000,
             },
             {
                 sel: $('.factory .tab-content'),
                 content: 'You can order specific amounts of each product. Try to add a product.',
                 expose: true,
-                position: 'e',
+                position: "e",
             },
             {
                 sel: $('.factory .alert'),
                 content: "Keep an eye on this info-box. It holds relevant information for the order you are placing. You need to have enough money (currently you have " + GAME.model.config.money + ") and the order has to fit on the truck (maximum capacity " + GAME.model.config.orderCapacity + ").",
                 expose: true,
-                position: 'e',
+                position: "e",
                 delay: 8000
             },
             {
                 sel: $('.factory button[type="submit"]'),
                 content: "If everything is satisfied you can place the order by clicking on the green button.",
                 expose: true,
-                position: 'e',
+                position: "e",
             }
         ], {
             delay: -1,
+            position: "e",
         });
 
         trip.start();
@@ -88,5 +89,31 @@ class HelpController extends Controller
         });
 
         trip.start();
+    }
+
+    startFactoryOrdersTour()
+    {
+        var trip = new Trip([
+            {
+                sel: $('#factory-orders'),
+                content: "This is where you can see all orders currently in transport to your warehouse. Make sure the play button in the status bar is clicked.",
+                expose: true,
+                position: "e",
+            },
+            {
+                sel: $("#factory-orders .progress").first(),
+                content: "The order will arrive in the warehouse, when the progress bar is fully green. Do make sure you clicked the 'play' button in the statusbar.",
+                expose: true,
+                position: "e",
+            }
+        ], {
+            delay: 3000,
+        });
+
+        if (GAME.model.orders.length) {
+            trip.start();
+        } else {
+            toastr.warning("Make sure you have placed an order at the factory.");
+        }
     }
 }
