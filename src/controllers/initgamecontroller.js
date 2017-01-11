@@ -93,6 +93,7 @@ class InitGameController extends Controller
             $(this).css({opacity: 1});
         });
 
+        // TODO make these events prettier
         $("#help-factory").click(function () {
             const helpController = new HelpController();
             helpController.startFactoryTour();
