@@ -116,4 +116,45 @@ class HelpController extends Controller
             toastr.warning("Make sure you have placed an order at the factory.");
         }
     }
+
+    startWarehouseTour()
+    {
+        var trip = new Trip([
+            {
+                sel: $('#warehouse .panel'),
+                content: "Here are your containers where you can store incoming products from the factory.",
+                expose: true,
+                position: "n",
+            },
+            {
+                sel: $('#warehouse .pull-right'),
+                content: "Here you can see the capacity that is left.",
+                expose: true,
+                position: "s"
+            },
+            {
+                sel: $("#containers .panel").first(),
+                content: "The colored circle around the product changes as the product perishes. When the product turns red, it will be removed from the warehouse within a few days.",
+                expose: true,
+                position: "e",
+            },
+            {
+                sel: $("#purchase-container"),
+                content: "You can purchase another container by clicking on this button.",
+                expose: true,
+                position: "s"
+            }
+        ], {
+            delay: 5000,
+        });
+
+        trip.start();
+
+        $('#purchase-container').css('background-color', '#5cb85c');
+    }
+
+    startCustomersTour()
+    {
+        //
+    }
 }

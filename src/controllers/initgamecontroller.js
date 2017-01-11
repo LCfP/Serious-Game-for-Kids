@@ -108,6 +108,16 @@ class InitGameController extends Controller
             helpController.startFactoryOrdersTour();
         });
 
+        $("#help-warehouse").click(function () {
+            const helpController = new HelpController();
+            helpController.startWarehouseTour();
+        });
+
+        $("#help-customers").click(function () {
+            const helpController = new HelpController();
+            helpController.startCustomersTour();
+        });
+
         // listens for changes in the language setting.
         $("#language").change(function () {
             $("#language option:selected").each(
