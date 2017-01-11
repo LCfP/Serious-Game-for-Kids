@@ -32,18 +32,17 @@ class FactoryController extends OrderController
             }
         );
 
-        //form submission, adds an extra truck
-        $ ("buy-truck").click(
-            function (e) {
-                e.preventDefault();
-
-                let controller = new FactoryController();
-                if (controller.extraTruck($(this).serializeArray())) {
-                    //after succesfully adding an extra truck, reset form to default state.
-                    $(this).trigger("reset");
-                }
+        //form submission, adds an extra truck after cost validation
+        $("#buy-truck").submit(() => {
+            if(GAME.model.config.money>GAME.model.config.costExtraTruck){
+                this._updateMoney(-GAME.model.config.costExtraTruck);
+                GAME.model.config.maxSimultaneousOrders++;
+                toastr.success(Controller.l("You purchased an extra truck!"));
+            } else {
+                toastr.warning(Controller.l("You cannot afford an extra truck!"));
             }
-        );
+        });
+
 
         // updates the information for the current order process
         $("form[name=newFactoryOrder] :input").change(
@@ -119,21 +118,7 @@ class FactoryController extends OrderController
         return true;
     }
 
-    extraTruck (formValues)
-    {
-        if (this.validateTruck(truck)) {
-            GAME.model.config.money - GAME.model.config.costExtraTruck);
-            GAME.model.config.maxSimultaneousOrders +1;
-        }
-    }
 
-    validateTruck(truck)
-    {
-        if(costExtraTruck > GAME.model.config.money) {
-            toastr.error(Controller.l("You cannot afford an extra truck!"));
-            return false;
-        }
-    }
 
     /**
      * Updates order counter, at every daily interval. When 0, adds to Warehouse.

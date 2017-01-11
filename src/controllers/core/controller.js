@@ -109,14 +109,4 @@ class Controller
      *
      * @protected
      */
-    _updateMoney(amount)
-    {
-        GAME.model.config.money = GAME.model.config.money + parseFloat(amount);
-        $("#money").html(GAME.model.config.money.toFixed(2));
-    }
-
-    _updateMaxSimultaneousOrder(amount)
-    {
-        GAME.model.config._updateMaxSimultaneousOrder = GAME.model.config.money + amount;
-    }
 }
