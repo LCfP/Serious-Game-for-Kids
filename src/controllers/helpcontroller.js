@@ -9,27 +9,27 @@ class HelpController extends Controller
     {
         var trip = new Trip([
             {
-                sel: $('.factory'),
-                content: 'This is the factory, the place where all of your products are made.',
+                sel: $(".factory"),
+                content: "This is the factory, the place where all of your products are made.",
                 expose: true,
                 position: "e",
                 delay: 3000,
             },
             {
-                sel: $('.factory .tab-content'),
-                content: 'You can order specific amounts of each product. Try to add a product.',
+                sel: $(".factory .tab-content"),
+                content: "You can order specific amounts of each product. Try to add a product.",
                 expose: true,
                 position: "e",
             },
             {
-                sel: $('.factory .alert'),
+                sel: $(".factory .alert"),
                 content: "Keep an eye on this info-box. It holds relevant information for the order you are placing. You need to have enough money (currently you have " + GAME.model.config.money + ") and the order has to fit on the truck (maximum capacity " + GAME.model.config.orderCapacity + ").",
                 expose: true,
                 position: "e",
                 delay: 8000
             },
             {
-                sel: $('.factory button[type="submit"]'),
+                sel: $(".factory button[type=submit]"),
                 content: "If everything is satisfied you can place the order by clicking on the green button.",
                 expose: true,
                 position: "e",
@@ -48,10 +48,10 @@ class HelpController extends Controller
 
         // TODO Button becomes white, since the 'trip-exposed' class is overwriting Bootstrap's styles.
         // This fixes it, but it's not really pretty. Should be a better way.
-        $('.factory button[type="submit"]').css('background-color', '#5cb85c');
+        $(".factory button[type=submit]").css("background-color", "#5cb85c");
 
         // Next step when clicked on the 'place order' button
-        $('.factory button[type="submit"]').click(function (e) {
+        $(".factory button[type=submit]").click(function (e) {
             trip.next();
         });
     }
@@ -95,7 +95,7 @@ class HelpController extends Controller
     {
         var trip = new Trip([
             {
-                sel: $('#factory-orders'),
+                sel: $("#factory-orders"),
                 content: "This is where you can see all orders currently in transport to your warehouse. Make sure the play button in the status bar is clicked.",
                 expose: true,
                 position: "e",
@@ -121,13 +121,13 @@ class HelpController extends Controller
     {
         var trip = new Trip([
             {
-                sel: $('#warehouse .panel'),
+                sel: $("#warehouse .panel"),
                 content: "Here are your containers where you can store incoming products from the factory.",
                 expose: true,
                 position: "n",
             },
             {
-                sel: $('#warehouse .pull-right'),
+                sel: $("#warehouse .pull-right"),
                 content: "Here you can see the capacity that is left.",
                 expose: true,
                 position: "s"
@@ -150,14 +150,14 @@ class HelpController extends Controller
 
         trip.start();
 
-        $('#purchase-container').css('background-color', '#5cb85c');
+        $("#purchase-container").css("background-color", "#5cb85c");
     }
 
     startCustomersTour()
     {
         var trip = new Trip([
             {
-                sel: $('#customers .panel'),
+                sel: $("#customers .panel"),
                 content: "This list displays the customers you can serve.",
                 expose: true,
                 position: "w",
