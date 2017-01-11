@@ -92,10 +92,15 @@ class InitGameController extends Controller
             $(".sidebar").width(0);
             $(this).css({opacity: 1});
         });
-        
-        $("#help-button").click(function () {
+
+        $("#help-factory").click(function () {
             const helpController = new HelpController();
-            helpController.startIntro();
+            helpController.startFactoryTour();
+        });
+
+        $("#help-statusbar").click(function () {
+            const helpController = new HelpController();
+            helpController.startNavbarTour();
         });
 
         // listens for changes in the language setting.

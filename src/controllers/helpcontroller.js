@@ -1,6 +1,11 @@
 class HelpController extends Controller
 {
-    startIntro()
+    startIntroTour()
+    {
+        //
+    }
+
+    startFactoryTour()
     {
         var options = {
             // showSteps: true,
@@ -51,5 +56,30 @@ class HelpController extends Controller
         $('.factory button[type="submit"]').click(function (e) {
             trip.next();
         });
+    }
+
+    startNavbarTour()
+    {
+        var options = {
+            // showSteps: true,
+            delay: -1,
+        };
+
+        var trip = new Trip([
+            {
+                sel: $("#sidebar-left-toggle"),
+                content: "This is the menu. You can change settings there.",
+                position: "e",
+                showNavigation: true,
+            },
+            {
+                sel: $(".timer").parent(),
+                content: "With these buttons you can start and stop the simulation of the game.",
+                position: "e",
+                showNavigation: true,
+            },
+        ], options);
+
+        trip.start();
     }
 }
