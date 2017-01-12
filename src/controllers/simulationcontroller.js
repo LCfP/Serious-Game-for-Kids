@@ -74,6 +74,7 @@ class SimulationController extends Controller
         const quarterYear = Math.floor(GAME.model.config.yearDays / 4);
 
         const warehouseController = new WarehouseController();
+        const levelController = new LevelController();
 
         warehouseController.updateHoldingCost();
         warehouseController.updatePerishableProducts();
@@ -81,6 +82,8 @@ class SimulationController extends Controller
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 
+        levelController.checkGoalReached();
+        
         if (days % quarterYear == 0) {
             GAME.model.config.seasonCount++;
             GAME.model.config.season = GAME.model.config.seasons[GAME.model.config.seasonCount % 3];
