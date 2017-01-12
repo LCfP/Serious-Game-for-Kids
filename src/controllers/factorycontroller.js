@@ -55,6 +55,12 @@ class FactoryController extends OrderController
             }
         );
 
+        // reset all values to zero after order
+        $handle.on('reset', function (e) {
+            $("#factory-order-cost").html(0);
+            $("#factory-order-capacity").html(0);
+        });
+
     }
 
     /**

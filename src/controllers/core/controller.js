@@ -87,7 +87,6 @@ class Controller
         var callback = function (view)
         {
             var template = Mustache.render(view, data);
-            Mustache.parse(template);
 
             if (append) {
                 $(anchor).append(template);
@@ -100,7 +99,6 @@ class Controller
 
         return [data, callback];
     }
-
     /**
      * Updates the current amount of money. Note that amount is added to GAME.model.config.money,
      * so input negative amount to subtract!
@@ -114,3 +112,9 @@ class Controller
         GAME.model.config.money = GAME.model.config.money + parseFloat(amount);
         $("#money").html(GAME.model.config.money.toFixed(2));
     }
+
+    _updateMaxSimultaneousOrder(amount)
+    {
+        GAME.model.config._updateMaxSimultaneousOrder = GAME.model.config.money + amount;
+    }
+}
