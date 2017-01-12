@@ -1,13 +1,5 @@
 class HelpController extends Controller
 {
-    static startIntroTour()
-    {
-        if (!Cookies.get('hasVisited')) {
-            HelpController.startNavbarTour(true);
-            Cookies.set('hasVisited', true, {expires: 7});
-        }
-    }
-
     static startNavbarTour(intro = false)
     {
         var trip = new Trip([

@@ -27,19 +27,17 @@ class FactoryController extends OrderController
 
         // form submission, creates an order
         $handle.submit(
-            function (e) {
+            (e) => {
                 e.preventDefault();
 
-                const controller = new FactoryController();
-
-                if (controller.factoryOrder($handle.serializeArray())) {
+                if (this.factoryOrder($handle.serializeArray())) {
                     $handle.trigger("reset");
                 }
             }
         );
 
         // reset all values to zero after order
-        $handle.on('reset', function (e) {
+        $handle.on('reset', function () {
             $("#factory-order-cost").html(0);
             $("#factory-order-capacity").html(0);
         });
