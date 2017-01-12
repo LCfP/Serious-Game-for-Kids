@@ -51,7 +51,7 @@ class WarehouseController extends Controller
 
     processFactoryOrder(order)
     {
-        const capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
+        const capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
 
         if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
             toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
