@@ -27,6 +27,16 @@
     </p>
 
     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown help-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-question-sign"></span> Help</a>
+            <ul class="dropdown-menu">
+                <li id="help-factory"><a href="#">{{#l}}Factory{{/l}}</a></li>
+                <li id="help-statusbar"><a href="#">{{#l}}Statusbar{{/l}}</a></li>
+                <li id="help-factory-orders"><a href="#">{{#l}}Factory Orders{{/l}}</a></li>
+                <li id="help-warehouse"><a href="#">{{#l}}Warehouse{{/l}}</a></li>
+                <li id="help-customers"><a href="#">{{#l}}Customers{{/l}}</a></li>
+            </ul>
+        </li>
         <li id="sidebar-right-toggle">
             <a>
                 <span class="glyphicon glyphicon-time"></span>
@@ -35,7 +45,7 @@
         </li>
     </ul>
 
-    <div class="nav navbar-nav navbar-right">
+    <div class="nav navbar-nav navbar-right statuses">
         <p class="navbar-text">
             <strong>{{#l}}Level{{/l}}</strong>
             <span id="level">{{ level }}</span>
