@@ -13,6 +13,15 @@
     }
   ],
 
+  "season": "Summer",
+  "yearDays": 364,
+  "seasons": [
+    "Summer",
+    "Autumn",
+    "Winter",
+    "Spring"
+  ],
+
   "iconPerAmountProductSize": 10,
 
   "maxSimultaneousOrders": 2,
@@ -24,12 +33,15 @@
 
   "addContainerCost": 1500,
   "holdingCostPerSize": 0.05,
+  "costExtraTruck": 100,
 
   "warehouseContainers": 3,
   "money": 10000,
   "satisfaction": 100,
 
   "penaltySendingCustomerAway": 0,
+
+  "level": 0,
 
   "toastr": {
     "closeButton": false,

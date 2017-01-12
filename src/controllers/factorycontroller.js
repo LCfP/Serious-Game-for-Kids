@@ -2,15 +2,20 @@ class FactoryController extends OrderController
 {
     view()
     {
+        const products = GAME.model.factory.groupByProductType();
+
         this._loadTemplate(
             "src/views/template/factory/factory.html",
             "#factory",
-            GAME.model.factory
+            Object.keys(products)
         ).done(() => {
             this.registerEvent();
+            this._setActiveTab();
 
             $("#order-transport-cost").html(GAME.model.config.orderTransportCost);
         });
+
+        this._factoryFormInputView(products);
     }
 
     /**
@@ -18,19 +23,30 @@ class FactoryController extends OrderController
      */
     registerEvent()
     {
+        const $handle = $("form[name=newFactoryOrder]");
+
         // form submission, creates an order
-        $("form[name=newFactoryOrder]").submit(
-            function (e) {
+        $handle.submit(
+            (e) => {
                 e.preventDefault();
 
-                let controller = new FactoryController();
-                if (controller.factoryOrder($(this).serializeArray())) {
-                    // after succesful order, reset form to default state.
-                    $(this).trigger("reset");
-                    $("form[name=newFactoryOrder] :input").trigger("change");
+                if (this.factoryOrder($handle.serializeArray())) {
+                    $handle.trigger("reset");
                 }
             }
         );
+
+        //adds an extra truck after cost validation
+        $("#buy-truck").click(() => {
+            if (GAME.model.config.money > GAME.model.config.costExtraTruck) {
+                this._updateMoney(-GAME.model.config.costExtraTruck);
+                GAME.model.config.maxSimultaneousOrders++;
+
+                toastr.success(Controller.l("You purchased an extra truck!"));
+            } else {
+                toastr.warning(Controller.l("You cannot afford an extra truck!"));
+            }
+        });
 
         // updates the information for the current order process
         $("form[name=newFactoryOrder] :input").change(
@@ -42,6 +58,12 @@ class FactoryController extends OrderController
                 $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
             }
         );
+
+        // reset all values to zero after order
+        $handle.on('reset', function () {
+            $("#factory-order-cost").html(0);
+            $("#factory-order-capacity").html(0);
+        });
     }
 
     /**
@@ -141,13 +163,55 @@ class FactoryController extends OrderController
         const orderCopy = new FactoryOrder(OrderController._copyOrder(order));
 
         // process order..
-        if (warehouseController.orderUpdateWarehouse(order)) {
+        if (warehouseController.processFactoryOrder(order)) {
             super.completeOrder(orderCopy);
         }
 
         // ..and update views
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
+    }
+
+    /**
+     * @private
+     */
+    _factoryFormInputView(products)
+    {
+        Object.keys(products).forEach(function (type) {
+            const data = {
+                products: products[type],
+                type: type
+            };
+
+            this._loadTemplate(
+                "src/views/template/factory/forminput.html",
+                "#" + type,
+                data,
+                true
+            ).done(() => {
+                // updates the information for the current order process
+                $("form[name=newFactoryOrder] :input").change(
+                    function (e) {
+                        let formValues = $("form[name=newFactoryOrder]").serializeArray();
+                        let products = OrderController._makeOrder(formValues);
+
+                        $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.stockValue(), 0));
+                        $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
+                    }
+                );
+            });
+        }, this);
+    }
+
+    /**
+     * @private
+     */
+    _setActiveTab()
+    {
+        const $handle = $("form[name=newFactoryOrder]");
+
+        $handle.find("li.text-capitalize").first().addClass("active");
+        $handle.find("div.tab-content :first-child").addClass("active");
     }
 
     /**

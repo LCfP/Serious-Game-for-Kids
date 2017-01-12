@@ -2,19 +2,52 @@ class Container extends StorageCore
 {
     /**
      * @param {Product} product - The product to be added.
-     * @throws Error when the product's shelf size exceeds Container capacity!
      *
      * @override
      */
     addItem(product)
     {
-        var availableCapacity = this.capacity - this.usedCapacity();
+        const availableCapacity = this.capacity - this.usedCapacity();
 
-        if (availableCapacity < product.shelfSize()) {
-            throw new Error("There is no more capacity in this " + this.name + "; cannot add " + product.name);
+        if (availableCapacity < product.values.size) {
+            return product.values.quantity;
         }
 
-        this.items.push(product);
+        const partialProduct = new Product(product.name, $.extend({}, product.values));
+        const addedQuantity = Math.min(
+            product.values.quantity,
+            parseInt(availableCapacity / product.values.size)
+        );
+
+        partialProduct.values.quantity = addedQuantity;
+        product.values.quantity = product.values.quantity - addedQuantity;
+
+        this.items.push(partialProduct);
+
+        return product.values.quantity;
+    }
+
+    /**
+     * @param {Product} product - the product to be removed.
+     *
+     * @override
+     */
+    removeItem(product)
+    {
+        this.items = this.items.filter(function (item) {
+            if (product.name != item.name) {
+                return item;
+            }
+
+            const removedQuantity = Math.min(product.values.quantity, item.values.quantity);
+
+            product.values.quantity -= removedQuantity;
+            item.values.quantity -= removedQuantity;
+
+            return item.values.quantity;
+        });
+
+        return product.values.quantity;
     }
 
     /**

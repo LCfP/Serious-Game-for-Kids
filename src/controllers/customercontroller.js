@@ -11,14 +11,6 @@ class CustomerController extends OrderController
 
     registerEvent(id)
     {
-        let closure = function (func) {
-            let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
-            let customerController = new CustomerController();
-
-            func(customer, customerController);
-            customerController._updateCustomerView();
-        };
-
         $("button[data-customer="+ id +"].customer-serve").click(function (e) {
             closure(function (customer, controller) {
                 if (controller.validateOrder(customer.order)) {
@@ -38,35 +30,42 @@ class CustomerController extends OrderController
 
             $(this).off(e);
         });
+
+        const closure = function (fn) {
+            let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
+            let customerController = new CustomerController();
+
+            fn(customer, customerController);
+            customerController._updateCustomerView();
+        };
     }
 
     generateOrder()
     {
-        let protoOrder = GAME.model.products.map(
+        const demandGenerator = new DemandController();
+        const protoOrder = GAME.model.products.map(
             prod => {
                 return {
                     name: prod.name,
-                    value: super.randomDemandGenerator(
-                        prod.demand.mean,
-                        prod.demand.variance
-                    )
+                    value: demandGenerator.randomDemandGenerator(prod.demand)
                 }
             }
         );
 
-        let products = OrderController._makeOrder(protoOrder);
+        if (protoOrder.some(prod => prod.value > 0)) {
+            const customer = new Customer(OrderController._makeOrder(protoOrder));
 
-        if (products.length) {
-            let customer = new Customer(products);
             GAME.model.customers.push(customer);
-
             this._updateOrderView(customer);
+
             toastr.info(Controller.l("New customer is waiting!"));
         }
     }
 
     /**
      * @augments OrderController.completeOrder
+     *
+     * @param {Customer} customer
      */
     completeOrder(customer)
     {
@@ -75,7 +74,7 @@ class CustomerController extends OrderController
         const warehouseController = new WarehouseController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
-        if (warehouseController.orderUpdateWarehouse(orderCopy)) {
+        if (warehouseController.processCustomerOrder(orderCopy)) {
             super.completeOrder(customer);
         }
 
@@ -87,7 +86,8 @@ class CustomerController extends OrderController
 
     /**
      * Removes customer from the customer array.
-     * @param customer
+     *
+     * @param {Customer} customer
      */
     sendAway(customer)
     {
@@ -103,6 +103,8 @@ class CustomerController extends OrderController
     /**
      * Validates order if quantity in warehouse for every product is
      * larger than in order.
+     *
+     * @return {boolean}
      */
     validateOrder(order)
     {

@@ -29,24 +29,6 @@ class WarehouseController extends Controller
     }
 
     /**
-     * Adds the contents of an order to the Warehouse.
-     *
-     * @param {OrderCore} order - The Order object.
-     */
-    orderUpdateWarehouse(order)
-    {
-        let cases = {
-            "FactoryOrder": this._processFactoryOrder,
-            "CustomerOrder": this._processCustomerOrder
-        };
-
-        if (cases.hasOwnProperty(order.constructor.name)) {
-            let func = $.proxy(cases[order.constructor.name], this);
-            return func(order);
-        }
-    }
-
-    /**
      * Helper method to refresh the containers.
      */
     updateContainerView()
@@ -67,75 +49,50 @@ class WarehouseController extends Controller
             .attr("aria-valuenow", GAME.model.warehouse.usedContainerCapacity(true));
     }
 
-    /**
-     * @private
-     */
-    _processFactoryOrder(order)
+    processFactoryOrder(order)
     {
-        let capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
+        const capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
 
         if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
             toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
             // TODO try to fit what fits? - context
         } else {
             // add products to the containers.
-            order.products.forEach((product) => this._processProduct(product));
-            toastr.info(Controller.l("Order has been processed and added to the warehouse!"));
-
-            return true;
+            return this._processOrder(order, "Order has been processed and added to the warehouse!");
         }
     }
 
-    /**
-     * @private
-     */
-    _processCustomerOrder(order)
+    processCustomerOrder(order)
     {
-        // TODO ugly :(
-        order.products.forEach(function (product) {
-            GAME.model.warehouse.items.map(function (container) {
-                return container.items.filter(function (item) {
-                    if (product.name != item.name) {
-                        return item;
-                    }
-
-                    let removedQuantity = Math.min(product.values.quantity, item.values.quantity);
-                    product.values.quantity -= removedQuantity;
-                    item.values.quantity -= removedQuantity;
-
-                    return item.values.quantity;
-                });
-            });
-        });
-
-        return true;
+        return this._processOrder(order, "Order has been processed and shipped to the customer!");
     }
 
     /**
      * @private
      */
-    _processProduct(product)
+    _processOrder(order, successMsg)
     {
-        for (let i = 0; i < GAME.model.warehouse.items.length; i++) {
-            let container = GAME.model.warehouse.items[i];
-            let availableCapacity = container.capacity - container.usedCapacity();
+        order.products.forEach(function (product) {
+            while (product.values.quantity) {
+                // see http://stackoverflow.com/a/2641374/4316405
+                GAME.model.warehouse.items.every(
+                    container => {
+                        const cases = {
+                            "FactoryOrder": container.addItem.bind(container),
+                            "CustomerOrder": container.removeItem.bind(container)
+                        };
 
-            // can fit at least one product!
-            if (availableCapacity >= product.values.size) {
-                let maxProducts = parseInt(availableCapacity / product.values.size);
-                let addedQuantity = Math.min(product.values.quantity, maxProducts);
+                        product.values.quantity = cases[order.constructor.name](product);
 
-                let partialProduct = new Product(product.name, $.extend({}, product.values));
-                partialProduct.values.quantity = addedQuantity;
-                container.addItem(partialProduct);
-
-                product.values.quantity = product.values.quantity - addedQuantity;
+                        return product.values.quantity;
+                    }
+                );
             }
+        });
 
-            // this product has been stored by now.
-            if (!product.values.quantity) {
-                break;
-            }
+        if (order.products.every(product => product.values.quantity === 0)) {
+            toastr.info(Controller.l(successMsg));
+            return true;
         }
     }
 
@@ -248,8 +205,8 @@ class WarehouseController extends Controller
                     "quantity": Math.floor(size / item.values.size)
                 }
             }, this);
-        }, this).reduce(function(array, other){
-            return array.concat(other);
+        }, this).reduce(function(self, other){
+            return self.concat(other);
         }, []);
     }
 

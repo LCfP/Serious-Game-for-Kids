@@ -25,10 +25,18 @@ class InitGameController extends Controller
             () => {
                 this.registerEvent();
 
-                let sim = new SimulationController();
+                const sim = new SimulationController();
                 sim.registerEvent();
             }
         );
+
+        $(document).ready(function () {
+            // this may or may not work. TODO check this a bit better.
+            if (!Cookies.get('hasVisited')) {
+                HelpController.startNavbarTour(true);
+                Cookies.set('hasVisited', true, {expires: 7});
+            }
+        });
     }
 
     /**
@@ -70,13 +78,6 @@ class InitGameController extends Controller
 
     registerEvent()
     {
-        let sidebar_handler = function (e, anchor, width=250, css={opacity: .3}) {
-            e.stopPropagation();
-
-            $(anchor).width(width);
-            $(".wrapper").css(css);
-        };
-
         // left menu opening
         $("#sidebar-left-toggle").click(function (e) {
             sidebar_handler(e, "#sidebar-left");
@@ -93,6 +94,27 @@ class InitGameController extends Controller
             $(this).css({opacity: 1});
         });
 
+        // TODO make these events prettier
+        $("#help-factory").click(function () {
+            HelpController.startFactoryTour();
+        });
+
+        $("#help-statusbar").click(function () {
+            HelpController.startNavbarTour();
+        });
+
+        $("#help-factory-orders").click(function () {
+            HelpController.startFactoryOrdersTour();
+        });
+
+        $("#help-warehouse").click(function () {
+            HelpController.startWarehouseTour();
+        });
+
+        $("#help-customers").click(function () {
+            HelpController.startCustomersTour();
+        });
+
         // listens for changes in the language setting.
         $("#language").change(function () {
             $("#language option:selected").each(
@@ -105,6 +127,13 @@ class InitGameController extends Controller
                     );
                 }
             )
-        })
+        });
+
+        const sidebar_handler = function (e, anchor, width=250, css={opacity: .3}) {
+            e.stopPropagation();
+
+            $(anchor).width(width);
+            $(".wrapper").css(css);
+        };
     }
 }
