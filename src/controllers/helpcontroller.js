@@ -39,11 +39,7 @@ class HelpController extends Controller
             }
         ], {
             delay: 4000,
-            onEnd: function () {
-                if (intro) {
-                    HelpController.startFactoryTour(true);
-                }
-            }
+            onEnd: () => {if (intro) HelpController.startFactoryTour(true)}
         });
 
         trip.start();
@@ -85,11 +81,7 @@ class HelpController extends Controller
         ], {
             delay: -1,
             position: "e",
-            onEnd: function () {
-                if (intro) {
-                    HelpController.startFactoryOrdersTour(true);
-                }
-            }
+            onEnd: () => {if (intro) HelpController.startFactoryOrdersTour(true)}
         });
 
         trip.start();
@@ -126,11 +118,7 @@ class HelpController extends Controller
             }
         ], {
             delay: 5000,
-            onEnd: function () {
-                if (intro) {
-                    HelpController.startWarehouseTour(true);
-                }
-            }
+            onEnd: () => {if (intro) HelpController.startWarehouseTour(true)}
         });
 
         if (GAME.model.orders.length) {
@@ -169,11 +157,7 @@ class HelpController extends Controller
             }
         ], {
             delay: 5000,
-            onEnd: function () {
-                if (intro) {
-                    HelpController.startCustomersTour(true);
-                }
-            }
+            onEnd: () => {if (intro) HelpController.startCustomersTour(true)}
         });
 
         trip.start();
