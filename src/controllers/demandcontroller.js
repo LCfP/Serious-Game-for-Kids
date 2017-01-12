@@ -26,10 +26,7 @@ class DemandController extends Controller
     {
         const mean = demand.mean + this._seasonalComponent(demand.seasonality);
 
-        return Math.max(
-            this._normalDistribution(mean, demand.variance),
-            0
-        );
+        return Math.max(this._normalDistribution(mean, demand.variance), 0);
     }
 
     /**
@@ -45,6 +42,7 @@ class DemandController extends Controller
         }
 
         const days = Math.floor(this.hours / 24);
+        // Winter products peak in winter, summer products in summer. This correction ensures this happens.
         const bestSeason = seasonality.isWinterProduct ? Math.PI : 0;
 
         return seasonality.amplitude * Math.cos(2 * Math.PI * (days / this.yearDays) - bestSeason);

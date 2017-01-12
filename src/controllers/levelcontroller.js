@@ -2,18 +2,13 @@ class LevelController extends Controller
 {
     checkGoalReached()
     {
-        let currentLevelId = GAME.model.config.level;
-        let currentLevel = GAME.model.levels[currentLevelId];
-        let completed = false;
+        const currentLevel = GAME.model.levels[GAME.model.config.level];
+        const cases = {
+            "money": this.checkGoalMoney,
+            "satisfaction": this.checkGoalSatisfaction
+        };
 
-        // TODO Make this prettier, gets bloated when adding more types of levels
-        if (currentLevel.type == 'money') {
-            completed = this.checkGoalMoney(currentLevel);
-        } else if (currentLevel.type == 'satisfaction') {
-            completed = this.checkGoalSatisfaction(currentLevel);
-        }
-
-        if (completed) {
+        if ((cases[currentLevel.type].bind(this))(currentLevel)) {
             this.completeLevel(currentLevel);
         }
     }
