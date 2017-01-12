@@ -9,10 +9,7 @@ body {
     padding-top: 70px;
 }
 
-.wrapper {
-    /* initial state */
-    opacity: .3;
-}
+.wrapper {}
 
 .margin-bottom-0 {
     margin-bottom: 0;
@@ -55,9 +52,7 @@ body {
     transition: 0.5s;
     padding-top: 60px;
     background: white;
-
-    /* initial state */
-    width: 250px;
+    width: 0;
 }
 
 .sidebar-left {
@@ -68,9 +63,6 @@ body {
 .sidebar-right {
     right: 0;
     border-left: 1px solid #ccc;
-
-    /* initial state */
-    width: 0;
 }
 
 /*

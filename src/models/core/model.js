@@ -48,11 +48,13 @@ class Model
         // order for $.when: data, textStatus, jqXHR
         $.when(
             $.getJSON("src/assets/config.json"),
-            $.getJSON("src/assets/products.json")
+            $.getJSON("src/assets/products.json"),
+            $.getJSON("src/assets/levels.json")
         ).done(
-            (config, products) => {
+            (config, products, levels) => {
                 this.model.config = config[0];
                 this.model.products = products[0];
+                this.model.levels = levels[0];
 
                 // toastr settings, from the config
                 toastr.options = this.model.config.toastr;

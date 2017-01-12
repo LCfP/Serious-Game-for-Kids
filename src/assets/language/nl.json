@@ -8,6 +8,7 @@
   "Order": "Bestelling",
 
   "Money": "Geld",
+  "money": "geld",
   "Price": "Bedrag",
   "Select language": "Selecteer een taal",
 
@@ -51,6 +52,9 @@
   "added": "units toegevoegd",
   "Order has arrived": "Bestelling is aangekomen",
 
+  "Statusbar": "Statusbalk",
+  "Factory Orders": "Bestelling in fabriek",
+
   "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
   "Order has been processed and added to the warehouse!": "De bestelling is verwerkt en in het magazijn geplaatst!",
   "Order has been processed and shipped to the customer!": "De bestelling is verwerkt en aan de klant geleverd!",
@@ -66,9 +70,43 @@
   "There are no racks yet in this warehouse!": "Er zijn nog geen rekken in dit magazijn!",
   "There are no customers yet!": "Er zijn nog geen klanten!",
 
+
   "It is now": "Het is nu",
   "Winter": "Winter",
   "Summer": "Zomer",
   "Spring": "Lente",
-  "Autumn": "Herfst"
+  "Autumn": "Herfst",
+
+  "New customer is waiting!": "Er is een nieuwe klant binnengekomen!",
+
+  "completed": "voltooid",
+  "Next: Reach": "Volgende: Bereik",
+  "with value": "met waarde",
+
+  "satisfaction": "tevredenheid",
+
+  "This is the factory, the place where all of your products are made.": "Dit is de fabriek. Hier worden al je producten gemaakt.",
+  "You can order specific amounts of each product. Try to add a product.": "Je kunt hier ieder een specifiek aantal bestellen. Probeer eens iets toe te voegen.",
+  "Keep an eye on this info-box. It holds relevant information for the order you are placing. You need to have enough money (currently you have": "Houd dit goed in de gaten. Hier staat belangrijke informatie over de bestelling die je gaat plaatsen. Je hebt genoeg geld nodig (je hebt momenteel",
+  "and the order has to fit on the truck (maximum capacity is": "en de bestelling moet op de truck passen (maximum capaciteit is",
+  "If everything is satisfied you can place the order by clicking on the green button.": "Als je aan alle regels hebt voldaan, kun je de bestelling plaatsen door op de groene knop te drukken.",
+
+  "This button opens the menu. You can change settings there.": "Deze knop open het menu. Je kunt hier de instellingen veranderen.",
+  "With these buttons you can start and stop the simulation of the game. Try to start the game.": "Met deze knoppen start en pauzeer je het spel. Probeer het spel te starten.",
+  "With this button you open the sidebar which gives you an overview of everything that happened in the past.": "Met deze knop open je het menu aan de zijkant. Dit geeft je een overzicht van alles dat er is gebeurd.",
+  "Don't know how some part of <br> the game works? Click this <br> button to get more info.": "Weet je niet hoe sommige <br> onderdelen van het spel werken? Klik <br> op deze knop om meer info te krijgen.",
+  "These represent your current status in the game.": "Hier kun je je huidige status in het spel zien.",
+
+  "This is where you can see all orders currently in transport to your warehouse.": "Hier zie je alle bestellingen die onderweg zijn naar het magazijn.",
+  "The order will arrive in the warehouse, when the progress bar is fully green. Do make sure you clicked the 'play' button in the statusbar.": "Je bestelling wordt in het magazijn geplaatst als de groene balk vol is. Zorg ervoor dat je op de play-knop in de statusbar hebt geklikt.",
+  "Make sure you have placed an order at the factory.": "Zorg ervoor dat je een bestelling hebt geplaatst.",
+
+  "Here are your containers where you can store incoming products from the factory.": "Hier zie je de containers waar je producten kunt opslaan die uit de fabriek komen.",
+  "Here you can see the capacity that is used.": "Hier staat de capaciteit die je momenteel gebruikt.",
+  "The colored circle around the product changes as the product perishes. When the product turns red, it will be removed from the warehouse within a few days.": "De gekleurde cirkels rondom de producten veranderen van kleur als het product minder lang houdbaar wordt. Als de cirkel rood wordt, wordt het binnen enkele dagen uit het magazijn verwijderd.",
+  "You can purchase another container by clicking on this button.": "Je kunt een extra container kopen door op deze knop te drukken.",
+
+  "This list displays the customers you can serve.": "In deze lijst staan al je klanten die je kunt bedienen.",
+  "This is a single customer. You can send <br> him away if you don't want to serve him. Or click serve customer <br>to give the customer the products he wants. Of course <br> you need to have them in stock.": "Dit is een klant. Je kunt hem wegsturen <br> als je hem niet wilt bedienen. Of klik <br> op 'bedien klant' om de klant te bedienen met <br> de producten die hij wil. Natuurlijk <br> moet je de producten op voorraad hebben.",
+  "There has to be at least one customer. Start the game by pressing the 'play' button. Customers will the pop up automatically.": "Er moet ten minste één klant zijn. Start het spel door op de play-knop te klikken. Klanten verschijnen dan automatisch."
 }
