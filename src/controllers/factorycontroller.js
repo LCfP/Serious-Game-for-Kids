@@ -36,6 +36,29 @@ class FactoryController extends OrderController
             }
         );
 
+        //adds an extra truck after cost validation
+        $("#buy-truck").click(() => {
+            if (GAME.model.config.money > GAME.model.config.costExtraTruck) {
+                this._updateMoney(-GAME.model.config.costExtraTruck);
+                GAME.model.config.maxSimultaneousOrders++;
+
+                toastr.success(Controller.l("You purchased an extra truck!"));
+            } else {
+                toastr.warning(Controller.l("You cannot afford an extra truck!"));
+            }
+        });
+
+        // updates the information for the current order process
+        $("form[name=newFactoryOrder] :input").change(
+            function (e) {
+                let formValues = $("form[name=newFactoryOrder]").serializeArray();
+                let products = OrderController._makeOrder(formValues);
+
+                $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.stockValue(), 0));
+                $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
+            }
+        );
+
         // reset all values to zero after order
         $handle.on('reset', function () {
             $("#factory-order-cost").html(0);

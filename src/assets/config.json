@@ -33,6 +33,7 @@
 
   "addContainerCost": 1500,
   "holdingCostPerSize": 0.05,
+  "costExtraTruck": 100,
 
   "warehouseContainers": 3,
   "money": 10000,
