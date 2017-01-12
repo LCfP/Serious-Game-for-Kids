@@ -1,11 +1,59 @@
 class HelpController extends Controller
 {
-    startIntroTour()
+    static startIntroTour()
     {
-        //
+        if (Cookies.get('firstVisit') != 'no') {
+            HelpController.startNavbarTour(true);
+            Cookies.set('firstVisit', 'no', {expires: 7});
+        }
     }
 
-    startFactoryTour()
+    static startNavbarTour(intro = false)
+    {
+        var trip = new Trip([
+            {
+                sel: $("#sidebar-left-toggle"),
+                content: Controller.l("This button opens the menu. You can change settings there."),
+                position: "e",
+            },
+            {
+                sel: $(".timer").parent(),
+                content: Controller.l("With these buttons you can start and stop the simulation of the game. Try to start the game."),
+                position: "e",
+                delay: -1,
+            },
+            {
+                sel: $("#sidebar-right-toggle"),
+                content: Controller.l("With this button you open the sidebar which gives you an overview of everything that happened in the past."),
+                position: "w",
+            },
+            {
+                sel: $(".help-menu"),
+                content: Controller.l("Don't know how some part of <br> the game works? Click this <br> button to get more info."),
+                position: "s"
+            },
+            {
+                sel: $(".statuses"),
+                content: Controller.l("These represent your current status in the game."),
+                position: "s"
+            }
+        ], {
+            delay: 4000,
+            onEnd: function () {
+                if (intro) {
+                    HelpController.startFactoryTour(true);
+                }
+            }
+        });
+
+        trip.start();
+
+        $('.timer').click(function () {
+            trip.next();
+        });
+    }
+
+    static startFactoryTour(intro = false)
     {
         var trip = new Trip([
             {
@@ -37,6 +85,11 @@ class HelpController extends Controller
         ], {
             delay: -1,
             position: "e",
+            onEnd: function () {
+                if (intro) {
+                    HelpController.startFactoryOrdersTour(true);
+                }
+            }
         });
 
         trip.start();
@@ -56,42 +109,7 @@ class HelpController extends Controller
         });
     }
 
-    startNavbarTour()
-    {
-        var trip = new Trip([
-            {
-                sel: $("#sidebar-left-toggle"),
-                content: Controller.l("This button opens the menu. You can change settings there."),
-                position: "e",
-            },
-            {
-                sel: $(".timer").parent(),
-                content: Controller.l("With these buttons you can start and stop the simulation of the game."),
-                position: "e",
-            },
-            {
-                sel: $("#sidebar-right-toggle"),
-                content: Controller.l("With this button you open the sidebar which gives you an overview of everything that happened in the past."),
-                position: "w",
-            },
-            {
-                sel: $(".help-menu"),
-                content: Controller.l("Don't know how some part of <br> the game works? Click this <br> button to get more info."),
-                position: "s"
-            },
-            {
-                sel: $(".statuses"),
-                content: Controller.l("These represent your current status in the game."),
-                position: "s"
-            }
-        ], {
-            delay: 4000,
-        });
-
-        trip.start();
-    }
-
-    startFactoryOrdersTour()
+    static startFactoryOrdersTour(intro = false)
     {
         var trip = new Trip([
             {
@@ -108,6 +126,11 @@ class HelpController extends Controller
             }
         ], {
             delay: 5000,
+            onEnd: function () {
+                if (intro) {
+                    HelpController.startWarehouseTour(true);
+                }
+            }
         });
 
         if (GAME.model.orders.length) {
@@ -117,7 +140,7 @@ class HelpController extends Controller
         }
     }
 
-    startWarehouseTour()
+    static startWarehouseTour(intro = false)
     {
         var trip = new Trip([
             {
@@ -146,6 +169,11 @@ class HelpController extends Controller
             }
         ], {
             delay: 5000,
+            onEnd: function () {
+                if (intro) {
+                    HelpController.startCustomersTour(true);
+                }
+            }
         });
 
         trip.start();
@@ -153,7 +181,7 @@ class HelpController extends Controller
         $("#purchase-container").css("background-color", "#5cb85c");
     }
 
-    startCustomersTour()
+    static startCustomersTour()
     {
         var trip = new Trip([
             {

@@ -29,6 +29,10 @@ class InitGameController extends Controller
                 sim.registerEvent();
             }
         );
+
+        $(document).ready(function () {
+            HelpController.startIntroTour();
+        });
     }
 
     /**
@@ -95,28 +99,23 @@ class InitGameController extends Controller
 
         // TODO make these events prettier
         $("#help-factory").click(function () {
-            const helpController = new HelpController();
-            helpController.startFactoryTour();
+            HelpController.startFactoryTour();
         });
 
         $("#help-statusbar").click(function () {
-            const helpController = new HelpController();
-            helpController.startNavbarTour();
+            HelpController.startNavbarTour();
         });
 
         $("#help-factory-orders").click(function () {
-            const helpController = new HelpController();
-            helpController.startFactoryOrdersTour();
+            HelpController.startFactoryOrdersTour();
         });
 
         $("#help-warehouse").click(function () {
-            const helpController = new HelpController();
-            helpController.startWarehouseTour();
+            HelpController.startWarehouseTour();
         });
 
         $("#help-customers").click(function () {
-            const helpController = new HelpController();
-            helpController.startCustomersTour();
+            HelpController.startCustomersTour();
         });
 
         // listens for changes in the language setting.
