@@ -31,7 +31,10 @@ class InitGameController extends Controller
         );
 
         $(document).ready(function () {
-            HelpController.startIntroTour();
+            if (!Cookies.get('hasVisited')) {
+                HelpController.startNavbarTour(true);
+                Cookies.set('hasVisited', true, {expires: 7});
+            }
         });
     }
 
