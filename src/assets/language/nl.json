@@ -8,6 +8,7 @@
   "Order": "Bestelling",
 
   "Money": "Geld",
+  "money": "geld",
   "Price": "Bedrag",
   "Select language": "Selecteer een taal",
 
@@ -21,8 +22,14 @@
 
   "Banana": "Banaan",
   "Apple": "Appel",
-  "T-shirt": "T-shirt",
+  "Carrot": "Wortel",
+  "Bread": "Brood",
+  "Ice cream": "IJsjes",
+
   "Shoes": "Schoenen",
+  "Socks": "Sokken",
+  "Short": "Korte broek",
+  "Cap": "Pet",
 
   "Place order": "Plaats bestelling",
   "Order has been placed!": "Bestelling is geplaatst!",
@@ -49,6 +56,8 @@
 
   "There is no room left for this order in the warehouse!": "Er is geen ruimte in het magazijn voor deze bestelling!",
   "Order has been processed and added to the warehouse!": "De bestelling is verwerkt en in het magazijn geplaatst!",
+  "Order has been processed and shipped to the customer!": "De bestelling is verwerkt en aan de klant geleverd!",
+
   "Day": "Dag",
   "hour": "uur",
 
@@ -58,5 +67,11 @@
   "Send away": "Stuur weg",
 
   "There are no racks yet in this warehouse!": "Er zijn nog geen rekken in dit magazijn!",
-  "There are no customers yet!": "Er zijn nog geen klanten!"
+  "There are no customers yet!": "Er zijn nog geen klanten!",
+
+  "completed": "voltooid",
+  "Next: Reach": "Volgende: Bereik",
+  "with value": "met waarde",
+
+  "satisfaction": "tevredenheid"
 }

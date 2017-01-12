@@ -10,30 +10,26 @@
     </div>
     <div class="panel-body">
         <form name="newFactoryOrder" action="">
-            {{ #products }}
-                <div class="padding-5">
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon" style="padding: 8px 16px;">
-                            <img src="src/assets/img/{{ values.icon }}"
-                                 alt="{{#l}}{{ name }}{{/l}}"
-                                 title="{{#l}}{{ name }}{{/l}}"
-                                 height="28"
-                            />
-                            <label class="sr-only" for="{{ name }}">{{#l}}{{ name }}{{/l}}</label>
-                        </span>
-                        <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" value="0"/>
-                    </div>
-                    <div class="text-center">
-                        <small>{{#l}}Unit price for this item is{{/l}} {{ values.price }}, {{#l}}and unit size is{{/l}} {{values.size }}.</small>
-                    </div>
-                </div>
-            {{ /products }}
+            <ul class="nav nav-tabs">
+                {{ #. }}
+                    <li class="text-capitalize">
+                        <a data-toggle="tab" href="#{{ . }}">{{#l}}{{ . }}{{/l}}</a>
+                    </li>
+                {{ /. }}
+            </ul>
+            <div class="tab-content">
+                {{ #. }}
+                    <div id="{{ . }}" class="tab-pane fade in"></div>
+                {{ /.}}
+            </div>
             <button type="submit" class="btn btn-success pull-right margin-top-10">
                 {{#l}}Place order{{/l}}
             </button>
         </form>
+    </div>
+    <div class="panel-footer">
         <div class="btn-group" role="group">
-            <button id="buy-truck" type="click" class="btn btn-success pull-right margin-top-10">Buy truck</button>
+            <button id="buy-truck" type="button" class="btn btn-success pull-right margin-top-10">Buy truck</button>
         </div>
     </div>
 </div>

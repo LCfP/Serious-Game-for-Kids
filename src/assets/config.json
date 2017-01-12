@@ -13,6 +13,16 @@
     }
   ],
 
+  "season": "Summer",
+  "seasonCount": 0,
+  "yearDays": 364,
+  "seasons": [
+    "Summer",
+    "Autumn",
+    "Winter",
+    "Spring"
+  ],
+
   "iconPerAmountProductSize": 10,
 
   "maxSimultaneousOrders": 2,
@@ -31,6 +41,8 @@
   "satisfaction": 100,
 
   "penaltySendingCustomerAway": 0,
+
+  "level": 0,
 
   "toastr": {
     "closeButton": false,
