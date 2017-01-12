@@ -31,6 +31,7 @@ class InitGameController extends Controller
         );
 
         $(document).ready(function () {
+            // this may or may not work. TODO check this a bit better.
             if (!Cookies.get('hasVisited')) {
                 HelpController.startNavbarTour(true);
                 Cookies.set('hasVisited', true, {expires: 7});
