@@ -71,7 +71,7 @@ class CustomerController extends OrderController
     {
         this._updateMoney(customer.order.orderCost());
 
-        this._updateSatisfaction(customer.order.initDutation);
+        this._updateSatisfaction(customer.order);
 
         const warehouseController = new WarehouseController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));

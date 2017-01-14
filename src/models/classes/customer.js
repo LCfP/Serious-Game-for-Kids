@@ -9,6 +9,7 @@
     {
         this.name = this.generateName();
         this.order = new CustomerOrder(products);
+        this.timestamp = GAME.model.config.hour;
 
         this.id = Math.max(...GAME.model.customers.map(customer => customer.id + 1), 0);
     }
