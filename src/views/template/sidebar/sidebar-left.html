@@ -1,0 +1,15 @@
+<div class="col-md-12">
+    <h3>{{#l}}Menu{{/l}}</h2>
+    <form name="language">
+        <div class="form-group">
+            <label for="language">{{#l}}Select language{{/l}}</label>
+            <select class="form-control" id="language" name="language">
+                {{ #languages }}
+                <option value="{{ iso }}" {{ #active }} selected {{ /active }}>
+                {{ name }}
+                </option>
+                {{ /languages}}
+            </select>
+        </div>
+    </form>
+</div>

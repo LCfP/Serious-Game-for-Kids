@@ -1,0 +1,8 @@
+{
+  "presets": ["env", "babili"],
+
+  "comments": false,
+  "ignore": [
+    "library"
+  ]
+}

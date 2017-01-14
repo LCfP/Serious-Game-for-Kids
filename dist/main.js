@@ -1,0 +1,1 @@
+"use strict";$(document).ready(function(){window.GAME={model:{},view:{}},new InitGameModel});function initGame(){var a=new InitGameController;a.view()}

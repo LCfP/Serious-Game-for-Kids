@@ -1,0 +1,30 @@
+<div class="panel panel-default factory">
+    <div class="panel-heading">
+        {{#l}}Factory{{/l}}
+    </div>
+    <div class="alert alert-info no-border-radius margin-bottom-0">
+        {{#l}}Your current order will cost you{{/l}} <strong id="factory-order-cost">0</strong>,
+        {{#l}}and use{{/l}} <strong id="factory-order-capacity">0</strong> {{#l}}capacity{{/l}}!
+        {{#l}}Furthermore, a shipping charge of{{/l}} <strong id="order-transport-cost"></strong>
+        {{#l}}is always incurred, regardless of order size.{{/l}}
+    </div>
+    <div class="panel-body">
+        <form name="newFactoryOrder" action="">
+            <ul class="nav nav-tabs">
+                {{ #. }}
+                    <li class="text-capitalize">
+                        <a data-toggle="tab" href="#{{ . }}">{{#l}}{{ . }}{{/l}}</a>
+                    </li>
+                {{ /. }}
+            </ul>
+            <div class="tab-content">
+                {{ #. }}
+                    <div id="{{ . }}" class="tab-pane fade in"></div>
+                {{ /.}}
+            </div>
+            <button type="submit" class="btn btn-success pull-right margin-top-10">
+                {{#l}}Place order{{/l}}
+            </button>
+        </form>
+    </div>
+</div>
