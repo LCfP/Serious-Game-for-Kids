@@ -114,4 +114,10 @@ class Controller
         GAME.model.config.money = GAME.model.config.money + parseFloat(amount);
         $("#money").html(GAME.model.config.money.toFixed(2));
     }
+
+    _updateSatisfaction(amount)
+    {
+        GAME.model.config.satisfaction -= amount;
+        $("#satisfaction").html(GAME.model.config.satisfaction.toFixed(2));
+    }
 }
