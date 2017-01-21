@@ -59,5 +59,9 @@
     "hideEasing": "linear",
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
+  },
+
+  "swal": {
+    "timer": 3000
   }
 }
