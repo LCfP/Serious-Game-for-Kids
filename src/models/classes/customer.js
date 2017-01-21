@@ -1,4 +1,4 @@
- class Customer
+class Customer
  {
      /**
       * @constructor Represents a Customer
