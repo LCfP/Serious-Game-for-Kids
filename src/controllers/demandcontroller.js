@@ -64,6 +64,6 @@ class DemandController extends Controller
 
         const stdNormal =  Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 
-        return stdNormal * variance + mean;
+        return stdNormal * Math.sqrt(variance) + mean;
     }
 }
