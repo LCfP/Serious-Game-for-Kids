@@ -1,7 +1,7 @@
 class FactoryOrder extends OrderCore
 {
     /**
-     * @param {Array.Product} products
+     * @param {Product[]} products
      * @param {int} id
      * @param {int} transPortDuration
      */

@@ -40,7 +40,7 @@ class CustomerController extends OrderController
         };
     }
 
-    generateOrder()
+    generateOrder(isStructural = false)
     {
         const demandGenerator = new DemandController();
         const protoOrder = GAME.model.base.products.map(
@@ -54,8 +54,10 @@ class CustomerController extends OrderController
 
         if (protoOrder.some(prod => prod.value > 0)) {
             const customer = new Customer(
+                GAME.model,
                 OrderController._makeOrder(protoOrder),
-                Math.max(...GAME.model.customers.map(customer => customer.id + 1), 0)
+                Math.max(...GAME.model.customers.map(customer => customer.id + 1), 0),
+                isStructural
             );
 
             GAME.model.customers.push(customer);

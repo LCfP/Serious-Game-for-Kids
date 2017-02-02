@@ -49,10 +49,8 @@ class Model
         // async AJAX calls to get these JSON files
         // order for $.when: data, textStatus, jqXHR
         $.when(
-            $.getJSON("src/assets/config.json"),
-            $.getJSON("src/assets/products.json"),
-            $.getJSON("src/assets/levels.json"),
-            $.getJSON("src/assets/customers.json")
+            ...["config", "products", "levels", "customers"]
+                .map(loc => $.getJSON("src/assets/" + loc + ".json"))
         ).done(
             (config, products, levels, customers) => {
                 this.model.config = config[0];
