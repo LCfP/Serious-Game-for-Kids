@@ -7,6 +7,8 @@ class Model
     {
         this.model = {};
 
+        this.model.base = {};
+
         // factory orders
         this.model.orders = [];
 
@@ -49,12 +51,15 @@ class Model
         $.when(
             $.getJSON("src/assets/config.json"),
             $.getJSON("src/assets/products.json"),
-            $.getJSON("src/assets/levels.json")
+            $.getJSON("src/assets/levels.json"),
+            $.getJSON("src/assets/customers.json")
         ).done(
-            (config, products, levels) => {
+            (config, products, levels, customers) => {
                 this.model.config = config[0];
-                this.model.products = products[0];
                 this.model.levels = levels[0];
+
+                this.model.base.products = products[0];
+                this.model.base.customers = customers[0];
 
                 // toastr settings, from the config
                 toastr.options = this.model.config.toastr;

@@ -1,9 +1,13 @@
 class FactoryOrder extends OrderCore
 {
-    constructor(products)
+    /**
+     * @param {Array.Product} products
+     * @param {int} id
+     * @param {int} transPortDuration
+     */
+    constructor(products, id, transPortDuration)
     {
-        super(products, 24 * GAME.model.config.orderTransportDurationDays);
-
-        this.id = Math.max(...GAME.model.orders.map(order => order.id + 1), 0);
+        super(products, 24 * transPortDuration);
+        this.id = id;
     }
 }

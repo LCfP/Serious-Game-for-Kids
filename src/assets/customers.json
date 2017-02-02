@@ -1,0 +1,18 @@
+{
+  "structural": [
+    {
+      "name": "ECOMart",
+      "type": "food"
+    }
+  ],
+  "random": {
+    "nl": [
+      "Henk",
+      "Ingrid"
+    ],
+    "en": [
+      "Harry",
+      "Sally"
+    ]
+  }
+}

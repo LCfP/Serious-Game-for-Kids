@@ -20,12 +20,12 @@ class WarehouseController extends Controller
      */
     updateHoldingCost()
     {
-        let cost = GAME.model.products.reduce(function (sum, product) {
+        const cost = GAME.model.base.products.reduce(function (sum, product) {
             let quantity = GAME.model.warehouse.getItemQuantity(product);
             return sum + quantity * product.values.size * GAME.model.config.holdingCostPerSize;
         }, 0);
 
-        this._updateMoney(-cost);
+        MoneyController.updateMoney(-cost);
     }
 
     /**
@@ -158,7 +158,7 @@ class WarehouseController extends Controller
                         )
                     );
 
-                    this._updateMoney(-GAME.model.config.addContainerCost);
+                    MoneyController.updateMoney(-GAME.model.config.addContainerCost);
                     this.updateContainerView();
                     this.updateCapacityView();
 

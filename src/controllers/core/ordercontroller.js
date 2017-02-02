@@ -29,7 +29,7 @@ class OrderController extends Controller
                 return false;
             }
 
-            const protoProduct = GAME.model.products.filter((prod) => prod.name == ordered.name).shift();
+            const protoProduct = GAME.model.base.products.filter((prod) => prod.name == ordered.name).shift();
             let product = new Product(ordered.name, $.extend({}, protoProduct.values));
 
             product.values.quantity = value;
