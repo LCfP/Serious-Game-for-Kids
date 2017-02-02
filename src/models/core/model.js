@@ -49,12 +49,13 @@ class Model
         // async AJAX calls to get these JSON files
         // order for $.when: data, textStatus, jqXHR
         $.when(
-            ...["config", "products", "levels", "customers"]
+            ...["config", "products", "levels", "customers", "trips"]
                 .map(loc => $.getJSON("src/assets/" + loc + ".json"))
         ).done(
-            (config, products, levels, customers) => {
+            (config, products, levels, customers, trips) => {
                 this.model.config = config[0];
                 this.model.levels = levels[0];
+                this.model.trips = trips[0];
 
                 this.model.base.products = products[0];
                 this.model.base.customers = customers[0];

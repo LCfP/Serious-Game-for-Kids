@@ -78,6 +78,11 @@ class InitGameController extends Controller
 
     registerEvent()
     {
+        // Handles the tours
+        GAME.model.trips.handlers.forEach(
+            handler => this._tripEventHelper(handler)
+        );
+
         // left menu opening
         $("#sidebar-left-toggle").click(function (e) {
             sidebar_handler(e, "#sidebar-left");
@@ -92,27 +97,6 @@ class InitGameController extends Controller
         $(".wrapper").click(function () {
             $(".sidebar").width(0);
             $(this).css({opacity: 1});
-        });
-
-        // TODO make these events prettier
-        $("#help-factory").click(function () {
-            HelpController.startFactoryTour();
-        });
-
-        $("#help-statusbar").click(function () {
-            HelpController.startNavbarTour();
-        });
-
-        $("#help-factory-orders").click(function () {
-            HelpController.startFactoryOrdersTour();
-        });
-
-        $("#help-warehouse").click(function () {
-            HelpController.startWarehouseTour();
-        });
-
-        $("#help-customers").click(function () {
-            HelpController.startCustomersTour();
         });
 
         // listens for changes in the language setting.
@@ -135,5 +119,20 @@ class InitGameController extends Controller
             $(anchor).width(width);
             $(".wrapper").css(css);
         };
+    }
+
+    /**
+     * @private
+     */
+    _tripEventHelper(handler)
+    {
+        const helpController = new HelpController();
+
+        $(handler.anchor).click(function () {
+            helpController.makeTrip(
+                handler.tour,
+                handler.hasOwnProperty("props") ? handler.props : {}
+            );
+        });
     }
 }
