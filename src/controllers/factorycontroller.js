@@ -39,7 +39,7 @@ class FactoryController extends OrderController
         //adds an extra truck after cost validation
         $("#buy-truck").click(() => {
             if (GAME.model.config.money > GAME.model.config.costExtraTruck) {
-                this._updateMoney(-GAME.model.config.costExtraTruck);
+                MoneyController.updateMoney(-GAME.model.config.costExtraTruck);
                 GAME.model.config.maxSimultaneousOrders++;
 
                 toastr.success(Controller.l("You purchased an extra truck!"));
@@ -74,12 +74,16 @@ class FactoryController extends OrderController
     factoryOrder(formValues)
     {
         let products = OrderController._makeOrder(formValues);
-        let order = new FactoryOrder(products);
+        let order = new FactoryOrder(
+            products,
+            Math.max(...GAME.model.orders.map(order => order.id + 1), 0),
+            GAME.model.config.orderTransportDurationDays
+        );
 
         if (this.validateOrder(order)) {
             GAME.model.orders.push(order);
 
-            this._updateMoney(-order.orderCost() - GAME.model.config.orderTransportCost);
+            MoneyController.updateMoney(-order.orderCost() - GAME.model.config.orderTransportCost);
             this._updateOrderView(order);
 
             toastr.success(Controller.l("Order has been placed!"));
