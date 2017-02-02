@@ -22,11 +22,11 @@ class Customer
 
             this.customer = {
                 name: this._generateName(),
-                type: types[Math.floor(Math.random() * types.length)]
+                type: [types[Math.floor(Math.random() * types.length)]]
             }
         }
 
-        products = products.filter(prod => prod.values.type == this.customer.type);
+        products = products.filter(prod => this.customer.type.indexOf(prod.values.type) > -1);
         this.order = new CustomerOrder(products);
     }
 

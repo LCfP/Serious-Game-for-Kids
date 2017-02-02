@@ -2,7 +2,7 @@
   "structural": [
     {
       "name": "ECOMart",
-      "type": "food"
+      "type": ["food"]
     }
   ],
   "random": {
