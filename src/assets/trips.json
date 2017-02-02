@@ -84,7 +84,7 @@
         "anchor": ".factory button[type=submit]",
         "content": "If everything is satisfied you can place the order by clicking on the green button.",
         "expose": true,
-        "position": "e",
+        "position": "e"
       }
     ],
     "Warehouse": [
