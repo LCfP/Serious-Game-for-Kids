@@ -2,14 +2,14 @@ class LevelController extends Controller
 {
     checkGoalReached()
     {
-        if (!this.hasNextLevel()) {
+        if (!this._hasNextLevel()) {
             return;
         }
 
         const currentLevel = GAME.model.levels[GAME.model.config.level];
         const cases = {
-            "money": this.checkGoalMoney,
-            "satisfaction": this.checkGoalSatisfaction
+            "money": this._checkGoalMoney,
+            "satisfaction": this._checkGoalSatisfaction
         };
 
         if ((cases[currentLevel.type].bind(this))(currentLevel)) {
@@ -22,11 +22,14 @@ class LevelController extends Controller
     {
         let text = Controller.l("You have reached the final level!");
 
-        if (this.hasNextLevel()) {
+        if (this._hasNextLevel()) {
             const nextLevel = GAME.model.levels[GAME.model.config.level];
 
             text = [
-                Controller.l("Next: Reach"), Controller.l(nextLevel.type), Controller.l("with value"), nextLevel.goal
+                Controller.l("Next: Reach"),
+                Controller.l(nextLevel.type),
+                Controller.l("with value"),
+                nextLevel.goal
             ].join(" ") + ".";
         }
 
@@ -44,7 +47,7 @@ class LevelController extends Controller
     /**
      * @private
      */
-    hasNextLevel()
+    _hasNextLevel()
     {
         return GAME.model.config.level < GAME.model.levels.length;
     }
@@ -52,7 +55,7 @@ class LevelController extends Controller
     /**
      * @private
      */
-    checkGoalMoney(level)
+    _checkGoalMoney(level)
     {
         return GAME.model.config.money >= level.goal;
     }
@@ -60,7 +63,7 @@ class LevelController extends Controller
     /**
      * @private
      */
-    checkGoalSatisfaction(level)
+    _checkGoalSatisfaction(level)
     {
         return GAME.model.config.satisfaction >= level.goal;
     }

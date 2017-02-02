@@ -1,7 +1,9 @@
 <li class="list-group-item">
     <div class="panel panel-success margin-bottom-0">
         <div class="panel-heading">
-            {{#l}}{{ name }}{{/l}}
+            {{ #customer }}
+                {{ name }}
+            {{ /customer }}
             <span class="pull-right badge">
                 {{ #order }}
                     {{ orderCost }}
