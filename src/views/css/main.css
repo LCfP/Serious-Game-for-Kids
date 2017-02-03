@@ -23,6 +23,10 @@ body {
     margin-top: 10px;
 }
 
+.padding-left-right-15 {
+    padding: 0 15px;
+}
+
 .padding-5 {
     padding: 5px;
 }
