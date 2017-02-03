@@ -1,0 +1,145 @@
+{
+  "handlers": [
+    {
+      "anchor": "#help-factory",
+      "tour": "Factory",
+      "props": {
+        "delay": -1
+      }
+    },
+    {
+      "anchor": "#help-statusbar",
+      "tour": "StatusBar",
+      "props": {
+        "delay": 4000
+      }
+    },
+    {
+      "anchor": "#help-factory-orders",
+      "tour": "FactoryOrders"
+    },
+    {
+      "anchor": "#help-warehouse",
+      "tour": "Warehouse"
+    },
+    {
+      "anchor": "#help-customers",
+      "tour": "Customers",
+      "props": {
+        "delay": 6000
+      }
+    }
+  ],
+  "tours": {
+    "StatusBar": [
+      {
+        "anchor": "#sidebar-left-toggle",
+        "content": "This button opens the menu. You can change settings there.",
+        "position": "e"
+      },
+      {
+        "anchor": "#timer",
+        "content": "With these buttons you can start and stop the simulation of the game. Try to start the game.",
+        "position": "e",
+        "delay": -1
+      },
+      {
+        "anchor": "#sidebar-right-toggle",
+        "content": "With this button you open the sidebar which gives you an overview of everything that happened in the past.",
+        "position": "w"
+      },
+      {
+        "anchor": ".help-menu",
+        "content": "Don't know how some part of <br> the game works? Click this <br> button to get more info.",
+        "position": "s"
+      },
+      {
+        "anchor": ".statuses",
+        "content": "These represent your current status in the game.",
+        "position": "s"
+      }
+    ],
+    "Factory": [
+      {
+        "anchor": ".factory",
+        "content": "This is the factory, the place where all of your products are made.",
+        "expose": true,
+        "position": "e",
+        "delay": 3000
+      },
+      {
+        "anchor": ".factory .tab-content",
+        "content": "You can order specific amounts of each product. Try to add a product.",
+        "expose": true,
+        "position": "e"
+      },
+      {
+        "anchor": ".factory .alert",
+        "content": "Keep an eye on this info-box. It holds relevant information for the order you are placing.",
+        "expose": true,
+        "position": "e",
+        "delay": 8000
+      },
+      {
+        "anchor": ".factory button[type=submit]",
+        "content": "If everything is satisfied you can place the order by clicking on the green button.",
+        "expose": true,
+        "position": "e"
+      }
+    ],
+    "Warehouse": [
+      {
+        "anchor": "#warehouse .panel",
+        "content": "Here are your containers where you can store incoming products from the factory.",
+        "expose": true,
+        "position": "n"
+      },
+      {
+        "anchor": "#warehouse .pull-right",
+        "content": "Here you can see the capacity that is used.",
+        "expose": true,
+        "position": "s"
+      },
+      {
+        "anchor": "#containers .panel :first",
+        "content": "The colored circle around the product changes as the product perishes. When the product turns red, it will be removed from the warehouse within a few days.",
+        "expose": true,
+        "position": "e"
+      },
+      {
+        "anchor": "#purchase-container",
+        "content": "You can purchase another container by clicking on this button.",
+        "expose": true,
+        "position": "s"
+      }
+    ],
+    "Customers": [
+      {
+        "anchor": "#customers .panel",
+        "content": "This list displays the customers you can serve.",
+        "expose": true,
+        "position": "w"
+      },
+      {
+        "anchor": "#customer-orders :nth-child(1)",
+        "content": "This is a single customer. You can send <br> him away if you don't want to serve him. Or click serve customer <br>to give the customer the products he wants. Of course <br> you need to have them in stock.",
+        "expose": true,
+        "position": "w"
+      }
+    ],
+    "FactoryOrders": [
+      {
+        "anchor": "#factory-orders",
+        "content": "This is where you can see all orders currently in transport to your warehouse.",
+        "expose": true,
+        "position": "e"
+      },
+      {
+        "anchor": "#factory-orders .progress :first",
+        "content": "The order will arrive in the warehouse, when the progress bar is fully green. Do make sure you clicked the 'play' button in the statusbar.",
+        "expose": true,
+        "position": "e"
+      }
+    ]
+  }
+}
