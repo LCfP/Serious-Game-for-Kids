@@ -14,7 +14,6 @@
   ],
 
   "season": "Summer",
-  "seasonCount": 0,
   "yearDays": 364,
   "seasons": [
     "Summer",
@@ -34,6 +33,7 @@
 
   "addContainerCost": 1500,
   "holdingCostPerSize": 0.05,
+  "costExtraTruck": 100,
 
   "warehouseContainers": 3,
   "money": 10000,
@@ -41,12 +41,14 @@
 
   "penaltySendingCustomerAway": 0,
 
+  "level": 0,
+
   "toastr": {
     "closeButton": false,
     "debug": false,
     "newestOnTop": true,
     "progressBar": true,
-    "positionClass": "toast-top-right",
+    "positionClass": "toast-bottom-right",
     "preventDuplicates": true,
     "onclick": null,
     "showDuration": "200",
@@ -57,5 +59,9 @@
     "hideEasing": "linear",
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
+  },
+
+  "swal": {
+    "timer": 3000
   }
 }
