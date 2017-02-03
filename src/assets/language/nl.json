@@ -112,5 +112,8 @@
   "This is a single customer. You can send <br> him away if you don't want to serve him. Or click serve customer <br>to give the customer the products he wants. Of course <br> you need to have them in stock.": "Dit is een klant. Je kunt hem wegsturen <br> als je hem niet wilt bedienen. Of klik <br> op 'bedien klant' om de klant te bedienen met <br> de producten die hij wil. Natuurlijk <br> moet je de producten op voorraad hebben.",
   "There has to be at least one customer. Start the game by pressing the 'play' button. Customers will the pop up automatically.": "Er moet ten minste één klant zijn. Start het spel door op de play-knop te klikken. Klanten verschijnen dan automatisch.",
 
-  "You have reached the final level!": "Je heb het hoogste level bereikt!"
+  "You have reached the final level!": "Je heb het hoogste level bereikt!",
+
+  "Proudly created by": "Met trots gemaakt door",
+  "and": "en"
 }
