@@ -40,10 +40,10 @@ class CustomerController extends OrderController
         };
     }
 
-    generateOrder()
+    generateOrder(isStructural = false)
     {
         const demandGenerator = new DemandController();
-        const protoOrder = GAME.model.products.map(
+        const protoOrder = GAME.model.base.products.map(
             prod => {
                 return {
                     name: prod.name,
@@ -53,7 +53,12 @@ class CustomerController extends OrderController
         );
 
         if (protoOrder.some(prod => prod.value > 0)) {
-            const customer = new Customer(OrderController._makeOrder(protoOrder));
+            const customer = new Customer(
+                GAME.model,
+                OrderController._makeOrder(protoOrder),
+                Math.max(...GAME.model.customers.map(customer => customer.id + 1), 0),
+                isStructural
+            );
 
             GAME.model.customers.push(customer);
             this._updateOrderView(customer);
@@ -69,7 +74,7 @@ class CustomerController extends OrderController
      */
     completeOrder(customer)
     {
-        this._updateMoney(customer.order.orderCost());
+        MoneyController.updateMoney(customer.order.orderCost());
 
         const warehouseController = new WarehouseController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
@@ -95,7 +100,7 @@ class CustomerController extends OrderController
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
 
         if (GAME.model.config.penaltySendingCustomerAway) {
-            this._updateMoney(-GAME.model.config.penaltySendingCustomerAway);
+            MoneyController.updateMoney(-GAME.model.config.penaltySendingCustomerAway);
             toastr.warning(Controller.l("You got a penalty for sending the customer away."));
         }
     }

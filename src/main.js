@@ -10,10 +10,10 @@ $(document).ready(function ()
 });
 
 /**
- * Callback invoked when MODEL is loaded
+ * Callback invoked when GAME is loaded
  */
 function initGame()
 {
-    var initGame = new InitGameController();
+    const initGame = new InitGameController();
     initGame.view();
 }

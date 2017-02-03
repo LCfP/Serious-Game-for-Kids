@@ -2,39 +2,68 @@ class LevelController extends Controller
 {
     checkGoalReached()
     {
+        if (!this._hasNextLevel()) {
+            return;
+        }
+
         const currentLevel = GAME.model.levels[GAME.model.config.level];
         const cases = {
-            "money": this.checkGoalMoney,
-            "satisfaction": this.checkGoalSatisfaction
+            "money": this._checkGoalMoney,
+            "satisfaction": this._checkGoalSatisfaction
         };
 
         if ((cases[currentLevel.type].bind(this))(currentLevel)) {
-            this.completeLevel(currentLevel);
+            GAME.model.config.level++;
+            this.completeLevel();
         }
     }
 
-    completeLevel(level)
+    completeLevel()
     {
-        let nextLevel = GAME.model.levels[GAME.model.config.level + 1];
+        let text = Controller.l("You have reached the final level!");
+
+        if (this._hasNextLevel()) {
+            const nextLevel = GAME.model.levels[GAME.model.config.level];
+
+            text = [
+                Controller.l("Next: Reach"),
+                Controller.l(nextLevel.type),
+                Controller.l("with value"),
+                nextLevel.goal
+            ].join(" ") + ".";
+        }
 
         swal({
-            title: "Level " + GAME.model.config.level + " " + Controller.l("completed"),
-            text: Controller.l("Next: Reach") + " " + Controller.l(nextLevel.type) + " " + Controller.l("with value") + " " + nextLevel.goal + ".",
+            title: "Level " + (GAME.model.config.level - 1) + " " + Controller.l("completed"),
+            text: text,
             type: "success",
-            timer: 5000,
+            timer: GAME.model.config.swal["timer"],
             showConfirmButton: false
         });
 
-        GAME.model.config.level++;
         $('#level').html(GAME.model.config.level);
     }
 
-    checkGoalMoney(level)
+    /**
+     * @private
+     */
+    _hasNextLevel()
+    {
+        return GAME.model.config.level < GAME.model.levels.length;
+    }
+
+    /**
+     * @private
+     */
+    _checkGoalMoney(level)
     {
         return GAME.model.config.money >= level.goal;
     }
 
-    checkGoalSatisfaction(level)
+    /**
+     * @private
+     */
+    _checkGoalSatisfaction(level)
     {
         return GAME.model.config.satisfaction >= level.goal;
     }

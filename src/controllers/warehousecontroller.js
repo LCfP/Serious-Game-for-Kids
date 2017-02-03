@@ -20,12 +20,12 @@ class WarehouseController extends Controller
      */
     updateHoldingCost()
     {
-        let cost = GAME.model.products.reduce(function (sum, product) {
+        const cost = GAME.model.base.products.reduce(function (sum, product) {
             let quantity = GAME.model.warehouse.getItemQuantity(product);
             return sum + quantity * product.values.size * GAME.model.config.holdingCostPerSize;
         }, 0);
 
-        this._updateMoney(-cost);
+        MoneyController.updateMoney(-cost);
     }
 
     /**
@@ -51,9 +51,10 @@ class WarehouseController extends Controller
 
     processFactoryOrder(order)
     {
-        const capacity = order.products.reduce((sum, prod) => sum + prod.shelfSize());
+        const orderSize = order.products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        const availableCapacity = GAME.model.warehouse.maxContainerCapacity() - GAME.model.warehouse.usedContainerCapacity();
 
-        if (capacity <= GAME.model.warehouse.usedContainerCapacity()) {
+        if (orderSize > availableCapacity) {
             toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
             // TODO try to fit what fits? - context
         } else {
@@ -157,7 +158,7 @@ class WarehouseController extends Controller
                         )
                     );
 
-                    this._updateMoney(-GAME.model.config.addContainerCost);
+                    MoneyController.updateMoney(-GAME.model.config.addContainerCost);
                     this.updateContainerView();
                     this.updateCapacityView();
 

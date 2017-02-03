@@ -1,6 +1,8 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        {{#l}}{{ name }}{{/l}}
+        {{ #customer }}
+            {{ name }}
+        {{ /customer }}
         <span class="label label-warning pull-right">{{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}</span>
     </div>
     <div class="panel-body">

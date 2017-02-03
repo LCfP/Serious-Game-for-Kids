@@ -85,7 +85,7 @@ class SimulationController extends Controller
         warehouseController.updateCapacityView();
 
         levelController.checkGoalReached();
-        
+
         if (days % quarterYear == 0) {
             GAME.model.config.seasonCount++;
             GAME.model.config.season = GAME.model.config.seasons[GAME.model.config.seasonCount % 3];

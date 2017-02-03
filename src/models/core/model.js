@@ -7,6 +7,8 @@ class Model
     {
         this.model = {};
 
+        this.model.base = {};
+
         // factory orders
         this.model.orders = [];
 
@@ -47,14 +49,16 @@ class Model
         // async AJAX calls to get these JSON files
         // order for $.when: data, textStatus, jqXHR
         $.when(
-            $.getJSON("src/assets/config.json"),
-            $.getJSON("src/assets/products.json"),
-            $.getJSON("src/assets/levels.json")
+            ...["config", "products", "levels", "customers", "trips"]
+                .map(loc => $.getJSON("src/assets/" + loc + ".json"))
         ).done(
-            (config, products, levels) => {
+            (config, products, levels, customers, trips) => {
                 this.model.config = config[0];
-                this.model.products = products[0];
                 this.model.levels = levels[0];
+                this.model.trips = trips[0];
+
+                this.model.base.products = products[0];
+                this.model.base.customers = customers[0];
 
                 // toastr settings, from the config
                 toastr.options = this.model.config.toastr;

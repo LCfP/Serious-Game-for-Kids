@@ -10,13 +10,17 @@ class DemandController extends Controller
 
     doCustomerOrderGeneration()
     {
+        const custController = new CustomerController();
+
         // TODO every day, and every once in a while (structural and variable?).
         // Random component - About 1 per day = ~1.72, 2 per day = ~1.38.
-        if (this._normalDistribution() > 1.72 || GAME.model.config.hours % 24 == 8) {
-            const customerController = new CustomerController();
-            customerController.generateOrder();
+        if (this._normalDistribution() > 1.72) {
+            custController.generateOrder();
+        } else if (GAME.model.config.hours % 48 == 8) {
+            custController.generateOrder(true);
         }
     }
+
     /**
      * Returns a measure of demand for each product
      *
@@ -64,6 +68,6 @@ class DemandController extends Controller
 
         const stdNormal =  Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 
-        return stdNormal * variance + mean;
+        return stdNormal * Math.sqrt(variance) + mean;
     }
 }
