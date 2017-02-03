@@ -52,7 +52,7 @@ class FactoryController extends OrderController
         $("#size-truck").click(() => {
             if (GAME.model.config.money > GAME.model.config.costSizeTruck) {
                 MoneyController.updateMoney(-GAME.model.config.costSizeTruck);
-                GAME.model.config.orderCapacity*GAME.model.config.sizeIncreasingPercentage;
+                GAME.model.config.orderCapacity = GAME.model.config.orderCapacity * GAME.model.config.sizeIncreasingPercentage;
 
                 toastr.success(Controller.l("You increased the size of your trucks!"));
             } else {
