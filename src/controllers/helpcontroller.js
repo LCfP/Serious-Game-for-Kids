@@ -4,6 +4,7 @@ class HelpController extends Controller
     {
         super();
 
+        this.tripIntroTour = ["StatusBar", "Factory", "FactoryOrders", "Warehouse", "Customers"];
         this.tripInit = {
             "Warehouse": (trip) => {
                 trip.start();
@@ -32,12 +33,13 @@ class HelpController extends Controller
                     trip.next();
                 });
 
-                // TODO Button becomes white, since the 'trip-exposed' class is overwriting Bootstrap's styles.
+                const $handle = $(".factory button[type=submit]");
+
                 // This fixes it, but it's not really pretty. Should be a better way.
-                $(".factory button[type=submit]").css("background-color", "#5cb85c");
+                $handle.css("background-color", "#5cb85c");
 
                 // Next step when clicked on the 'place order' button
-                $(".factory button[type=submit]").click(function (e) {
+                $handle.click(function (e) {
                     trip.next();
                 });
             },
@@ -55,7 +57,16 @@ class HelpController extends Controller
     {
         const trip = new Trip(this._makeTour(GAME.model.trips.tours[tour]), {
             delay: props.delay || 5000,
-            onEnd: () => {if (props.intro) ""}
+            onEnd: () => {
+                if (props.intro) {
+                    const nextTrip = this.tripIntroTour.indexOf(tour) + 1;
+
+                    if (nextTrip < this.tripIntroTour.length) {
+                        const next = this.tripIntroTour[nextTrip];
+                        this.makeTrip(next, {intro: nextTrip < this.tripIntroTour.length - 1});
+                    }
+                }
+            }
         });
 
         this.tripInit[tour](trip);

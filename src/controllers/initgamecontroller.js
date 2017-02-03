@@ -29,14 +29,6 @@ class InitGameController extends Controller
                 sim.registerEvent();
             }
         );
-
-        $(document).ready(function () {
-            // this may or may not work. TODO check this a bit better.
-            if (!Cookies.get('hasVisited')) {
-                HelpController.startNavbarTour(true);
-                Cookies.set('hasVisited', true, {expires: 7});
-            }
-        });
     }
 
     /**
@@ -82,6 +74,16 @@ class InitGameController extends Controller
         GAME.model.trips.handlers.forEach(
             handler => this._tripEventHelper(handler)
         );
+
+        // initial tour (intro)
+        $(document).ready(function () {
+            if (!Cookies.get('hasVisited')) {
+                const helpController = new HelpController();
+
+                helpController.makeTrip("StatusBar", {intro: true});
+                Cookies.set('hasVisited', true, {expires: 7});
+            }
+        });
 
         // left menu opening
         $("#sidebar-left-toggle").click(function (e) {
