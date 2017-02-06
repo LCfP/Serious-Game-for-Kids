@@ -63,7 +63,7 @@ class Container extends StorageCore
                     return false;
                 }
 
-                let initPerishable = GAME.model.products
+                const initPerishable = GAME.model.base.products
                     .filter((prod) => prod.name == product.name)
                     .shift().values.perishable - 1;
 
@@ -80,15 +80,10 @@ class Container extends StorageCore
     /**
      * @override
      */
-    usedCapacity(percentage = false)
+    usedCapacity(asPercentage = false)
     {
-        let usedCap = this.items.reduce((sum, prod) => sum + prod.shelfSize(), 0);
-
-        if (percentage) {
-            usedCap = 100 * (usedCap / this.capacity);
-        }
-
-        return usedCap;
+        const usedCap = this.items.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        return asPercentage ? 100 * (usedCap / this.capacity) : usedCap;
     }
 
     toString()

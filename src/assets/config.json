@@ -37,7 +37,9 @@
 
   "warehouseContainers": 3,
   "money": 10000,
+
   "satisfaction": 100,
+  "expectedDelivery": 7,
 
   "penaltySendingCustomerAway": 0,
 

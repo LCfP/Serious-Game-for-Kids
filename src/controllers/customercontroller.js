@@ -54,7 +54,7 @@ class CustomerController extends OrderController
 
         if (protoOrder.some(prod => prod.value > 0)) {
             const customer = new Customer(
-                GAME.model,
+                GAME.model.config.hours,
                 OrderController._makeOrder(protoOrder),
                 Math.max(...GAME.model.customers.map(customer => customer.id + 1), 0),
                 isStructural
@@ -114,7 +114,7 @@ class CustomerController extends OrderController
     validateOrder(order)
     {
         return order.products.every(function (product) {
-            let quantity = GAME.model.warehouse.getItemQuantity(product);
+            const quantity = GAME.model.warehouse.getItemQuantity(product);
             return quantity >= product.values.quantity;
         });
     }
