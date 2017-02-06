@@ -2,7 +2,13 @@
   "structural": [
     {
       "name": "ECOMart",
-      "type": ["food"]
+      "type": ["food"],
+      "expectation": {
+        "delivery": 7,
+        "quality": {
+          "food": 90
+        }
+      }
     }
   ],
   "random": {

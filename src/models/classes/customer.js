@@ -3,26 +3,30 @@ class Customer
     /**
      * @constructor Represents a Customer
      *
-     * @param {Object} model
+     * @param {int} timestamp
      * @param {Product[]} products
      * @param {int} id
      * @param {boolean} isStructural
+     * @param {Object} model=GAME.model
      */
-    constructor(model, products, id, isStructural)
+    constructor(timestamp, products, id, isStructural, model = GAME.model)
     {
-        this.model = model;
+        this.timestamp = timestamp;
         this.id = id;
 
         if (isStructural) {
-            const structuralCusts = this.model.base.customers.structural;
+            const structuralCusts = model.base.customers.structural;
             this.customer = structuralCusts[Math.floor(Math.random() * structuralCusts.length)];
         } else {
-            const types = this.model.base.products.map(prod => prod.values.type)
+            const types = model.base.products.map(prod => prod.values.type)
                 .filter((type, i, types) => types.indexOf(type) === i);
 
             this.customer = {
-                name: this._generateName(),
-                type: [types[Math.floor(Math.random() * types.length)]]
+                name: this._generateName(model),
+                type: [types[Math.floor(Math.random() * types.length)]],
+                expectation: {
+                    delivery: model.config.expectedDelivery,
+                }
             }
         }
 
@@ -35,9 +39,9 @@ class Customer
      *
      * @private
      */
-    _generateName()
+    _generateName(model)
     {
-        const customerNames = this.model.base.customers.random[this.model.config.language];
+        const customerNames = model.base.customers.random[model.config.language];
         return customerNames[Math.floor(Math.random() * customerNames.length)]
     }
 }

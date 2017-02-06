@@ -84,7 +84,6 @@ class WarehouseController extends Controller
                         };
 
                         product.values.quantity = cases[order.constructor.name](product);
-
                         return product.values.quantity;
                     }
                 );
