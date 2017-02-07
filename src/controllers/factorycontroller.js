@@ -218,6 +218,17 @@ class FactoryController extends OrderController
         $handle.find("div.tab-content :first-child").addClass("active");
     }
 
+    _updateFactory()
+    {
+        var availableProducts = GAME.model.base.products.filter(function (product) {
+            return product.available;
+        });
+
+        GAME.model.factory.products = availableProducts;
+
+        this.view();
+    }
+
     /**
      * @private
      */
