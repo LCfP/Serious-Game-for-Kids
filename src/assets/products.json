@@ -1,7 +1,7 @@
 [
   {
     "name": "Banana",
-    "available": true,
+    "level": 0,
     "values": {
       "icon": "products/banana.png",
       "type": "food",
@@ -21,7 +21,7 @@
   },
   {
     "name": "Apple",
-    "available": true,
+    "level": 0,
     "values": {
       "icon": "products/apple.png",
       "type": "food",
@@ -41,7 +41,7 @@
   },
   {
     "name": "Carrot",
-    "available": false,
+    "level": 1,
     "values": {
       "icon": "products/carrot.png",
       "type": "food",
@@ -63,7 +63,7 @@
   },
   {
     "name": "Bread",
-    "available": false,
+    "level": 1,
     "values": {
       "icon": "products/bread.png",
       "type": "food",
@@ -83,7 +83,7 @@
   },
   {
     "name": "Ice cream",
-    "available": false,
+    "level": 2,
     "values": {
       "icon": "products/ice-cream.png",
       "type": "food",
@@ -105,7 +105,7 @@
   },
   {
     "name": "Shoes",
-    "available": false,
+    "level": 1,
     "values": {
       "icon": "products/shoes.png",
       "type": "clothing",
@@ -125,7 +125,7 @@
   },
   {
     "name": "Socks",
-    "available": false,
+    "level": 2,
     "values": {
       "icon": "products/sock.png",
       "type": "clothing",
@@ -145,7 +145,7 @@
   },
   {
     "name": "Short",
-    "available": false,
+    "level": 2,
     "values": {
       "icon": "products/short.png",
       "type": "clothing",
@@ -165,7 +165,7 @@
   },
   {
     "name": "Cap",
-    "available": false,
+    "level": 1,
     "values": {
       "icon": "products/cap.png",
       "type": "clothing",

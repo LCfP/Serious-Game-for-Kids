@@ -5,8 +5,8 @@ class InitGameModel extends Model
      */
     setupCallback()
     {
-        var availableProducts = this.model.base.products.filter(product => {
-            return product.available;
+        const availableProducts = this.model.base.products.filter(product => {
+            return product.level == 0;
         });
 
         this.model.warehouse = new Storage("Warehouse", this.model.config.warehouseCapacity);
