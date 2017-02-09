@@ -57,20 +57,18 @@ class CustomerController extends OrderController
             }
         );
 
-        if (protoOrder.some(prod => prod.value > 0)) {
-            const customer = new Customer(
-                GAME.model.config.hours,
-                OrderController._makeOrder(protoOrder),
-                Math.max(...GAME.model.customers.map(customer => customer.id + 1), 0),
-                isStructural
-            );
+        const customer = new Customer(
+            GAME.model.config.hours,
+            OrderController._makeOrder(protoOrder),
+            Math.max(...GAME.model.customers.map(customer => customer.id + 1), 0),
+            isStructural
+        );
 
-            if (customer.order.products.length) {
-                GAME.model.customers.push(customer);
-                this._updateOrderView(customer);
+        if (customer.order.products.length) {
+            GAME.model.customers.push(customer);
+            this._updateOrderView(customer);
 
-                toastr.info(Controller.l("New customer is waiting!"));
-            }
+            toastr.info(Controller.l("New customer is waiting!"));
         }
     }
 
