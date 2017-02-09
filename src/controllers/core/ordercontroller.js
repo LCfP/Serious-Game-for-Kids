@@ -34,6 +34,8 @@ class OrderController extends Controller
 
             product.values.quantity = value;
 
+
+
             return product;
         }).filter(Boolean); // see http://stackoverflow.com/a/34481744/4316405
     }

@@ -40,6 +40,8 @@
 
   "satisfaction": 100,
   "expectedDelivery": 7,
+  "weightDeliverySwiftness": 0.5,
+  "weightQualityDeliveredOrder": 0.5,
 
   "penaltySendingCustomerAway": 0,
 

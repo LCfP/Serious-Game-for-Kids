@@ -81,6 +81,12 @@ class CustomerController extends OrderController
     {
         MoneyController.updateMoney(customer.order.orderCost());
 
+        SatisfactionController.updateSatisfaction(this.customer.timestamp - this.order.timeStamp);
+
+        /*
+        I would like to give the argument as the difference between the timestamp that the order was placed and the fulfilment of the order.
+         */
+
         const warehouseController = new WarehouseController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
