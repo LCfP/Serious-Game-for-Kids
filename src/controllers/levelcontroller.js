@@ -12,15 +12,13 @@ class LevelController extends Controller
             "satisfaction": this._checkGoalSatisfaction
         };
 
-        if ((cases[currentLevel.type].bind(this))(currentLevel)) {
-            GAME.model.config.level++;
-            this.completeLevel();
-        }
+        return cases[currentLevel.type].bind(this)(currentLevel);
     }
 
     completeLevel()
     {
         let text = Controller.l("You have reached the final level!");
+        GAME.model.config.level++;
 
         if (this._hasNextLevel()) {
             const nextLevel = GAME.model.levels[GAME.model.config.level];

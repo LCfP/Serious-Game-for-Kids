@@ -73,25 +73,24 @@ class FactoryController extends OrderController
      */
     factoryOrder(formValues)
     {
-        let products = OrderController._makeOrder(formValues);
-        let order = new FactoryOrder(
+        const products = OrderController._makeOrder(formValues);
+        const order = new FactoryOrder(
             products,
             Math.max(...GAME.model.orders.map(order => order.id + 1), 0),
             GAME.model.config.orderTransportDurationDays
         );
+        const orderValidation = this.validateOrder(order);
 
-        if (this.validateOrder(order)) {
+        if (orderValidation) {
             GAME.model.orders.push(order);
 
             MoneyController.updateMoney(-order.orderCost() - GAME.model.config.orderTransportCost);
             this._updateOrderView(order);
 
             toastr.success(Controller.l("Order has been placed!"));
-
-            return true;
         }
 
-        return false;
+        return orderValidation;
     }
 
     validateOrder(order)
