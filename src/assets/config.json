@@ -1,5 +1,5 @@
 {
-  "hour": 4,
+  "hour": 8,
   "isPaused": true,
 
   "languages": [
@@ -32,7 +32,7 @@
   "orderTransportCost": 50,
 
   "addContainerCost": 1500,
-  "holdingCostPerSize": 0.05,
+  "holdingCostPerSize": 0.025,
   "costExtraTruck": 100,
 
   "warehouseContainers": 3,

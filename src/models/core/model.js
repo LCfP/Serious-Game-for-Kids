@@ -86,7 +86,7 @@ class Model
      */
     _getLang()
     {
-        var langIso = (Cookies.get("lang") || "").toLowerCase();
+        let langIso = (Cookies.get("lang") || "").toLowerCase();
 
         // only if we support this language ISO
         if (langIso != "en" && this.model.config.languages.map(lang => lang.iso).includes(langIso)) {
@@ -101,7 +101,7 @@ class Model
             return $.getJSON("src/assets/language/" + langIso + ".json");
         } else {
             // default EN
-            this.model.config.language = "en";
+            this.model.config.language = "nl";
             return {};
         }
     }
