@@ -220,6 +220,18 @@ class FactoryController extends OrderController
     /**
      * @private
      */
+    _updateFactory()
+    {
+        GAME.model.factory.products = GAME.model.base.products.filter(product => {
+            return product.level <= GAME.model.config.level;
+        });
+
+        this.view();
+    }
+
+    /**
+     * @private
+     */
     _updateOrderView(order)
     {
         this._loadTemplate(

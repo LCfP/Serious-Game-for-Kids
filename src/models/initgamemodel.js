@@ -5,8 +5,12 @@ class InitGameModel extends Model
      */
     setupCallback()
     {
+        const availableProducts = this.model.base.products.filter(product => {
+            return product.level == 0;
+        });
+
         this.model.warehouse = new Storage("Warehouse", this.model.config.warehouseCapacity);
-        this.model.factory = new Factory("Factory", this.model.base.products);
+        this.model.factory = new Factory("Factory", availableProducts);
 
         for (let i = 0; i < this.model.config.warehouseContainers; i++) {
             this.model.warehouse.addItem(
