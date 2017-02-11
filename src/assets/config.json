@@ -1,5 +1,5 @@
 {
-  "hour": 4,
+  "hour": 8,
   "isPaused": true,
 
   "languages": [
@@ -28,11 +28,11 @@
   "warehouseCapacity": 6,
   "containerCapacity": 250,
   "orderCapacity": 500,
-  "orderTransportDurationDays": 2,
+  "orderTransportDurationDays": 4,
   "orderTransportCost": 50,
 
   "addContainerCost": 1500,
-  "holdingCostPerSize": 0.05,
+  "holdingCostPerSize": 0.025,
   "costExtraTruck": 100,
 
   "warehouseContainers": 3,
@@ -40,6 +40,7 @@
 
   "satisfaction": 100,
   "expectedDelivery": 7,
+  "orderGenerationTreshold": 1.90,
 
   "penaltySendingCustomerAway": 0,
 

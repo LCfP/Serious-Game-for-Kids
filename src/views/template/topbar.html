@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <ul class="nav navbar-nav">
         <li id="sidebar-left-toggle">
             <a>
@@ -8,7 +7,6 @@
             </a>
         </li>
     </ul>
-
     <div class="btn-group navbar-left" id="timer">
         <button type="button" class="timer btn btn-default navbar-btn active">
             <span class="glyphicon glyphicon-pause"></span>
@@ -17,7 +15,6 @@
             <span class="glyphicon glyphicon-play"></span>
         </button>
     </div>
-
     <p class="navbar-text">
         {{#l}}Day{{/l}}
         <strong class="timer-days">0</strong>,
@@ -25,7 +22,6 @@
         <strong class="timer-hours">0</strong>
         <span class="badge season">{{#l}}{{ season }}{{/l}}</span>
     </p>
-
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown help-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-question-sign"></span> Help</a>
@@ -44,13 +40,12 @@
             </a>
         </li>
     </ul>
-
     <div class="nav navbar-nav navbar-right statuses">
         <p class="navbar-text">
             <strong>{{#l}}Level{{/l}}</strong>
             <span id="level">{{ level }}</span>
         </p>
-        <p class="navbar-text">
+        <p class="navbar-text hidden">
             <strong class="text-capitalize">{{#l}}satisfaction{{/l}}</strong>
             <span id="satisfaction">{{ satisfaction }}</span>%
         </p>
@@ -59,5 +54,4 @@
             <span id="money">{{ money }}</span>
         </p>
     </div>
-
 </div>

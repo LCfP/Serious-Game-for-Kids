@@ -86,10 +86,10 @@ class Model
      */
     _getLang()
     {
-        var langIso = (Cookies.get("lang") || "").toLowerCase();
+        const langIso = (Cookies.get("lang") || "nl").toLowerCase();
 
         // only if we support this language ISO
-        if (langIso != "en" && this.model.config.languages.map(lang => lang.iso).includes(langIso)) {
+        if (this.model.config.languages.map(lang => lang.iso).includes(langIso)) {
             this.model.config.language = langIso;
             this.model.config.languages = this.model.config.languages.map(
                 (lang) => {
