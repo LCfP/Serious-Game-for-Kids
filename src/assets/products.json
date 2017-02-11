@@ -12,8 +12,8 @@
       "perishable": 14
     },
     "demand": {
-      "mean": 25,
-      "variance": 10,
+      "mean": 10,
+      "variance": 8,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -32,8 +32,8 @@
       "perishable": 21
     },
     "demand": {
-      "mean": 20,
-      "variance": 15,
+      "mean": 5,
+      "variance": 5,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -52,8 +52,8 @@
       "perishable": 21
     },
     "demand": {
-      "mean": 15,
-      "variance": 7,
+      "mean": 5,
+      "variance": 5,
       "seasonality": {
         "hasSeasonality": true,
         "isWinterProduct": true,
@@ -74,8 +74,8 @@
       "perishable": 7
     },
     "demand": {
-      "mean": 35,
-      "variance": 25,
+      "mean": 15,
+      "variance": 10,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -94,12 +94,12 @@
       "perishable": 7
     },
     "demand": {
-      "mean": 25,
-      "variance": 15,
+      "mean": 10,
+      "variance": 10,
       "seasonality": {
         "hasSeasonality": true,
         "isWinterProduct": false,
-        "amplitude": 30
+        "amplitude": 20
       }
     }
   },
@@ -136,8 +136,8 @@
       "perishable": 0
     },
     "demand": {
-      "mean": 4,
-      "variance": 8,
+      "mean": 2,
+      "variance": 4,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -176,8 +176,8 @@
       "perishable": 0
     },
     "demand": {
-      "mean": 5,
-      "variance": 5,
+      "mean": 2,
+      "variance": 4,
       "seasonality": {
         "hasSeasonality": true,
         "isWinterProduct": false,
