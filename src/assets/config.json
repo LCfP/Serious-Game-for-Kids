@@ -28,7 +28,7 @@
   "warehouseCapacity": 6,
   "containerCapacity": 250,
   "orderCapacity": 500,
-  "orderTransportDurationDays": 2,
+  "orderTransportDurationDays": 4,
   "orderTransportCost": 50,
 
   "addContainerCost": 1500,
@@ -40,6 +40,7 @@
 
   "satisfaction": 100,
   "expectedDelivery": 7,
+  "orderGenerationTreshold": 1.90,
 
   "penaltySendingCustomerAway": 0,
 

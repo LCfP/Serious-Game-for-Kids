@@ -12,8 +12,8 @@ class DemandController extends Controller
     {
         const custController = new CustomerController();
 
-        // Random component
-        if (this._normalDistribution() > 1.96) {
+        // Random component.
+        if (this._normalDistribution() > GAME.model.config.orderGenerationTreshold) {
             custController.generateOrder();
         // every four days a structural one.
         } else if (GAME.model.config.hours % 96 == 8) {
