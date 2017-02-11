@@ -41,6 +41,8 @@ class LevelController extends Controller
             showConfirmButton: false
         });
 
+        (new FactoryController)._updateFactory();
+
         $('#level').html(GAME.model.config.level);
     }
 
