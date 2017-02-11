@@ -12,11 +12,11 @@ class DemandController extends Controller
     {
         const custController = new CustomerController();
 
-        // TODO every day, and every once in a while (structural and variable?).
-        // Random component - About 1 per day = ~1.72, 2 per day = ~1.38.
-        if (this._normalDistribution() > 1.72) {
+        // Random component
+        if (this._normalDistribution() > 1.96) {
             custController.generateOrder();
-        } else if (GAME.model.config.hours % 48 == 8) {
+        // every four days a structural one.
+        } else if (GAME.model.config.hours % 96 == 8) {
             custController.generateOrder(true);
         }
     }
