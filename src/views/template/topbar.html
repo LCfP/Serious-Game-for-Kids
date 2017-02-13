@@ -20,7 +20,7 @@
         <strong class="timer-days">0</strong>,
         {{#l}}hour{{/l}}
         <strong class="timer-hours">0</strong>
-        <span class="badge season">{{#l}}{{ season }}{{/l}}</span>
+        <span class="badge season">{{#l}}{{ config.season }}{{/l}}</span>
     </p>
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown help-menu">
@@ -50,11 +50,11 @@
         </p>
         <p class="navbar-text hidden">
             <strong class="text-capitalize">{{#l}}satisfaction{{/l}}</strong>
-            <span id="satisfaction">{{ satisfaction }}</span>%
+            <span id="satisfaction">{{ config.satisfaction }}</span>%
         </p>
         <p class="navbar-text">
             <strong>{{#l}}Money{{/l}}</strong>
-            <span id="money">{{ money }}</span>
+            <span id="money">{{ config.money }}</span>
         </p>
     </div>
 </div>
