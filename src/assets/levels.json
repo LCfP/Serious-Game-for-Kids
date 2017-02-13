@@ -1,11 +1,35 @@
 [
   {
     "type": "money",
+    "goal": 10010
+  },
+  {
+    "type": "money",
+    "goal": 10050
+  },
+  {
+    "type": "money",
     "goal": 10100
   },
   {
-    "type": "satisfaction",
-    "goal": 83
+    "type": "money",
+    "goal": 10200
+  },
+  {
+    "type": "money",
+    "goal": 10400
+  },
+  {
+    "type": "money",
+    "goal": 10700
+  },
+  {
+    "type": "money",
+    "goal": 11000
+  },
+  {
+    "type": "money",
+    "goal": 11500
   },
   {
     "type": "money",
