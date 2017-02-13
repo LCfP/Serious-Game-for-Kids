@@ -121,7 +121,7 @@
         "position": "w"
       },
       {
-        "anchor": "#customer-orders :nth-child(1)",
+        "anchor": "#customer-orders .panel:first",
         "content": "This is a single customer. You can send <br> him away if you don't want to serve him. Or click serve customer <br>to give the customer the products he wants. Of course <br> you need to have them in stock.",
         "expose": true,
         "position": "w"
@@ -135,7 +135,7 @@
         "position": "e"
       },
       {
-        "anchor": "#factory-orders .progress :first",
+        "anchor": "#factory-orders .progress:first",
         "content": "The order will arrive in the warehouse, when the progress bar is fully green. Do make sure you clicked the 'play' button in the statusbar.",
         "expose": true,
         "position": "e"
