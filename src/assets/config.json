@@ -35,7 +35,7 @@
   "holdingCostPerSize": 0.05,
   "costExtraTruck": 100,
   "costSizeTruck": 50,
-  "sizeIncreasingPercentage" : 1.1,
+  "sizeIncreasingFactor" : 1.1,
 
   "warehouseContainers": 3,
   "money": 10000,
