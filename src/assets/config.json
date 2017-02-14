@@ -26,15 +26,15 @@
 
   "maxSimultaneousOrders": 2,
   "warehouseCapacity": 6,
-  "containerCapacity": 250,
+  "containerCapacity": 150,
   "orderCapacity": 500,
   "orderTransportDurationDays": 4,
   "orderTransportCost": 30,
 
-  "addContainerCost": 1500,
+  "addContainerCost": 1000,
   "holdingCostPerSize": 0.01,
-  "costExtraTruck": 1500,
-  "costSizeTruck": 1000,
+  "costExtraTruck": 500,
+  "costSizeTruck": 250,
   "sizeIncreasingFactor" : 1.1,
 
   "warehouseContainers": 3,
