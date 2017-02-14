@@ -39,7 +39,7 @@ class FactoryController extends OrderController
 
         //adds an extra truck after cost validation
         $("#buy-truck").click(() => {
-            if (GAME.model.config.money > GAME.model.config.costExtraTruck) {
+            if (GAME.model.config.money >= GAME.model.config.costExtraTruck) {
                 MoneyController.updateMoney(-GAME.model.config.costExtraTruck);
                 GAME.model.config.maxSimultaneousOrders++;
 
