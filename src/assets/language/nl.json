@@ -52,8 +52,9 @@
   "You purchased an extra truck!": "Je hebt een extra vrachtwagen gekocht!",
   "You increased the size of your trucks!": "Je hebt je vrachtwagens groter gemaakt!",
   "You cannot afford to increase the size of your trucks!" : "Je hebt niet genoeg geld om je vrachtwagens groter te maken!",
-  "Buy extra truck" : "Koop extra vrachtwagen",
-  "Increase size trucks" : "Vrachtwagens vergroten",
+  "Extra truck" : "Extra vrachtwagen",
+  "Increase truck capacity" : "Vrachtwagen vergroten",
+  "This costs": "Dit kost",
 
   "Earn": "Verdien",
 
