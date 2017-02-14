@@ -60,7 +60,7 @@ class FactoryController extends OrderController
             } else {
                 toastr.warning(Controller.l("You cannot afford to increase the size of your trucks!"))
             }
-            });
+        });
 
 
         // updates the information for the current order process
