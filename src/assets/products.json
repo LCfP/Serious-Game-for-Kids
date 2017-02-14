@@ -41,7 +41,7 @@
   },
   {
     "name": "Carrot",
-    "level": 1,
+    "level": 0,
     "values": {
       "icon": "products/carrot.png",
       "type": "food",
@@ -63,7 +63,7 @@
   },
   {
     "name": "Bread",
-    "level": 4,
+    "level": 1,
     "values": {
       "icon": "products/bread.png",
       "type": "food",
@@ -125,7 +125,7 @@
   },
   {
     "name": "Socks",
-    "level": 3,
+    "level": 2,
     "values": {
       "icon": "products/sock.png",
       "type": "clothing",
