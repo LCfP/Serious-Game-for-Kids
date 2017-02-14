@@ -13,6 +13,7 @@ class FactoryController extends OrderController
             this._setActiveTab();
 
             $("#order-transport-cost").html(GAME.model.config.orderTransportCost);
+            $('[data-toggle="tooltip"]').tooltip();
         });
 
         this._factoryFormInputView(products);
@@ -55,6 +56,7 @@ class FactoryController extends OrderController
                 GAME.model.config.orderCapacity = GAME.model.config.orderCapacity * GAME.model.config.sizeIncreasingFactor;
 
                 toastr.success(Controller.l("You increased the size of your trucks!"));
+                $("#truck-capacity").html(GAME.model.config.orderCapacity.toFixed(0));
             } else {
                 toastr.warning(Controller.l("You cannot afford to increase the size of your trucks!"))
             }
