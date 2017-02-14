@@ -27,7 +27,7 @@
   "maxSimultaneousOrders": 2,
   "warehouseCapacity": 6,
   "containerCapacity": 150,
-  "orderCapacity": 500,
+  "orderCapacity": 250,
   "orderTransportDurationDays": 4,
   "orderTransportCost": 30,
 
