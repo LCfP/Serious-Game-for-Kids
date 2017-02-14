@@ -29,11 +29,13 @@
   "containerCapacity": 250,
   "orderCapacity": 500,
   "orderTransportDurationDays": 4,
-  "orderTransportCost": 50,
+  "orderTransportCost": 30,
 
   "addContainerCost": 1500,
   "holdingCostPerSize": 0.025,
   "costExtraTruck": 100,
+  "costSizeTruck": 50,
+  "sizeIncreasingFactor" : 1.1,
 
   "warehouseContainers": 3,
   "money": 10000,

@@ -48,6 +48,19 @@ class FactoryController extends OrderController
             }
         });
 
+        //increases the truck size (orderCapacity) after cost validation
+        $("#size-truck").click(() => {
+            if (GAME.model.config.money >= GAME.model.config.costSizeTruck) {
+                MoneyController.updateMoney(-GAME.model.config.costSizeTruck);
+                GAME.model.config.orderCapacity = GAME.model.config.orderCapacity * GAME.model.config.sizeIncreasingFactor;
+
+                toastr.success(Controller.l("You increased the size of your trucks!"));
+            } else {
+                toastr.warning(Controller.l("You cannot afford to increase the size of your trucks!"))
+            }
+            });
+
+
         // updates the information for the current order process
         $("form[name=newFactoryOrder] :input").change(
             function (e) {

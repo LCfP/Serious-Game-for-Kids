@@ -18,6 +18,7 @@
   "Size": "Grootte",
   "Perishes": "Houdbaar",
   "This container is empty": "Deze container is leeg",
+  "Purchase a new container for" : "Koop een nieuwe container voor",
   "days": "dagen",
 
   "food": "eten",
@@ -47,10 +48,16 @@
   "There is no room for another order at this time!": "Er is op dit moment geen plek voor een nieuwe bestelling!",
   "There is insufficient space on the truck!": "Er is niet genoeg ruimte in de vrachtwagen!",
   "You cannot afford this!": "Je kunt dit niet betalen!",
+
   "You cannot afford an extra truck!": "Je kunt geen extra vrachtwagen betalen!",
   "You purchased an extra truck!": "Je hebt een extra vrachtwagen gekocht!",
+  "You increased the size of your trucks!": "Je hebt je vrachtwagens groter gemaakt!",
+  "You cannot afford to increase the size of your trucks!" : "Je hebt niet genoeg geld om je vrachtwagens groter te maken!",
+  "Buy extra truck" : "Koop extra vrachtwagen",
+  "Increase size trucks" : "Vrachtwagens vergroten",
 
   "Earn": "Verdien",
+  "Purchase" : "Koop",
 
   "History": "Geschiedenis",
   "Help": "Hulp",
