@@ -105,7 +105,7 @@
   },
   {
     "name": "Shoes",
-    "level": 5,
+    "level": 3,
     "values": {
       "icon": "products/shoes.png",
       "type": "clothing",
@@ -125,7 +125,7 @@
   },
   {
     "name": "Socks",
-    "level": 5,
+    "level": 3,
     "values": {
       "icon": "products/sock.png",
       "type": "clothing",
@@ -145,7 +145,7 @@
   },
   {
     "name": "Short",
-    "level": 7,
+    "level": 4,
     "values": {
       "icon": "products/short.png",
       "type": "clothing",
@@ -165,7 +165,7 @@
   },
   {
     "name": "Cap",
-    "level": 8,
+    "level": 5,
     "values": {
       "icon": "products/cap.png",
       "type": "clothing",
