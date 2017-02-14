@@ -98,11 +98,7 @@ class Model
                 }
             );
 
-            return $.getJSON("src/assets/language/" + langIso + ".json");
-        } else {
-            // default EN
-            this.model.config.language = "en";
-            return {};
+            return langIso == "en" ? {} : $.getJSON("src/assets/language/" + langIso + ".json");
         }
     }
 }
