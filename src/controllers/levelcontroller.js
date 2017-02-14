@@ -32,7 +32,7 @@ class LevelController extends Controller
         }
 
         swal({
-            title: "Level " + (GAME.model.config.level - 1) + " " + Controller.l("completed"),
+            title: "Level " + (GAME.model.config.level) + " " + Controller.l("completed"),
             text: text,
             type: "success",
             timer: GAME.model.config.swal["timer"],
@@ -41,7 +41,7 @@ class LevelController extends Controller
 
         (new FactoryController)._updateFactory();
 
-        $('#level').html(GAME.model.config.level);
+        $('#level').html(GAME.model.config.level + 1);
     }
 
     /**

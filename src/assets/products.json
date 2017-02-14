@@ -6,7 +6,7 @@
       "icon": "products/banana.png",
       "type": "food",
       "price": 0.35,
-      "salesPrice": 0.75,
+      "salesPrice": 1.15,
       "size": 1.0,
       "isPerishable": true,
       "perishable": 14
@@ -26,7 +26,7 @@
       "icon": "products/apple.png",
       "type": "food",
       "price": 0.45,
-      "salesPrice": 0.95,
+      "salesPrice": 1.35,
       "size": 1.0,
       "isPerishable": true,
       "perishable": 21
@@ -63,7 +63,7 @@
   },
   {
     "name": "Bread",
-    "level": 1,
+    "level": 4,
     "values": {
       "icon": "products/bread.png",
       "type": "food",
@@ -83,7 +83,7 @@
   },
   {
     "name": "Ice cream",
-    "level": 2,
+    "level": 4,
     "values": {
       "icon": "products/ice-cream.png",
       "type": "food",
@@ -105,7 +105,7 @@
   },
   {
     "name": "Shoes",
-    "level": 1,
+    "level": 5,
     "values": {
       "icon": "products/shoes.png",
       "type": "clothing",
@@ -125,7 +125,7 @@
   },
   {
     "name": "Socks",
-    "level": 2,
+    "level": 5,
     "values": {
       "icon": "products/sock.png",
       "type": "clothing",
@@ -145,7 +145,7 @@
   },
   {
     "name": "Short",
-    "level": 2,
+    "level": 7,
     "values": {
       "icon": "products/short.png",
       "type": "clothing",
@@ -165,7 +165,7 @@
   },
   {
     "name": "Cap",
-    "level": 1,
+    "level": 8,
     "values": {
       "icon": "products/cap.png",
       "type": "clothing",

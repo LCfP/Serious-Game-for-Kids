@@ -63,7 +63,10 @@ class InitGameController extends Controller
         return this._loadTemplate(
             "src/views/template/topbar.html",
             "#top-bar",
-            GAME.model.config,
+            {
+                config: GAME.model.config,
+                level: 1
+            },
             true
         );
     }
