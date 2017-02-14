@@ -32,9 +32,9 @@
   "orderTransportCost": 30,
 
   "addContainerCost": 1500,
-  "holdingCostPerSize": 0.025,
-  "costExtraTruck": 100,
-  "costSizeTruck": 50,
+  "holdingCostPerSize": 0.01,
+  "costExtraTruck": 1500,
+  "costSizeTruck": 1000,
   "sizeIncreasingFactor" : 1.1,
 
   "warehouseContainers": 3,
@@ -42,7 +42,7 @@
 
   "satisfaction": 100,
   "expectedDelivery": 7,
-  "orderGenerationTreshold": 1.90,
+  "orderGenerationTreshold": 1.75,
 
   "penaltySendingCustomerAway": 0,
 

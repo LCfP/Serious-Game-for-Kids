@@ -12,8 +12,8 @@
       "perishable": 14
     },
     "demand": {
-      "mean": 10,
-      "variance": 8,
+      "mean": 12,
+      "variance": 16,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -32,8 +32,8 @@
       "perishable": 21
     },
     "demand": {
-      "mean": 5,
-      "variance": 5,
+      "mean": 8,
+      "variance": 10,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -41,7 +41,7 @@
   },
   {
     "name": "Carrot",
-    "level": 1,
+    "level": 0,
     "values": {
       "icon": "products/carrot.png",
       "type": "food",
@@ -52,8 +52,8 @@
       "perishable": 21
     },
     "demand": {
-      "mean": 5,
-      "variance": 5,
+      "mean": 10,
+      "variance": 10,
       "seasonality": {
         "hasSeasonality": true,
         "isWinterProduct": true,
@@ -63,11 +63,11 @@
   },
   {
     "name": "Bread",
-    "level": 4,
+    "level": 1,
     "values": {
       "icon": "products/bread.png",
       "type": "food",
-      "price": 1.15,
+      "price": 0.85,
       "salesPrice": 2.15,
       "size": 1.0,
       "isPerishable": true,
@@ -87,8 +87,8 @@
     "values": {
       "icon": "products/ice-cream.png",
       "type": "food",
-      "price": 0.65,
-      "salesPrice": 1.45,
+      "price": 0.45,
+      "salesPrice": 1.95,
       "size": 1.0,
       "isPerishable": true,
       "perishable": 7
@@ -105,11 +105,11 @@
   },
   {
     "name": "Shoes",
-    "level": 5,
+    "level": 3,
     "values": {
       "icon": "products/shoes.png",
       "type": "clothing",
-      "price": 35.0,
+      "price": 24.95,
       "salesPrice": 59.95,
       "size": 5.0,
       "isPerishable": false,
@@ -117,7 +117,7 @@
     },
     "demand": {
       "mean": 2,
-      "variance": 4,
+      "variance": 6,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -125,11 +125,11 @@
   },
   {
     "name": "Socks",
-    "level": 5,
+    "level": 2,
     "values": {
       "icon": "products/sock.png",
       "type": "clothing",
-      "price": 4.95,
+      "price": 2.95,
       "salesPrice": 7.95,
       "size": 1.0,
       "isPerishable": false,
@@ -137,7 +137,7 @@
     },
     "demand": {
       "mean": 2,
-      "variance": 4,
+      "variance": 8,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -145,7 +145,7 @@
   },
   {
     "name": "Short",
-    "level": 7,
+    "level": 4,
     "values": {
       "icon": "products/short.png",
       "type": "clothing",
@@ -157,7 +157,7 @@
     },
     "demand": {
       "mean": 2,
-      "variance": 4,
+      "variance": 8,
       "seasonality": {
         "hasSeasonality": false
       }
@@ -165,19 +165,19 @@
   },
   {
     "name": "Cap",
-    "level": 8,
+    "level": 5,
     "values": {
       "icon": "products/cap.png",
       "type": "clothing",
       "price": 8.95,
-      "salesPrice": 19.95,
+      "salesPrice": 24.95,
       "size": 2.0,
       "isPerishable": false,
       "perishable": 0
     },
     "demand": {
       "mean": 2,
-      "variance": 4,
+      "variance": 8,
       "seasonality": {
         "hasSeasonality": true,
         "isWinterProduct": false,
