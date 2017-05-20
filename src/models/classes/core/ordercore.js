@@ -1,4 +1,4 @@
-class OrderCore
+export default class OrderCore
 {
     /**
      *

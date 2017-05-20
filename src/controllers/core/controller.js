@@ -1,4 +1,7 @@
-class Controller
+import Mustache from 'mustache';
+
+
+export default class Controller
 {
     /**
      * @abstract

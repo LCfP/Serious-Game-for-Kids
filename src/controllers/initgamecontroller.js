@@ -1,4 +1,15 @@
-class InitGameController extends Controller
+import Controller from './core/controller';
+
+import WarehouseController from './warehousecontroller';
+import FactoryController from './factorycontroller';
+import CustomerController from './customercontroller';
+import SimulationController from './simulationcontroller';
+import HelpController from './helpcontroller';
+
+import Cookies from 'cookies';
+
+
+export default class InitGameController extends Controller
 {
     /**
      * Displays the initial game state

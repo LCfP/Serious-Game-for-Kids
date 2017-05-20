@@ -1,4 +1,10 @@
-class LevelController extends Controller
+import Controller from './core/controller';
+import FactoryController from './factorycontroller';
+
+import swal from 'sweetalert';
+
+
+export default class LevelController extends Controller
 {
     checkGoalReached()
     {

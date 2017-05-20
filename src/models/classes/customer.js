@@ -1,4 +1,7 @@
-class Customer
+import CustomerOrder from './customerorder';
+
+
+export default class Customer
 {
     /**
      * @constructor Represents a Customer

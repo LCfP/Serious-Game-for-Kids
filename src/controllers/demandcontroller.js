@@ -1,4 +1,8 @@
-class DemandController extends Controller
+import Controller from './core/controller';
+import CustomerController from './customercontroller';
+
+
+export default class DemandController extends Controller
 {
     constructor()
     {

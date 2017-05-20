@@ -1,4 +1,12 @@
-class FactoryController extends OrderController
+import OrderController from './core/ordercontroller';
+import WarehouseController from './warehousecontroller';
+import MoneyController from './moneycontroller';
+import toastr from 'toastr';
+
+import FactoryOrder from '../models/classes/factoryorder';
+
+
+export default class FactoryController extends OrderController
 {
     view()
     {

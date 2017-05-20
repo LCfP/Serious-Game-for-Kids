@@ -1,4 +1,10 @@
-class WarehouseController extends Controller
+import Controller from './core/controller';
+import MoneyController from './moneycontroller';
+import toastr from 'toastr';
+import Container from '../models/classes/container';
+
+
+export default class WarehouseController extends Controller
 {
     view()
     {

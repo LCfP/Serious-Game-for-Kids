@@ -1,4 +1,15 @@
-class CustomerController extends OrderController
+import OrderController from './core/ordercontroller';
+import Controller from './core/controller';
+import MoneyController from './moneycontroller';
+import WarehouseController from './warehousecontroller';
+import DemandController from './demandcontroller';
+import toastr from 'toastr';
+
+import Customer from '../models/classes/customer';
+import CustomerOrder from '../models/classes/customerorder';
+
+
+export default class CustomerController extends OrderController
 {
     view()
     {

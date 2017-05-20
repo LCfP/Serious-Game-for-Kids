@@ -1,4 +1,9 @@
-class HelpController extends Controller
+import Controller from './core/controller';
+import toastr from 'toastr';
+import Trip from 'trip.js';
+
+
+export default class HelpController extends Controller
 {
     constructor()
     {

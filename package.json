@@ -1,12 +1,25 @@
 {
   "name": "serious-game-for-kids",
   "version": "1.0.0",
-  "scripts": {
-    "build": "babel src -d dist --copy-files"
-  },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-preset-env": "^1.1.4",
-    "babili": "0.0.9"
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "eslint": "^3.15.0",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "file-loader": "^0.10.1",
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "cookies": "^0.7.0",
+    "jquery": "^3.1.1",
+    "mustache": "^2.3.0",
+    "sweetalert": "^1.1.3",
+    "toastr": "^2.1.2",
+    "trip.js": "^3.3.3"
   }
 }

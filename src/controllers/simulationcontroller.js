@@ -1,4 +1,11 @@
-class SimulationController extends Controller
+import Controller from './core/controller';
+import DemandController from './demandcontroller';
+import FactoryController from './factorycontroller';
+import WarehouseController from './warehousecontroller';
+import LevelController from './levelcontroller';
+
+
+export default class SimulationController extends Controller
 {
     /**
      * Called by InitGameController once the views have been loaded and the game is ready.

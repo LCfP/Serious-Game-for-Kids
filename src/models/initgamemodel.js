@@ -1,4 +1,13 @@
-class InitGameModel extends Model
+import Model from './core/model';
+
+import Storage from './classes/storage';
+import Factory from './classes/factory';
+import Container from './classes/container';
+
+import {initGame} from '../main';
+
+
+export default class InitGameModel extends Model
 {
     /**
      * @override

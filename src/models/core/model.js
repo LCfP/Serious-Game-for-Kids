@@ -1,7 +1,11 @@
+import Cookies from 'cookies';
+import toastr from 'toastr';
+
+
 /**
  * Maintains a `model` field, that represents the current game state.
  */
-class Model
+export default class Model
 {
     constructor()
     {

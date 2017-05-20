@@ -1,4 +1,8 @@
-class Storage extends StorageCore
+import Container from './container';
+import StorageCore from './core/storagecore';
+
+
+export default class Storage extends StorageCore
 {
     /**
      * @param {Container} container - The container to be added.
