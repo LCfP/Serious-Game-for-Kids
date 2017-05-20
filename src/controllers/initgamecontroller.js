@@ -6,7 +6,7 @@ import CustomerController from './customercontroller';
 import SimulationController from './simulationcontroller';
 import HelpController from './helpcontroller';
 
-import Cookies from 'cookies';
+import Cookies from 'js-cookie';
 
 
 export default class InitGameController extends Controller
@@ -122,7 +122,7 @@ export default class InitGameController extends Controller
                     let lang = $(this).val();
                     Cookies.set("lang", lang, {expires: 7});
 
-                    toastr.success(
+                    GAME.model.message.success(
                         Controller.l("Language has been updated! Make sure you refresh the page for changes to take effect.")
                     );
                 }

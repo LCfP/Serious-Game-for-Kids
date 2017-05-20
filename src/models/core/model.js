@@ -1,4 +1,4 @@
-import Cookies from 'cookies';
+import Cookies from 'js-cookie';
 import toastr from 'toastr';
 
 
@@ -65,7 +65,8 @@ export default class Model
                 this.model.base.customers = customers[0];
 
                 // toastr settings, from the config
-                toastr.options = this.model.config.toastr;
+                this.model.message = toastr;
+                this.model.message.options = this.model.config.toastr;
 
                 $.when(this._getLang()).done(
                     (lang) => {

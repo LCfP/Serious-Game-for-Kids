@@ -2,6 +2,7 @@ import Controller from './core/controller';
 import FactoryController from './factorycontroller';
 
 import swal from 'sweetalert';
+import 'sweetalert/dist/sweetalert.css';
 
 
 export default class LevelController extends Controller

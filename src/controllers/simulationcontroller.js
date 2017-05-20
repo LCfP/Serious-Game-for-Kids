@@ -100,7 +100,7 @@ export default class SimulationController extends Controller
             GAME.model.config.season = GAME.model.config.seasons[GAME.model.config.seasonCount % 3];
 
             $(".season").html(Controller.l(GAME.model.config.season));
-            toastr.success(Controller.l("It is now") + " " + Controller.l(GAME.model.config.season).toLowerCase());
+            GAME.model.message.success(Controller.l("It is now") + " " + Controller.l(GAME.model.config.season).toLowerCase());
         }
 
         $(".timer-days").html(GAME.model.config.hours / 24);

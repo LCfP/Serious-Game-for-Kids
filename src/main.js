@@ -1,4 +1,7 @@
+import 'bootstrap';
+
 import './library/css/bootstrap.min.css';
+import 'toastr/build/toastr.css';
 import './views/css/main.css';
 
 import InitGameController from './controllers/initgamecontroller';

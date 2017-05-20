@@ -1,4 +1,5 @@
-export default class StorageCore {
+export default class StorageCore
+{
     /**
      * @constructor Represents a Storage.
      *

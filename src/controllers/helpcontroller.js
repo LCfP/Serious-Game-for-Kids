@@ -1,6 +1,7 @@
 import Controller from './core/controller';
-import toastr from 'toastr';
 import Trip from 'trip.js';
+
+import 'trip.js/dist/trip.min.css';
 
 
 export default class HelpController extends Controller
@@ -27,7 +28,7 @@ export default class HelpController extends Controller
                 if (GAME.model.orders.length) {
                     trip.start();
                 } else {
-                    toastr.warning(Controller.l("Make sure you have placed an order at the factory."));
+                    GAME.model.message.warning(Controller.l("Make sure you have placed an order at the factory."));
                 }
             },
             "Factory": (trip) => {
@@ -52,7 +53,7 @@ export default class HelpController extends Controller
                 if (GAME.model.customers.length) {
                     trip.start();
                 } else {
-                    toastr.warning(Controller.l("There has to be at least one customer. Start the game by pressing the 'play' button. Customers will the pop up automatically."), "", {timeOut: 7000});
+                    GAME.model.message.warning(Controller.l("There has to be at least one customer. Start the game by pressing the 'play' button. Customers will the pop up automatically."), "", {timeOut: 7000});
                 }
             }
         }
