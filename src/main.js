@@ -1,6 +1,8 @@
-import 'bootstrap';
+// bootstrap JS
+import 'bootstrap/dist/js/bootstrap.min';
 
-import './library/css/bootstrap.min.css';
+// vendor CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'toastr/build/toastr.css';
 import './views/css/main.css';
 

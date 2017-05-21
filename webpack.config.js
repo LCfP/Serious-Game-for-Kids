@@ -47,6 +47,9 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
             mangle: {
                 keep_fnames: true // make sure functions and classes maintain their names.
+            },
+            output: {
+                comments: false
             }
         }),
         new OptimizeCssAssetsPlugin({
