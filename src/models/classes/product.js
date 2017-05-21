@@ -1,4 +1,7 @@
-class Product extends ProductCore
+import ProductCore from './core/productcore';
+
+
+export default class Product extends ProductCore
 {
     toString()
     {

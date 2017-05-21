@@ -1,4 +1,9 @@
-class WarehouseController extends Controller
+import Controller from './core/controller';
+import MoneyController from './moneycontroller';
+import Container from '../models/classes/container';
+
+
+export default class WarehouseController extends Controller
 {
     view()
     {
@@ -55,7 +60,7 @@ class WarehouseController extends Controller
         const availableCapacity = GAME.model.warehouse.maxContainerCapacity() - GAME.model.warehouse.usedContainerCapacity();
 
         if (orderSize > availableCapacity) {
-            toastr.error(Controller.l("There is no room left for this order in the warehouse!"));
+            GAME.model.message.error(Controller.l("There is no room left for this order in the warehouse!"));
             // TODO try to fit what fits? - context
         } else {
             // add products to the containers.
@@ -73,25 +78,23 @@ class WarehouseController extends Controller
      */
     _processOrder(order, successMsg)
     {
-        order.products.forEach(function (product) {
+        order.products.forEach(product => {
             while (product.values.quantity) {
                 // see http://stackoverflow.com/a/2641374/4316405
-                GAME.model.warehouse.items.every(
-                    container => {
-                        const cases = {
-                            "FactoryOrder": container.addItem.bind(container),
-                            "CustomerOrder": container.removeItem.bind(container)
-                        };
+                GAME.model.warehouse.items.every(container => {
+                    const cases = {
+                        "FactoryOrder": container.addItem.bind(container),
+                        "CustomerOrder": container.removeItem.bind(container)
+                    };
 
-                        product.values.quantity = cases[order.constructor.name](product);
-                        return product.values.quantity;
-                    }
-                );
+                    product.values.quantity = cases[order.constructor.name](product);
+                    return product.values.quantity;
+                });
             }
         });
 
         if (order.products.every(product => product.values.quantity === 0)) {
-            toastr.info(Controller.l(successMsg));
+            GAME.model.message.info(Controller.l(successMsg));
             return true;
         }
     }
@@ -161,9 +164,9 @@ class WarehouseController extends Controller
                     this.updateContainerView();
                     this.updateCapacityView();
 
-                    toastr.success(Controller.l("Purchased an additional container!"));
+                    GAME.model.message.success(Controller.l("Purchased an additional container!"));
                 } else {
-                    toastr.warning(Controller.l("You cannot afford this!"));
+                    GAME.model.message.warning(Controller.l("You cannot afford this!"));
                 }
             });
         };

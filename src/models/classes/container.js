@@ -1,4 +1,8 @@
-class Container extends StorageCore
+import StorageCore from './core/storagecore';
+import Product from './product';
+
+
+export default class Container extends StorageCore
 {
     /**
      * @param {Product} product - The product to be added.

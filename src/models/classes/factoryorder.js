@@ -1,4 +1,7 @@
-class FactoryOrder extends OrderCore
+import OrderCore from './core/ordercore';
+
+
+export default class FactoryOrder extends OrderCore
 {
     /**
      * @param {Product[]} products

@@ -1,4 +1,11 @@
-class SimulationController extends Controller
+import Controller from './core/controller';
+import DemandController from './demandcontroller';
+import FactoryController from './factorycontroller';
+import WarehouseController from './warehousecontroller';
+import LevelController from './levelcontroller';
+
+
+export default class SimulationController extends Controller
 {
     /**
      * Called by InitGameController once the views have been loaded and the game is ready.
@@ -93,7 +100,7 @@ class SimulationController extends Controller
             GAME.model.config.season = GAME.model.config.seasons[GAME.model.config.seasonCount % 3];
 
             $(".season").html(Controller.l(GAME.model.config.season));
-            toastr.success(Controller.l("It is now") + " " + Controller.l(GAME.model.config.season).toLowerCase());
+            GAME.model.message.success(Controller.l("It is now") + " " + Controller.l(GAME.model.config.season).toLowerCase());
         }
 
         $(".timer-days").html(GAME.model.config.hours / 24);

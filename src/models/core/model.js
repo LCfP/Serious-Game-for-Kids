@@ -1,7 +1,11 @@
+import Cookies from 'js-cookie';
+import toastr from 'toastr';
+
+
 /**
  * Maintains a `model` field, that represents the current game state.
  */
-class Model
+export default class Model
 {
     constructor()
     {
@@ -61,7 +65,8 @@ class Model
                 this.model.base.customers = customers[0];
 
                 // toastr settings, from the config
-                toastr.options = this.model.config.toastr;
+                this.model.message = toastr;
+                this.model.message.options = this.model.config.toastr;
 
                 $.when(this._getLang()).done(
                     (lang) => {

@@ -1,4 +1,10 @@
-class OrderController extends Controller
+import Controller from './controller';
+import HistoryController from '../historycontroller';
+
+import Product from '../../models/classes/product';
+
+
+export default class OrderController extends Controller
 {
     /**
      * @abstract

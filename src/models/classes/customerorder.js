@@ -1,4 +1,7 @@
-class CustomerOrder extends OrderCore
+import OrderCore from './core/ordercore';
+
+
+export default class CustomerOrder extends OrderCore
 {
     constructor(products)
     {

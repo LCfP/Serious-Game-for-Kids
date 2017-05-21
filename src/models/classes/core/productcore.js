@@ -1,4 +1,4 @@
-class ProductCore
+export default class ProductCore
 {
     /**
      * @constructor Represents a product.

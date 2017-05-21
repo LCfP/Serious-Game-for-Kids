@@ -1,4 +1,14 @@
-class CustomerController extends OrderController
+import OrderController from './core/ordercontroller';
+import Controller from './core/controller';
+import MoneyController from './moneycontroller';
+import WarehouseController from './warehousecontroller';
+import DemandController from './demandcontroller';
+
+import Customer from '../models/classes/customer';
+import CustomerOrder from '../models/classes/customerorder';
+
+
+export default class CustomerController extends OrderController
 {
     view()
     {
@@ -16,7 +26,7 @@ class CustomerController extends OrderController
                 if (controller.validateOrder(customer.order)) {
                     controller.completeOrder(customer);
                 } else {
-                    toastr.warning(Controller.l("You don't have all the products to complete this order."))
+                    GAME.model.message.warning(Controller.l("You don't have all the products to complete this order."))
                 }
             });
 
@@ -68,7 +78,7 @@ class CustomerController extends OrderController
             GAME.model.customers.push(customer);
             this._updateOrderView(customer);
 
-            toastr.info(Controller.l("New customer is waiting!"));
+            GAME.model.message.info(Controller.l("New customer is waiting!"));
         }
     }
 
@@ -106,7 +116,7 @@ class CustomerController extends OrderController
 
         if (GAME.model.config.penaltySendingCustomerAway) {
             MoneyController.updateMoney(-GAME.model.config.penaltySendingCustomerAway);
-            toastr.warning(Controller.l("You got a penalty for sending the customer away."));
+            GAME.model.message.warning(Controller.l("You got a penalty for sending the customer away."));
         }
     }
 

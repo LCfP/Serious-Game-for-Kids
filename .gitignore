@@ -50,3 +50,6 @@ Temporary Items
 # Node files and misc. unsorted images
 /node_modules
 /unsorted
+/bundle.js
+/styles.css
+/glyphicons-halflings-regular.svg

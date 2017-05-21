@@ -1,4 +1,12 @@
-class FactoryController extends OrderController
+import OrderController from './core/ordercontroller';
+import Controller from './core/controller';
+import WarehouseController from './warehousecontroller';
+import MoneyController from './moneycontroller';
+
+import FactoryOrder from '../models/classes/factoryorder';
+
+
+export default class FactoryController extends OrderController
 {
     view()
     {
@@ -43,9 +51,9 @@ class FactoryController extends OrderController
                 MoneyController.updateMoney(-GAME.model.config.costExtraTruck);
                 GAME.model.config.maxSimultaneousOrders++;
 
-                toastr.success(Controller.l("You purchased an extra truck!"));
+                GAME.model.message.success(Controller.l("You purchased an extra truck!"));
             } else {
-                toastr.warning(Controller.l("You cannot afford an extra truck!"));
+                GAME.model.message.warning(Controller.l("You cannot afford an extra truck!"));
             }
         });
 
@@ -55,10 +63,10 @@ class FactoryController extends OrderController
                 MoneyController.updateMoney(-GAME.model.config.costSizeTruck);
                 GAME.model.config.orderCapacity = GAME.model.config.orderCapacity * GAME.model.config.sizeIncreasingFactor;
 
-                toastr.success(Controller.l("You increased the size of your trucks!"));
+                GAME.model.message.success(Controller.l("You increased the size of your trucks!"));
                 $("#truck-capacity").html(GAME.model.config.orderCapacity.toFixed(0));
             } else {
-                toastr.warning(Controller.l("You cannot afford to increase the size of your trucks!"))
+                GAME.model.message.warning(Controller.l("You cannot afford to increase the size of your trucks!"))
             }
         });
 
@@ -102,7 +110,7 @@ class FactoryController extends OrderController
             MoneyController.updateMoney(-order.orderCost() - GAME.model.config.orderTransportCost);
             this._updateOrderView(order);
 
-            toastr.success(Controller.l("Order has been placed!"));
+            GAME.model.message.success(Controller.l("Order has been placed!"));
         }
 
         return orderValidation;
@@ -116,27 +124,27 @@ class FactoryController extends OrderController
             + GAME.model.config.orderTransportCost;
 
         if (!products.length) {
-            toastr.warning(Controller.l("An order cannot be empty."));
+            GAME.model.message.warning(Controller.l("An order cannot be empty."));
             return false;
         }
 
         if (GAME.model.orders.length == GAME.model.config.maxSimultaneousOrders) {
-            toastr.error(Controller.l("There is no room for another order at this time!"));
+            GAME.model.message.error(Controller.l("There is no room for another order at this time!"));
             return false;
         }
 
         if (orderSize > GAME.model.config.orderCapacity) {
-            toastr.error(Controller.l("There is insufficient space on the truck!"));
+            GAME.model.message.error(Controller.l("There is insufficient space on the truck!"));
             return false;
         }
 
         if (orderCost > GAME.model.config.money) {
-            toastr.error(Controller.l("You cannot afford this!"));
+            GAME.model.message.error(Controller.l("You cannot afford this!"));
             return false;
         }
 
         if (products.some((product) => product.values.quantity < 0)) {
-            toastr.error(Controller.l("You cannot order a negative amount!"));
+            GAME.model.message.error(Controller.l("You cannot order a negative amount!"));
             return false;
         }
 

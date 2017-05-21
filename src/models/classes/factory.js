@@ -1,4 +1,7 @@
-class Factory extends StorageCore
+import StorageCore from './core/storagecore';
+
+
+export default class Factory extends StorageCore
 {
     constructor(name, products)
     {

@@ -1,4 +1,7 @@
-class HistoryController extends Controller
+import Controller from './core/controller';
+
+
+export default class HistoryController extends Controller
 {
     log(entry)
     {

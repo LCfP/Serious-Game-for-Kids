@@ -1,4 +1,7 @@
-class MoneyController extends Controller
+import Controller from './core/controller';
+
+
+export default class MoneyController extends Controller
 {
     /**
      * Updates the current amount of money. Note that amount is added to GAME.model.config.money,
