@@ -78,20 +78,18 @@ export default class WarehouseController extends Controller
      */
     _processOrder(order, successMsg)
     {
-        order.products.forEach(function (product) {
+        order.products.forEach(product => {
             while (product.values.quantity) {
                 // see http://stackoverflow.com/a/2641374/4316405
-                GAME.model.warehouse.items.every(
-                    container => {
-                        const cases = {
-                            "FactoryOrder": container.addItem.bind(container),
-                            "CustomerOrder": container.removeItem.bind(container)
-                        };
+                GAME.model.warehouse.items.every(container => {
+                    const cases = {
+                        "FactoryOrder": container.addItem.bind(container),
+                        "CustomerOrder": container.removeItem.bind(container)
+                    };
 
-                        product.values.quantity = cases[order.constructor.name](product);
-                        return product.values.quantity;
-                    }
-                );
+                    product.values.quantity = cases[order.constructor.name](product);
+                    return product.values.quantity;
+                });
             }
         });
 

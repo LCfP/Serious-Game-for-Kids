@@ -44,7 +44,11 @@ module.exports = {
             jQuery: "jquery"
         }),
         new ExtractTextPlugin("styles.css"),
-        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            mangle: {
+                keep_fnames: true // make sure functions and classes maintain their names.
+            }
+        }),
         new OptimizeCssAssetsPlugin({
             cssProcessor: cssnano,
             cssProcessorOptions: { discardComments: {removeAll: true } },
