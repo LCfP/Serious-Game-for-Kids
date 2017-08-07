@@ -17,7 +17,7 @@ $(document).ready(function ()
         view: {}
     };
 
-    // creates the global MODEL object
+    // Creates the model object
     new InitGameModel();
 });
 
