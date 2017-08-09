@@ -17,14 +17,14 @@ export default class FactoryController extends OrderController
             "#factory",
             Object.keys(products)
         ).done(() => {
+            this._factoryFormInputView(products);
+
             this.registerEvent();
             this._setActiveTab();
 
             $("#order-transport-cost").html(GAME.model.config.orderTransportCost);
             $('[data-toggle="tooltip"]').tooltip();
         });
-
-        this._factoryFormInputView(products);
     }
 
     /**
@@ -149,7 +149,6 @@ export default class FactoryController extends OrderController
         }
 
         // TODO check warehouse capacity
-
         return true;
     }
 
