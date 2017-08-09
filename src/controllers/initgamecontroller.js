@@ -121,7 +121,7 @@ export default class InitGameController extends Controller
         $("#language").change(function () {
             $("#language option:selected").each(
                 () => {
-                    let lang = $(this).val();
+                    const lang = $(this).val();
                     Cookies.set("lang", lang, {expires: 7});
 
                     GAME.model.message.success(
