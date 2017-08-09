@@ -9,6 +9,13 @@
           "food": 90
         }
       }
+    },
+    {
+      "name": "SportStore",
+      "type": ["clothing"],
+      "expectation": {
+        "delivery": 5
+      }
     }
   ],
   "random": {
@@ -16,11 +23,16 @@
       "Henk",
       "Ingrid",
       "Peter",
-      "Anne"
+      "Anne",
+      "Kees",
+      "Jan",
+      "Anna"
     ],
     "en": [
       "Harry",
-      "Sally"
+      "Sally",
+      "Peter",
+      "Bob"
     ]
   }
 }

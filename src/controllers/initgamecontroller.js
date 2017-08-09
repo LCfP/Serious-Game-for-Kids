@@ -40,6 +40,18 @@ export default class InitGameController extends Controller
                 sim.registerEvent();
             }
         );
+
+        // small screen check, if below 1366x768 display message
+        if (window.innerWidth < 1366) {
+            GAME.model.message.warning(
+                Controller.l("This game may not work as desired on small screens. Consider playing on a bigger screen instead!"),
+                "",
+                {
+                    closeButton: true,
+                    timeOut: 0
+                }
+            );
+        }
     }
 
     /**
@@ -89,16 +101,6 @@ export default class InitGameController extends Controller
             handler => this._tripEventHelper(handler)
         );
 
-        // initial tour (intro)
-        $(document).ready(function () {
-            if (!Cookies.get('hasVisited')) {
-                const helpController = new HelpController();
-
-                helpController.makeTrip("StatusBar", {intro: true});
-                Cookies.set('hasVisited', true, {expires: 7});
-            }
-        });
-
         // left menu opening
         $("#sidebar-left-toggle").click(function (e) {
             sidebar_handler(e, "#sidebar-left");
@@ -119,7 +121,7 @@ export default class InitGameController extends Controller
         $("#language").change(function () {
             $("#language option:selected").each(
                 () => {
-                    let lang = $(this).val();
+                    const lang = $(this).val();
                     Cookies.set("lang", lang, {expires: 7});
 
                     GAME.model.message.success(
