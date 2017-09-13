@@ -8,7 +8,7 @@ export default class HistoryController extends Controller
         GAME.model.history.push(entry);
 
         this._loadTemplate(
-            "src/views/template/history/" + entry.constructor.name + ".html",
+            "src/views/template/history/" + entry.constructor.name.toLowerCase() + ".html",
             "#history-events",
             entry,
             false,
