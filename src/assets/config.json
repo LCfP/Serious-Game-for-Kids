@@ -28,7 +28,7 @@
   "warehouseCapacity": 6,
   "containerCapacity": 150,
   "orderCapacity": 250,
-  "orderTransportDurationDays": 3,
+  "orderTransportDurationDays": 2,
 
   "addContainerCost": 1000,
   "costExtraTruck": 500,
