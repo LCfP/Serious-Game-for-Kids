@@ -22,6 +22,12 @@ export default class WarehouseController extends Controller
     /**
      * Updates holding cost, every time it is invoked. See the config for the current parameter values,
      * used in formula: quantity * product size * holdingCostPerSize.
+     *
+     * @deprecated since v1.1.1
+     *
+     * Holding costs were introduced to the game in v1.0, but after playing with some groups of kids,
+     * we decided they were too complicated to have in the game. As such, per v1.1.1, they were removed
+     * from execution.
      */
     updateHoldingCost()
     {
