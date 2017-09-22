@@ -8,6 +8,8 @@ import HelpController from './helpcontroller';
 
 import Cookies from 'js-cookie';
 
+import "../views/css/playbuttons.css";
+
 
 export default class InitGameController extends Controller
 {
