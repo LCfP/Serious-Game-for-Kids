@@ -85,7 +85,6 @@ export default class SimulationController extends Controller
         const warehouseController = new WarehouseController();
         const levelController = new LevelController();
 
-        warehouseController.updateHoldingCost();
         warehouseController.updatePerishableProducts();
 
         warehouseController.updateContainerView();

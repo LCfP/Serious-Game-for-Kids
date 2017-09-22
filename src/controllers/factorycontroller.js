@@ -22,7 +22,6 @@ export default class FactoryController extends OrderController
             this.registerEvent();
             this._setActiveTab();
 
-            $("#order-transport-cost").html(GAME.model.config.orderTransportCost);
             $('[data-toggle="tooltip"]').tooltip();
         });
     }
@@ -56,20 +55,6 @@ export default class FactoryController extends OrderController
                 GAME.model.message.warning(Controller.l("You cannot afford an extra truck!"));
             }
         });
-
-        //increases the truck size (orderCapacity) after cost validation
-        $("#size-truck").click(() => {
-            if (GAME.model.config.money >= GAME.model.config.costSizeTruck) {
-                MoneyController.updateMoney(-GAME.model.config.costSizeTruck);
-                GAME.model.config.orderCapacity = GAME.model.config.orderCapacity * GAME.model.config.sizeIncreasingFactor;
-
-                GAME.model.message.success(Controller.l("You increased the size of your trucks!"));
-                $("#truck-capacity").html(GAME.model.config.orderCapacity.toFixed(0));
-            } else {
-                GAME.model.message.warning(Controller.l("You cannot afford to increase the size of your trucks!"))
-            }
-        });
-
 
         // updates the information for the current order process
         $("form[name=newFactoryOrder] :input").change(
@@ -107,7 +92,7 @@ export default class FactoryController extends OrderController
         if (orderValidation) {
             GAME.model.orders.push(order);
 
-            MoneyController.updateMoney(-order.orderCost() - GAME.model.config.orderTransportCost);
+            MoneyController.updateMoney(-order.orderCost());
             this._updateOrderView(order);
 
             GAME.model.message.success(Controller.l("Order has been placed!"));
@@ -118,10 +103,9 @@ export default class FactoryController extends OrderController
 
     validateOrder(order)
     {
-        let products = order.products;
-        let orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
-        let orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0)
-            + GAME.model.config.orderTransportCost;
+        const products = order.products;
+        const orderSize = products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
+        const orderCost = products.reduce((sum, prod) => sum + prod.stockValue(), 0);
 
         if (!products.length) {
             GAME.model.message.warning(Controller.l("An order cannot be empty."));

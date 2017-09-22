@@ -2,12 +2,6 @@
     <div class="panel-heading clearfix">
         <span class="btn-group btn-group-sm pull-right" role="group">
             <span class="btn-group" role="group">
-                <button id="size-truck" type="button" class="btn btn-sm btn-default"
-                        data-toggle="tooltip" data-placement="bottom" title="{{#l}}This costs{{/l}} 250">
-                    <span class="text-success">{{#l}}Increase truck capacity{{/l}}</span>
-                </button>
-            </span>
-            <span class="btn-group" role="group">
                 <button id="buy-truck" type="button" class="btn btn-sm btn-default"
                         data-toggle="tooltip" data-placement="bottom" title="{{#l}}This costs{{/l}} 500">
                     <span class="text-success">{{#l}}Extra truck{{/l}}</span>
@@ -19,8 +13,6 @@
     <div class="alert alert-info no-border-radius margin-bottom-0">
         {{#l}}Your current order will cost you{{/l}} <strong id="factory-order-cost">0</strong>,
         {{#l}}and use{{/l}} <strong id="factory-order-capacity">0</strong>/<span id="truck-capacity">250</span> {{#l}}capacity{{/l}}!
-        {{#l}}Furthermore, a shipping charge of{{/l}} <strong id="order-transport-cost"></strong>
-        {{#l}}is always incurred, regardless of order size.{{/l}}
     </div>
     <div class="panel-body">
         <form name="newFactoryOrder" action="">

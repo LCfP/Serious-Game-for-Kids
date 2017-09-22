@@ -12,7 +12,7 @@ export default class HistoryController extends Controller
             "#history-events",
             entry,
             false,
-            true
+            GAME.model.history.length !== 1 // first item on history list overwrites existing text
         );
     }
 }
