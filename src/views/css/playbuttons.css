@@ -1,0 +1,26 @@
+/*
+    Centered play/pause buttons
+ */
+#timer-wrapper {
+
+    position: fixed;
+    top: 0;
+    left: calc(50% - 155px / 2);
+
+    z-index: 999;
+
+    padding: 10px 25px;
+
+    background: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    border-top: none;
+
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.time-info {
+    margin-right: 200px; /* TODO: this is a bid hacky */
+}
