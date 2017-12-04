@@ -1,6 +1,10 @@
 # Jetbrains IDEs
 /.idea
 
+# Yarn package Installer
+yarn.lock
+yarn-error.log
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
