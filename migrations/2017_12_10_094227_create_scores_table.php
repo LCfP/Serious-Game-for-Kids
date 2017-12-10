@@ -15,6 +15,9 @@ class CreateScoresTable extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('team_id')->unsigned();
+            $table->integer('money')->unsigned(); // E.g. $10.34 would be stored as 1034
+            $table->integer('satisfaction')->unsigned(); // E.g. 98% would be stored as 98.
             $table->timestamps();
         });
     }
