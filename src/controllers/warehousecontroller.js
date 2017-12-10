@@ -143,9 +143,7 @@ export default class WarehouseController extends Controller
             }
         );
 
-        if (GAME.model.warehouse.items.length < GAME.model.config.warehouseCapacity) {
-            this._renderPurchaseContainer();
-        }
+        this._renderPurchaseContainer();
     }
 
     /**
@@ -156,7 +154,12 @@ export default class WarehouseController extends Controller
      */
     _renderPurchaseContainer()
     {
-        let event = () => {
+        // no more containers may be purchased, so remove that option from the game.
+        if (GAME.model.warehouse.items.length >= GAME.model.config.warehouseCapacity) {
+            return $("#purchase-container-area").remove();
+        }
+
+        const event = () => {
             $("#purchase-container").click(() => {
                 if (GAME.model.config.money > GAME.model.config.addContainerCost) {
                     GAME.model.warehouse.addItem(
@@ -179,9 +182,8 @@ export default class WarehouseController extends Controller
 
         this._loadTemplate(
             "src/views/template/container/purchasecontainer.html",
-            "#containers",
-            GAME.model.config,
-            true
+            "#purchase-container-area",
+            GAME.model.config
         ).done(event);
     }
 
