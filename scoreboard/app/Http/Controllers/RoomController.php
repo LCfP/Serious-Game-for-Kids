@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     public function show($room) {
-        $room = Room::where('name', $room)->first();
+        $room = Room::where('name', $room)->with('teams')->first();
 
         if (!$room) {
             return response()->json(null, 404);
