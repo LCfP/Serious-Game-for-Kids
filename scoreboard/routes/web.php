@@ -12,5 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return view('index');
 });
+
+$router->post('/rooms', 'RoomController@store');
