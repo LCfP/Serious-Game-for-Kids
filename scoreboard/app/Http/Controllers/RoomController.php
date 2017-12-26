@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
+    public function show($room) {
+        $room = Room::where('name', $room)->first();
+
+        if (!$room) {
+            return response()->json(null, 404);
+        }
+
+        return response()->json($room);
+    }
+
     public function store(Request $request)
     {
         $unique = false;
