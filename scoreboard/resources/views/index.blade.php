@@ -56,19 +56,17 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        // $(document).ready(() => {
-            $('[id^="page-"]').hide();
+        $('[id^="page-"]').hide();
 
-            let roomName = getUrlParam('room');
+        let roomName = getUrlParam('room');
 
-            if (roomName == undefined) {
-                $('#page-home').show();
-            } else {
-                $('#page-room').show();
+        if (roomName == undefined) {
+            $('#page-home').show();
+        } else {
+            $('#page-room').show();
 
-                getRoomInfo(roomName);
-            }
-        // });
+            getRoomInfo(roomName);
+        }
         
         $('#search-room').click(e => {
             e.preventDefault();
@@ -93,10 +91,8 @@
                 url: '/rooms/' + name,
             }).done(data => {
                 $('#room-name').text(data.name);
-
                 updateRows(data.teams);
             }).fail(response => {
-                console.log('reload');
                 window.location = '/';
             });
         }
@@ -122,10 +118,10 @@
             params = params.split('&');
 
             for (var i = 0; i < params.length; i++) {
-                let parameterName = params[i].split('=');
+                let parameter = params[i].split('=');
 
-                if (parameterName[0] == param) {
-                    return parameterName[1];
+                if (parameter[0] == param) {
+                    return parameter[1];
                 }
             }
         }
