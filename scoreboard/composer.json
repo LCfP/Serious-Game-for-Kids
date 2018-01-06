@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~2.2"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4"
+        "fzaninotto/faker": "~1.4",
+        "laravel/tinker": "^1.0"
     },
     "autoload": {
         "psr-4": {
