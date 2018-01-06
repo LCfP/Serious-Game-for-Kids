@@ -12,10 +12,10 @@ class TeamController extends Controller
     {
         $this->validate($request, [
             'team_name' => ['required', 'alpha_dash', 'unique:teams,name'],
-            'room_name' => ['required', 'alpha_dash', 'exists:rooms,name'],
+            'room_name' => ['required', 'alpha_dash'],
         ]);
 
-        $room = Room::where('name', $request->room_name)->first();
+        $room = Room::where('name', $request->room_name)->firstOrFail();
 
         $team = $room->teams()->create([
             'name' => $request->team_name,
