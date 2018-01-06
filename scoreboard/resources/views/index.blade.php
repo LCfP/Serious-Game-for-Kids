@@ -92,12 +92,14 @@
             }).done(data => {
                 $('#room-name').text(data.name);
                 updateRows(data.teams);
-            }).fail(response => {
+            }).fail(error => {
                 window.location = '/';
             });
         }
         
         function updateRows(teams) {
+            $('#table-content').empty();
+
             for (var i = 0; i < teams.length; i++) {
                 let team = teams[i];
     
