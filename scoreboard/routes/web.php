@@ -19,3 +19,5 @@ $router->get('/rooms/{room}', 'RoomController@show');
 $router->post('/rooms', 'RoomController@store');
 
 $router->post('/teams', 'TeamController@store');
+
+$router->post('/scores', 'ScoreController@store');

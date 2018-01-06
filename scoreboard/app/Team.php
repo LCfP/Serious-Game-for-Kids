@@ -14,4 +14,9 @@ class Team extends Model
     {
         return $this->belongsTo(Room::class);
     }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

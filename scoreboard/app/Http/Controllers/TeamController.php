@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TeamController extends Controller
 {
     public function store(Request $request)
-    { 
+    {
         $this->validate($request, [
             'team_name' => ['required', 'alpha_dash', 'unique:teams,name'],
             'room_name' => ['required', 'alpha_dash', 'exists:rooms,name'],
