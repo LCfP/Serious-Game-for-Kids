@@ -38,44 +38,6 @@ export default class Container extends StorageCore
      */
     removeItem(product)
     {
-        // Maken an array of the perish time and corresponding product name, which can be compared later.
-        let perishTimeArray = [];
-        let perishNameArray = [];
-        let perishDuplicates = {};
-        for (let i = 0; i < this.items.length; i++) {
-
-           if (this.items[i].values.isPerishable) {
-
-               perishTimeArray.push(this.items[i].values.perishable);
-               perishNameArray.push(this.items[i].name);
-           }
-        }
-
-        // https://stackoverflow.com/a/18417854
-        // Creates an object with the duplicate name,
-        // and their index in the original array.
-
-        Array.prototype.getDuplicates = function () {
-            let duplicates = {};
-            for (var i = 0; i < this.length; i++) {
-                if(duplicates.hasOwnProperty(this[i])) {
-
-                    duplicates[this[i]].push(i);
-                } else if (this.lastIndexOf(this[i]) !== i) {
-
-                    duplicates[this[i]] = [i];
-                }
-                perishDuplicates = duplicates;
-            }
-        }
-
-        perishNameArray.getDuplicates();
-        
-
-        // Idea: compare the perish values of the duplicate products,
-        // filter out the 'most perished' products,
-        // or with the lowest perishTime.
-
         this.items = this.items.filter(function (item) {
             if (product.name != item.name) {
                 return item;
