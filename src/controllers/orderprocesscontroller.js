@@ -1,5 +1,8 @@
 import Controller from './core/controller';
 
+// Struggling with passing the argument, so for now I made it a global
+
+let minVariable = {"minIndex": 0};
 
 export default class OrderProcessController extends Controller
 {
@@ -37,41 +40,14 @@ export default class OrderProcessController extends Controller
     _perishableOrder(product)
     {
 
-        // Code underneath creates an array (perishableArray) which contains the lowest perished value
-        // (so, most perished product) of the order product, of all containers.
-        //
-        let perishableArray = [];
-        GAME.model.warehouse.items.forEach(function(container) {
-
-            let perishables = container.items
-                .filter(function(item) {
-                    return item.name == product.name;
-                })
-                .map(function(item) {
-                    return item.values.perishable;
-                });
-            perishableArray.push(Math.min(...perishables));
-        });
-
-
-        let min = perishableArray[0];
-        let minIndex = 0;
-
-        // Here, the index of the minimum of the array is found, which corresponds with the index of the container.
-
-        for (let i =1; i < perishableArray.length; i++) {
-            if (perishableArray[i] < min && perishableArray[i] != 0) {
-                minIndex = i;
-                min = perishableArray[i];
-            }
-        }
+        this._checkMostPerishedContainer(product);
+        console.log(minVariable.minIndex);
 
         // Now, I want to remove the product from the container of index minIndex, though I'm not sure exactly how.
+        let mostPerishedContainer = GAME.model.warehouse.items[minVariable.minIndex];
+        product.values.quantity = mostPerishedContainer.removeItem.bind(mostPerishedContainer)(product);
+        return product.values.quantity;
 
-        GAME.model.warehouse.items.every(container => {
-            product.values.quantity = GAME.model.warehouse.items[minIndex].removeItem.bind(container)(product);
-            return product.values.quantity;
-        });
     }
 
     /**
@@ -91,22 +67,34 @@ export default class OrderProcessController extends Controller
         });
     }
 
-    _findIndexOfMinimalValue(arr) {
-        if (arr.length === 0) {
-            return -1;
-        }
+    /**
+     * @private
+     */
+    _checkMostPerishedContainer(product)
+    {
+        // Code underneath creates an array (perishableArray) which contains the lowest perished value
+        // (so, most perished product) of the order product, of all containers.
+        //
+        let perishableArray = [];
+        GAME.model.warehouse.items.forEach(function(container) {
 
-        let min = arr[0];
-        let minIndex = 0;
+            let perishables = container.items
+                .filter(item => item.name == product.name)
+                .map(item => item.values.perishable);
+            perishableArray.push(Math.min(...perishables));
+        });
 
-        for (let i = 1; i < arr.length; i++) {
-            if (arr[i] < min) {
-                minIndex = i;
-                min = arr[i];
+        // Here, the index of the minimum of the array is found, which corresponds with the index of the
+        // most perished container.
+
+        let min = perishableArray[0];
+
+        for (let i = 1; i < perishableArray.length; i++) {
+            if (perishableArray[i] < min && perishableArray[i] != 0) {
+                minVariable.minIndex = i;
+                min = perishableArray[i];
             }
         }
-
-        return minIndex;
     }
 
 }
