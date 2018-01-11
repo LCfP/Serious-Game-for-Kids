@@ -3,6 +3,7 @@ import DemandController from './demandcontroller';
 import FactoryController from './factorycontroller';
 import WarehouseController from './warehousecontroller';
 import LevelController from './levelcontroller';
+import CustomerController from './customercontroller'
 
 
 export default class SimulationController extends Controller
@@ -82,13 +83,15 @@ export default class SimulationController extends Controller
         const days = Math.floor(GAME.model.config.hours / 24);
         const quarterYear = Math.floor(GAME.model.config.yearDays / 4);
 
+        const customerController = new CustomerController();
         const warehouseController = new WarehouseController();
         const levelController = new LevelController();
 
         warehouseController.updatePerishableProducts();
-
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
+
+        customerController.updateSatisfaction();
 
         if (levelController.checkGoalReached()) {
             levelController.completeLevel();

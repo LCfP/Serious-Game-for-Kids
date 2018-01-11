@@ -27,6 +27,7 @@ export default class Customer
             this.customer = {
                 name: this._generateName(model),
                 type: [types[Math.floor(Math.random() * types.length)]],
+                satisfaction: 100,
                 expectation: {
                     delivery: model.config.expectedDelivery,
                 }
@@ -35,6 +36,16 @@ export default class Customer
 
         products = products.filter(prod => this.customer.type.indexOf(prod.values.type) > -1);
         this.order = new CustomerOrder(products);
+    }
+
+    /**
+     * Updates customer satisfaction each time a new days occurs
+     *
+     */
+    updateSatisfaction()
+    {
+        //Too simple (and incorrect)
+        this.satisfaction = this.satisfaction - 10;
     }
 
     /**

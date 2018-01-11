@@ -121,6 +121,14 @@ export default class CustomerController extends OrderController
     }
 
     /**
+     * @See customer.updateSatisfaction
+     */
+    updateSatisfaction()
+    {
+        GAME.model.customers.updateSatisfaction();
+    }
+
+    /**
      * Validates order if quantity in warehouse for every product is
      * larger than in order.
      *
