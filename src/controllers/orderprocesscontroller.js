@@ -1,8 +1,5 @@
 import Controller from './core/controller';
 
-// Struggling with passing the argument, so for now I made it a global
-
-let minVariable = {"minIndex": 0};
 
 export default class OrderProcessController extends Controller
 {
@@ -19,8 +16,8 @@ export default class OrderProcessController extends Controller
     processOrder()
     {
         this.order.products.forEach(product => {
-            while (product.values.quantity) {
-
+            while (product.values.quantity)
+            {
                 if (product.values.isPerishable === true && this.order.constructor.name == "CustomerOrder") {
                     this._perishableOrder(product);
                 } else {
@@ -39,15 +36,13 @@ export default class OrderProcessController extends Controller
      */
     _perishableOrder(product)
     {
-
-        this._checkMostPerishedContainer(product);
+        const minVariable = this._checkMostPerishedContainer(product);
         console.log(minVariable.minIndex);
 
         // Now, I want to remove the product from the container of index minIndex, though I'm not sure exactly how.
-        let mostPerishedContainer = GAME.model.warehouse.items[minVariable.minIndex];
-        product.values.quantity = mostPerishedContainer.removeItem.bind(mostPerishedContainer)(product);
-        return product.values.quantity;
+        product.values.quantity = GAME.model.warehouse.items[minVariable.minIndex].removeItem(product);
 
+        return product.values.quantity;
     }
 
     /**
@@ -84,6 +79,8 @@ export default class OrderProcessController extends Controller
             perishableArray.push(Math.min(...perishables));
         });
 
+        let minVariable = {"minIndex": 0};
+
         // Here, the index of the minimum of the array is found, which corresponds with the index of the
         // most perished container.
 
@@ -95,6 +92,8 @@ export default class OrderProcessController extends Controller
                 min = perishableArray[i];
             }
         }
+
+        return minVariable;
     }
 
 }
