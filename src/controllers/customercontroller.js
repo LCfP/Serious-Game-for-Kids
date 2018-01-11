@@ -125,7 +125,7 @@ export default class CustomerController extends OrderController
      */
     updateSatisfaction()
     {
-        GAME.model.customers.updateSatisfaction();
+        GAME.model.customers.forEach(customer => customer.updateSatisfaction());
     }
 
     /**
