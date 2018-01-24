@@ -19,4 +19,9 @@ class Team extends Model
     {
         return $this->hasMany(Score::class);
     }
+
+    public function latestScore()
+    {
+        return $this->hasOne(Score::class)->latest();
+    }
 }

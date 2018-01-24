@@ -91,24 +91,42 @@
                 url: '/rooms/' + name,
             }).done(data => {
                 $('#room-name').text(data.name);
-                updateRows(data.teams);
+                setInterval(function () {
+                    getTeams(name)
+                }, 5 * 1000);
             }).fail(error => {
                 window.location = '/';
             });
         }
+
+        function getTeams(room) {
+            $.ajax({
+                url: '/rooms/' + room + '/teams',
+            }).done(teams => {
+                updateTable(teams);
+            })
+        }
+
+        function calculateScore(team) {
+            return team.latest_score.money * team.latest_score.satisfaction / 100;
+        }
         
-        function updateRows(teams) {
+        function updateTable(teams) {
             $('#table-content').empty();
+
+            teams.sort(function (a, b) {
+                return calculateScore(b) - calculateScore(a);
+            });
 
             for (var i = 0; i < teams.length; i++) {
                 let team = teams[i];
-    
+                    
                 var rowHtml = "<tr>";
-                rowHtml += "<td>" + team.rank + "</td>";
+                rowHtml += "<td>" + (i+1) + "</td>";
                 rowHtml += "<td>" + team.name + "</td>";
-                rowHtml += "<td>" + team.score + "</td>";
-                rowHtml += "<td>" + team.money + "</td>";
-                rowHtml += "<td>" + team.satisfaction + "</td>";
+                rowHtml += "<td>" + calculateScore(team) + "</td>";
+                rowHtml += "<td>" + team.latest_score.money + "</td>";
+                rowHtml += "<td>" + team.latest_score.satisfaction + "</td>";
                 rowHtml += "</tr>";
     
                 $('#table-content').append(rowHtml);
