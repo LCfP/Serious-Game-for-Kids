@@ -11,10 +11,6 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return view('index');
-});
-
 $router->get('/rooms/{room}', 'RoomController@show');
 $router->post('/rooms', 'RoomController@store');
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>Scoreboard | Serious game for kids</title>
+
+    <link rel="stylesheet" type="text/css" href="dist/common.css">
+    <link rel="stylesheet" type="text/css" href="dist/scoreboard.css">
+    <script src="dist/common.js" type="application/javascript" async></script>
+    <script src="dist/scoreboard.js" type="application/javascript" async></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/scoreboard.html">Scoreboard</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li><a id="create-room" href="#">Create Room</a></li>
+            </ul>
+
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input id="search-room-input"type="text" class="form-control" placeholder="2dk4">
+                </div>
+                <button id="search-room" class="btn btn-default">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- If no roomname is given -->
+        <section id="page-home">
+            <h1>Scoreboard for the Serious Game</h1>
+
+            <p>Use the buttons in the navigation bar on the top to create a room or go to an existing room.</p>
+        </section>
+
+        <!-- If a roomname is given -->
+        <section id="page-room">
+            <h1 style="margin: 0;">Room ID: <span id="room-name" style="letter-spacing: 2px; font-size: 50px;"></span></h1>
+            <p>Connect to this scoreboard by going to ... using the room ID above.</p>
+
+            <table class="table table-striped">
+                <thead>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Money</th>
+                    <th>Satisfaction</th>
+                </thead>
+                <tbody id="table-content"></tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

@@ -7,7 +7,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         game: './src/main',
-        scoreboard: './src/scoreboard'
+        scoreboard: './src/scoreboard/scoreboard'
     },
     output: {
         path: __dirname + '/dist/',
