@@ -14,7 +14,6 @@ $(document).ready(function ()
 
     $('[id^="page-"]').hide();
 
-
     if (roomName == undefined) {
         $('#page-home').show();
     } else {
