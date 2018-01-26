@@ -21,6 +21,11 @@ class TeamController extends Controller
             'name' => $request->team_name,
         ]);
 
+        $score = $team->scores()->create([
+            'money' => 0,
+            'satisfaction' => 100
+        ]);
+
         return response()->json(compact('room', 'team'));
     }
 }
