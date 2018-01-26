@@ -64,5 +64,13 @@
 
   "swal": {
     "timer": 3000
+  },
+
+  "scoreboard": {
+    "room_name": null,
+    "team_name": null,
+
+    "scoreboardUrl": "scoreboard.html",
+    "scoreboardApiUrl": "http://scoreboard.test"
   }
 }

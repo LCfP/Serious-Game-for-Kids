@@ -21,6 +21,6 @@ class TeamController extends Controller
             'name' => $request->team_name,
         ]);
 
-        return response(null, 200);
+        return response()->json(compact('room', 'team'));
     }
 }

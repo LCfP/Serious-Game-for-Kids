@@ -5,6 +5,7 @@ import FactoryController from './factorycontroller';
 import CustomerController from './customercontroller';
 import SimulationController from './simulationcontroller';
 import HelpController from './helpcontroller';
+import ScoreboardController from './scoreboardcontroller';
 
 import Cookies from 'js-cookie';
 
@@ -22,6 +23,7 @@ export default class InitGameController extends Controller
             new WarehouseController(),
             new FactoryController(),
             new CustomerController(),
+            new ScoreboardController(),
         ].forEach(
             function (controller) {
                 controller.view();
@@ -129,6 +131,11 @@ export default class InitGameController extends Controller
                     );
                 }
             )
+        });
+
+        // join room 
+        $("#open-create-team-modal").click((e) => {
+            $('#create-team-modal').modal('show');
         });
 
         const sidebar_handler = function (e, anchor, width=250, css={opacity: .3}) {
