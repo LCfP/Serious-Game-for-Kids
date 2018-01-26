@@ -61,10 +61,6 @@ module.exports = {
             cssProcessor: cssnano,
             cssProcessorOptions: { discardComments: {removeAll: true } },
             canPrint: true
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            filename: 'common.js'
         })
     ],
     watch: true
