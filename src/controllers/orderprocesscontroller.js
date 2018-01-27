@@ -42,9 +42,9 @@ export default class OrderProcessController extends Controller
 
         let perishedQuantity = this._checkPerishedQuantity(product, mostPerishedContainer);
 
-        perishedQuantity = mostPerishedContainer.removeItem(product);
+        product.values.quantity = mostPerishedContainer.removeItem(product);
 
-        return perishedQuantity;
+        return product.values.quantity;
     }
 
     /**
