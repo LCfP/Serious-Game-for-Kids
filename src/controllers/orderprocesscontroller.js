@@ -36,13 +36,15 @@ export default class OrderProcessController extends Controller
      */
     _perishableOrder(product)
     {
-        const minVariable = this._checkMostPerishedContainer(product);
-        console.log(minVariable.minIndex);
+        const minIndex = this._checkMostPerishedContainer(product);
 
-        // Now, I want to remove the product from the container of index minIndex, though I'm not sure exactly how.
-        product.values.quantity = GAME.model.warehouse.items[minVariable.minIndex].removeItem(product);
+        let mostPerishedContainer = GAME.model.warehouse.items[minIndex];
 
-        return product.values.quantity;
+        let perishedQuantity = this._checkPerishedQuantity(product, mostPerishedContainer);
+
+        perishedQuantity = mostPerishedContainer.removeItem(product);
+
+        return perishedQuantity;
     }
 
     /**
@@ -72,14 +74,13 @@ export default class OrderProcessController extends Controller
         //
         let perishableArray = [];
         GAME.model.warehouse.items.forEach(function(container) {
-
             let perishables = container.items
                 .filter(item => item.name == product.name)
                 .map(item => item.values.perishable);
             perishableArray.push(Math.min(...perishables));
         });
 
-        let minVariable = {"minIndex": 0};
+        let minIndex = 0;
 
         // Here, the index of the minimum of the array is found, which corresponds with the index of the
         // most perished container.
@@ -88,12 +89,26 @@ export default class OrderProcessController extends Controller
 
         for (let i = 1; i < perishableArray.length; i++) {
             if (perishableArray[i] < min && perishableArray[i] != 0) {
-                minVariable.minIndex = i;
+                minIndex = i;
                 min = perishableArray[i];
             }
         }
 
-        return minVariable;
+        return minIndex;
     }
 
+    /**
+     * @private
+     */
+    _checkPerishedQuantity(product, mostPerishedContainer)
+    {
+        // This function checks how many of the most perished product there are left
+
+        let perishedQuantityArray = mostPerishedContainer.items
+            .filter(item => item.name == product.name)
+            .map(item => item.values.quantity);
+        console.log(perishedQuantityArray);
+        let perishedQuantity = perishedQuantityArray[0];
+        return perishedQuantity;
+    }
 }
