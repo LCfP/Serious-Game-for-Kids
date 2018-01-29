@@ -13,7 +13,6 @@
 
 $router->get('/rooms/{room}', 'RoomController@show');
 $router->post('/rooms', 'RoomController@store');
-
 $router->get('/rooms/{room}/teams', 'RoomController@showTeams');
 
 $router->post('/teams', 'TeamController@store');
