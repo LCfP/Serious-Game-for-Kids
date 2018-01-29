@@ -67,8 +67,8 @@
   },
 
   "scoreboard": {
-    "room_name": null,
-    "team_name": null,
+    "room": null,
+    "team": null,
 
     "scoreboardUrl": "scoreboard.html",
     "scoreboardApiUrl": "http://scoreboard.test"
