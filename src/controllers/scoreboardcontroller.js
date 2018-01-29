@@ -43,6 +43,10 @@ export default class ScoreboardController extends Controller
             GAME.model.config.scoreboard.team = response.team;
 
             GAME.model.message.success(Controller.l("You joined room ") + response.room.name + ".");
+
+            setInterval(() => {
+                this.logScore()
+            }, 15 * 1000);
         }).fail(error => {
             GAME.model.message.error(Controller.l("That room does not exist or your team name is not unique."));
         });
@@ -50,5 +54,27 @@ export default class ScoreboardController extends Controller
         $('#create-team-modal').modal('hide');
 
         return true;
+    }
+
+    logScore()
+    {
+        if (! GAME.model.config.scoreboard.team || ! GAME.model.config.scoreboard.room) {
+            console.log('No team or room name found');
+            return;
+        }
+
+        $.ajax({
+            url: GAME.model.config.scoreboard.scoreboardApiUrl + '/scores',
+            method: 'post',
+            data: {
+                team_id: GAME.model.config.scoreboard.team.id,
+                money: GAME.model.config.money,
+                satisfaction: GAME.model.config.satisfaction,
+            }
+        }).done(data => {
+            console.log(data)
+        }).fail(error => {
+            console.log(error)
+        });
     }
 }
