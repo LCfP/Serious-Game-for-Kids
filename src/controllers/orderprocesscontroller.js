@@ -1,5 +1,5 @@
 import Controller from './core/controller';
-
+import Product from '../models/classes/product';
 
 export default class OrderProcessController extends Controller
 {
@@ -42,7 +42,9 @@ export default class OrderProcessController extends Controller
 
         let perishedQuantity = this._checkPerishedQuantity(product, mostPerishedContainer);
 
-        product.values.quantity = mostPerishedContainer.removeItem(product, perishedQuantity);
+        let perishedProduct = new Product(product.name, {quantity: perishedQuantity});
+        console.log(perishedProduct);
+        product.values.quantity = mostPerishedContainer.removeItem(product, perishedProduct);
 
         return product.values.quantity;
     }
@@ -108,7 +110,10 @@ export default class OrderProcessController extends Controller
             .filter(item => item.name == product.name)
             .map(item => item.values.quantity);
 
-        let perishedQuantity = perishedQuantityArray[0];
+        let perishedQuantity = Math.min(perishedQuantityArray[0], product.values.quantity);
+        //console.log(perishedQuantityArray);
+        //console.log(perishedQuantity);
+        console.log(product.values.quantity);
         return perishedQuantity;
     }
 }
