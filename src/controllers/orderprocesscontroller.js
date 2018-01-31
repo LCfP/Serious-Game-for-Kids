@@ -43,7 +43,7 @@ export default class OrderProcessController extends Controller
         let perishedQuantity = this._checkPerishedQuantity(product, mostPerishedContainer);
 
         let perishedProduct = new Product(product.name, {quantity: perishedQuantity});
-        console.log(perishedProduct);
+
         product.values.quantity = mostPerishedContainer.removeItem(product, perishedProduct);
 
         return product.values.quantity;
@@ -113,7 +113,7 @@ export default class OrderProcessController extends Controller
         let perishedQuantity = Math.min(perishedQuantityArray[0], product.values.quantity);
         //console.log(perishedQuantityArray);
         //console.log(perishedQuantity);
-        console.log(product.values.quantity);
+        console.log("I am product.values.quantity " + product.values.quantity);
         return perishedQuantity;
     }
 }
