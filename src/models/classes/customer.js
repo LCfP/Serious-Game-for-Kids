@@ -27,6 +27,7 @@ export default class Customer
             this.customer = {
                 name: this._generateName(model),
                 type: [types[Math.floor(Math.random() * types.length)]],
+                satisfaction: model.config.satisfaction + 20,
                 expectation: {
                     delivery: model.config.expectedDelivery,
                 }
