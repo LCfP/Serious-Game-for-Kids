@@ -44,11 +44,12 @@ export default class Container extends StorageCore
             }
 
             if (product.values.isPerishable) {
+
                 const removedQuantity = Math.min(product.values.quantity, perishedProduct.values.quantity);
-                console.log("I am the removedQuantity " + removedQuantity);
+
                 product.values.quantity -= removedQuantity;
                 item.values.quantity -= removedQuantity;
-                //console.log(product.values.quantity);
+                perishedProduct.values.quantity -= removedQuantity;
 
                 return item.values.quantity;
             } else {

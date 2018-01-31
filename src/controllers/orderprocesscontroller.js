@@ -18,7 +18,7 @@ export default class OrderProcessController extends Controller
         this.order.products.forEach(product => {
             while (product.values.quantity)
             {
-                if (product.values.isPerishable === true && this.order.constructor.name == "CustomerOrder") {
+                if (product.values.isPerishable && this.order.constructor.name == "CustomerOrder") {
                     this._perishableOrder(product);
                 } else {
                     this._nonPerishableOrder(product);
@@ -111,9 +111,7 @@ export default class OrderProcessController extends Controller
             .map(item => item.values.quantity);
 
         let perishedQuantity = Math.min(perishedQuantityArray[0], product.values.quantity);
-        //console.log(perishedQuantityArray);
-        //console.log(perishedQuantity);
-        console.log("I am product.values.quantity " + product.values.quantity);
+
         return perishedQuantity;
     }
 }
