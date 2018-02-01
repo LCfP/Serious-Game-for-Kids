@@ -36,30 +36,18 @@ export default class Container extends StorageCore
      *
      * @override
      */
-    removeItem(product, perishedProduct)
+    removeItem(product)
     {
         this.items = this.items.filter(function (item) {
-            if (product.name != item.name) {
+            if (product.name != item.name)
                 return item;
-            }
 
-            if (product.values.isPerishable) {
+            const removedQuantity = Math.min(product.values.quantity, item.values.quantity);
 
-                const removedQuantity = Math.min(product.values.quantity, perishedProduct.values.quantity);
+            product.values.quantity -= removedQuantity;
+            item.values.quantity -= removedQuantity;
 
-                product.values.quantity -= removedQuantity;
-                item.values.quantity -= removedQuantity;
-                perishedProduct.values.quantity -= removedQuantity;
-
-                return item.values.quantity;
-            } else {
-                const removedQuantity = Math.min(product.values.quantity, item.values.quantity);
-
-                product.values.quantity -= removedQuantity;
-                item.values.quantity -= removedQuantity;
-
-                return item.values.quantity;
-            }
+            return item.values.quantity;
         });
 
         return product.values.quantity;
@@ -74,7 +62,7 @@ export default class Container extends StorageCore
     {
         this.items = this.items.filter(
             function (product) {
-                if (typeof product == "undefined") {
+                if (typeof product === "undefined") {
                     return false;
                 }
 
