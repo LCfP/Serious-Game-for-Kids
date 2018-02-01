@@ -11,7 +11,9 @@ export default class OrderProcessController extends Controller
     }
 
     /**
-     * TODO
+     * Processes the order, either into the warehouse, or to the customer (depending on order type). For
+     * customer orders, FIFO is used to fulfill perishable demand, where the most perished products are
+     * the first to leave the warehouse.
      */
     processOrder()
     {
@@ -26,8 +28,7 @@ export default class OrderProcessController extends Controller
             }
         });
 
-        if (this.order.products.every(product => product.values.quantity === 0))
-            return true;
+        return this.order.products.every(product => product.values.quantity === 0);
     }
 
     /**
