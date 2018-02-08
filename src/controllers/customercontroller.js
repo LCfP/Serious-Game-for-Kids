@@ -50,6 +50,28 @@ export default class CustomerController extends OrderController
         };
     }
 
+    /**
+     * Updates satisfaction of customers each time a new day occurs.
+     */
+    updateSatisfaction()
+    {
+        GAME.model.customers.forEach(function(customer)
+        {
+            customer.customer.satisfaction -= 10;
+
+            if (customer.customer.satisfaction <= 20)
+                this.sendAway(customer);
+            if (customer.customer.satisfaction < 50)
+                return console.log("This customer's satisfaction is below 50, namely" + customer.customer.satisfaction);
+            if (customer.customer.satisfaction < 70)
+                return console.log("This customer's satisfaction is below 70, namely " + customer.customer.satisfaction);
+            //else
+                //happyface
+
+
+        });
+    }
+
     generateOrder(isStructural = false)
     {
         const demandGenerator = new DemandController();
