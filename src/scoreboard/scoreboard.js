@@ -11,6 +11,7 @@ $(document).ready(function ()
     let scoreboardUrl = 'scoreboard.html';
     let scoreboardApiUrl = 'http://scoreboard.test';
     let roomName = getUrlParam('room');
+    let timeBetweenUpdates = 30; // seconds
 
     $('[id^="page-"]').hide();
 
@@ -45,12 +46,31 @@ $(document).ready(function ()
             url: scoreboardApiUrl + '/rooms/' + name,
         }).done(data => {
             $('#room-name').text(data.name);
+
+            getTeams(name);
+            setTimer();
+
             setInterval(function () {
-                getTeams(name)
-            }, 5 * 1000);
+                getTeams(name);
+                setTimer();
+            }, timeBetweenUpdates * 1000);
         }).fail(error => {
             window.location = scoreboardUrl;
         });
+    }
+
+    function setTimer() {
+        let timeLeft = timeBetweenUpdates;
+
+        $('#scoreboard-timer').html(timeBetweenUpdates);
+
+        let x = setInterval(() => {
+            $('#scoreboard-timer').html(--timeLeft);
+
+            if (timeLeft <= 0) {
+                clearInterval(x);
+            }
+        }, 1 * 1000);
     }
 
     function getTeams(room) {
