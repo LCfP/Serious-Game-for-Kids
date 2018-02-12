@@ -44,9 +44,8 @@ export default class ScoreboardController extends Controller
             return;
         }
 
-        $.ajax({
+        $.post({
             url: GAME.model.config.scoreboard.scoreboardApiUrl + '/teams',
-            method: 'post',
             data: {
                 room_name: formValues[0].value,
                 team_name: formValues[1].value
@@ -82,9 +81,8 @@ export default class ScoreboardController extends Controller
             return;
         }
 
-        $.ajax({
+        $.post({
             url: GAME.model.config.scoreboard.scoreboardApiUrl + '/scores',
-            method: 'post',
             data: {
                 team_id: GAME.model.config.scoreboard.team.id,
                 money: GAME.model.config.money,

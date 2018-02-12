@@ -32,19 +32,13 @@ $(document).ready(function ()
     $('#create-room').click(e => {
         e.preventDefault();
         
-        $.ajax({
-            method: 'POST',
-            url: scoreboardApiUrl + '/rooms',
-        }).done(data => {
+        $.post(scoreboardApiUrl + '/rooms').done(data => {
             window.location = scoreboardUrl + '?room=' + data.name;
         });
     });
 
     function getRoomInfo(name) {
-        $.ajax({
-            method: 'GET',
-            url: scoreboardApiUrl + '/rooms/' + name,
-        }).done(data => {
+        $.get(scoreboardApiUrl + '/rooms/' + name).done(data => {
             $('#room-name').text(data.name);
 
             getTeams(name);
@@ -74,9 +68,7 @@ $(document).ready(function ()
     }
 
     function getTeams(room) {
-        $.ajax({
-            url: scoreboardApiUrl + '/rooms/' + room + '/teams',
-        }).done(teams => {
+        $.get(scoreboardApiUrl + '/rooms/' + room + '/teams').done(teams => {
             updateTable(teams);
         })
     }
