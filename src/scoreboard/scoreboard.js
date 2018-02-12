@@ -98,9 +98,9 @@ $(document).ready(function ()
             var rowHtml = "<tr>";
             rowHtml += "<td>" + (i+1) + "</td>";
             rowHtml += "<td>" + team.name + "</td>";
-            rowHtml += "<td>" + calculateScore(team) + "</td>";
+            rowHtml += "<td><b>" + calculateScore(team) + "</b></td>";
             rowHtml += "<td>" + team.latest_score.money + "</td>";
-            rowHtml += "<td>" + team.latest_score.satisfaction + "</td>";
+            rowHtml += "<td>" + team.latest_score.satisfaction + "&percnt;</td>";
             rowHtml += "</tr>";
 
             $('#table-content').append(rowHtml);
