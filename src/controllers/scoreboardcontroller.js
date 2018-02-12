@@ -27,20 +27,9 @@ export default class ScoreboardController extends Controller
         );
     }
 
-    scoreboardEnabled()
-    {
-        if (GAME.model.config.scoreboard.enabled) {
-            return true;
-        }
-
-        console.warn('Scoreboard is not enabled!');
-        
-        return false;
-    }
-
     createTeam(formValues)
     {
-        if (! this.scoreboardEnabled()) {
+        if (!GAME.model.config.scoreboard.enabled) {
             return;
         }
 
@@ -72,12 +61,11 @@ export default class ScoreboardController extends Controller
 
     logScore()
     {
-        if (! this.scoreboardEnabled()) {
+        if (!GAME.model.config.scoreboard.enabled) {
             return;
         }
 
         if (! GAME.model.config.scoreboard.team || ! GAME.model.config.scoreboard.room) {
-            console.log('No team or room name found');
             return;
         }
 
@@ -88,10 +76,6 @@ export default class ScoreboardController extends Controller
                 money: GAME.model.config.money,
                 satisfaction: GAME.model.config.satisfaction,
             }
-        }).done(data => {
-            console.log(data)
-        }).fail(error => {
-            console.log(error)
         });
     }
 }
