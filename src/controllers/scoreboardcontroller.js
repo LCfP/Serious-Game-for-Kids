@@ -49,7 +49,7 @@ export default class ScoreboardController extends Controller
             GAME.model.config.scoreboard.room = response.room;
             GAME.model.config.scoreboard.team = response.team;
 
-            GAME.model.message.success(Controller.l("You joined room ") + response.room.name + ".");
+            GAME.model.message.success(Controller.l("You joined room") + " " + response.room.name + ".");
 
             this.logScore()
             setInterval(() => {

@@ -136,5 +136,13 @@
   "This game may not work as desired on small screens. Consider playing on a bigger screen instead!": "Dit spel werkt mogelijk niet goed op kleine schermen. Overweeg om het op een groter scherm te spelen!",
 
   "It is empty here.": "Het is hier nog leeg.",
-  "Start the game to fill this area!": "Start het spel om deze lijst te vullen!"
+  "Start the game to fill this area!": "Start het spel om deze lijst te vullen!",
+
+  "Join a room": "Speel mee in een competitie",
+  "Join Room": "Speel Mee",
+  "Create Team": "Maak Team",
+  "Room Name": "Naam van Competitie",
+  "Team Name": "Naam van Team",
+  "That room does not exist or your team name is not unique.": "Die competitie bestaat niet of de naam van je team in niet uniek.",
+  "You joined room": "Je speelt mee in competitie"
 }
