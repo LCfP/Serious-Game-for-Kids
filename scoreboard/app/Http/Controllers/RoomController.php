@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function show($candidate) {
-        $room = Room::where('name', $room)->firstOrFail();
+    public function show($room) {
+        $foundRoom = Room::where('name', $room)->firstOrFail();
 
-        return response()->json($room);
+        return response()->json($foundRoom);
     }
 
-    public function showTeams($candidate) {
-        $room = Room::where('name', $room)->firstOrFail();
+    public function showTeams($room) {
+        $foundRoom = Room::where('name', $room)->firstOrFail();
 
-        $teams = $room->teams()->with('latestScore')->get();
+        $teams = $foundRoom->teams()->with('latestScore')->get();
 
         return response()->json($teams);
     }
