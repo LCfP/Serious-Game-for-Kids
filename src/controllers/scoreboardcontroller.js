@@ -5,6 +5,10 @@ export default class ScoreboardController extends Controller
 {
     view()
     {
+        if (!GAME.model.config.scoreboard.enabled) {
+            return;
+        }
+
         this._loadTemplate(
             "src/views/template/scoreboard/modal.html",
             "#create-room-modal",
@@ -47,6 +51,7 @@ export default class ScoreboardController extends Controller
 
             GAME.model.message.success(Controller.l("You joined room ") + response.room.name + ".");
 
+            this.logScore()
             setInterval(() => {
                 this.logScore()
             }, GAME.model.config.scoreboard.sendScoreInterval * 1000);
