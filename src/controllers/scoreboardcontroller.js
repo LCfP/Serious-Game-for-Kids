@@ -27,8 +27,23 @@ export default class ScoreboardController extends Controller
         );
     }
 
+    scoreboardEnabled()
+    {
+        if (GAME.model.config.scoreboard.enabled) {
+            return true;
+        }
+
+        console.warn('Scoreboard is not enabled!');
+        
+        return false;
+    }
+
     createTeam(formValues)
     {
+        if (! this.scoreboardEnabled()) {
+            return;
+        }
+
         $.ajax({
             url: GAME.model.config.scoreboard.scoreboardApiUrl + '/teams',
             method: 'post',
@@ -58,6 +73,10 @@ export default class ScoreboardController extends Controller
 
     logScore()
     {
+        if (! this.scoreboardEnabled()) {
+            return;
+        }
+
         if (! GAME.model.config.scoreboard.team || ! GAME.model.config.scoreboard.room) {
             console.log('No team or room name found');
             return;

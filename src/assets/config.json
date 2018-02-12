@@ -67,6 +67,7 @@
   },
 
   "scoreboard": {
+    "enabled": false,
     "room": null,
     "team": null,
 
