@@ -11,11 +11,16 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'team_name' => ['required', 'alpha_dash', 'unique:teams,name'],
+            'team_name' => ['required', 'alpha_dash'],
             'room_name' => ['required', 'alpha_dash'],
         ]);
 
         $room = Room::where('name', $request->room_name)->firstOrFail();
+
+        // Check if the room already has a team with the team_name given
+        if ($room->teams->pluck('name')->contains($request->team_name)) {
+            return response(null, 404);
+        }
 
         $team = $room->teams()->create([
             'name' => $request->team_name,
