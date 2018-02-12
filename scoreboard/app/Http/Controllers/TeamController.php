@@ -17,7 +17,7 @@ class TeamController extends Controller
 
         $room = Room::where('name', $request->room_name)->firstOrFail();
 
-        // Check if the room already has a team with the team_name given
+        // Check if the room already has a team with the given team_name
         if ($room->teams->pluck('name')->contains($request->team_name)) {
             return response(null, 404);
         }
