@@ -49,7 +49,7 @@ export default class ScoreboardController extends Controller
 
             setInterval(() => {
                 this.logScore()
-            }, 15 * 1000);
+            }, GAME.model.config.scoreboard.sendScoreInterval * 1000);
         }).fail(error => {
             GAME.model.message.error(Controller.l("That room does not exist or your team name is not unique."));
         });

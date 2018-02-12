@@ -71,6 +71,8 @@
     "room": null,
     "team": null,
 
+    "sendScoreInterval": 15,
+
     "scoreboardUrl": "scoreboard.html",
     "scoreboardApiUrl": "http://scoreboard.test"
   }
