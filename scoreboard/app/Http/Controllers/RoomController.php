@@ -25,14 +25,13 @@ class RoomController extends Controller
     {
         $unique = false;
 
-        do {
+        while (!$unique) {
             $random = strtolower(str_random(4));
 
             if (Room::where('name', $random)->count() == 0) {
                 $unique = true;
             }
         }
-        while (! $unique);
 
         $room = new Room;
         $room->name = $random;
