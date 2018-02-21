@@ -111,7 +111,6 @@ export default class CustomerController extends OrderController
      */
     sendAway(customer)
     {
-        // TODO Log event in history
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
 
         if (GAME.model.config.penaltySendingCustomerAway) {
