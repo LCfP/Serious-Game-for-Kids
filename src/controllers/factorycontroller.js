@@ -197,6 +197,21 @@ export default class FactoryController extends OrderController
                         $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
                     }
                 );
+
+                // Increases the value in the input by the given amount
+                // TODO after first level is reached, the first button gets an active class
+                // causing the button to look not like the others
+                $(".add-quantity-to-order").children().click(function () {
+                    const increaseBy = $(this).data('amount');
+
+                    $(this).parent().parent().find('input').val(function (i, oldval) {
+                        return parseInt(oldval) + parseInt(increaseBy);
+                    });
+
+                    $("form[name=newFactoryOrder] :input").trigger('change');
+                });
+
+                $(".add-quantity-to-order").removeClass('active');
             });
         }, this);
     }

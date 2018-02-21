@@ -1,15 +1,20 @@
 {{ #products }}
 <div class="padding-5">
     <div class="input-group input-group-lg">
-                        <span class="input-group-addon" style="padding: 8px 16px;">
-                            <img src="src/assets/img/{{ values.icon }}"
-                                 alt="{{#l}}{{ name }}{{/l}}"
-                                 title="{{#l}}{{ name }}{{/l}}"
-                                 height="28"
-                            />
-                            <label class="sr-only" for="{{ name }}">{{#l}}{{ name }}{{/l}}</label>
-                        </span>
+        <span class="input-group-addon" style="padding: 8px 16px;">
+            <img src="src/assets/img/{{ values.icon }}"
+                    alt="{{#l}}{{ name }}{{/l}}"
+                    title="{{#l}}{{ name }}{{/l}}"
+                    height="28"
+            />
+            <label class="sr-only" for="{{ name }}">{{#l}}{{ name }}{{/l}}</label>
+        </span>
         <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" value="0"/>
+        <div class="input-group-btn add-quantity-to-order">
+            <button type="button" class="btn btn-default" data-amount="5">+5</button>
+            <button type="button" class="btn btn-default" data-amount="10">+10</button>
+            <button type="button" class="btn btn-default" data-amount="30">+30</button>
+        </div>
     </div>
     <div class="text-center">
         <small>{{#l}}Unit price for this item is{{/l}} {{ values.price }}, {{#l}}and unit size is{{/l}} {{values.size
