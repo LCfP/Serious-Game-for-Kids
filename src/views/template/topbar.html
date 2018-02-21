@@ -21,13 +21,7 @@
         </li>
     </ul>
     <div class="nav navbar-nav navbar-right statuses">
-        <p class="navbar-text time-info">
-            {{#l}}Day{{/l}}
-            <strong class="timer-days">0</strong>,
-            {{#l}}hour{{/l}}
-            <strong class="timer-hours">0</strong>
-            <span class="badge season">{{#l}}{{ config.season }}{{/l}}</span>
-        </p>
+        
         <p class="navbar-text">
             <strong>{{#l}}Level{{/l}}</strong>
             <span id="level">{{ level }}</span>
@@ -43,14 +37,21 @@
     </div>
 </div>
 <div id="timer-wrapper">
-    <div class="rotate-border-left rotate-border"></div>
-    <div class="btn-group btn-group-lg" id="timer">
-        <button type="button" class="timer btn btn-lg btn-default active">
-            <span class="glyphicon glyphicon-pause"></span>
-        </button>
-        <button type="button" class="timer btn btn-lg btn-default">
-            <span class="glyphicon glyphicon-play"></span>
-        </button>
+    <div style="display: flex; align-items: center;">
+        <div class="btn-group btn-group-lg" id="timer">
+            <button type="button" class="timer btn btn-lg btn-default active">
+                <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            <button type="button" class="timer btn btn-lg btn-default">
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+        </div>
+        <p class="navbar-text date-time">
+            {{#l}}Day{{/l}}
+            <strong class="timer-days">0</strong>,
+            {{#l}}hour{{/l}}
+            <strong class="timer-hours">0</strong>
+            <span class="badge season hidden">{{#l}}{{ config.season }}{{/l}}</span>
+        </p>
     </div>
-    <div class="rotate-border-right rotate-border"></div>
 </div>

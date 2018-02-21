@@ -5,7 +5,9 @@
 
     position: fixed;
     top: 0;
-    left: calc(50% - 155px / 2);
+    /* left: calc(50% - 155px / 2); */
+    left: 50%;
+    transform: translateX(-50%);
 
     z-index: 999;
 
@@ -21,6 +23,9 @@
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 
-.time-info {
-    margin-right: 200px; /* TODO: this is a bid hacky */
+.date-time {
+    min-width: 100px;
+    text-align: right;
+    margin: 0;
+    margin-left: 10px;
 }
