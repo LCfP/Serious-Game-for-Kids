@@ -27,12 +27,13 @@ export default class Customer
             this.customer = {
                 name: this._generateName(model),
                 type: [types[Math.floor(Math.random() * types.length)]],
-                satisfaction: model.config.satisfaction + 20,
                 expectation: {
                     delivery: model.config.expectedDelivery,
                 }
             }
         }
+
+        this.satisfaction = model.config.customerSatisfaction;
 
         products = products.filter(prod => this.customer.type.indexOf(prod.values.type) > -1);
         this.order = new CustomerOrder(products);

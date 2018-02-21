@@ -11,7 +11,10 @@ export default class MoneyController extends Controller
      */
     static updateMoney(amount)
     {
-        GAME.model.config.money = GAME.model.config.money + parseFloat(amount);
-        $("#money").html(GAME.model.config.money.toFixed(2));
+        const config = GAME.model.config;
+
+        config.money = config.money + parseFloat(amount);
+        $("#money").html(config.money.toFixed(2));
+
     }
 }

@@ -36,7 +36,13 @@
   "warehouseContainers": 3,
   "money": 10000,
 
-  "satisfaction": 100,
+  "playerSatisfaction": 100,
+  "customerSatisfaction": 120,
+
+  "score": 10000,
+
+  "completedOrders": 0,
+
   "expectedDelivery": 7,
   "orderGenerationTreshold": 1.75,
 

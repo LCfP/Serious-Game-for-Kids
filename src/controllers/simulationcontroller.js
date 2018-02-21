@@ -3,7 +3,7 @@ import DemandController from './demandcontroller';
 import FactoryController from './factorycontroller';
 import WarehouseController from './warehousecontroller';
 import LevelController from './levelcontroller';
-import CustomerController from './customercontroller'
+import SatisfactionController from "./satisfactioncontroller";
 
 export default class SimulationController extends Controller
 {
@@ -67,6 +67,9 @@ export default class SimulationController extends Controller
     _runHour()
     {
         const demandGenerator = new DemandController();
+        const satisfactionController = new SatisfactionController();
+
+        satisfactionController.updateScore();
 
         demandGenerator.doCustomerOrderGeneration();
         FactoryController.updateOrder();
@@ -84,14 +87,14 @@ export default class SimulationController extends Controller
 
         const warehouseController = new WarehouseController();
         const levelController = new LevelController();
-        const customerController = new CustomerController();
+        const satisfactionController = new SatisfactionController();
 
         warehouseController.updatePerishableProducts();
 
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 
-        customerController.updateSatisfaction();
+        satisfactionController.updateCustomerSatisfaction();
 
         if (levelController.checkGoalReached()) {
             levelController.completeLevel();

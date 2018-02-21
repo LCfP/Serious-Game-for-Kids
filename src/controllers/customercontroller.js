@@ -3,6 +3,7 @@ import Controller from './core/controller';
 import MoneyController from './moneycontroller';
 import WarehouseController from './warehousecontroller';
 import DemandController from './demandcontroller';
+import SatisfactionController from './satisfactioncontroller';
 
 import Customer from '../models/classes/customer';
 import CustomerOrder from '../models/classes/customerorder';
@@ -50,27 +51,6 @@ export default class CustomerController extends OrderController
         };
     }
 
-    /**
-     * Updates satisfaction of customers each time a new day occurs.
-     */
-    updateSatisfaction()
-    {
-        GAME.model.customers.forEach(function(customer)
-        {
-            customer.customer.satisfaction -= 10;
-
-            if (customer.customer.satisfaction <= 20)
-                this.sendAway(customer);
-            if (customer.customer.satisfaction < 50)
-                return console.log("This customer's satisfaction is below 50, namely" + customer.customer.satisfaction);
-            if (customer.customer.satisfaction < 70)
-                return console.log("This customer's satisfaction is below 70, namely " + customer.customer.satisfaction);
-            //else
-                //happyface
-
-
-        });
-    }
 
     generateOrder(isStructural = false)
     {
@@ -114,6 +94,7 @@ export default class CustomerController extends OrderController
         MoneyController.updateMoney(customer.order.orderCost());
 
         const warehouseController = new WarehouseController();
+        const satisfactionController = new SatisfactionController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
         if (warehouseController.processCustomerOrder(orderCopy)) {
@@ -122,6 +103,9 @@ export default class CustomerController extends OrderController
 
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
+
+        GAME.model.config.completedOrders += 1;
+        satisfactionController.updatePlayerSatisfaction(customer);
 
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
     }
