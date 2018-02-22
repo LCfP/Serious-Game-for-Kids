@@ -18,7 +18,7 @@
         "hasSeasonality": false
       }
     },
-    "order-quantities": [5, 10, 20]
+    "order-quantities": [5, 20]
   },
   {
     "name": "Apple",
@@ -39,7 +39,7 @@
         "hasSeasonality": false
       }
     },
-    "order-quantities": [3, 15, 30]
+    "order-quantities": [4, 15]
   },
   {
     "name": "Carrot",
@@ -62,7 +62,7 @@
         "amplitude": 5
       }
     },
-    "order-quantities": [4, 10, 25]
+    "order-quantities": [2, 12]
   },
   {
     "name": "Bread",
@@ -83,7 +83,7 @@
         "hasSeasonality": false
       }
     },
-    "order-quantities": [5, 10, 40]
+    "order-quantities": [5, 10]
   },
   {
     "name": "Ice cream",
@@ -106,7 +106,7 @@
         "amplitude": 20
       }
     },
-    "order-quantities": [5, 10, 40]
+    "order-quantities": [5, 10]
   },
   {
     "name": "Shoes",
@@ -127,7 +127,7 @@
         "hasSeasonality": false
       }
     },
-    "order-quantities": [5, 10, 40]
+    "order-quantities": [5, 10]
   },
   {
     "name": "Socks",
@@ -148,7 +148,7 @@
         "hasSeasonality": false
       }
     },
-    "order-quantities": [5, 10, 40]
+    "order-quantities": [5, 10]
   },
   {
     "name": "Short",
@@ -169,7 +169,7 @@
         "hasSeasonality": false
       }
     },
-    "order-quantities": [5, 10, 40]
+    "order-quantities": [5, 10]
   },
   {
     "name": "Cap",
@@ -192,6 +192,6 @@
         "amplitude": 2.0
       }
     },
-    "order-quantities": [5, 10, 40]
+    "order-quantities": [5, 10]
   }
 ]
