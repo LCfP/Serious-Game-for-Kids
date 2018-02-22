@@ -33,14 +33,6 @@ export default class CustomerController extends OrderController
             $(this).off(e);
         });
 
-        $("button[data-customer="+ id +"].customer-send-away").click(function (e) {
-            closure(function (customer, controller) {
-                controller.sendAway(customer);
-            });
-
-            $(this).off(e);
-        });
-
         const closure = function (fn) {
             let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
             let customerController = new CustomerController();
