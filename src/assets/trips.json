@@ -44,11 +44,6 @@
         "delay": -1
       },
       {
-        "anchor": "#sidebar-right-toggle",
-        "content": "With this button you open the sidebar which gives you an overview of everything that happened in the past.",
-        "position": "w"
-      },
-      {
         "anchor": ".help-menu",
         "content": "Don't know how some part of <br> the game works? Click this <br> button to get more info.",
         "position": "s"
