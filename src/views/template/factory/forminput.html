@@ -11,9 +11,9 @@
         </span>
         <input type="number" class="form-control" id="{{ name }}" name="{{ name }}" value="0"/>
         <div class="input-group-btn add-quantity-to-order">
-            <button type="button" class="btn btn-default" data-amount="5">+5</button>
-            <button type="button" class="btn btn-default" data-amount="10">+10</button>
-            <button type="button" class="btn btn-default" data-amount="30">+30</button>
+            {{ #order-quantities }}
+                <button type="button" class="btn btn-default" data-amount="{{ . }}">+{{ . }}</button>
+            {{ /order-quantities }}
         </div>
     </div>
     <div class="text-center">
