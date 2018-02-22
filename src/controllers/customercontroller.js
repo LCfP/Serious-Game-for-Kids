@@ -140,7 +140,6 @@ export default class CustomerController extends OrderController
         });
     }
 
-
     updateCustomerView()
     {
         $("#customer-orders").empty();
@@ -149,7 +148,6 @@ export default class CustomerController extends OrderController
             this.updateOrderView(customer);
         }, this);
     }
-
 
     updateOrderView(customer)
     {

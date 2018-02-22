@@ -21,8 +21,6 @@ export default class SatisfactionController extends Controller
         config.playerSatisfaction = ((config.playerSatisfaction * config.completedOrders) + (customer.satisfaction))
                                     / (config.completedOrders + 1);
 
-        config.score = config.money * (config.playerSatisfaction/100);
-
         $("#satisfaction").html(GAME.model.config.playerSatisfaction.toFixed(0));
 
         scoreController.updateScore();
