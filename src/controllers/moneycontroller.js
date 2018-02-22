@@ -1,4 +1,5 @@
 import Controller from './core/controller';
+import ScoreController from "./scorecontroller";
 
 
 export default class MoneyController extends Controller
@@ -11,10 +12,13 @@ export default class MoneyController extends Controller
      */
     static updateMoney(amount)
     {
-        const config = GAME.model.config;
+        let config = GAME.model.config;
+
+        const scoreController = new ScoreController();
 
         config.money = config.money + parseFloat(amount);
         $("#money").html(config.money.toFixed(2));
 
+        scoreController.updateScore();
     }
 }

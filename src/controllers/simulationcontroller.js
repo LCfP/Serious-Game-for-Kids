@@ -67,9 +67,6 @@ export default class SimulationController extends Controller
     _runHour()
     {
         const demandGenerator = new DemandController();
-        const satisfactionController = new SatisfactionController();
-
-        satisfactionController.updateScore();
 
         demandGenerator.doCustomerOrderGeneration();
         FactoryController.updateOrder();

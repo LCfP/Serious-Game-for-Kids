@@ -47,7 +47,7 @@ export default class CustomerController extends OrderController
             let customerController = new CustomerController();
 
             fn(customer, customerController);
-            customerController._updateCustomerView();
+            customerController.updateCustomerView();
         };
     }
 
@@ -78,7 +78,7 @@ export default class CustomerController extends OrderController
 
         if (customer.order.products.length) {
             GAME.model.customers.push(customer);
-            this._updateOrderView(customer);
+            this.updateOrderView(customer);
 
             GAME.model.message.info(Controller.l("New customer is waiting!"));
         }
@@ -140,22 +140,18 @@ export default class CustomerController extends OrderController
         });
     }
 
-    /**
-     * @private
-     */
-    _updateCustomerView()
+
+    updateCustomerView()
     {
         $("#customer-orders").empty();
 
         GAME.model.customers.forEach(function (customer) {
-            this._updateOrderView(customer);
+            this.updateOrderView(customer);
         }, this);
     }
 
-    /**
-     * @private
-     */
-    _updateOrderView(customer)
+
+    updateOrderView(customer)
     {
         if (GAME.model.customers.length) {
             $(".no-customers").remove();

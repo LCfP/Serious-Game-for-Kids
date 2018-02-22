@@ -39,7 +39,11 @@
   "playerSatisfaction": 100,
   "customerSatisfaction": 120,
 
-  "score": 10000,
+  "neutralThreshold": 70,
+  "angryThreshold": 40,
+  "sendAwayThreshold": 20,
+
+  "score": null,
 
   "completedOrders": 0,
 
