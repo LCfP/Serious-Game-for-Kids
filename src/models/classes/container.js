@@ -39,9 +39,8 @@ export default class Container extends StorageCore
     removeItem(product)
     {
         this.items = this.items.filter(function (item) {
-            if (product.name != item.name) {
+            if (product.name != item.name)
                 return item;
-            }
 
             const removedQuantity = Math.min(product.values.quantity, item.values.quantity);
 
@@ -63,7 +62,7 @@ export default class Container extends StorageCore
     {
         this.items = this.items.filter(
             function (product) {
-                if (typeof product == "undefined") {
+                if (typeof product === "undefined") {
                     return false;
                 }
 

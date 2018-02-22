@@ -1,6 +1,7 @@
 import Controller from './core/controller';
 import MoneyController from './moneycontroller';
 import Container from '../models/classes/container';
+import OrderProcessController from './orderprocesscontroller';
 
 
 export default class WarehouseController extends Controller
@@ -65,44 +66,16 @@ export default class WarehouseController extends Controller
         const orderSize = order.products.reduce((sum, prod) => sum + prod.shelfSize(), 0);
         const availableCapacity = GAME.model.warehouse.maxContainerCapacity() - GAME.model.warehouse.usedContainerCapacity();
 
-        if (orderSize > availableCapacity) {
-            GAME.model.message.error(Controller.l("There is no room left for this order in the warehouse!"));
-            // TODO try to fit what fits? - context
-        } else {
-            // add products to the containers.
-            return this._processOrder(order, "Order has been processed and added to the warehouse!");
-        }
+        if (orderSize > availableCapacity)
+            return GAME.model.message.error(Controller.l("There is no room left for this order in the warehouse!"));
+
+        if ((new OrderProcessController(order)).processOrder())
+            GAME.model.message.info(Controller.l("Order has been processed and added to the warehouse!"));
     }
 
-    processCustomerOrder(order)
-    {
-        return this._processOrder(order, "Order has been processed and shipped to the customer!");
-    }
-
-    /**
-     * @private
-     */
-    _processOrder(order, successMsg)
-    {
-        order.products.forEach(product => {
-            while (product.values.quantity) {
-                // see http://stackoverflow.com/a/2641374/4316405
-                GAME.model.warehouse.items.every(container => {
-                    const cases = {
-                        "FactoryOrder": container.addItem.bind(container),
-                        "CustomerOrder": container.removeItem.bind(container)
-                    };
-
-                    product.values.quantity = cases[order.constructor.name](product);
-                    return product.values.quantity;
-                });
-            }
-        });
-
-        if (order.products.every(product => product.values.quantity === 0)) {
-            GAME.model.message.info(Controller.l(successMsg));
-            return true;
-        }
+    processCustomerOrder(order) {
+        if ((new OrderProcessController(order)).processOrder())
+            GAME.model.message.info(Controller.l("Order has been processed and shipped to the customer!"));
     }
 
     /**
