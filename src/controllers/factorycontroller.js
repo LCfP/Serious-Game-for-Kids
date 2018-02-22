@@ -204,7 +204,7 @@ export default class FactoryController extends OrderController
                         let formValues = $("form[name=newFactoryOrder]").serializeArray();
                         let products = OrderController._makeOrder(formValues);
 
-                        $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.stockValue(), 0));
+                        $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.stockValue(), 0).toFixed(2));
                         $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
                     }
                 );
