@@ -24,7 +24,7 @@ export default class SatisfactionController extends Controller
     }
 
     /**
-     * Updates satisfaction of customers each time a new day occurs.
+     * Updates satisfaction of customers each time a new day occurs, and adds appropriate emojis.
      */
     updateCustomerSatisfaction()
     {
@@ -35,15 +35,11 @@ export default class SatisfactionController extends Controller
 
             if (customer.satisfaction <= 20)
                 customerController.sendAway(customer);
-                $("#customers").html; //Update view of customers, but this doesn't work.
-            if (customer.satisfaction < 50)
-                return $("#emoji").html("<img src=\"src/assets/emojis/happy.png\" alt=\"Smiley\">");
+                //view needs to be updated
+            if (customer.satisfaction < 40)
+                return $("#id").html("<img src=\"src/assets/emojis/angrySmall.png\" alt=\"Smiley\">");
             if (customer.satisfaction < 70)
-                return console.log("This customer's satisfaction is below 70, namely " + customer.satisfaction);
-            //else
-            //happyface
-
-
+                return $("#id").html("<img src=\"src/assets/emojis/neutralSmall.png\" alt=\"Smiley\">");
         });
     }
 
