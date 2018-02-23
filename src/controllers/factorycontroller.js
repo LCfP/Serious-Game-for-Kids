@@ -210,8 +210,6 @@ export default class FactoryController extends OrderController
 
                     $("form[name=newFactoryOrder] :input").trigger('change');
                 });
-
-                $(".add-quantity-to-order").removeClass('active');
             });
         }, this);
     }
