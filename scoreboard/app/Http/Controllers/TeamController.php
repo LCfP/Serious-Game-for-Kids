@@ -19,7 +19,7 @@ class TeamController extends Controller
 
         // Check if the room already has a team with the given team_name
         if ($room->teams->pluck('name')->contains($request->team_name)) {
-            return response(null, 404);
+            return response(null, 409);
         }
 
         $team = $room->teams()->create([
