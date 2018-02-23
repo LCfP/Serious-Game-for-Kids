@@ -3,7 +3,6 @@ import CustomerController from './customercontroller';
 import ScoreController from "./scorecontroller";
 
 export default class SatisfactionController extends Controller
-
 {
     /**
      * Updates player satisfaction after every completed order, as well as the score
@@ -11,17 +10,17 @@ export default class SatisfactionController extends Controller
      */
     updatePlayerSatisfaction(customer)
     {
-        let config = GAME.model.config;
-
-        const scoreController = new ScoreController();
-
         if (customer.satisfaction > 100)
             customer.satisfaction = 100;
+
+        let config = GAME.model.config;
 
         config.playerSatisfaction = ((config.playerSatisfaction * config.completedOrders) + (customer.satisfaction))
                                     / (config.completedOrders + 1);
 
-        $("#satisfaction").html(GAME.model.config.playerSatisfaction.toFixed(0));
+        $("#satisfaction").html(config.playerSatisfaction.toFixed(0));
+
+        const scoreController = new ScoreController();
 
         scoreController.updateScore();
     }
@@ -31,16 +30,19 @@ export default class SatisfactionController extends Controller
      */
     updateCustomerSatisfaction()
     {
-        GAME.model.customers.forEach(function (customer) {
+        GAME.model.customers.forEach(function(customer) {
             customer.satisfaction -= 10;
-
-            const customerController = new CustomerController();
 
             let config = GAME.model.config;
 
-            if (customer.satisfaction <= config.sendAwayThreshold)
+            if (customer.satisfaction <= config.sendAwayThreshold) {
+                const customerController = new CustomerController();
+                const satisfactionController = new SatisfactionController();
+
+                satisfactionController.updatePlayerSatisfaction(customer);
                 customerController.sendAway(customer);
                 customerController.updateCustomerView();
+            }
             if (customer.satisfaction < config.angryThreshold)
                 return $("#id").html("<img src=\"src/assets/emojis/angrySmall.png\" alt=\"Smiley\">");
             if (customer.satisfaction < config.neutralThreshold)

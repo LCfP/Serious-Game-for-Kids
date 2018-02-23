@@ -14,10 +14,10 @@ export default class MoneyController extends Controller
     {
         let config = GAME.model.config;
 
-        const scoreController = new ScoreController();
-
         config.money = config.money + parseFloat(amount);
         $("#money").html(config.money.toFixed(2));
+
+        const scoreController = new ScoreController();
 
         scoreController.updateScore();
     }
