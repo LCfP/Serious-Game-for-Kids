@@ -5,7 +5,6 @@
 
     position: fixed;
     top: 0;
-    /* left: calc(50% - 155px / 2); */
     left: 50%;
     transform: translateX(-50%);
 
