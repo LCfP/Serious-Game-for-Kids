@@ -116,8 +116,8 @@
         "position": "w"
       },
       {
-        "anchor": "#customer-orders .panel:first",
-        "content": "This is a single customer. You can send <br> him away if you don't want to serve him. Or click serve customer <br>to give the customer the products he wants. Of course <br> you need to have them in stock.",
+        "anchor": "#customer-orders .list-group-item:first",
+        "content": "This is a single customer. Click the button <br> to give the customer the products he wants. <br> Of course you need to have them in stock. <br> The customer will leave when he has to <br> wait for too long.",
         "expose": true,
         "position": "w"
       }
