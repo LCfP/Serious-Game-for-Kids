@@ -38,7 +38,7 @@ export default class ScoreboardController extends Controller
         }
 
         $.post({
-            url: GAME.model.config.scoreboard.scoreboardApiUrl + '/teams',
+            url: GAME.model.config.scoreboard.apiUrl + '/teams',
             data: {
                 room_name: formValues[0].value,
                 team_name: formValues[1].value
@@ -75,7 +75,7 @@ export default class ScoreboardController extends Controller
         }
 
         $.post({
-            url: GAME.model.config.scoreboard.scoreboardApiUrl + '/scores',
+            url: GAME.model.config.scoreboard.apiUrl + '/scores',
             data: {
                 team_id: GAME.model.config.scoreboard.team.id,
                 money: GAME.model.config.money,

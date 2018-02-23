@@ -138,11 +138,16 @@
   "It is empty here.": "Het is hier nog leeg.",
   "Start the game to fill this area!": "Start het spel om deze lijst te vullen!",
 
-  "Join a room": "Speel mee in een competitie",
+  "Create Room": "Maak Klas",
+  "Room": "Klas",
+  "Search": "Zoek",
+  "seconds until refresh": "seconden tot verversing",
+
+  "Join a room": "Speel mee in een klas",
   "Join Room": "Speel Mee",
   "Create Team": "Maak Team",
-  "Room Name": "Naam van Competitie",
+  "Room Name": "Naam van Klas",
   "Team Name": "Naam van Team",
-  "That room does not exist or your team name is not unique.": "Die competitie bestaat niet of de naam van je team in niet uniek.",
-  "You joined room": "Je speelt mee in competitie"
+  "That room does not exist or your team name is not unique.": "Die klas bestaat niet of de naam van je team in niet uniek.",
+  "You joined room": "Je speelt mee in klas"
 }
