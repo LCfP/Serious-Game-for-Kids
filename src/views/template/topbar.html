@@ -37,21 +37,19 @@
     </div>
 </div>
 <div id="timer-wrapper">
-    <div style="display: flex; align-items: center;">
-        <div class="btn-group btn-group-lg" id="timer">
-            <button type="button" class="timer btn btn-lg btn-default active">
-                <span class="glyphicon glyphicon-pause"></span>
-            </button>
-            <button type="button" class="timer btn btn-lg btn-default">
-                <span class="glyphicon glyphicon-play"></span>
-            </button>
-        </div>
-        <p class="navbar-text date-time">
-            {{#l}}Day{{/l}}
-            <strong class="timer-days">0</strong>,
-            {{#l}}hour{{/l}}
-            <strong class="timer-hours">0</strong>
-            <span class="badge season hidden">{{#l}}{{ config.season }}{{/l}}</span>
-        </p>
+    <div class="btn-group btn-group-lg" id="timer">
+        <button type="button" class="timer btn btn-lg btn-default active">
+            <span class="glyphicon glyphicon-pause"></span>
+        </button>
+        <button type="button" class="timer btn btn-lg btn-default">
+            <span class="glyphicon glyphicon-play"></span>
+        </button>
     </div>
+    <p class="navbar-text date-time">
+        {{#l}}Day{{/l}}
+        <strong class="timer-days">0</strong>,
+        {{#l}}hour{{/l}}
+        <strong class="timer-hours">0</strong>
+        <span class="badge season hidden">{{#l}}{{ config.season }}{{/l}}</span>
+    </p>
 </div>
