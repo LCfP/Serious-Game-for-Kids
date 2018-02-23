@@ -161,9 +161,7 @@ export default class FactoryController extends OrderController
         const orderCopy = new FactoryOrder(OrderController._copyOrder(order));
 
         // process order..
-        if (warehouseController.processFactoryOrder(order)) {
-            super.completeOrder(orderCopy);
-        }
+        warehouseController.processFactoryOrder(order);
 
         // ..and update views
         warehouseController.updateContainerView();

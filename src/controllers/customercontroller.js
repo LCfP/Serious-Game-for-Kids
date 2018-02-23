@@ -86,10 +86,7 @@ export default class CustomerController extends OrderController
         const warehouseController = new WarehouseController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
-        if (warehouseController.processCustomerOrder(orderCopy)) {
-            super.completeOrder(customer);
-        }
-
+        warehouseController.processCustomerOrder(orderCopy);
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 

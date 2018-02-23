@@ -13,11 +13,6 @@ export default class OrderController extends Controller
         throw new Error("Should be implemented by subclasses!")
     }
 
-    completeOrder(item)
-    {
-        //
-    }
-
     /**
      * Turns the values from the form into a proper Array of ordered products
      *
