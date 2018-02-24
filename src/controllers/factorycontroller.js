@@ -83,8 +83,6 @@ export default class FactoryController extends OrderController
 
             MoneyController.updateMoney(-order.orderCost());
             this._updateOrderView(order);
-
-            GAME.model.message.success(Controller.l("Order has been placed!"));
         }
 
         return orderValidation;

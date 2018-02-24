@@ -69,8 +69,6 @@ export default class CustomerController extends OrderController
         if (customer.order.products.length) {
             GAME.model.customers.push(customer);
             this._updateOrderView(customer);
-
-            GAME.model.message.info(Controller.l("New customer is waiting!"));
         }
     }
 
