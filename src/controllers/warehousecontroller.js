@@ -69,11 +69,11 @@ export default class WarehouseController extends Controller
         if (orderSize > availableCapacity)
             return GAME.model.message.error(Controller.l("There is no room left for this order in the warehouse!"));
 
-        if ((new OrderProcessController(order)).processOrder());
+        (new OrderProcessController(order)).processOrder();
     }
 
     processCustomerOrder(order) {
-        if ((new OrderProcessController(order)).processOrder());
+        (new OrderProcessController(order)).processOrder();
     }
 
     /**
