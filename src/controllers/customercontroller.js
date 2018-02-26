@@ -33,14 +33,6 @@ export default class CustomerController extends OrderController
             $(this).off(e);
         });
 
-        $("button[data-customer="+ id +"].customer-send-away").click(function (e) {
-            closure(function (customer, controller) {
-                controller.sendAway(customer);
-            });
-
-            $(this).off(e);
-        });
-
         const closure = function (fn) {
             let customer = GAME.model.customers.filter((customer) => customer.id == id).shift();
             let customerController = new CustomerController();
@@ -77,8 +69,6 @@ export default class CustomerController extends OrderController
         if (customer.order.products.length) {
             GAME.model.customers.push(customer);
             this._updateOrderView(customer);
-
-            GAME.model.message.info(Controller.l("New customer is waiting!"));
         }
     }
 
@@ -94,10 +84,7 @@ export default class CustomerController extends OrderController
         const warehouseController = new WarehouseController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
-        if (warehouseController.processCustomerOrder(orderCopy)) {
-            super.completeOrder(customer);
-        }
-
+        warehouseController.processCustomerOrder(orderCopy);
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
 
@@ -111,7 +98,6 @@ export default class CustomerController extends OrderController
      */
     sendAway(customer)
     {
-        // TODO Log event in history
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
 
         if (GAME.model.config.penaltySendingCustomerAway) {
