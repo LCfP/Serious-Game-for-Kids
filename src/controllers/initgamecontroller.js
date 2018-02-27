@@ -33,7 +33,6 @@ export default class InitGameController extends Controller
         $.when(
             this._setTopbar(),
             this._loadSidebarLeft(),
-            this._loadSidebarRight()
         ).done(
             () => {
                 this.registerEvent();
@@ -71,18 +70,6 @@ export default class InitGameController extends Controller
     /**
      * @private
      */
-    _loadSidebarRight()
-    {
-        return this._loadTemplate(
-            "src/views/template/sidebar/sidebar-right.html",
-            "#sidebar-right",
-            GAME.model.config
-        );
-    }
-
-    /**
-     * @private
-     */
     _setTopbar()
     {
         return this._loadTemplate(
@@ -108,12 +95,7 @@ export default class InitGameController extends Controller
             sidebar_handler(e, "#sidebar-left");
         });
 
-        // right menu (history) opening
-        $("#sidebar-right-toggle").click(function (e) {
-            sidebar_handler(e, "#sidebar-right", 450);
-        });
-
-        // closing menu / history
+        // closing menu
         $(".wrapper").click(function () {
             $(".sidebar").width(0);
             $(this).css({opacity: 1});
