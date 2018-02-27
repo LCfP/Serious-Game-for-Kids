@@ -28,7 +28,7 @@ export default class InitGameController extends Controller
     
     registerEvent()
     {        
-        let roomName = this._getUrlParam('room');
+        const roomName = this._getUrlParam('room');
         
         if (roomName == undefined) {
             this._loadPageHome();
@@ -154,11 +154,10 @@ export default class InitGameController extends Controller
 
     _getUrlParam(param)
     {
-        let params = window.location.search.substring(1);
-        params = params.split('&');
+        const params = window.location.search.substring(1).split('&');
     
         for (var i = 0; i < params.length; i++) {
-            let parameter = params[i].split('=');
+            const parameter = params[i].split('=');
     
             if (parameter[0] == param) {
                 return parameter[1];
