@@ -9,14 +9,6 @@ export default class InitGameController extends Controller
      */
     view()
     {
-        [
-            //
-        ].forEach(
-            function (controller) {
-                controller.view();
-            }
-        );
-
         $.when(
             this._setTopbar(),
         ).done(
