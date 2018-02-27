@@ -2,9 +2,11 @@
     <div class="panel-heading clearfix">
         <span class="btn-group btn-group-sm pull-right" role="group">
             <span class="btn-group" role="group">
-                <button id="buy-truck" type="button" class="btn btn-sm btn-default"
-                        data-toggle="tooltip" data-placement="bottom" title="{{#l}}This costs{{/l}} 500">
-                    <span class="text-success">{{#l}}Extra truck{{/l}}</span>
+                <button id="buy-truck" type="button" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="{{#l}}This costs{{/l}} 500">
+                    <span class="text-success">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        {{#l}}Extra truck{{/l}}
+                    </span>
                 </button>
             </span>
         </span>
@@ -29,6 +31,7 @@
                 {{ /.}}
             </div>
             <button type="submit" class="btn btn-success pull-right margin-top-10">
+                <span class="glyphicon glyphicon-shopping-cart"></span>
                 {{#l}}Place order{{/l}}
             </button>
         </form>
