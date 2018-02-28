@@ -136,5 +136,20 @@
   "This game may not work as desired on small screens. Consider playing on a bigger screen instead!": "Dit spel werkt mogelijk niet goed op kleine schermen. Overweeg om het op een groter scherm te spelen!",
 
   "It is empty here.": "Het is hier nog leeg.",
-  "Start the game to fill this area!": "Start het spel om deze lijst te vullen!"
+  "Start the game to fill this area!": "Start het spel om deze lijst te vullen!",
+
+  "Create Room": "Maak Klas",
+  "Room": "Klas",
+  "Search": "Zoek",
+  "seconds until refresh": "seconden tot verversing",
+  "Scoreboard for the Serious Game": "Scorebord voor de Serious Game",
+  "Use the buttons in the navigation bar on the top to create a room or to go to an existing room": "Gebruik de knoppen in de navigatiebalk hierboven om een klas aan te maken of om naar een bestaande klas te gaan",
+
+  "Join a room": "Speel mee in een klas",
+  "Join Room": "Speel Mee",
+  "Create Team": "Maak Team",
+  "Room Name": "Naam van Klas",
+  "Team Name": "Naam van Team",
+  "That room does not exist or your team name is not unique.": "Die klas bestaat niet of de naam van je team in niet uniek.",
+  "You joined room": "Je speelt mee in klas"
 }

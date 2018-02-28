@@ -5,10 +5,13 @@ const webpack = require('webpack');
 
 
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        game: './src/main',
+        scoreboard: './src/scoreboard/main'
+    },
     output: {
-        path: __dirname + '/',
-        filename: 'bundle.js'
+        path: __dirname + '/dist/',
+        filename: '[name].js'
     },
     module: {
         loaders: [
@@ -43,7 +46,9 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         }),
-        new ExtractTextPlugin("styles.css"),
+        new ExtractTextPlugin({
+            filename: '[name].css'
+        }),
         new webpack.optimize.UglifyJsPlugin({
             mangle: {
                 keep_fnames: true // make sure functions and classes maintain their names.
