@@ -30,23 +30,26 @@ export default class SatisfactionController extends Controller
      */
     updateCustomerSatisfaction()
     {
-        GAME.model.customers.forEach(function(customer) {
+        GAME.model.customers.forEach(customer => {
             customer.satisfaction -= 10;
 
             let config = GAME.model.config;
 
             if (customer.satisfaction <= config.sendAwayThreshold) {
                 const customerController = new CustomerController();
-                const satisfactionController = new SatisfactionController();
 
-                satisfactionController.updatePlayerSatisfaction(customer);
+                this.updatePlayerSatisfaction(customer);
                 customerController.sendAway(customer);
                 customerController.updateCustomerView();
             }
             if (customer.satisfaction < config.angryThreshold)
-                return $("#id").html("<img src=\"src/assets/emojis/angrySmall.png\" alt=\"Smiley\">");
-            if (customer.satisfaction < config.neutralThreshold)
-                return $("#id").html("<img src=\"src/assets/emojis/neutralSmall.png\" alt=\"Smiley\">");
+                //return $("img").data("customer") = "";
+            if (customer.satisfaction < config.neutralThreshold) {
+                $("#id").html("<img src=\"src/assets/emojis/neutralSmall.png\" alt=\"Smiley\">");
+                const customerController = new CustomerController();
+
+                customerController.updateCustomerView();
+            }
         });
     }
 }
