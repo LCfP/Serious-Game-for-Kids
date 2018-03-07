@@ -34,20 +34,29 @@ export default class SatisfactionController extends Controller
             customer.satisfaction -= 10;
 
             let config = GAME.model.config;
+            const customerController = new CustomerController();
 
-            if (customer.satisfaction <= config.sendAwayThreshold) {
-                const customerController = new CustomerController();
-
+            if (customer.satisfaction <= config.sendAwayThreshold)
+            {
                 this.updatePlayerSatisfaction(customer);
                 customerController.sendAway(customer);
                 customerController.updateCustomerView();
             }
             if (customer.satisfaction < config.angryThreshold)
-                //return $("img").data("customer") = "";
-            if (customer.satisfaction < config.neutralThreshold) {
-                $("#id").html("<img src=\"src/assets/emojis/neutralSmall.png\" alt=\"Smiley\">");
-                const customerController = new CustomerController();
-
+            {
+                if ($("#emoji").data("customer") == customer.id)
+                {
+                    $("#customer.id").attr("src", "src/assets/img/emojis/angrySmall.png");
+                }
+                customerController.updateCustomerView();
+            }
+            if (customer.satisfaction < config.neutralThreshold)
+            {
+                console.log($("#emoji").data("customer"));
+                if ($("#emoji").data("customer") == customer.id)
+                {
+                    $("#emoji").attr("src", "src/assets/img/emojis/neutralSmall.png");
+                }
                 customerController.updateCustomerView();
             }
         });

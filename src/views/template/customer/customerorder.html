@@ -3,19 +3,15 @@
         {{ #customer }}
             <b>{{ name }}</b>
         {{ /customer }}
-<<<<<<< HEAD
-        <span class="pull-center" id="customer-id">
-            <img src="src/assets/img/emojis/happySmall.png" alt="Smiley">
+        <span class="image">
+            <img id="{{ id }}" src="src/assets/img/emojis/happySmall.png" alt="Emoji" data-emoji="{{ id }}">
         </span>
-        <span class="label label-warning pull-right">{{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}</span>
-=======
         <button type="button" class="customer-serve btn btn-default btn-xs" style="float: right;" data-customer="{{ id }}">
             <span class="text-success">
                 <span class="glyphicon glyphicon-ok"></span>
                 {{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}
             </span>
         </button>
->>>>>>> dev
     </div>
     <div>
         {{ #order.products }}
