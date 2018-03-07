@@ -74,5 +74,17 @@
 
   "swal": {
     "timer": 3000
+  },
+
+  "scoreboard": {
+    "enabled": false,
+    "room": null,
+    "team": null,
+
+    "sendScoreInterval": 60,
+    "updateInterval": 60,
+
+    "url": "scoreboard.html",
+    "apiUrl": "http://scoreboard.test"
   }
 }

@@ -19,6 +19,8 @@ class CreateScoresTable extends Migration
             $table->float('money', 10, 2);
             $table->float('satisfaction', 10, 2)->unsigned();
             $table->timestamps();
+
+            $table->index('created_at');
         });
     }
 

@@ -11,14 +11,6 @@ export default class Model
     {
         this.model = {};
 
-        this.model.base = {};
-
-        // factory orders
-        this.model.orders = [];
-
-        // current customers
-        this.model.customers = [];
-
         this._load();
     }
 
@@ -49,36 +41,23 @@ export default class Model
     {
         // async AJAX calls to get these JSON files
         // order for $.when: data, textStatus, jqXHR
-        $.when(
-            ...["config", "products", "levels", "customers", "trips"]
-                .map(loc => $.getJSON("src/assets/" + loc + ".json"))
-        ).done(
-            (config, products, levels, customers, trips) => {
-                this.model.config = config[0];
-                this.model.levels = levels[0];
-                this.model.trips = trips[0];
+        $.getJSON("src/assets/config.json").done((config) => {
 
-                this.model.base.products = products[0];
-                this.model.base.customers = customers[0];
+            this.model.config = config;
 
-                // toastr settings, from the config
-                this.model.message = toastr;
-                this.model.message.options = this.model.config.toastr;
+            $.when(this._getLang()).done(
+                (lang) => {
+                    this.model.lang = lang;
 
-                $.when(this._getLang()).done(
-                    (lang) => {
-                        this.model.lang = lang;
-
-                        try {
-                            this.setupCallback();
-                        } catch (e) {
-                            // most likely due to an unimplemented callback.
-                        }
+                    try {
+                        this.setupCallback();
+                    } catch (e) {
+                        // most likely due to an unimplemented callback.
                     }
-                );
+                }
+            );
 
-            }
-        );
+        });
     }
 
     /**
