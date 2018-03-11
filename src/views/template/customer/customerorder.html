@@ -3,8 +3,8 @@
         {{ #customer }}
             <b>{{ name }}</b>
         {{ /customer }}
-        <span class="image">
-            <img id="{{ id }}" src="src/assets/img/emojis/happySmall.png" alt="Emoji" data-emoji="{{ id }}">
+        <span class="image" data-customer="{{ id }}">
+            <img src="src/assets/img/emojis/happySmall.png" alt="Emoji">
         </span>
         <button type="button" class="customer-serve btn btn-default btn-xs" style="float: right;" data-customer="{{ id }}">
             <span class="text-success">

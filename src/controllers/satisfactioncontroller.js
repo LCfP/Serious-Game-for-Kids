@@ -44,19 +44,14 @@ export default class SatisfactionController extends Controller
             }
             if (customer.satisfaction < config.angryThreshold)
             {
-                if ($("#emoji").data("customer") == customer.id)
-                {
-                    $("#customer.id").attr("src", "src/assets/img/emojis/angrySmall.png");
-                }
+                $("#customer-data").attr("src", "src/assets/img/emojis/angrySmall.png");
+
                 customerController.updateCustomerView();
             }
             if (customer.satisfaction < config.neutralThreshold)
             {
-                console.log($("#emoji").data("customer"));
-                if ($("#emoji").data("customer") == customer.id)
-                {
-                    $("#emoji").attr("src", "src/assets/img/emojis/neutralSmall.png");
-                }
+                $("#customer-data").attr("src", "src/assets/img/emojis/neutralSmall.png");
+
                 customerController.updateCustomerView();
             }
         });
