@@ -56,17 +56,6 @@ export default class FactoryController extends OrderController
             }
         });
 
-        // updates the information for the current order process
-        $("form[name=newFactoryOrder] :input").change(
-            function (e) {
-                let formValues = $("form[name=newFactoryOrder]").serializeArray();
-                let products = OrderController._makeOrder(formValues);
-
-                $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.stockValue(), 0));
-                $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
-            }
-        );
-
         // reset all values to zero after order
         $handle.on('reset', function () {
             $("#factory-order-cost").html(0);
@@ -94,8 +83,6 @@ export default class FactoryController extends OrderController
 
             MoneyController.updateMoney(-order.orderCost());
             this._updateOrderView(order);
-
-            GAME.model.message.success(Controller.l("Order has been placed!"));
         }
 
         return orderValidation;
@@ -172,9 +159,7 @@ export default class FactoryController extends OrderController
         const orderCopy = new FactoryOrder(OrderController._copyOrder(order));
 
         // process order..
-        if (warehouseController.processFactoryOrder(order)) {
-            super.completeOrder(orderCopy);
-        }
+        warehouseController.processFactoryOrder(order);
 
         // ..and update views
         warehouseController.updateContainerView();
@@ -204,10 +189,23 @@ export default class FactoryController extends OrderController
                         let formValues = $("form[name=newFactoryOrder]").serializeArray();
                         let products = OrderController._makeOrder(formValues);
 
-                        $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.stockValue(), 0));
+                        $("#factory-order-cost").html(products.reduce((sum, prod) => sum + prod.stockValue(), 0).toFixed(2));
                         $("#factory-order-capacity").html(products.reduce((sum, prod) => sum + prod.shelfSize(), 0));
                     }
                 );
+
+                // Increases the value in the input by the given amount
+                // TODO after first level is reached, the first button gets an active class
+                // causing the button to look not like the others
+                $(".add-quantity-to-order").children().click(function () {
+                    const increaseBy = $(this).data('amount');
+
+                    $(this).parent().parent().find('input').val(function (i, oldval) {
+                        return parseInt(oldval) + parseInt(increaseBy);
+                    });
+
+                    $("form[name=newFactoryOrder] :input").trigger('change');
+                });
             });
         }, this);
     }

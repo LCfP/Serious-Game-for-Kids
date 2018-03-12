@@ -1,13 +1,13 @@
-// bootstrap JS
+// Javascript
 import 'bootstrap/dist/js/bootstrap.min';
+import InitGameController from './controllers/initgamecontroller';
+import InitGameModel from './models/initgamemodel';
 
-// vendor CSS
+// Stylesheets
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'toastr/build/toastr.css';
 import './views/css/main.css';
-
-import InitGameController from './controllers/initgamecontroller';
-import InitGameModel from './models/initgamemodel';
+import './views/css/playbuttons.css';
 
 
 $(document).ready(function ()

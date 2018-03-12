@@ -15,6 +15,10 @@ body {
     margin-bottom: 0;
 }
 
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
 .margin-right-10 {
     margin-right: 10px;
 }
@@ -62,11 +66,6 @@ body {
 .sidebar-left {
     left: 0;
     border-right: 1px solid #ccc;
-}
-
-.sidebar-right {
-    right: 0;
-    border-left: 1px solid #ccc;
 }
 
 /*

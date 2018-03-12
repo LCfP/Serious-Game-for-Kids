@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/scoreboard.html">Scoreboard</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+        <li><a id="create-room" href="#">{{#l}}Create Room{{/l}}</a></li>
+    </ul>
+
+    <form class="navbar-form navbar-left">
+        <div class="form-group">
+            <input id="search-room-input"type="text" class="form-control" placeholder="2dk4">
+        </div>
+        <button id="search-room" class="btn btn-default">{{#l}}Search{{/l}}</button>
+    </form>
+
+    <p class="navbar-text navbar-right" style="margin-right: 10px;">
+        <span id="scoreboard-timer">0</span>
+        {{#l}}seconds until refresh{{/l}}
+    </p>
+</div>

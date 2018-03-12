@@ -1,8 +1,5 @@
 import Controller from './core/controller';
-
-// Struggling with passing the argument, so for now I made it a global
-
-let minVariable = {"minIndex": 0};
+import Product from '../models/classes/product';
 
 export default class OrderProcessController extends Controller
 {
@@ -14,14 +11,16 @@ export default class OrderProcessController extends Controller
     }
 
     /**
-     * TODO
+     * Processes the order, either into the warehouse, or to the customer (depending on order type). For
+     * customer orders, FIFO is used to fulfill perishable demand, where the most perished products are
+     * the first to leave the warehouse.
      */
     processOrder()
     {
         this.order.products.forEach(product => {
-            while (product.values.quantity) {
-
-                if (product.values.isPerishable === true && this.order.constructor.name == "CustomerOrder") {
+            while (product.values.quantity)
+            {
+                if (product.values.isPerishable && this.order.constructor.name === "CustomerOrder") {
                     this._perishableOrder(product);
                 } else {
                     this._nonPerishableOrder(product);
@@ -29,9 +28,7 @@ export default class OrderProcessController extends Controller
             }
         });
 
-        if (this.order.products.every(product => product.values.quantity === 0)) {
-            return true;
-        }
+        return this.order.products.every(product => product.values.quantity === 0);
     }
 
     /**
@@ -39,15 +36,15 @@ export default class OrderProcessController extends Controller
      */
     _perishableOrder(product)
     {
+        const mostPerishedContainer = GAME.model.warehouse.items[
+            this._indexMostPerishedContainer(product)];
 
-        this._checkMostPerishedContainer(product);
-        console.log(minVariable.minIndex);
+        const perishedQuantity = this._grabPerishedQuantity(product, mostPerishedContainer);
+        let perishedProduct = new Product(product.name, {quantity: perishedQuantity});
 
-        // Now, I want to remove the product from the container of index minIndex, though I'm not sure exactly how.
-        let mostPerishedContainer = GAME.model.warehouse.items[minVariable.minIndex];
-        product.values.quantity = mostPerishedContainer.removeItem.bind(mostPerishedContainer)(product);
+        product.values.quantity -= (perishedQuantity - mostPerishedContainer.removeItem(perishedProduct));
+
         return product.values.quantity;
-
     }
 
     /**
@@ -68,33 +65,36 @@ export default class OrderProcessController extends Controller
     }
 
     /**
+     * Grabs the index of the container containing the most perished product of type `product'
+     *
+     * @param {Product} product
+     *
      * @private
      */
-    _checkMostPerishedContainer(product)
+    _indexMostPerishedContainer(product)
     {
-        // Code underneath creates an array (perishableArray) which contains the lowest perished value
-        // (so, most perished product) of the order product, of all containers.
-        //
-        let perishableArray = [];
-        GAME.model.warehouse.items.forEach(function(container) {
-
-            let perishables = container.items
+        const perishables = GAME.model.warehouse.items.map(container => {
+            return Math.min(...container.items
                 .filter(item => item.name == product.name)
-                .map(item => item.values.perishable);
-            perishableArray.push(Math.min(...perishables));
+                .map(item => item.values.perishable));
         });
 
-        // Here, the index of the minimum of the array is found, which corresponds with the index of the
-        // most perished container.
-
-        let min = perishableArray[0];
-
-        for (let i = 1; i < perishableArray.length; i++) {
-            if (perishableArray[i] < min && perishableArray[i] != 0) {
-                minVariable.minIndex = i;
-                min = perishableArray[i];
-            }
-        }
+        return perishables.indexOf(Math.min(...perishables));
     }
 
+    /**
+     * Grabs how many of the most perished product are left in container `mostPerishedContainer'
+     *
+     * @param {Product} product
+     * @param {Container} mostPerishedContainer
+     *
+     * @private
+     */
+    _grabPerishedQuantity(product, mostPerishedContainer)
+    {
+        const perishedProduct = mostPerishedContainer.items
+            .find(item => item.name == product.name);
+
+        return Math.min(perishedProduct.values.quantity, product.values.quantity);
+    }
 }

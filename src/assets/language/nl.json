@@ -10,6 +10,7 @@
   "Money": "Geld",
   "money": "geld",
   "Price": "Bedrag",
+  "Satisfaction": "Tevredenheid",
   "Select language": "Selecteer een taal",
 
   "Capacity used": "Gebruikte capaciteit",
@@ -58,7 +59,6 @@
 
   "Earn": "Verdien",
 
-  "History": "Geschiedenis",
   "Help": "Hulp",
   "New rack of size": "Nieuw rek van",
   "added": "units toegevoegd",
@@ -117,13 +117,14 @@
   "You can purchase another container by clicking on this button.": "Je kunt een extra container kopen door op deze knop te drukken.",
 
   "This list displays the customers you can serve.": "In deze lijst staan alle klanten die je kunt bedienen.",
-  "This is a single customer. You can send <br> him away if you don't want to serve him. Or click serve customer <br>to give the customer the products he wants. Of course <br> you need to have them in stock.": "Dit is een klant. Je kunt hem wegsturen <br> als je hem niet wilt bedienen. Of klik <br> op 'bedien klant' om de klant te bedienen met <br> de producten die hij wil. Natuurlijk <br> moet je de producten op voorraad hebben.",
+  "This is a single customer. Click the button <br> to give the customer the products he wants. <br> Of course you need to have them in stock. <br> The customer will leave when he has to <br> wait for too long.": "Dit is een klant. Klik op de knop om <br> de klant te bedienen met de producten die hij wil. <br> Natuurlijk moet je de producten op voorraad hebben. <br> De klant vertrekt zelf als hij te lang moet wachten.",
   "There has to be at least one customer. Start the game by pressing the 'play' button. Customers will the pop up automatically.": "Er moet ten minste één klant zijn. Start het spel door op de play-knop te klikken. Klanten verschijnen dan automatisch.",
 
   "You have reached the final level!": "Je heb het hoogste level bereikt!",
 
   "Proudly created by": "Met trots gemaakt door",
   "and": "en",
+  "others": "anderen",
 
   "Purchase": "Koop",
   "Purchase a new container for": "Koop een extra container voor",
@@ -136,5 +137,20 @@
   "This game may not work as desired on small screens. Consider playing on a bigger screen instead!": "Dit spel werkt mogelijk niet goed op kleine schermen. Overweeg om het op een groter scherm te spelen!",
 
   "It is empty here.": "Het is hier nog leeg.",
-  "Start the game to fill this area!": "Start het spel om deze lijst te vullen!"
+  "Start the game to fill this area!": "Start het spel om deze lijst te vullen!",
+
+  "Create Room": "Maak Klas",
+  "Room": "Klas",
+  "Search": "Zoek",
+  "seconds until refresh": "seconden tot verversing",
+  "Scoreboard for the Serious Game": "Scorebord voor de Serious Game",
+  "Use the buttons in the navigation bar on the top to create a room or to go to an existing room": "Gebruik de knoppen in de navigatiebalk hierboven om een klas aan te maken of om naar een bestaande klas te gaan",
+
+  "Join a room": "Speel mee in een klas",
+  "Join Room": "Speel Mee",
+  "Create Team": "Maak Team",
+  "Room Name": "Naam van Klas",
+  "Team Name": "Naam van Team",
+  "That room does not exist or your team name is not unique.": "Die klas bestaat niet of de naam van je team in niet uniek.",
+  "You joined room": "Je speelt mee in klas"
 }

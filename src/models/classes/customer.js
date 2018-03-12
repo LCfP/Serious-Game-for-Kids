@@ -34,6 +34,8 @@ export default class Customer
             }
         }
 
+        this.satisfaction = model.config.customerSatisfaction;
+
         products = products.filter(prod => this.customer.type.indexOf(prod.values.type) > -1);
         this.order = new CustomerOrder(products);
     }
