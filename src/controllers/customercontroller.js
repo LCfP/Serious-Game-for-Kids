@@ -150,6 +150,9 @@ export default class CustomerController extends OrderController
             $(".no-customers").remove();
         }
 
+        // TODO produce image url based on satisfaction, and provide to template below
+        // (and update template).
+
         this._loadTemplate(
             "src/views/template/customer/customerorder.html",
             "#customer-orders",

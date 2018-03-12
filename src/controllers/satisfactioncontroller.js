@@ -38,22 +38,10 @@ export default class SatisfactionController extends Controller
             if (customer.satisfaction <= GAME.model.config.sendAwayThreshold)
             {
                 this.updatePlayerSatisfaction(customer);
-
                 customerController.sendAway(customer);
-                customerController.updateCustomerView();
-                continue;
             }
-
-            if (customer.satisfaction <= GAME.model.config.angryThreshold)
-            {
-                $("span[data-customer="+ customer.id +"].image").children("img").attr(
-                    "src", "src/assets/img/emojis/angrySmall.png");
-                continue;
-            }
-
-            if (customer.satisfaction <= GAME.model.config.neutralThreshold)
-                $("span[data-customer="+ customer.id +"].image").children("img").attr(
-                    "src", "src/assets/img/emojis/neutralSmall.png");
         }
+
+        customerController.updateCustomerView();
     }
 }
