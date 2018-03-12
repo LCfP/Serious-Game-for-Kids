@@ -30,30 +30,30 @@ export default class SatisfactionController extends Controller
      */
     updateCustomerSatisfaction()
     {
-        GAME.model.customers.forEach(customer => {
+        const customerController = new CustomerController();
+
+        for (let customer of GAME.model.customers) {
             customer.satisfaction -= 10;
 
-            let config = GAME.model.config;
-            const customerController = new CustomerController();
-
-            if (customer.satisfaction <= config.sendAwayThreshold)
+            if (customer.satisfaction <= GAME.model.config.sendAwayThreshold)
             {
                 this.updatePlayerSatisfaction(customer);
+
                 customerController.sendAway(customer);
                 customerController.updateCustomerView();
+                continue;
             }
-            if (customer.satisfaction < config.angryThreshold)
-            {
-                $("#customer-data").attr("src", "src/assets/img/emojis/angrySmall.png");
 
-                customerController.updateCustomerView();
-            }
-            if (customer.satisfaction < config.neutralThreshold)
+            if (customer.satisfaction <= GAME.model.config.angryThreshold)
             {
-                $("#customer-data").attr("src", "src/assets/img/emojis/neutralSmall.png");
-
-                customerController.updateCustomerView();
+                $("span[data-customer="+ customer.id +"].image").children("img").attr(
+                    "src", "src/assets/img/emojis/angrySmall.png");
+                continue;
             }
-        });
+
+            if (customer.satisfaction <= GAME.model.config.neutralThreshold)
+                $("span[data-customer="+ customer.id +"].image").children("img").attr(
+                    "src", "src/assets/img/emojis/neutralSmall.png");
+        }
     }
 }

@@ -82,7 +82,6 @@ export default class SimulationController extends Controller
         const days = Math.floor(GAME.model.config.hours / 24);
         const quarterYear = Math.floor(GAME.model.config.yearDays / 4);
 
-        const customerController = new CustomerController();
         const warehouseController = new WarehouseController();
         const levelController = new LevelController();
         const satisfactionController = new SatisfactionController();
