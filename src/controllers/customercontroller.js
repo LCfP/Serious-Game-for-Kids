@@ -43,7 +43,6 @@ export default class CustomerController extends OrderController
         };
     }
 
-
     generateOrder(isStructural = false)
     {
         const demandGenerator = new DemandController();

@@ -6,7 +6,7 @@ import CustomerController from './customercontroller';
 import SimulationController from './simulationcontroller';
 import HelpController from './helpcontroller';
 import ScoreboardController from './scoreboardcontroller';
-import ScoreController from './scorecontroller'
+import ScoreController from './scorecontroller';
 
 import Cookies from 'js-cookie';
 

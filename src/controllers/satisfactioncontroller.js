@@ -2,6 +2,7 @@ import Controller from './core/controller';
 import CustomerController from './customercontroller';
 import ScoreController from './scorecontroller';
 
+
 export default class SatisfactionController extends Controller
 {
     /**

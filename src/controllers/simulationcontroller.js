@@ -5,6 +5,7 @@ import WarehouseController from './warehousecontroller';
 import LevelController from './levelcontroller';
 import SatisfactionController from './satisfactioncontroller';
 
+
 export default class SimulationController extends Controller
 {
     /**
