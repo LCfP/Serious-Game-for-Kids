@@ -114,14 +114,6 @@ export default class CustomerController extends OrderController
     }
 
     /**
-     * @See customer.updateSatisfaction
-     */
-    updateSatisfaction()
-    {
-        GAME.model.customers.forEach(customer => customer.updateSatisfaction());
-    }
-
-    /**
      * Validates order if quantity in warehouse for every product is
      * larger than in order.
      *
@@ -150,8 +142,7 @@ export default class CustomerController extends OrderController
             $(".no-customers").remove();
         }
 
-        // TODO produce image url based on satisfaction, and provide to template below
-        // (and update template).
+        customer.emoji = this._determineEmoji(customer.satisfaction);
 
         this._loadTemplate(
             "src/views/template/customer/customerorder.html",
@@ -159,5 +150,18 @@ export default class CustomerController extends OrderController
             customer,
             true
         ).done(() => this.registerEvent(customer.id));
+    }
+
+    _determineEmoji(satisfaction)
+    {
+        if (satisfaction <= GAME.model.config.angryThreshold) {
+            return "angry";
+        }
+
+        if (satisfaction <= GAME.model.config.neutralThreshold) {
+            return "neutral";
+        }
+
+        return "happy";
     }
 }

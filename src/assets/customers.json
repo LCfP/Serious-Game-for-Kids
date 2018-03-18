@@ -3,7 +3,6 @@
     {
       "name": "ECOMart",
       "type": ["food"],
-      "satisfaction": 100,
       "expectation": {
         "delivery": 7,
         "quality": {
