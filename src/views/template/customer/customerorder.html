@@ -1,23 +1,33 @@
 <li class="list-group-item">
-    <div>
-        {{ #customer }}
-            <b>{{ name }}</b>
-        {{ /customer }}
-        <button type="button" class="customer-serve btn btn-default btn-xs" style="float: right;" data-customer="{{ id }}">
-            <span class="text-success">
-                <span class="glyphicon glyphicon-ok"></span>
-                {{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}
+    <div class="row" style="height: 32px; line-height: 32px;">
+        <div class="col-xs-6">
+            <span class="image" data-customer="{{ id }}">
+                <img src="src/assets/img/emojis/{{ emoji }}Small.png" alt="Emoji">
             </span>
-        </button>
-    </div>
-    <div>
-        {{ #order.products }}
-            <span class="image">
-                <img src="src/assets/img/{{ values.icon }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
-                <span class="overlay quantity-overlay text-center">
-                    <strong>{{ values.quantity }}</strong>
+            {{ #customer }}
+                <b>{{ name }}</b>
+            {{ /customer }}
+        </div>
+        <div class="col-xs-6" style="text-align: right;">
+            <button type="button" class="customer-serve btn btn-default btn-sm" data-customer="{{ id }}">
+                <span class="text-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {{#l}}Earn{{/l}} {{#order}} {{ orderCost }} {{/order}}
                 </span>
-            </span>
-        {{ /order.products }}
+            </button>
+        </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 5px;">
+    <div class="row">
+        <div class="col-xs-12">
+            {{ #order.products }}
+                <span class="image">
+                    <img src="src/assets/img/{{ values.icon }}" alt="{{#l}}{{ name }}{{/l}}" title="{{#l}}{{ name }}{{/l}}">
+                    <span class="overlay quantity-overlay text-center">
+                        <strong>{{ values.quantity }}</strong>
+                    </span>
+                </span>
+            {{ /order.products }}
+        </div>
     </div>
 </li>

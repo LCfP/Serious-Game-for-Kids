@@ -3,6 +3,7 @@ import Controller from './core/controller';
 import MoneyController from './moneycontroller';
 import WarehouseController from './warehousecontroller';
 import DemandController from './demandcontroller';
+import SatisfactionController from './satisfactioncontroller';
 
 import Customer from '../models/classes/customer';
 import CustomerOrder from '../models/classes/customerorder';
@@ -38,7 +39,7 @@ export default class CustomerController extends OrderController
             let customerController = new CustomerController();
 
             fn(customer, customerController);
-            customerController._updateCustomerView();
+            customerController.updateCustomerView();
         };
     }
 
@@ -68,7 +69,7 @@ export default class CustomerController extends OrderController
 
         if (customer.order.products.length) {
             GAME.model.customers.push(customer);
-            this._updateOrderView(customer);
+            this.updateOrderView(customer);
         }
     }
 
@@ -82,11 +83,15 @@ export default class CustomerController extends OrderController
         MoneyController.updateMoney(customer.order.orderCost());
 
         const warehouseController = new WarehouseController();
+        const satisfactionController = new SatisfactionController();
         const orderCopy = new CustomerOrder(OrderController._copyOrder(customer.order));
 
         warehouseController.processCustomerOrder(orderCopy);
         warehouseController.updateContainerView();
         warehouseController.updateCapacityView();
+
+        GAME.model.config.completedOrders += 1;
+        satisfactionController.updatePlayerSatisfaction(customer);
 
         GAME.model.customers = GAME.model.customers.filter((item) => customer.id != item.id);
     }
@@ -120,26 +125,22 @@ export default class CustomerController extends OrderController
         });
     }
 
-    /**
-     * @private
-     */
-    _updateCustomerView()
+    updateCustomerView()
     {
         $("#customer-orders").empty();
 
         GAME.model.customers.forEach(function (customer) {
-            this._updateOrderView(customer);
+            this.updateOrderView(customer);
         }, this);
     }
 
-    /**
-     * @private
-     */
-    _updateOrderView(customer)
+    updateOrderView(customer)
     {
         if (GAME.model.customers.length) {
             $(".no-customers").remove();
         }
+
+        customer.emoji = this._determineEmoji(customer.satisfaction);
 
         this._loadTemplate(
             "src/views/template/customer/customerorder.html",
@@ -147,5 +148,18 @@ export default class CustomerController extends OrderController
             customer,
             true
         ).done(() => this.registerEvent(customer.id));
+    }
+
+    _determineEmoji(satisfaction)
+    {
+        if (satisfaction <= GAME.model.config.angryThreshold) {
+            return "angry";
+        }
+
+        if (satisfaction <= GAME.model.config.neutralThreshold) {
+            return "neutral";
+        }
+
+        return "happy";
     }
 }

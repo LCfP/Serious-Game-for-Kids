@@ -21,14 +21,17 @@
         </li>
     </ul>
     <div class="nav navbar-nav navbar-right statuses">
-        
         <p class="navbar-text">
             <strong>{{#l}}Level{{/l}}</strong>
             <span id="level">{{ level }}</span>
         </p>
-        <p class="navbar-text hidden">
-            <strong class="text-capitalize">{{#l}}satisfaction{{/l}}</strong>
-            <span id="satisfaction">{{ config.satisfaction }}</span>%
+        <p class="navbar-text" data-toggle="tooltip" data-placement="bottom" title="{{#l}}satisfaction{{/l}} &times; {{#l}}money{{/l}}">
+            <strong>{{#l}}Score{{/l}}</strong>
+            <span id="score">{{ config.score }}</span>
+        </p>
+        <p class="navbar-text">
+            <strong>{{#l}}Satisfaction{{/l}}</strong>
+            <span id="satisfaction">{{ config.playerSatisfaction }}</span>%
         </p>
         <p class="navbar-text">
             <strong>{{#l}}Money{{/l}}</strong>
