@@ -1,7 +1,6 @@
-import Controller from "./core/controller";
+import Controller from './core/controller';
 
-export default class ScoreController extends Controller
-
+export default class ScoreController extends Controller 
 {
     updateScore()
     {

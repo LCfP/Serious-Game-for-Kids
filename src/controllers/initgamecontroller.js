@@ -54,9 +54,8 @@ export default class InitGameController extends Controller
                 }
             );
         }
-        const scoreController = new ScoreController();
 
-        scoreController.updateScore();
+        (new ScoreController()).updateScore();
     }
 
     /**

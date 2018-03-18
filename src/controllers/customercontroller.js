@@ -70,7 +70,6 @@ export default class CustomerController extends OrderController
 
         if (customer.order.products.length) {
             GAME.model.customers.push(customer);
-
             this.updateOrderView(customer);
         }
     }

@@ -1,6 +1,6 @@
 import Controller from './core/controller';
 import CustomerController from './customercontroller';
-import ScoreController from "./scorecontroller";
+import ScoreController from './scorecontroller';
 
 export default class SatisfactionController extends Controller
 {
@@ -10,8 +10,9 @@ export default class SatisfactionController extends Controller
      */
     updatePlayerSatisfaction(customer)
     {
-        if (customer.satisfaction > 100)
+        if (customer.satisfaction > 100) {
             customer.satisfaction = 100;
+        }
 
         let config = GAME.model.config;
 
@@ -20,9 +21,7 @@ export default class SatisfactionController extends Controller
 
         $("#satisfaction").html(config.playerSatisfaction.toFixed(0));
 
-        const scoreController = new ScoreController();
-
-        scoreController.updateScore();
+        (new ScoreController()).updateScore();
     }
 
     /**
@@ -32,15 +31,14 @@ export default class SatisfactionController extends Controller
     {
         const customerController = new CustomerController();
 
-        for (let customer of GAME.model.customers) {
+        GAME.model.customers.forEach(customer => {
             customer.satisfaction -= 10;
 
-            if (customer.satisfaction <= GAME.model.config.sendAwayThreshold)
-            {
+            if (customer.satisfaction <= GAME.model.config.sendAwayThreshold) {
                 this.updatePlayerSatisfaction(customer);
                 customerController.sendAway(customer);
             }
-        }
+        });
 
         customerController.updateCustomerView();
     }

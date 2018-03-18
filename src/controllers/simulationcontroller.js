@@ -3,7 +3,7 @@ import DemandController from './demandcontroller';
 import FactoryController from './factorycontroller';
 import WarehouseController from './warehousecontroller';
 import LevelController from './levelcontroller';
-import SatisfactionController from "./satisfactioncontroller";
+import SatisfactionController from './satisfactioncontroller';
 
 export default class SimulationController extends Controller
 {
