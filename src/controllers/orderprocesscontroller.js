@@ -1,6 +1,7 @@
 import Controller from './core/controller';
 import Product from '../models/classes/product';
 
+
 export default class OrderProcessController extends Controller
 {
     constructor(order)
