@@ -72,6 +72,6 @@ export default class LevelController extends Controller
      */
     _checkGoalSatisfaction(level)
     {
-        return GAME.model.config.satisfaction >= level.goal;
+        return GAME.model.config.playerSatisfaction >= level.goal;
     }
 }
