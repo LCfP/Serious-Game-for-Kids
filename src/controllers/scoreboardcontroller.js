@@ -79,7 +79,7 @@ export default class ScoreboardController extends Controller
             data: {
                 team_id: GAME.model.config.scoreboard.team.id,
                 money: GAME.model.config.money,
-                satisfaction: GAME.model.config.satisfaction,
+                satisfaction: GAME.model.config.playerSatisfaction,
             }
         });
     }
